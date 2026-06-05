@@ -1,0 +1,183 @@
+{
+  "name": "더라운드 탈북민 정착 뉴스 AI 자동 수집 및 요약 업로더",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger-node",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.nkrf.or.kr/main/rss.do",
+        "options": {}
+      },
+      "id": "fetch- Hana-Foundation-rss",
+      "name": "Fetch Hana Foundation News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "custom",
+        "text": "=아래의 뉴스 콘텐츠를 읽고, 탈북민(북한이탈주민) 세대 전체(가족, 자녀, 청년, 중장년, 노년 등)에게 실질적인 정착 혜택이나 복지 지원, 일자리 지원, 의료 혜택, 교육 지원 등의 정보가 포함되어 있는지 확인해 주세요.\n\n뉴스 제목: {{$json.title}}\n뉴스 내용 요약: {{$json.description || $json.content}}\n\n만약 관련성이 높다면, 다음 형식의 JSON 객체로 결과를 반환해 주세요. 관련이 없는 일반 뉴스나 동향 기사라면 빈 JSON 객체 `{}`를 반환해 주세요.\n\n반환 형식:\n{\n  \"relevant\": true,\n  \"category\": \"welfare\" | \"education\" | \"jobs\" | \"health\", (복지/주거는 welfare, 교육/장학금은 education, 취업/훈련은 jobs, 의료/법률은 health)\n  \"badge\": \"예: 무료 치과 혜택 / 장학금 300만원\",\n  \"title\": \"가독성을 위해 요약 정리한 뉴스 제목 (30자 이내)\",\n  \"excerpt\": \"이탈주민에게 실질적으로 도움을 주는 혜택 내용을 요약한 3줄 요약 문장 (약 120자 내외)\",\n  \"tag\": \"예: 전액 무료 / 선착순 마감\"\n}",
+        "options": {
+          "systemMessage": "당신은 비영리 단체 '더라운드'의 유능한 AI 어시스턴트입니다. 한국의 복지 정보 공문을 정착민들이 이해하기 쉽도록 친근하고 명료하게 변환해 주는 역할을 맡고 있습니다."
+        }
+      },
+      "id": "openai-ai-summarizer",
+      "name": "AI Summarizer Node",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        640,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credential-id"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.relevant}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "filter-relevant-node",
+      "name": "Filter Relevant News",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        860,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "base": "appvhPHdiMuC6Q3oA",
+        "table": "SettlementNews",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "category",
+              "fieldValue": "={{$json.category}}"
+            },
+            {
+              "fieldId": "badge",
+              "fieldValue": "={{$json.badge}}"
+            },
+            {
+              "fieldId": "title",
+              "fieldValue": "={{$json.title}}"
+            },
+            {
+              "fieldId": "date",
+              "fieldValue": "={{new Date().toISOString().split('T')[0]}}"
+            },
+            {
+              "fieldId": "excerpt",
+              "fieldValue": "={{$json.excerpt}}"
+            },
+            {
+              "fieldId": "tag",
+              "fieldValue": "={{$json.tag}}"
+            },
+            {
+              "fieldId": "url",
+              "fieldValue": "=#"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "insert-airtable-node",
+      "name": "Insert into Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        300
+      ],
+      "credentials": {
+        "airtableApi": {
+          "id": "airtable-credential-id"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "schedule-trigger-node": {
+      "main": [
+        [
+          {
+            "node": "fetch- Hana-Foundation-rss",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fetch- Hana-Foundation-rss": {
+      "main": [
+        [
+          {
+            "node": "openai-ai-summarizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openai-ai-summarizer": {
+      "main": [
+        [
+          {
+            "node": "filter-relevant-node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filter-relevant-node": {
+      "main": [
+        [
+          {
+            "node": "insert-airtable-node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "2"
+}

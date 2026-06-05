@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="비영리 민간단체 더라운드(The Round)는 세대와 배경을 넘어 소통하는 원형 테이블입니다. 한반도의 내일을 함께 디자인합니다.">
+    <title>더라운드 (The Round) | 한반도의 내일을 디자인하는 테이블</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="style.css?v=1.0.6">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header" id="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">THE <span class="accent-text">ROUND</span></span>
+                </a>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">더라운드 소개</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#stats" class="nav-link">현황과 데이터</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#solutions" class="nav-link dropdown-toggle">더라운드 활동</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#solutions" class="nav-link-sub">핵심 실천 활동</a></li>
+                            <li><a href="#stories" class="nav-link-sub">활동 소식/스토리</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#designers" class="nav-link dropdown-toggle">한반도 디자이너</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#designers" class="nav-link-sub">디자이너 소개</a></li>
+                            <li><a href="#designer-booking" class="nav-link-sub" id="nav-booking-btn">강연 섭외 신청</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">문의</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Login Link -->
+                        <a href="#" id="auth-modal-link" class="nav-link" style="color: var(--color-accent-secondary) !important; font-weight: 700;">로그인</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <!-- User Profile (Visible when logged in) -->
+                <div id="user-profile-header" class="hidden" style="display: flex; align-items: center; gap: 0.8rem; margin-right: 0.5rem;">
+                    <span id="header-user-name" style="font-size: 0.9rem; font-weight: 700; color: var(--color-text-primary);">사용자님</span>
+                    <button id="header-mypage-btn" class="btn btn-sm btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">마이페이지</button>
+                </div>
+
+                <a href="#donation" class="btn btn-primary btn-header-donate">후원하기</a>
+                
+                <!-- Admin Header Actions (Visible when admin is logged in) -->
+                <button id="header-admin-dashboard" class="btn btn-outline btn-header-admin hidden" style="border-color: var(--color-primary); color: var(--color-primary); margin-right: 0.5rem;">대시보드</button>
+
+                <button class="hamburger" id="hamburger-menu" aria-label="메뉴 열기" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content reveal-on-scroll">
+                    <span class="badge">A Circular Table for All</span>
+                    <h1>하나의 한반도<br><span class="highlight-text">새로운 상상을 시작할 시간</span></h1>
+                    <p class="hero-lead">
+                        분단의 어제에 머물지 않습니다.<br>
+                        출신과 세대의 벽을 넘어, 우리가 먼저 하나 된 한반도의 오늘을 증명합니다.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-primary btn-lg">우리의 철학</a>
+                        <a href="#solutions" class="btn btn-outline btn-lg">더라운드 활동</a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal-on-scroll delay-200">
+                    <div class="hero-visual-card">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="남북 청년들이 함께 어우러져 내일을 꿈꾸는 모습" class="hero-img" style="border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); object-fit: cover;">
+                        <div class="glass-tag">
+                            <span class="tag-dot"></span>
+                            <span>함께 그리는 내일</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <a href="#stats" aria-label="아래로 스크롤">
+                    <span class="mouse-icon">
+                        <span class="wheel"></span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section (더라운드 소개) -->
+        <section id="about" class="section about-section reveal-on-scroll">
+            <div class="container">
+                <div class="about-brand-card reveal-on-scroll">
+                    <div class="about-mission text-center">
+                        <span class="section-subtitle">VISION & IDENTITY</span>
+                        <h2>경계를 허물고<br><span class="highlight-text">내일을 디자인하는 더라운드</span></h2>
+                        <div class="mission-divider"></div>
+                        <p class="mission-lead">
+                            비영리 민간단체 <strong>더라운드(The Round)</strong>는 세대와 배경을 넘어<br>모두가 대등한 파트너로 마주 앉는 원형 테이블입니다.
+                        </p>
+                        <p class="mission-desc">
+                            남북의 경험을 품은 선구자들이 단순한 수혜의 대상을 넘어,<br>
+                            우리 사회의 주체적인 구성원이자 한반도 통합의 미래를 직접 설계하는<br>
+                            <strong>'디자이너'</strong>로 도약하도록 돕는 실천적 연대망입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="about-impact" class="about-impact-block">
+                   <div class="impact-header text-center">
+                       <h3>이미 시작된 한반도의 오늘 우리가 나란히 서야 할 세 가지 필연</h3>
+
+                       <p class="impact-lead-sub">먼저 온 미래의 파트너들과 함께하는 과정은 우리 사회의 포용력을 증명하고 통합의 기술을 완성해가는 공동의 창조 과정입니다.</p>
+                   </div>
+                   <div class="impact-grid">
+                       <div class="impact-item">
+                           <div class="impact-num-badge">01</div>
+                           <div class="impact-info">
+                               <h4>두 세계를 관통하는 통합의 지성</h4>
+                               <p>남과 북, 서로 다른 두 체제의 삶을 온몸으로 겪어낸 선구자들의 경험은 그 무엇과도 바꿀 수 없는 통합의 현장 교과서입니다. 이들의 통찰은 문화적 충돌을 예방하고, 마음의 거리를 좁히는 가장 정교한 설계도가 됩니다.</p>
+                           </div>
+                       </div>
+                       <div class="impact-item">
+                           <div class="impact-num-badge">02</div>
+                           <div class="impact-info">
+                               <h4>보이지 않는 선을 넘는 평화의 공명</h4>
+                               <p>북녘의 가족들과 이어지는 이들의 삶은 외부 세계의 가치를 실어나르는 가장 따뜻하고 강력한 평화의 통로입니다. 아래로부터 시작되는 이 자발적인 울림은 닫힌 마음의 빗장을 여는 결정적인 열쇠가 됩니다.</p>
+                           </div>
+                       </div>
+                       <div class="impact-item">
+                           <div class="impact-num-badge">03</div>
+                           <div class="impact-info">
+                               <h4>성숙한 다원주의 사회의 완성</h4>
+                               <p>먼저 온 파트너들과 대등하게 어우러지는 과정은 대한민국이 배경과 출신에 상관없이 구성원의 존엄을 지키는 성숙한 국가로 나아가는 시금석입니다. 우리는 서로를 통해 배우며, 더 큰 민주주의의 미래를 함께 완성합니다.</p>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+
+                <div class="about-values-block">
+                    <div class="values-header text-center">
+                        <h3>더라운드의 3대 핵심 가치</h3>
+                    </div>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon-wrap">
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 2L2 22M22 2H10M22 2V14" />
+                                    <path d="M12 6c4.4 0 8 3.6 8 8a8 8 0 0 1-8 8M6 12a6 6 0 0 0 6 6" />
+                                </svg>
+                            </div>
+                            <h4>북한의 자유와 존엄</h4>
+                            <span class="value-eng">Freedom & Dignity</span>
+                            <p>탈북 이웃들이 대한민국에서 당당하고 안전한 삶을 영위하도록 돕는 것은, 북한 주민들의 보편적 자유와 인권적 존엄성을 수호하는 가장 첫번째 실천입니다.</p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon-wrap">
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    <circle cx="12" cy="10" r="3" stroke-width="1.5" />
+                                </svg>
+                            </div>
+                            <h4>사람 중심의 한반도 통합</h4>
+                            <span class="value-eng">Human-Centered Integration</span>
+                            <p>단순한 지리적 경계의 허묾이나 기계적인 제도 통합을 넘어, 남북의 경험을 품은 청년들과 모든 세대가 마음으로 연대하고 소통하는 통합을 이룹니다.</p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon-wrap">
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                                </svg>
+                            </div>
+                            <h4>미래 세대의 리더십</h4>
+                            <span class="value-eng">Future Leadership</span>
+                            <p>남북 청년들이 단순한 보조원이나 조력자가 아닌, 통합 한반도의 다채로운 비전을 스스로 이끄는 혁신적 리더이자 사회 전문가로 성장하도록 지원합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="section stats-section reveal-on-scroll">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">THE REALITY & DATA</span>
+                    <h2>데이터가 가리키는 한반도<br><span class="highlight-text">더라운드가 디자인할 통합의 좌표</span></h2>
+                    <p class="section-lead">분단의 지표를 넘어 숫자가 말하지 못하는 삶의 현장을 마주하고, 실천적인 통합의 무대를 함께 설계합니다.</p>
+                </div>
+
+                <div class="stats-counters-grid">
+                    <div class="counter-card">
+                        <span class="counter-label">누적 입국 탈북민</span>
+                        <div class="counter-value-wrap">
+                            <span class="counter-value" data-target="34537">0</span>
+                            <span class="counter-unit">명</span>
+                        </div>
+                        <p class="counter-desc">1997년 집계 이후 국내에 정착한 북한이탈주민 수 (통일부 통계)</p>
+                    </div>
+
+                    <div class="counter-card">
+                        <span class="counter-label">여성 입국 비율</span>
+                        <div class="counter-value-wrap">
+                            <span class="counter-value" data-target="72.2" data-decimals="1">0</span>
+                            <span class="counter-unit">%</span>
+                        </div>
+                        <p class="counter-desc">누적 입국자 중 여성 비율 (총 24,944명)</p>
+                    </div>
+
+                    <div class="counter-card">
+                        <span class="counter-label">최근 입국자 수 (2025년)</span>
+                        <div class="counter-value-wrap">
+                            <span class="counter-value" data-target="223">0</span>
+                            <span class="counter-unit">명</span>
+                        </div>
+                        <p class="counter-desc">팬데믹 국경 봉쇄 이후 소폭 반등하는 최근 1년간 입국 추이</p>
+                    </div>
+                </div>
+
+                <div class="stats-charts-grid">
+                    <div class="chart-container-card">
+                        <h3>연도별 입국 추이 (2015 - 2025)</h3>
+                        <p class="chart-subtitle">코로나19 영향으로 급감했던 입국자 수가 최근 점진적으로 회복되고 있습니다.</p>
+                        <div class="bar-chart-wrapper">
+                            <div class="chart-y-axis">
+                                <span>1,500</span>
+                                <span>1,000</span>
+                                <span>500</span>
+                                <span>0</span>
+                            </div>
+                            <div class="bar-chart">
+                                <div class="bar-item" style="--bar-val: 85%;">
+                                    <div class="bar-tooltip">2015년: 1,275명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">15</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 95%;">
+                                    <div class="bar-tooltip">2016년: 1,418명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">16</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 75%;">
+                                    <div class="bar-tooltip">2017년: 1,127명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">17</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 75%;">
+                                    <div class="bar-tooltip">2018년: 1,137명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">18</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 70%;">
+                                    <div class="bar-tooltip">2019년: 1,047명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">19</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 15%;">
+                                    <div class="bar-tooltip">2020년: 229명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">20</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 5%;">
+                                    <div class="bar-tooltip">2021년: 63명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">21</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 5%;">
+                                    <div class="bar-tooltip">2022년: 67명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">22</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 12%;">
+                                    <div class="bar-tooltip">2023년: 196명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">23</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 13%;">
+                                    <div class="bar-tooltip">2024년: 210명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">24</span>
+                                </div>
+                                <div class="bar-item" style="--bar-val: 15%;">
+                                    <div class="bar-tooltip">2025년: 223명</div>
+                                    <div class="bar-fill"></div>
+                                    <span class="bar-year">25</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="chart-source">*자료출처: 통일부 북한이탈주민 입국 현황</span>
+                    </div>
+
+                    <div class="chart-container-card">
+                        <h3>누적 성별 구성 비율</h3>
+                        <p class="chart-subtitle">성별 생존 조건과 경로상 입국자 대다수가 여성을 구성하고 있습니다.</p>
+                        
+                        <div class="gender-visual-wrapper">
+                            <div class="gender-svg-container">
+                                <svg width="180" height="180" viewBox="0 0 100 100">
+                                    <circle class="gender-bg-circle" cx="50" cy="50" r="40" stroke="var(--color-bg-primary)" stroke-width="8" fill="none"></circle>
+                                    <circle class="gender-progress-circle" cx="50" cy="50" r="40" stroke="url(#gender-grad)" stroke-width="8" fill="none"
+                                            stroke-dasharray="251.2" stroke-dashoffset="251.2" style="--dash-offset: 70.3;"></circle>
+                                    <defs>
+                                        <linearGradient id="gender-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="var(--color-accent)"></stop>
+                                            <stop offset="100%" stop-color="var(--color-accent-secondary)"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="gender-center-text">
+                                    <span class="gender-number">72.2%</span>
+                                    <span class="gender-label-sub">여성 비율</span>
+                                </div>
+                            </div>
+                            
+                            <div class="gender-legend">
+                                <div class="legend-item">
+                                    <span class="legend-dot female"></span>
+                                    <span class="legend-text">여성: 24,944명 (72.2%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot male"></span>
+                                    <span class="legend-text">남성: 9,593명 (27.8%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hanbando Designers Section (Moved Here Strategically) -->
+        <section id="designers" class="section designers-section">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <span class="section-subtitle">HANBANDO DESIGNERS</span>
+                    <h2>한반도의 내일을 그리는<br><span class="highlight-text">한반도 디자이너</span></h2>
+                    <p class="section-lead">남북의 경험을 품은 전문가들이 생생한 스토리와 통찰로 우리 사회의 이질감을 해소하고 통합의 비전을 제시합니다.</p>
+                </div>
+
+                <div class="designers-grid" id="designers-grid">
+                    <!-- Dynamic designer cards will be injected here via app.js -->
+                </div>
+
+                <div class="text-center" style="margin-top: 4rem;">
+                    <button id="btn-view-all-designers" class="btn btn-primary btn-lg">전체 디자이너 보기</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barriers Section -->
+        <section id="barriers" class="section barriers-section">
+            <div class="container">
+                <div class="barriers-intro text-center reveal-on-scroll">
+                    <span class="barriers-subtitle">CHALLENGES & DESIGN TASKS</span>
+                    <h3>통합의 실천적 무대<br>우리가 함께 풀어야 할 세 가지 과제</h3>
+                    <p>수치는 삶의 기록입니다. 더라운드는 분단의 관성이 남긴 구체적인 지점들을 포착하고 이를 통합의 기회로 전환하기 위한 정교한 설계를 시작합니다.</p>
+                </div>
+
+                <div class="barriers-grid">
+                    <div class="barrier-card reveal-on-scroll">
+                        <div class="barrier-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                            </svg>
+                        </div>
+                        <h3>[경제적 자립 설계]<br>경험의 단절에서 전문적 도약으로</h3>
+                        <p class="barrier-text">
+                            서로 다른 경제 체제에서 오는 경험의 간극은 성장을 가로막는 첫 번째 과제입니다. 더라운드는 이 간극을 메우는 것을 넘어, 선구자들이 자본주의 시장의 핵심 인재로 거듭나도록 자립의 로드맵을 디자인합니다.
+                        </p>
+                        <div class="barrier-solution">
+                            <span class="solution-badge">Design Solution</span>
+                            <p class="solution-text">1:1 직무 멘토링, 기초 금융 자립 교육, 커리어 로드맵 설계를 지원합니다.</p>
+                            <a href="#solutions" class="solution-link">자립 설계 솔루션 확인하기 &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="barrier-card reveal-on-scroll delay-100">
+                        <div class="barrier-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </div>
+                        <h3>[정서적 연대 설계]<br>심리적 거리에서 대등한 공동체로</h3>
+                        <p class="barrier-text">
+                            연고 없는 낯선 환경에서 느끼는 거리감은 개인이 아닌 우리 사회 공동체가 함께 풀어야 할 과제입니다. 스포츠와 문화를 매개로 높낮이 없는 관계를 형성하여, 고립을 건강한 연대의 에너지로 전환합니다.
+                        </p>
+                        <div class="barrier-solution">
+                            <span class="solution-badge">Design Solution</span>
+                            <p class="solution-text">남북 청년이 어우러지는 스포츠단과 문화 교류를 통해 주체적인 유대를 형성합니다.</p>
+                            <a href="#solutions" class="solution-link">연대 네트워크 확인하기 &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="barrier-card reveal-on-scroll delay-200">
+                        <div class="barrier-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3>[사회적 인식 설계]<br>편견의 언어에서 공존의 담론으로</h3>
+                        <p class="barrier-text">
+                            특유의 말투와 문화 차이가 '장벽'이 되는 현실은 우리 사회의 포용력을 시험하는 잣대입니다. 기록과 토론을 통해 보이지 않는 편견의 벽을 허물고, 다름이 자부심이 되는 성숙한 통합의 담론을 이끌어냅니다.
+                        </p>
+                        <div class="barrier-solution">
+                            <span class="solution-badge">Design Solution</span>
+                            <p class="solution-text">평화 포럼과 삶의 궤적을 엮는 아카이빙을 통해 시민들의 인식 변화를 주도합니다.</p>
+                            <a href="#solutions" class="solution-link">인식 변화 프로젝트 보기 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section id="solutions" class="section solutions-section dark-bg">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <span class="section-subtitle">OUR SOLUTIONS & ACTIVITIES</span>
+                    <h2>분단의 문턱을 넘어<br><span class="highlight-text">공동체의 주역으로 나아가는 통로</span></h2>
+                    <p class="section-lead">더라운드는 우리 곁의 선구자들이 잠재력을 발휘하여 통합 한반도의 새로운 리더로 도약할 수 있도록 실질적인 성장 기반을 구축합니다.</p>
+                </div>
+
+                <div class="programs-grid">
+                    <div class="program-card reveal-on-scroll" data-program="school" id="program-school">
+                        <div class="program-num">01</div>
+                        <div class="program-main-info">
+                            <span class="solution-badge" style="margin-bottom: 0.8rem; background: var(--gradient-accent); color: white; display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">주체적 역량 설계</span>
+                            <h3>청년 리더십 스쿨 <span class="sub-title">(Youth Leadership School)</span></h3>
+                            <p>단순 지원을 넘어 청년들이 스스로의 커리어와 경제적 자립을 설계하는 역량 강화 무대입니다. 1:1 전문가 멘토링과 실무 중심 코칭으로 미래의 핵심 인재를 양성합니다.</p>
+                        </div>
+                        <button class="btn btn-icon-only open-modal-btn" aria-label="청년 리더십 스쿨 상세 정보 보기">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="program-card reveal-on-scroll delay-100" data-program="sports" id="program-sports">
+                        <div class="program-num">02</div>
+                        <div class="program-main-info">
+                            <span class="solution-badge" style="margin-bottom: 0.8rem; background: var(--gradient-accent); color: white; display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">수평적 연대와 교류</span>
+                            <h3>스포츠 연대 유니원 FC <span class="sub-title">(UniOne FC Sports Solidarity)</span></h3>
+                            <p>그라운드 위에서 땀을 흘리며 대등한 파트너로서 우정을 쌓습니다. 스포츠를 매개로 남북 청년과 시민들이 편견 없이 어우러지는 가장 역동적인 화합의 현장입니다.</p>
+                        </div>
+                        <button class="btn btn-icon-only open-modal-btn" aria-label="유니원 FC 스포츠 교류 상세 정보 보기">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="program-card reveal-on-scroll delay-200" data-program="forum" id="program-forum">
+                        <div class="program-num">03</div>
+                        <div class="program-main-info">
+                            <span class="solution-badge" style="margin-bottom: 0.8rem; background: var(--gradient-accent); color: white; display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">통합 담론의 선도</span>
+                            <h3>평화 포럼 및 아카이빙 <span class="sub-title">(Peace Forum & Archiving)</span></h3>
+                            <p>학술적 논의와 생생한 삶의 기록을 통해 사회 통합의 새로운 패러다임을 제시합니다. 선구자들의 서사를 가치 있는 기록으로 남겨 시민들과 공유하며 인식의 지평을 넓힙니다.</p>
+                        </div>
+                        <button class="btn btn-icon-only open-modal-btn" aria-label="평화 포럼 및 아카이빙 상세 정보 보기">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stories Section -->
+        <section id="stories" class="section stories-section">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <span class="section-subtitle">LATEST STORIES</span>
+                    <h2>최근 실천 사례와 일상 소식</h2>
+                    <p class="section-lead">더라운드가 만들어나가는 작지만 의미 있는 현장 소식들을 전해드립니다.</p>
+                </div>
+
+                <div class="stories-grid" id="stories-grid">
+                    <!-- Dynamic stories will be injected here via app.js -->
+                </div>
+
+                <div class="text-center" style="margin-top: 3rem;">
+                    <button id="btn-view-all-stories" class="btn btn-outline btn-lg" style="min-width: 200px; border-radius: 50px; font-weight: 700;">전체 소식 보기</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Message from Founder (김은철 대표) -->
+        <section id="about-founder" class="section founder-section dark-bg">
+            <div class="container">
+                <div class="founder-message-box reveal-on-scroll">
+                    <div class="founder-image-wrapper" style="position: relative;">
+                        <img src="assets/김은철.jpg" alt="더라운드 김은철 대표" class="founder-img" id="founder-portrait-img">
+                        <input type="file" id="founder-file-input" accept="image/*" style="display: none;">
+                        <button id="admin-edit-founder-btn" class="btn-admin-action hidden" style="position: absolute; bottom: 10px; right: 10px; padding: 0.5rem 1rem; background: var(--color-primary); color: white; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem; z-index: 10; box-shadow: var(--shadow-md);">사진 변경</button>
+                    </div>
+                    <div class="founder-text-content">
+                        <blockquote class="founder-quote">
+                            "우리는 서로 다른 삶의 궤적이 만나는 접점에서 사회 통합의 가능성을 봅니다. 다양한 세대의 지성과 청년들의 열정이 동등하게 어우러질 때, 한반도 통합을 위한 가장 혁신적이고 진정성 있는 아이디어가 태어납니다. 더라운드는 모두가 함께 내일의 비전을 설계하고 실천하는 연대의 공간이 될 것입니다."
+                        </blockquote>
+                        <div class="founder-info">
+                            <span class="founder-name">김 은 철</span>
+                            <span class="founder-title">더라운드(The Round) 대표</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation / Action Section -->
+        <section id="donation" class="section donation-section">
+            <div class="donation-mesh-bg" style="opacity: 0.05;"></div>
+            <div class="container">
+                <div class="donation-layout">
+                    <div class="donation-text reveal-on-scroll">
+                        <span class="section-subtitle highlight-text">MAKE A DIFFERENCE</span>
+                        <h2>통합의 실천적 무대를<br>넓히는 동참의 발걸음</h2>
+                        <p class="donation-desc" style="color: var(--color-text-muted);">
+                            여러분의 소중한 동참은 탈북 청년들이 더라운드의 실천적 무대에서 주체적인 전문가와 리더로 일어설 수 있도록 하는 데 전액 사용됩니다.
+                            단순 수혜가 아닌, 대등한 구성원으로서 함께 한반도의 내일을 열어가도록 따뜻한 동반자가 되어주세요.
+                        </p>
+
+                        <div class="donation-benefits" style="margin-top: 2rem;">
+                            <div class="benefit-item">
+                                <span class="benefit-icon" style="color: var(--color-primary); font-weight: bold; margin-right: 0.5rem;">&#10003;</span>
+                                <div>
+                                    <h4 style="color: var(--color-text-primary);">기부금 영수증 발급 안내</h4>
+                                    <p style="color: var(--color-text-muted);">현재 지정기부금 단체 신청을 준비 중이며, 발급이 가능해지는 시점에 맞춰 홈페이지를 통해 별도로 안내해 드릴 예정입니다. (약 1년 이상 소요 예상)</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item" style="margin-top: 1.5rem;">
+                                <span class="benefit-icon" style="color: var(--color-primary); font-weight: bold; margin-right: 0.5rem;">&#10003;</span>
+                                <div>
+                                    <h4 style="color: var(--color-text-primary);">투명한 재정 보고서 발행</h4>
+                                    <p style="color: var(--color-text-muted);">연 1회 연간 활동 및 재정 보고서를 우편과 메일로 투명하게 공개합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="donation-widget-card reveal-on-scroll delay-100">
+                        <div class="widget-header">
+                            <button class="tab-btn active" data-type="regular">정기후원</button>
+                            <button class="tab-btn" data-type="once">일시후원</button>
+                        </div>
+                        <div class="widget-body">
+                            <p class="widget-label">후원 금액 선택</p>
+                            <div class="amount-presets">
+                                <button class="amount-btn active" data-amount="10000">1만원</button>
+                                <button class="amount-btn" data-amount="30000">3만원</button>
+                                <button class="amount-btn" data-amount="50000">5만원</button>
+                                <button class="amount-btn" data-amount="100000">10만원</button>
+                                <button class="amount-btn" data-amount="custom">직접입력</button>
+                            </div>
+
+                            <div class="custom-amount-input-wrapper hidden" id="custom-amount-wrapper">
+                                <input type="number" id="custom-amount" placeholder="금액을 입력하세요" min="1000" step="5000">
+                                <span class="currency">원</span>
+                            </div>
+
+                            <div class="impact-message-box" id="impact-message" style="color: var(--color-text-primary); min-height: 50px;">
+                                매월 <strong>10,000원</strong>의 후원은 새로운 시작을 준비하는 청년 1명에게 월 1회 기초 도서 및 정서 멘토링을 연계해 줄 수 있습니다.
+                            </div>
+
+                            <form class="donation-form" id="donation-submit-form">
+                                <div class="form-group">
+                                    <label for="donor-name" class="sr-only">후원자 이름</label>
+                                    <input type="text" id="donor-name" placeholder="후원자명(또는 단체명)" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="donor-email" class="sr-only">이메일 주소</label>
+                                    <input type="email" id="donor-email" placeholder="이메일 주소" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" id="donate-submit-btn">더라운드 후원 신청하기</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unified Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <span class="section-subtitle">LOCATION & GET IN TOUCH</span>
+                    <h2>찾아오시는 길 & 1:1 문의</h2>
+                    <p class="section-lead">더라운드는 여러분의 목소리에 항상 귀 기울이고 있습니다. 궁금한 점이 있다면 언제든 문의해 주세요.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info reveal-on-scroll">
+                        <h3>Contact Information</h3>
+                        <p class="contact-intro">방문 상담은 사전 예약을 통해 진행됩니다. 아래 연락처를 통해 일정을 조율해 주세요.</p>
+                        
+                        <ul class="contact-details-list">
+                            <li>
+                                <div class="icon-wrap">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>본부 주소</strong>
+                                    <p>경기도 광명시 철산로 57 (7호선 철산역 인근)</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-wrap">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.7 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>대표 전화</strong>
+                                    <p>02-866-6296 (평일 09:00 - 18:00)</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-wrap">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong>이메일 문의</strong>
+                                    <p>theround2030@naver.com</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="map-placeholder">
+                            <div class="map-art">
+                                <div class="map-pin"></div>
+                                <div class="pulse-ring"></div>
+                            </div>
+                            <span class="map-caption">더라운드 광명 본부 위치 안내</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card reveal-on-scroll delay-100">
+                        <h3>1:1 문의하기</h3>
+                        <form id="contact-submit-form" class="inquiry-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name">성명 / 단체명 <span class="required">*</span></label>
+                                    <input type="text" id="contact-name" placeholder="성명을 입력하세요" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email">이메일 주소 <span class="required">*</span></label>
+                                    <input type="email" id="contact-email" placeholder="email@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">문의 유형 <span class="required">*</span></label>
+                                <select id="contact-subject" required>
+                                    <option value="">유형을 선택해 주세요</option>
+                                    <option value="강연/교육 문의">강연 및 교육 프로그램 문의</option>
+                                    <option value="협력/파트너십">협력 및 파트너십 제안</option>
+                                    <option value="후원 관련">후원 관련 문의</option>
+                                    <option value="기타 문의">기타 일반 문의</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">상세 내용 <span class="required">*</span></label>
+                                <textarea id="contact-message" placeholder="궁금하신 내용을 자세히 적어주세요." rows="5" required></textarea>
+                            </div>
+                            <div class="form-privacy">
+                                <input type="checkbox" id="privacy-check" required>
+                                <label for="privacy-check">개인정보 수집 및 이용에 동의합니다. <span class="required">*</span></label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">문의하기 발송</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-text">THE <span class="accent-text">ROUND</span></span>
+                    </div>
+                    <p class="brand-desc">배경과 세대를 넘어 모든 이가 동등한 파트너로 만나는 한반도 미래의 원형 테이블입니다.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>더라운드</h4>
+                    <ul>
+                        <li><a href="#about">단체 소개</a></li>
+                        <li><a href="#stats">데이터와 현실</a></li>
+                        <li><a href="#contact">오시는 길</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>주요 활동</h4>
+                    <ul>
+                        <li><a href="#solutions">핵심 실천 활동</a></li>
+                        <li><a href="#stories">활동 소식/스토리</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>문의</h4>
+                    <ul>
+                        <li><a href="#contact">문의 및 오시는 길</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <div class="org-details">
+                    <p>비영리 민간단체 더라운드 | 대표자: 김은철 | 고유번호: 123-45-67890</p>
+                    <p>주소: 경기도 광명시 철산로 57 | TEL: 02-866-6296 | Email: theround2030@naver.com</p>
+                    <p class="copyright">&copy; 2026 The Round. All Rights Reserved.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#">개인정보 처리방침</a>
+                    <a href="#">이용약관</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals Layer -->
+    
+    <!-- Auth Modal (Login/Signup) -->
+    <div id="auth-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container modal-sm">
+            <button class="modal-close" aria-label="닫기">&times;</button>
+            <div class="modal-body">
+                <div class="auth-tabs" style="display: flex; margin-bottom: 2rem; border-bottom: 1px solid var(--color-border);">
+                    <button id="tab-login" class="auth-tab-btn active" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 700; cursor: pointer;">로그인</button>
+                    <button id="tab-signup" class="auth-tab-btn" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 700; cursor: pointer;">회원가입</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form-container">
+                    <h3 style="margin-bottom: 1.5rem;">다시 오신 것을 환영합니다</h3>
+                    <form id="user-login-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="login-email">이메일 주소</label>
+                            <input type="text" id="login-email" placeholder="이메일을 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">비밀번호</label>
+                            <input type="password" id="login-password" placeholder="비밀번호를 입력하세요" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1rem;">로그인</button>
+                        <p id="login-error-msg" class="hidden" style="color: var(--color-error); font-size: 0.85rem; margin-top: 1rem; text-align: center;">이메일 또는 비밀번호가 일치하지 않습니다.</p>
+                    </form>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signup-form-container" class="hidden">
+                    <h3 style="margin-bottom: 1.5rem;">더라운드와 함께하기</h3>
+                    <form id="user-signup-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="signup-name">성명</label>
+                            <input type="text" id="signup-name" placeholder="이름을 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">이메일 주소</label>
+                            <input type="email" id="signup-email" placeholder="email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">비밀번호</label>
+                            <input type="password" id="signup-password" placeholder="8자 이상 입력하세요" required minlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password-confirm">비밀번호 확인</label>
+                            <input type="password" id="signup-password-confirm" placeholder="한 번 더 입력하세요" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1rem;">가입하기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div id="user-dashboard-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="닫기">&times;</button>
+            <div class="modal-body">
+                <div class="user-dashboard-grid">
+                    <!-- Digital Membership Card -->
+                    <div class="digital-card">
+                        <div class="card-header">
+                            <span class="card-logo">THE ROUND</span>
+                            <span class="card-badge">MEMBER</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-label">COMPANION NAME</p>
+                            <h3 id="card-user-name">사용자</h3>
+                            <div style="display: flex; justify-content: space-between; margin-top: 1.5rem;">
+                                <div>
+                                    <p class="card-label">JOINED DATE</p>
+                                    <p id="card-join-date" class="card-value">2026. 06. 03</p>
+                                </div>
+                                <div>
+                                    <p class="card-label">STATUS</p>
+                                    <p class="card-value">정회원 (Active)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <p>한반도 미래를 함께 그리는 동행자</p>
+                        </div>
+                    </div>
+
+                    <!-- Member Gratitude Message -->
+                    <div class="member-resources">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--color-primary);">함께해 주셔서 감사합니다</h3>
+                        <div style="background: var(--color-bg-alt); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--color-border); line-height: 1.7; color: var(--color-text-muted);">
+                            <p style="margin-bottom: 1rem;">
+                                회원님의 귀한 참여는 한반도 공동체의 새로운 미래를 디자인하는 밑거름이자, 우리 사회의 성숙한 포용력을 넓히는 힘입니다.
+                            </p>
+                            <p>
+                                <strong>더라운드</strong>는 깊은 감사의 마음을 담아, 누구나 주역이 되어 내일의 비전을 실현할 수 있는 튼튼한 생태계를 가꾸어 가겠습니다.
+                            </p>
+                        </div>
+                        <div style="margin-top: 2.5rem; display: flex; gap: 1rem;">
+                            <button id="btn-show-edit-profile" class="btn btn-outline" style="flex: 1; border-color: var(--color-border); color: var(--color-text-primary);">비밀번호 변경</button>
+                            <button id="modal-logout-btn" class="btn btn-outline" style="flex: 1; border-color: var(--color-border); color: var(--color-error);">로그아웃</button>
+                        </div>
+
+                        <!-- Change Password Form (Initially Hidden) -->
+                        <div id="edit-profile-section" class="hidden" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+                            <h4 style="margin-bottom: 1.2rem;">비밀번호 변경</h4>
+                            <form id="change-pw-form" class="admin-form">
+                                <div class="form-group">
+                                    <label>현재 비밀번호</label>
+                                    <input type="password" id="current-pw" placeholder="현재 비밀번호를 입력하세요" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>새 비밀번호</label>
+                                    <input type="password" id="new-pw" placeholder="새 비밀번호 (8자 이상)" required minlength="8">
+                                </div>
+                                <div class="form-group">
+                                    <label>새 비밀번호 확인</label>
+                                    <input type="password" id="confirm-new-pw" placeholder="새 비밀번호를 다시 입력하세요" required>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                                    <button type="submit" class="btn btn-primary" style="flex: 2;">변경하기</button>
+                                    <button type="button" id="btn-cancel-edit-profile" class="btn btn-outline" style="flex: 1;">취소</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="admin-dashboard-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container modal-lg">
+            <button id="dashboard-modal-close" class="modal-close">&times;</button>
+            <div class="modal-body">
+                <h2 style="margin-bottom: 2rem;">운영 관리 대시보드</h2>
+                
+                <!-- Dashboard Tabs -->
+                <div class="auth-tabs" style="display: flex; margin-bottom: 2rem; border-bottom: 1px solid var(--color-border);">
+                    <button id="admin-tab-stories" class="auth-tab-btn active" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 700; cursor: pointer;">활동 소식 관리</button>
+                    <button id="admin-tab-designers" class="auth-tab-btn" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 700; cursor: pointer;">한반도 디자이너</button>
+                    <button id="admin-tab-requests" class="auth-tab-btn" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 700; cursor: pointer;">강연 신청 현황</button>
+                    <button id="admin-tab-users" class="auth-tab-btn" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 700; cursor: pointer;">회원 관리</button>
+                </div>
+
+                <!-- Story Management Section -->
+                <div id="admin-stories-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>등록된 활동 소식 목록</h3>
+                        <button id="admin-add-story-btn" class="btn btn-primary btn-sm">+ 새 소식 등록</button>
+                    </div>
+                    <div style="overflow-x: auto; border: 1px solid var(--color-border); border-radius: 12px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>날짜</th>
+                                    <th>태그</th>
+                                    <th>제목</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-story-list-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Designer Management Section -->
+                <div id="admin-designers-section" class="hidden">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>디자이너 풀 관리</h3>
+                        <button id="admin-add-designer-btn" class="btn btn-primary btn-sm">+ 새 디자이너 등록</button>
+                    </div>
+                    <div style="overflow-x: auto; border: 1px solid var(--color-border); border-radius: 12px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>이름</th>
+                                    <th>태그</th>
+                                    <th>전문분야</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-designer-list-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Lecture Request Management Section -->
+                <div id="admin-requests-section" class="hidden">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>강연 신청 현황</h3>
+                    </div>
+                    <div style="overflow-x: auto; border: 1px solid var(--color-border); border-radius: 12px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>신청일</th>
+                                    <th>기관/신청자</th>
+                                    <th>희망일/주제</th>
+                                    <th>상태</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-request-list-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Member Management Section -->
+                <div id="admin-users-section" class="hidden">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>등록된 회원 목록 (<span id="admin-total-user-count">0</span>명)</h3>
+                    </div>
+                    <div style="overflow-x: auto; border: 1px solid var(--color-border); border-radius: 12px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>가입일</th>
+                                    <th>성명</th>
+                                    <th>이메일 계정</th>
+                                    <th>상태</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-user-list-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lecture Booking Modal (Automated) -->
+    <div id="booking-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container modal-lg">
+            <button id="booking-modal-close" class="modal-close">&times;</button>
+            <div class="modal-body">
+                <h3 style="margin-bottom: 1.5rem;">강연 섭외 신청 (한반도 디자이너)</h3>
+                <form id="booking-form" class="automated-form">
+                    <div class="form-section" style="margin-bottom: 2rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--color-primary);">1. 기본 정보</h4>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="book-org">기관/단체명 <span class="required">*</span></label>
+                                <input type="text" id="book-org" placeholder="기관명을 입력하세요" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="book-name">신청자 성함 <span class="required">*</span></label>
+                                <input type="text" id="book-name" placeholder="성함을 입력하세요" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label for="book-email">연락처/이메일 <span class="required">*</span></label>
+                            <input type="text" id="book-email" placeholder="연락 가능한 정보를 입력하세요" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;">
+                        </div>
+                    </div>
+
+                    <div class="form-section" style="margin-bottom: 2rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--color-primary);">2. 강연 상세 정보 (선택)</h4>
+                        <div class="form-group">
+                            <label for="book-designer" style="display: block; margin-bottom: 0.8rem;">희망 디자이너(강사) <span class="required">*</span></label>
+                            <select id="book-designer" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;">
+                                <option value="">디자이너 선택 (또는 추천받기)</option>
+                                <option value="추천 희망">분야에 맞는 디자이너 추천 희망</option>
+                                <!-- Dynamic options injected via JS -->
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.8rem;">교육 대상 <span class="required">*</span></label>
+                            <div class="selection-grid" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                                <label class="select-chip"><input type="radio" name="book-target" value="초등학생" required> <span>초등학생</span></label>
+                                <label class="select-chip"><input type="radio" name="book-target" value="중고등학생"> <span>중고등학생</span></label>
+                                <label class="select-chip"><input type="radio" name="book-target" value="일반시민"> <span>일반시민</span></label>
+                                <label class="select-chip"><input type="radio" name="book-target" value="기업/공공기관"> <span>기업/공공기관</span></label>
+                                <label class="select-chip"><input type="radio" name="book-target" value="전문연구자"> <span>전문연구자</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.8rem;">핵심 주제 <span class="required">*</span></label>
+                            <div class="selection-grid" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                                <label class="select-chip"><input type="radio" name="book-topic" value="북한 일상/문화" required> <span>북한 일상/문화</span></label>
+                                <label class="select-chip"><input type="radio" name="book-topic" value="경제/장마당"> <span>경제/장마당</span></label>
+                                <label class="select-chip"><input type="radio" name="book-topic" value="탈북 및 정착 서사"> <span>탈북 및 정착 서사</span></label>
+                                <label class="select-chip"><input type="radio" name="book-topic" value="남북 언어/소통"> <span>남북 언어/소통</span></label>
+                                <label class="select-chip"><input type="radio" name="book-topic" value="통합 비전/리더십"> <span>통합 비전/리더십</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section" style="margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--color-primary);">3. 일정 및 예산 (선택)</h4>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="book-date">희망 날짜 <span class="required">*</span></label>
+                                <input type="date" id="book-date" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="book-time">선호 시간대 <span class="required">*</span></label>
+                                <select id="book-time" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;">
+                                    <option value="">시간대 선택</option>
+                                    <option value="오전 (09:00~12:00)">오전 (09:00~12:00)</option>
+                                    <option value="오후 (13:00~17:00)">오후 (13:00~17:00)</option>
+                                    <option value="저녁 (18:00 이후)">저녁 (18:00 이후)</option>
+                                    <option value="시간협의">시간협의</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.8rem;">강사료 예산 범위 <span class="required">*</span></label>
+                            <div class="selection-grid" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                                <label class="select-chip"><input type="radio" name="book-budget" value="30만원 이하" required> <span>30만원 이하</span></label>
+                                <label class="select-chip"><input type="radio" name="book-budget" value="30~50만원"> <span>30~50만원</span></label>
+                                <label class="select-chip"><input type="radio" name="book-budget" value="50만원 이상"> <span>50만원 이상</span></label>
+                                <label class="select-chip"><input type="radio" name="book-budget" value="내부 규정 따름"> <span>내부 규정 따름</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 1.5rem;">
+                        <label for="book-memo" style="display: block; margin-bottom: 0.8rem;">추가 요청사항</label>
+                        <textarea id="book-memo" placeholder="기타 문의사항이나 요청하실 내용을 적어주세요." style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 8px;" rows="3"></textarea>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" style="width: 100%;">섭외 신청 완료하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Designer Write/Edit Modal -->
+    <div id="designer-write-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button id="designer-write-modal-close" class="modal-close">&times;</button>
+            <div class="modal-body">
+                <h3 id="designer-modal-title">새 디자이너 등록</h3>
+                <form id="designer-write-form" class="admin-form">
+                    <input type="hidden" id="edit-designer-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="designer-input-name">이름</label>
+                            <input type="text" id="designer-input-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="designer-input-tag">태그 (예: 북한 전문가)</label>
+                            <input type="text" id="designer-input-tag" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="designer-input-specialty">전문 분야 (예: 북한 경제 / 예술 교류)</label>
+                        <input type="text" id="designer-input-specialty" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="designer-input-slogan">핵심 슬로건 (카드 노출용)</label>
+                        <input type="text" id="designer-input-slogan" placeholder='"남북의 마음을 잇는 디자이너"'>
+                    </div>
+                    <div class="form-group">
+                        <label for="designer-input-file">프로필 사진 업로드 (내 컴퓨터)</label>
+                        <input type="file" id="designer-input-file" accept="image/*" style="width: 100%; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 1rem;">
+                        <label for="designer-input-img">또는 이미지 주소(URL)</label>
+                        <input type="text" id="designer-input-img">
+                    </div>
+                    <div class="form-group">
+                        <label for="designer-input-bio">강사 상세 소개 (상세 팝업용)</label>
+                        <textarea id="designer-input-bio" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="designer-input-career">주요 활동 및 이력 (상세 팝업용, 줄바꿈 가능)</label>
+                        <textarea id="designer-input-career" rows="5" placeholder="• 주요 경력 1&#10;• 주요 경력 2"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button type="button" id="designer-write-cancel-btn" class="btn btn-outline">취소</button>
+                        <button type="submit" class="btn btn-primary">저장하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Write/Edit Modal -->
+    <div id="story-write-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button id="write-modal-close" class="modal-close">&times;</button>
+            <div class="modal-body">
+                <h3 id="write-modal-title">새 소식 등록</h3>
+                <form id="story-write-form" class="admin-form">
+                    <input type="hidden" id="edit-story-id">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="story-input-date">날짜</label>
+                            <input type="text" id="story-input-date" placeholder="2026. 06. 03" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="story-input-tag">태그</label>
+                            <input type="text" id="story-input-tag" placeholder="활동 카테고리" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="story-input-title">제목</label>
+                        <input type="text" id="story-input-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="story-input-file">이미지 파일 선택</label>
+                        <input type="file" id="story-input-file" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="story-input-img">또는 이미지 주소(URL)</label>
+                        <input type="text" id="story-input-img">
+                    </div>
+                    <div class="form-group">
+                        <label for="story-input-excerpt">짧은 요약 (목록 노출)</label>
+                        <textarea id="story-input-excerpt" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="story-input-content">상세 내용 (HTML 가능)</label>
+                        <textarea id="story-input-content" rows="10" required></textarea>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button type="button" id="story-write-cancel-btn" class="btn btn-outline">취소</button>
+                        <button type="submit" class="btn btn-primary">저장하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- News/Story Detail Modal -->
+    <div id="detail-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="닫기">&times;</button>
+            <div class="modal-body" id="modal-content-area">
+                <!-- Content will be injected here via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Designer Detail Modal -->
+    <div id="designer-detail-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-container modal-md">
+            <button id="detail-modal-close" class="modal-close">&times;</button>
+            <div class="modal-body" id="designer-detail-content">
+                <!-- Detailed content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=1.0.6"></script>
+</body>
+</html>
