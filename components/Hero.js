@@ -25,13 +25,15 @@ export default function Hero() {
         <div className="hero-visual reveal-on-scroll delay-200">
           <div className="hero-visual-card">
             <img
-              src="https://images.unsplash.com/photo-1526726533691-11889983905d?q=80&w=2000&auto=format&fit=crop"
-              alt="한반도에 찾아온 평화를 기뻐하며 청년들이 탁 트인 들판에서 함께 환호하고 달리는 모습"
+              src="/assets/hero_illustration.png"
+              alt="더라운드의 비전을 담은 공식 일러스트 - 남북 청년의 연대와 원형 테이블"
               className="hero-img"
               style={{
                 borderRadius: "24px",
                 boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
-                objectFit: "cover",
+                objectFit: "contain",
+                backgroundColor: "var(--color-bg-secondary)",
+                padding: "1rem"
               }}
             />
             <div className="glass-tag">
