@@ -65,6 +65,17 @@ async function scrapeHanaNews() {
            href = baseUrl + (href.startsWith('/') ? '' : '/home/kor/') + href;
         }
 
+        // Auto-categorize based on keywords in title
+        let category = 'welfare';
+        const tLower = title.toLowerCase();
+        if (tLower.includes('장학') || tLower.includes('교육') || tLower.includes('보육') || tLower.includes('학교') || tLower.includes('대학') || tLower.includes('학자금') || tLower.includes('스쿨') || tLower.includes('아카데미')) {
+          category = 'education';
+        } else if (tLower.includes('일자리') || tLower.includes('취업') || tLower.includes('직업') || tLower.includes('창업') || tLower.includes('훈련') || tLower.includes('경영개선') || tLower.includes('사회적기업') || tLower.includes('기업 지정') || tLower.includes('구직') || tLower.includes('자활')) {
+          category = 'jobs';
+        } else if (tLower.includes('의료') || tLower.includes('치과') || tLower.includes('건강검진') || tLower.includes('병원') || tLower.includes('법률') || tLower.includes('변호사') || tLower.includes('의료비') || tLower.includes('검진') || tLower.includes('상담')) {
+          category = 'health';
+        }
+
         // Strict cross-check: Only add if there is a valid, clear source URL
         if (title && href && href.startsWith('http')) {
           newsItems.push({
@@ -72,12 +83,12 @@ async function scrapeHanaNews() {
               title: title,
               date: date.replace(/-/g, '.'),
               url: href,
-              category: 'welfare',
+              category: category,
               tag: '공지사항'
             }
           });
         } else if (title) {
-           console.log(`[REJECTED] Missing clear source URL for: ${title}`);
+            console.log(`[REJECTED] Missing clear source URL for: ${title}`);
         }
       }
     });

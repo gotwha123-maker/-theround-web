@@ -25,8 +25,8 @@ export default function Hero() {
         <div className="hero-visual reveal-on-scroll delay-200">
           <div className="hero-visual-card">
             <img
-              src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop"
-              alt="남북 청년들이 함께 어우러져 내일을 꿈꾸는 모습"
+              src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=2000&auto=format&fit=crop"
+              alt="탁 트인 야외에서 청년들이 함께 같은 곳을 바라보며 새로운 미래를 꿈꾸는 모습"
               className="hero-img"
               style={{
                 borderRadius: "24px",

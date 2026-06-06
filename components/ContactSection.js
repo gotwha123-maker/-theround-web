@@ -109,7 +109,7 @@ export default function ContactSection() {
           <div className="contact-form-card reveal-on-scroll delay-100">
             <h3>1:1 문의하기</h3>
             <form id="contact-submit-form" className="inquiry-form" onSubmit={handleSubmit}>
-              <div className="form-row" style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+              <div className="form-row" style={{ marginBottom: "1rem" }}>
                 <div className="form-group" style={{ flex: 1 }}>
                   <label htmlFor="contact-name">성명 / 단체명 <span className="required" style={{ color: "var(--color-primary)" }}>*</span></label>
                   <input

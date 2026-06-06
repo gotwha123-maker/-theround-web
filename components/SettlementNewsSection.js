@@ -149,7 +149,7 @@ export default function SettlementNewsSection() {
         </div>
 
         {/* News Cards list */}
-        <div className="news-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }}>
+        <div className="news-cards-grid responsive-grid-4">
           {filteredNews.length === 0 ? (
             <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "4rem", color: "var(--color-text-muted)" }}>
               등록된 정착 혜택 정보가 없습니다.
@@ -201,7 +201,7 @@ export default function SettlementNewsSection() {
                     <h3 style={{ fontSize: "1.1rem", color: "var(--color-text-primary)", fontWeight: 700, lineHeight: 1.4, marginBottom: "0.8rem", height: "3.1rem", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "keep-all" }}>
                       {news.title}
                     </h3>
-                    <p style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: 1.6, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: "1rem" }}>
+                    <p style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: 1.75, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: "1rem" }}>
                       {news.excerpt || "남북하나재단의 상세 공지사항을 확인하시려면 클릭하세요."}
                     </p>
                   </div>

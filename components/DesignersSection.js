@@ -205,13 +205,8 @@ export default function DesignersSection() {
             </div>
           ) : (
             <div 
-              className="designers-grid" 
-              id="designers-grid" 
-              style={{ 
-                display: "grid", 
-                gridTemplateColumns: "repeat(4, 1fr)", 
-                gap: "1.5rem" 
-              }}
+              className="designers-grid responsive-grid-4" 
+              id="designers-grid"
             >
               {visibleList.map((d) => (
                 <div 
@@ -322,16 +317,15 @@ export default function DesignersSection() {
             width: "95%", 
             backgroundColor: "var(--color-bg-secondary)", 
             borderRadius: "32px", 
-            overflow: "hidden",
             boxShadow: "var(--shadow-lg)",
             zIndex: 2001,
             position: "relative"
           }}>
             <button className="modal-close" onClick={closeDetail} style={{ top: "25px", right: "25px" }}>&times;</button>
             <div className="modal-body" style={{ padding: "0" }}>
-              <div className="detail-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr" }}>
+              <div className="designer-detail-layout">
                 {/* Left Side: Photo & Quick Info */}
-                <div style={{ backgroundColor: "var(--color-bg-primary)", padding: "4rem 3rem", textAlign: "center", borderRight: "1px solid var(--color-border)" }}>
+                <div className="designer-detail-left">
                   <div style={{ 
                     width: "220px", 
                     height: "220px", 
@@ -375,7 +369,7 @@ export default function DesignersSection() {
                 </div>
 
                 {/* Right Side: Detailed Content */}
-                <div style={{ padding: "4rem 3.5rem" }}>
+                <div className="designer-detail-right">
                   <div style={{ marginBottom: "3rem" }}>
                     <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1.2rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
                       <span style={{ width: "4px", height: "18px", backgroundColor: "var(--color-primary)", borderRadius: "2px" }}></span>

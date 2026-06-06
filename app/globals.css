@@ -1,13 +1,13 @@
 /* Modern CSS Reset & Variable Tokens */
 :root {
     /* Color Palette */
-    --color-bg-primary: hsl(30, 16%, 95%);       /* Soft Warm Cream Beige */
+    --color-bg-primary: hsl(30, 20%, 98%);       /* Soft Warm Off-White Cream */
     --color-bg-secondary: hsl(0, 0%, 100%);      /* Pure White */
     --color-bg-dark: hsl(24, 12%, 12%);          /* Warm Charcoal Espresso */
     --color-card-dark: hsla(24, 12%, 16%, 0.75);
     
     --color-text-primary: hsl(24, 10%, 16%);     /* Dark Warm Espresso */
-    --color-text-muted: hsl(24, 8%, 45%);        /* Muted Warm Gray */
+    --color-text-muted: hsl(24, 10%, 42%);       /* Muted Warm Gray - AA Compliant */
     --color-text-dim: hsl(24, 8%, 72%);          /* Warm Dim Gray */
     --color-text-light: hsl(0, 0%, 100%);
     
@@ -61,8 +61,11 @@ body {
     font-family: var(--font-primary);
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
-    line-height: 1.65;
+    line-height: 1.8;
+    letter-spacing: -0.01em;
     overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 /* Accessibility */
@@ -81,6 +84,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.25;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
 }
 
 a {
@@ -357,11 +362,11 @@ a {
 /* Hero Section */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     background: var(--gradient-hero);
-    padding-top: 100px;
+    padding: 120px 0 60px 0;
     overflow: hidden;
     color: white;
 }
@@ -426,7 +431,7 @@ a {
 .hero-lead {
     font-size: 1.05rem;
     color: var(--color-text-dim);
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
     font-weight: 400;
     line-height: 1.8;
     word-break: keep-all;
@@ -501,7 +506,7 @@ a {
 /* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -537,13 +542,43 @@ a {
 
 /* Section Common Styles */
 .section {
-    padding: 6.5rem 0;
+    padding: 5rem 0;
+    scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 4rem 0;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem !important;
+    }
 }
 
 .container {
     width: 92%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Grid System Overrides for Mobile */
+.responsive-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .responsive-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .responsive-grid-4 {
+        grid-template-columns: 1fr;
+    }
 }
 
 .section-header {
@@ -2046,7 +2081,6 @@ a {
         color: var(--color-text-primary) !important;
         font-size: 1.1rem;
         font-weight: 700;
-        pointer-events: none;
         padding: 0.2rem 0;
     }
 
@@ -2091,18 +2125,48 @@ a {
         background-color: var(--color-text-primary);
     }
     
+    .hero-section {
+        padding: 100px 0 160px 0;
+        min-height: auto;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
+        gap: 4rem;
     }
     
     .hero-content {
         max-width: 100%;
     }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-lead {
+        margin-bottom: 2.5rem;
+    }
     
     .hero-buttons {
         justify-content: center;
+    }
+
+    .hero-visual {
+        margin-bottom: 2rem;
+    }
+
+    .hero-visual-card {
+        max-width: 480px;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 24px;
+        margin: 0 auto;
+    }
+
+    .scroll-indicator {
+        display: none;
     }
     
     .founder-message-box {
@@ -3296,5 +3360,65 @@ a {
 
 .select-chip input:checked:hover span {
     color: white;
+}
+
+/* Responsive Designer Detail Modal Layout */
+.designer-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.designer-detail-left {
+    background-color: var(--color-bg-primary);
+    padding: 4rem 3rem;
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+}
+
+.designer-detail-right {
+    padding: 4rem 3.5rem;
+}
+
+@media (max-width: 768px) {
+    .designer-detail-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .designer-detail-left {
+        padding: 3rem 1.5rem 2rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .designer-detail-right {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+/* Custom typography utility classes */
+.text-highlight {
+    background: linear-gradient(120deg, hsla(5, 75%, 48%, 0.08) 0%, hsla(5, 75%, 48%, 0.12) 100%);
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+.text-highlight-neutral {
+    background: linear-gradient(120deg, hsla(30, 20%, 90%, 0.4) 0%, hsla(30, 20%, 86%, 0.6) 100%);
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+/* Modal Article Body Typography */
+.modal-article-body p {
+    margin-bottom: 1.6rem;
+}
+.modal-article-body ul, .modal-article-body ol {
+    margin-bottom: 1.6rem;
+    padding-left: 1.5rem;
+}
+.modal-article-body li {
+    margin-bottom: 0.6rem;
 }
 
