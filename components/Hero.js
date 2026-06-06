@@ -33,7 +33,7 @@ export default function Hero() {
                 boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
                 objectFit: "contain",
                 backgroundColor: "var(--color-bg-secondary)",
-                padding: "1rem"
+                padding: "0"
               }}
             />
             <div className="glass-tag">
