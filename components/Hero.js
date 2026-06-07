@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 const slides = [
   {
     id: 1,
-    title: "탈북청년을 통합의 주체로 세우고,",
-    subtitle: "그들의 이야기를 연결하여 한반도의 통합을 준비합니다",
-    lead: "한반도의 통일은 누군가의 일이 아니라, 우리 모두의 책임입니다.\n더라운드는 한반도 통합에 기여할 시민의 역할을 함께 만들어가고자 합니다.",
+    title: "한반도 통일은 누군가의 일이 아닌,",
+    subtitle: "우리 모두의 책임입니다",
+    lead: "더라운드는 한반도 통합에 기여할 시민의 역할을 함께 만들어가고자 합니다.\n탈북청년을 통합의 주체로 세우고, 그들의 이야기를 연결하여 한반도의 통합을 준비합니다.",
     btnText: "더라운드 소개",
     link: "#about",
     bg: "url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop')", // Mountain landscape
