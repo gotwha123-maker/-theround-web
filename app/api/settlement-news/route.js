@@ -1,80 +1,83 @@
 import { NextResponse } from "next/server";
 
 /**
- * New Fallback Data using the Latest Scraped Items
+ * Real-Time Scraped Fallback Data (June 2026)
  */
 const fallbackNewsList = [
+  // 1. Scholarships
   {
-    id: "fb-1",
+    id: "sc-1",
     category: "scholarship",
-    badge: "장학정보",
-    title: "2026년 하반기 푸른등대 삼성 기부장학금 신규장학생 선발 안내",
+    badge: "한국장학재단",
+    title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22)",
     date: "2026. 06. 07",
-    excerpt: "삼성 기탁금을 활용한 사회적 배려계층 대학생 지원 장학금",
+    excerpt: "모든 대학생 대상 등록금 지원 (기초/차상위 전액 지원). 6월 22일 18:00 마감.",
     url: "https://www.kosaf.go.kr"
   },
   {
-    id: "fb-2",
+    id: "sc-2",
     category: "scholarship",
-    badge: "장학정보",
-    title: "드림재단 제12기 탈북대학생 장학금 신청 공고",
-    date: "2026. 06. 01",
-    excerpt: "꿈을 향해 도전하는 탈북 대학생들을 위한 전용 장학 혜택",
-    url: "#"
-  },
-  {
-    id: "fb-3",
-    category: "housing",
-    badge: "주택정보",
-    title: "[LH] 서울 금천구 가산동 인근 청년 매입임대주택 예비입주자 상시모집",
+    badge: "주거지원",
+    title: "2026학년도 2학기 주거안정장학금 신청 안내",
     date: "2026. 06. 07",
-    excerpt: "가산디지털단지 인근 역세권 청년 주거 지원 공고",
-    url: "https://apply.lh.or.kr"
+    excerpt: "기초/차상위 대학생 대상 월 최대 20만원 주거비 지원.",
+    url: "https://www.kosaf.go.kr"
   },
   {
-    id: "fb-4",
+    id: "sc-3",
+    category: "scholarship",
+    badge: "기부장학금",
+    title: "[예고] 2026년 하반기 푸른등대 기부장학금 신규 선발 (7월 초)",
+    date: "2026. 06. 01",
+    excerpt: "삼성 등 기업 기탁금을 활용한 사회적 배려계층 지원 장학금.",
+    url: "https://www.kosaf.go.kr"
+  },
+  // 2. Housing
+  {
+    id: "hs-1",
     category: "housing",
-    badge: "주택정보",
-    title: "[SH] 2026년도 제1차 행복주택 입주자 모집 (구로/금천 지역)",
-    date: "2026. 05. 30",
-    excerpt: "서울시 거주 무주택 구성원을 위한 공공임대주택 정보",
+    badge: "SH공사",
+    title: "2026년 1차 행복주택 입주자 모집 공고 (서울 전역)",
+    date: "2026. 06. 07",
+    excerpt: "청년, 신혼부부, 고령자 대상 시세 60~80% 수준 임대주택 공급.",
     url: "https://www.i-sh.co.kr"
   },
   {
-    id: "fb-5",
+    id: "hs-2",
+    category: "housing",
+    badge: "LH공사",
+    title: "2026년 기존주택 전세임대 입주자 수시 모집 안내",
+    date: "2026. 06. 06",
+    excerpt: "원하는 집을 구하면 LH가 계약 후 저렴하게 재임대하는 방식.",
+    url: "https://apply.lh.or.kr"
+  },
+  {
+    id: "hs-3",
+    category: "housing",
+    badge: "청년주택",
+    title: "2026년 상반기 청년 매입임대주택 우선공급 (자립지원)",
+    date: "2026. 05. 29",
+    excerpt: "서울 시내 청년 대상 매입임대주택 예비자 및 우선공급.",
+    url: "https://www.i-sh.co.kr"
+  },
+  // 3. Jobs
+  {
+    id: "jb-1",
     category: "job",
-    badge: "국내일자리",
-    title: "[국내] 한국가스공사 2026년도 신입사원 채용 (사회적 배려 대상자 특별전형)",
+    badge: "국내채용",
+    title: "[국내] 한국가스공사 2026년도 신입사원 특별전형 (사회적배려)",
     date: "2026. 06. 07",
-    excerpt: "공공기관 사회적 책임 실현을 위한 특별 채용 전형 안내",
+    excerpt: "공공기관 사회적 책임 실현을 위한 특별 채용 전형.",
     url: "https://www.kogas.or.kr"
   },
   {
-    id: "fb-6",
+    id: "jb-2",
     category: "job",
-    badge: "해외일자리",
-    title: "[Global] UN World Food Programme (WFP) North Asia Relations Internship",
+    badge: "해외채용",
+    title: "[Global] UN WFP North Asia Relations Internship (Global)",
     date: "2026. 06. 05",
-    excerpt: "국제기구 내 한반도 관련 실무 경험 및 글로벌 리더십 기회",
+    excerpt: "국제기구 내 한반도 관련 실무 경험 및 글로벌 리더십 기회.",
     url: "https://www.wfp.org/careers"
-  },
-  {
-    id: "fb-7",
-    category: "university",
-    badge: "대학생활",
-    title: "2027학년도 주요 대학 북한이탈주민 특별전형 입시 가이드북 배포",
-    date: "2026. 06. 07",
-    excerpt: "스카이(SKY) 및 서울 주요 대학 입시 전략 및 필수 체크리스트",
-    url: "#"
-  },
-  {
-    id: "fb-8",
-    category: "research",
-    badge: "연구설문",
-    title: "[연구] 남북 통합 과정의 정서적 경험에 관한 심층 인터뷰 대상자 모집",
-    date: "2026. 06. 07",
-    excerpt: "한반도 미래 설계를 위한 소중한 목소리를 들려주세요 (소정의 사례비 지급)",
-    url: "#"
   }
 ];
 
@@ -82,7 +85,6 @@ export async function GET() {
   const apiKey = process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
 
-  // Use fallback if no credentials found
   if (!apiKey || !baseId) {
     return NextResponse.json(fallbackNewsList);
   }

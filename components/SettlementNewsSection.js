@@ -3,42 +3,43 @@
 import { useState, useEffect } from "react";
 
 const mockNewsList = [
+  // 1. Scholarships
   {
-    id: "news-2",
+    id: "sc-1",
     category: "scholarship",
-    badge: "장학정보",
-    title: "2026년 하반기 푸른등대 삼성 기부장학금 신규장학생 선발 안내",
+    badge: "한국장학재단",
+    title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22)",
     date: "2026. 06. 07",
     link: "https://www.kosaf.go.kr"
   },
   {
-    id: "news-3",
+    id: "sc-2",
+    category: "scholarship",
+    badge: "주거지원",
+    title: "2026학년도 2학기 주거안정장학금 신청 안내",
+    date: "2026. 06. 07",
+    link: "https://www.kosaf.go.kr"
+  },
+  {
+    id: "sc-3",
+    category: "scholarship",
+    badge: "기부장학금",
+    title: "[예고] 2026년 하반기 푸른등대 기부장학금 신규 선발 (7월 초)",
+    date: "2026. 06. 01",
+    link: "https://www.kosaf.go.kr"
+  },
+  // 2. Housing
+  {
+    id: "hs-1",
     category: "housing",
-    badge: "주택정보",
-    title: "[LH] 서울 금천구 가산동 인근 청년 매입임대주택 예비입주자 상시모집",
+    badge: "SH공사",
+    title: "2026년 1차 행복주택 입주자 모집 공고 (서울 전역)",
     date: "2026. 06. 07",
-    link: "https://apply.lh.or.kr"
-  },
-  {
-    id: "news-4",
-    category: "job",
-    badge: "일자리",
-    title: "[국내] 한국가스공사 2026년도 신입사원 채용 (특별전형)",
-    date: "2026. 06. 07",
-    link: "https://www.kogas.or.kr"
-  },
-  {
-    id: "news-5",
-    category: "university",
-    badge: "대학생활",
-    title: "2027학년도 주요 대학 북한이탈주민 특별전형 입시 가이드북 배포",
-    date: "2026. 06. 07",
-    link: "#"
+    link: "https://www.i-sh.co.kr"
   }
 ];
 
 const tabs = [
-  { id: "all", label: "전체보기" },
   { id: "scholarship", label: "장학정보" },
   { id: "housing", label: "주택정보" },
   { id: "job", label: "일자리" },
@@ -47,7 +48,7 @@ const tabs = [
 ];
 
 export default function SettlementNewsSection() {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("scholarship"); // Scholarship as default
   const [newsList, setNewsList] = useState(mockNewsList);
   const [showAll, setShowAll] = useState(false);
 
@@ -68,15 +69,11 @@ export default function SettlementNewsSection() {
     return () => { isMounted = false; };
   }, []);
 
-  const filteredNews = activeTab === "all" 
-    ? newsList 
-    : newsList.filter(item => item.category === activeTab);
-
+  const filteredNews = newsList.filter(item => item.category === activeTab);
   const visibleList = showAll ? filteredNews : filteredNews.slice(0, 4);
 
   const getCategoryStyle = (cat) => {
     switch(cat) {
-      case 'hana': return { bg: "rgba(13, 148, 136, 0.1)", color: "var(--color-primary)" };
       case 'scholarship': return { bg: "rgba(59, 130, 246, 0.1)", color: "#3b82f6" };
       case 'housing': return { bg: "rgba(139, 92, 246, 0.1)", color: "#8b5cf6" };
       case 'job': return { bg: "rgba(245, 158, 11, 0.1)", color: "#f59e0b" };
@@ -94,7 +91,7 @@ export default function SettlementNewsSection() {
           <h2 style={{ marginBottom: "2rem" }}>뉴스레터</h2>
         </div>
 
-        {/* Tab Menu */}
+        {/* Tab Menu - Removed 'All' Tab */}
         <div className="tabs-container" style={{ overflowX: "auto", display: "flex", justifyContent: "center", marginBottom: "3rem", paddingBottom: "0.5rem" }}>
           <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
             {tabs.map((tab) => (
@@ -133,10 +130,7 @@ export default function SettlementNewsSection() {
             visibleList.map((news) => {
               const style = getCategoryStyle(news.category);
               return (
-                <a 
-                  href={news.link || "#"} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <div 
                   key={news.id} 
                   className="news-item-card reveal-on-scroll"
                   style={{
@@ -144,21 +138,10 @@ export default function SettlementNewsSection() {
                     padding: "2rem",
                     borderRadius: "20px",
                     border: "1px solid var(--color-border)",
-                    textDecoration: "none",
                     transition: "all 0.3s ease",
                     display: "flex",
                     flexDirection: "column",
                     height: "100%"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-5px)";
-                    e.currentTarget.style.boxShadow = "var(--shadow-md)";
-                    e.currentTarget.style.borderColor = "var(--color-primary)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "none";
-                    e.currentTarget.style.borderColor = "var(--color-border)";
                   }}
                 >
                   <span style={{ 
@@ -177,8 +160,23 @@ export default function SettlementNewsSection() {
                   <h3 style={{ fontSize: "1.1rem", lineHeight: 1.5, color: "var(--color-text-primary)", marginBottom: "1.5rem", flexGrow: 1, fontWeight: 700 }}>
                     {news.title}
                   </h3>
-                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-dim)" }}>{news.date}</span>
-                </a>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-dim)" }}>{news.date}</span>
+                    <a 
+                      href={news.link || news.url || "#"} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ 
+                        fontSize: "0.85rem", 
+                        color: "var(--color-primary)", 
+                        fontWeight: 700,
+                        textDecoration: "underline"
+                      }}
+                    >
+                      신청하러 가기 &rarr;
+                    </a>
+                  </div>
+                </div>
               );
             })
           )}
@@ -196,8 +194,6 @@ export default function SettlementNewsSection() {
                 padding: "0.5rem 1rem",
                 cursor: "pointer"
               }}
-              onMouseEnter={(e) => e.currentTarget.style.textDecoration = "underline"}
-              onMouseLeave={(e) => e.currentTarget.style.textDecoration = "none"}
             >
               {showAll ? "간략히 보기" : "전체보기"}
             </button>
