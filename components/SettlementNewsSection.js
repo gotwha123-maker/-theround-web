@@ -130,10 +130,60 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
           <h2 style={{ marginBottom: "2rem" }}>뉴스레터</h2>
         </div>
 
+        {/* Tab Menu - Replaced by query indicator if searching */}
+        <div className="tabs-container" style={{ 
+          overflowX: "auto", 
+          display: "flex", 
+          justifyContent: "center", 
+          marginBottom: "2rem", 
+          paddingBottom: "0.5rem",
+          transition: "opacity 0.3s ease",
+        }}>
+          {searchQuery ? (
+            <div style={{
+              padding: "0.7rem 1.8rem",
+              borderRadius: "50px",
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              backgroundColor: "rgba(0, 0, 0, 0.05)",
+              color: "var(--color-text-primary)",
+              border: "1px solid var(--color-border)"
+            }}>
+              검색 결과 ({filteredNews.length}건)
+            </div>
+          ) : (
+            <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                      setActiveTab(tab.id);
+                      setShowAll(false);
+                  }}
+                  style={{
+                    padding: "0.7rem 1.4rem",
+                    borderRadius: "50px",
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    transition: "all 0.3s ease",
+                    border: activeTab === tab.id ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
+                    backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
+                    color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
+                    cursor: "pointer",
+                    boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "none"
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Search Bar & Recommended Tags */}
         <div className="search-section" style={{
           maxWidth: "500px",
-          margin: "0 auto 2.5rem auto",
+          margin: "0 auto 3rem auto",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -259,56 +309,6 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Tab Menu - Replaced by query indicator if searching */}
-        <div className="tabs-container" style={{ 
-          overflowX: "auto", 
-          display: "flex", 
-          justifyContent: "center", 
-          marginBottom: "3rem", 
-          paddingBottom: "0.5rem",
-          transition: "opacity 0.3s ease",
-        }}>
-          {searchQuery ? (
-            <div style={{
-              padding: "0.7rem 1.8rem",
-              borderRadius: "50px",
-              fontSize: "0.95rem",
-              fontWeight: 700,
-              backgroundColor: "rgba(0, 0, 0, 0.05)",
-              color: "var(--color-text-primary)",
-              border: "1px solid var(--color-border)"
-            }}>
-              검색 결과 ({filteredNews.length}건)
-            </div>
-          ) : (
-            <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                      setActiveTab(tab.id);
-                      setShowAll(false);
-                  }}
-                  style={{
-                    padding: "0.7rem 1.4rem",
-                    borderRadius: "50px",
-                    fontSize: "0.95rem",
-                    fontWeight: 600,
-                    transition: "all 0.3s ease",
-                    border: activeTab === tab.id ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
-                    backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
-                    color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
-                    cursor: "pointer",
-                    boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "none"
-                  }}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* News Grid */}

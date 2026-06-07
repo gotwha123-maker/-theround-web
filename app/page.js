@@ -113,7 +113,7 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Hero />
         
         {/* 현황 및 데이터 (통계 유지) */}
         <div id="stats"><Stats /></div>

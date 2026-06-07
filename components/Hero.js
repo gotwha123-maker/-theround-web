@@ -45,31 +45,8 @@ const slides = [
   }
 ];
 
-export default function Hero({ searchQuery = "", setSearchQuery = () => {} }) {
+export default function Hero() {
   const [current, setCurrent] = useState(0);
-
-  const recommendedTags = [
-    { label: "장학금", query: "장학" },
-    { label: "LH임대주택", query: "LH" },
-    { label: "취업바우처", query: "취업바우처" },
-    { label: "건강검진", query: "건강검진" }
-  ];
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const newsSection = document.getElementById("settlement-news");
-    if (newsSection) {
-      newsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  const handleTagClick = (query) => {
-    setSearchQuery(query);
-    const newsSection = document.getElementById("settlement-news");
-    if (newsSection) {
-      newsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -139,142 +116,16 @@ export default function Hero({ searchQuery = "", setSearchQuery = () => {} }) {
             </div>
           )}
 
-          <div className="hero-container" style={{ position: "relative", zIndex: 10, width: "100%", maxWidth: "800px", padding: "0 1.5rem" }}>
-            <div className={`hero-content ${index === current ? 'animate-up' : ''}`} style={{ width: "100%" }}>
+          <div className="hero-container" style={{ position: "relative", zIndex: 10 }}>
+            <div className={`hero-content ${index === current ? 'animate-up' : ''}`}>
               <h1 style={{ fontSize: "3.2rem", fontWeight: 900, marginBottom: "1.5rem", wordBreak: "keep-all" }}>
                 {slide.title}<br />
                 <span className="highlight-text" style={{ color: "var(--color-primary-light, #3dd1c0)" }}>{slide.subtitle}</span>
               </h1>
-              <p className="hero-lead" style={{ fontSize: "1.25rem", whiteSpace: "pre-line", marginBottom: "2rem", opacity: 0.9, lineHeight: "1.8" }}>
+              <p className="hero-lead" style={{ fontSize: "1.25rem", whiteSpace: "pre-line", marginBottom: "3rem", opacity: 0.9, lineHeight: "1.8" }}>
                 {slide.lead}
               </p>
-
-              {/* Hero Search Bar Integration */}
-              <form onSubmit={handleSearchSubmit} style={{
-                maxWidth: "600px",
-                margin: "0 auto 1rem auto",
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                zIndex: 30
-              }}>
-                <svg 
-                  style={{
-                    position: "absolute",
-                    left: "1.2rem",
-                    width: "1.3rem",
-                    height: "1.3rem",
-                    color: "rgba(255, 255, 255, 0.7)",
-                    pointerEvents: "none"
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-
-                <input
-                  type="text"
-                  placeholder="원하는 정착 지원 정보를 검색해보세요 (예: 장학금, 임대주택)"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "1rem 5rem 1rem 3.2rem",
-                    borderRadius: "50px",
-                    border: "1.5px solid rgba(255, 255, 255, 0.3)",
-                    backgroundColor: "rgba(255, 255, 255, 0.15)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    fontSize: "1rem",
-                    color: "white",
-                    outline: "none",
-                    transition: "all 0.3s ease",
-                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)"
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "var(--color-primary-light, #3dd1c0)";
-                    e.target.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
-                    e.target.style.color = "#111";
-                    const prevSibling = e.target.previousSibling;
-                    if (prevSibling) prevSibling.style.color = "#666";
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                    e.target.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
-                    e.target.style.color = "white";
-                    const prevSibling = e.target.previousSibling;
-                    if (prevSibling) prevSibling.style.color = "rgba(255, 255, 255, 0.7)";
-                  }}
-                />
-
-                <button
-                  type="submit"
-                  style={{
-                    position: "absolute",
-                    right: "0.5rem",
-                    padding: "0.6rem 1.4rem",
-                    borderRadius: "40px",
-                    border: "none",
-                    backgroundColor: "var(--color-primary)",
-                    color: "white",
-                    fontWeight: 700,
-                    fontSize: "0.9rem",
-                    cursor: "pointer",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                    transition: "all 0.3s ease"
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "var(--color-primary-dark, #c01010)"}
-                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "var(--color-primary)"}
-                >
-                  검색
-                </button>
-              </form>
-
-              {/* Recommended Tags */}
-              <div style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "0.6rem",
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: "2rem",
-                zIndex: 30,
-                position: "relative"
-              }}>
-                <span style={{ fontSize: "0.9rem", color: "rgba(255, 255, 255, 0.7)" }}>추천 검색어:</span>
-                {recommendedTags.map((tag) => (
-                  <button
-                    key={tag.label}
-                    onClick={() => handleTagClick(tag.query)}
-                    style={{
-                      background: "rgba(255, 255, 255, 0.1)",
-                      border: "1px solid rgba(255, 255, 255, 0.2)",
-                      borderRadius: "20px",
-                      padding: "0.3rem 0.8rem",
-                      fontSize: "0.85rem",
-                      fontWeight: 600,
-                      color: "white",
-                      cursor: "pointer",
-                      transition: "all 0.2s ease",
-                      backdropFilter: "blur(5px)"
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.25)";
-                      e.currentTarget.style.borderColor = "var(--color-primary-light, #3dd1c0)";
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-                      e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
-                    }}
-                  >
-                    #{tag.label}
-                  </button>
-                ))}
-              </div>
-
-              <div className="hero-buttons" style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+              <div className="hero-buttons">
                 <a href={slide.link} className="btn btn-primary btn-lg">
                   {slide.btnText}
                 </a>
