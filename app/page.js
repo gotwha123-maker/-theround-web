@@ -6,6 +6,7 @@ import Hero from "../components/Hero";
 import Stats from "../components/Stats";
 import SettlementNewsSection from "../components/SettlementNewsSection";
 import About from "../components/About";
+import TalkTalk from "../components/TalkTalk";
 import DesignersSection from "../components/DesignersSection";
 import BarriersSection from "../components/BarriersSection";
 import SolutionsSection from "../components/SolutionsSection";
@@ -122,6 +123,9 @@ export default function Home() {
 
         {/* 한반도 디자이너 (상단 노출) */}
         <div id="designers"><DesignersSection /></div>
+
+        {/* 톡톡: 이야기가 이어지는 공간 */}
+        <TalkTalk />
         
         {/* 뉴스 및 활동 */}
         <SettlementNewsSection />
