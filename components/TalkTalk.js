@@ -75,7 +75,7 @@ export default function TalkTalk() {
           gap: "2.5rem", 
           marginTop: "5rem" 
         }}>
-          {/* Action Cards with Enhanced Design */}
+          {/* Action Cards */}
           {[
             { id: 'giving', title: '나눔 요청하기', desc: '물품, 화장품, 의류 등 소중한 마음을 나누고 싶은 분들의 신청을 기다립니다.', icon: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' },
             { id: 'job', title: '구인 요청하기', desc: '한반도의 미래를 함께 만들어갈 인재를 찾으시는 기관 및 기업의 요청을 받습니다.', icon: 'M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16' },
@@ -105,32 +105,47 @@ export default function TalkTalk() {
           ))}
         </div>
 
-        {/* Sub Menu with Stylized Buttons */}
+        {/* Sub Menu: RESTORED TO CLASSIC STYLE BUT WITH HIGH-VISIBILITY */}
         <div className="talktalk-sub-menu reveal-on-scroll delay-300" style={{ 
-          display: "flex", justifyContent: "center", gap: "1rem", marginTop: "5rem", flexWrap: "wrap",
-          padding: "2.5rem", background: "white", borderRadius: "100px", border: "1px solid var(--color-border)",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.03)"
+          display: "flex", justifyContent: "center", gap: "2rem", marginTop: "5rem", flexWrap: "wrap",
+          padding: "2rem", borderTop: "1px solid var(--color-border)"
         }}>
-          <button onClick={() => openModal('volunteer')} className="btn-sub-action">자원봉사 신청하기</button>
-          <div style={{ width: "1px", height: "20px", background: "#eee", alignSelf: "center" }}></div>
-          <button onClick={() => openModal('proposal')} className="btn-sub-action">더라운드 제안하기</button>
-          <div style={{ width: "1px", height: "20px", background: "#eee", alignSelf: "center" }}></div>
-          <button onClick={() => openModal('story')} className="btn-sub-action">나의 스토리 공유</button>
+          <button onClick={() => openModal('volunteer')} className="classic-link-btn highlight">
+            <span className="dot-pulse"></span> 자원봉사 신청하기
+          </button>
+          <button onClick={() => openModal('proposal')} className="classic-link-btn highlight">
+            <span className="dot-pulse"></span> 더라운드 제안하기
+          </button>
+          <button onClick={() => openModal('story')} className="classic-link-btn highlight">
+            <span className="dot-pulse"></span> 나의 스토리 공유
+          </button>
         </div>
       </div>
 
       <style jsx>{`
-        .btn-sub-action {
-            background: none; border: none; color: var(--color-text-muted); font-weight: 700;
-            font-size: 1rem; cursor: pointer; transition: all 0.3s ease; padding: 0.5rem 1.5rem;
-            border-radius: 50px;
+        .classic-link-btn {
+            background: none; border: none; color: var(--color-primary); font-weight: 800;
+            font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; padding: 0.5rem 1rem;
+            display: flex; alignItems: center; gap: 0.5rem;
+            border-bottom: 2px solid transparent;
         }
-        .btn-sub-action:hover {
-            color: var(--color-primary); background: rgba(13, 148, 136, 0.05);
+        .classic-link-btn:hover {
+            transform: scale(1.05);
+            border-bottom: 2px solid var(--color-primary);
+        }
+        .dot-pulse {
+            width: 8px; height: 8px; background: var(--color-primary); border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
         }
       `}</style>
 
-      {/* Modals remain same but with enhanced styling */}
       {modalType && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeModal}></div>
@@ -154,7 +169,6 @@ export default function TalkTalk() {
                   <div className="form-group"><label>이메일 주소 *</label><input type="email" name="email" value={formData.email} onChange={handleInputChange} required /></div>
                 </div>
 
-                {/* Conditional Fields based on modalType */}
                 {modalType === 'survey' && (
                   <div style={{ marginBottom: "2.5rem" }}>
                     <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderBottom: "2px solid var(--color-primary)", display: "inline-block", paddingBottom: "0.3rem" }}>의뢰 상세</h4>
