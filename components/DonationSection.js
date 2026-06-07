@@ -19,13 +19,13 @@ export default function DonationSection() {
     if (amount <= 10000) {
       return (
         <span>
-          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 새로운 시작을 준비하는 이웃 1명에게 월 1회 기초 도서 및 정서 멘토링을 연계해 줄 수 있습니다.
+          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 새로운 시작을 준비하는 분들에게 월 1회 도서 및 정서 멘토링을 연계하는 데 사용됩니다.
         </span>
       );
     } else if (amount <= 30000) {
       return (
         <span>
-          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 2명의 구성원에게 역량 개발 아카데미 교육 기재 및 직무 멘토링 매칭 비용으로 적립됩니다.
+          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 구성원들에게 역량 개발 교육 기재 및 직무 멘토링 매칭 비용으로 적립됩니다.
         </span>
       );
     } else if (amount <= 50000) {
@@ -89,7 +89,7 @@ export default function DonationSection() {
               한반도의 내일을 함께 만드는<br />가장 따뜻한 동행
             </h2>
             <p className="donation-desc" style={{ color: "var(--color-text-muted)" }}>
-              여러분의 소중한 동참은 탈북민 이웃들이 더라운드의 실천적 무대에서 주체적인 전문가와 리더로 일어설 수 있도록 하는 데 전액 사용됩니다.
+              여러분의 소중한 동참은 우리 사회의 구성원들이 더라운드의 실천적 무대에서 주체적인 전문가와 리더로 일어설 수 있도록 하는 데 전액 사용됩니다.
               단순 수혜가 아닌, 대등한 구성원으로서 함께 한반도의 내일을 열어가도록 따뜻한 동반자가 되어주세요.
             </p>
 

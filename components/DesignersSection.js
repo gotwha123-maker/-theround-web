@@ -192,7 +192,7 @@ export default function DesignersSection() {
             한반도 디자이너
           </h2>
           <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>
-            남북의 경험을 가진 구성원들이 한반도 통합의 비전을 실천하며 우리 사회의 인식을 새롭게 디자인합니다.
+            한반도 통합의 비전을 실천하며 우리 사회의 인식을 새롭게 디자인하는 전문가들입니다.
           </p>
         </div>
 
