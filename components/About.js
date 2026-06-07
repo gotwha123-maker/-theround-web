@@ -3,31 +3,31 @@ export default function About() {
     <section id="about" className="section about-section reveal-on-scroll">
       <div className="container">
         <div className="section-header text-center">
-          <span className="section-subtitle">VISION & STRATEGY</span>
+          <span className="section-subtitle">VISION & MISSION</span>
           <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>
-            비전과 전략
+            미션과 비전
           </h2>
         </div>
         <div className="about-brand-card reveal-on-scroll">
           <div className="about-mission text-center">
             <h2>
-              글로벌 가치를 잇는,<br />
-              <span className="highlight-text">한반도 미래 설계의 중심</span>
+              미래를 향한 연결,<br />
+              <span className="highlight-text">한반도 통합의 구심점</span>
             </h2>
             <div className="mission-divider"></div>
             <p className="mission-lead">
-              비영리 민간단체 <strong>더라운드(The Round)</strong>는 한반도 통합의 비전을 전 세계로 확장하고,<br />
-              실질적인 변화를 이끌어낼 미래 세대를 발굴하고 조직화하는 전문 플랫폼입니다.
+              비영리 민간단체 <strong>더라운드(The Round)</strong>는 한반도 통합을 이끌어갈 파트너들을 발굴하고 조직하여,<br />
+              보편적 가치를 국제 사회와 연결하는 핵심적인 역할을 수행합니다.
             </p>
             <p className="mission-desc" style={{ marginTop: "1.5rem" }}>
-              우리는 보편적 인권과 가치에 대한 인식을 글로벌 네트워크와 연결하는 **브릿지(Bridge)** 역할을 수행하며,<br />
-              강력한 커뮤니티 기반의 활동을 통해 통합 한반도의 구체적인 청사진을 완성해 나갑니다.
+              우리는 인권에 대한 인식을 전 세계로 확산하는 **브릿지(Bridge)**가 되고,<br />
+              강화된 커뮤니티를 통해 통합 한반도의 내일을 실질적으로 준비합니다.
             </p>
           </div>
         </div>
 
         <div className="about-values-block" style={{ marginTop: "5rem" }}>
-          <div className="values-header text-center">
+...
             <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>핵심 가치</h3>
           </div>
           <div className="values-grid">
