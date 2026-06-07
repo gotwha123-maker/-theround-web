@@ -13,6 +13,7 @@ export default function SolutionsSection({ onOpenModal }) {
         </div>
 
         <div className="programs-grid">
+          {/* Program 1: Leadership School */}
           <div className="program-card reveal-on-scroll" data-program="school" id="program-school">
             <div className="program-num">01</div>
             <div className="program-main-info">
@@ -48,7 +49,8 @@ export default function SolutionsSection({ onOpenModal }) {
             </button>
           </div>
 
-          <div className="program-card reveal-on-scroll delay-100" data-program="sports" id="program-sports">
+          {/* Program 2: Unification Awareness & Community (Grouped) */}
+          <div className="program-card reveal-on-scroll delay-100" data-program="community" id="program-community">
             <div className="program-num">02</div>
             <div className="program-main-info">
               <span
@@ -64,25 +66,28 @@ export default function SolutionsSection({ onOpenModal }) {
                   fontWeight: 700,
                 }}
               >
-                수평적 연대와 교류
+                통일확산 & 커뮤니티
               </span>
-              <h3>유니원 FC (스포츠 연대)</h3>
+              <h3>유니원 FC & 통일포차</h3>
               <p>
-                스포츠를 통해 다양한 배경을 가진 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 장입니다.
+                스포츠와 문화적 소통을 통해 보이지 않는 장벽을 허물고, 대등한 파트너로서 건강한 유대를 형성하는 화합의 장입니다.
               </p>
             </div>
-            <button 
-              className="btn btn-icon-only open-modal-btn" 
-              aria-label="유니원 FC 상세 정보 보기"
-              onClick={() => onOpenModal("sports")}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              <button 
+                className="btn btn-icon-only open-modal-btn" 
+                aria-label="유니원 FC 상세 정보 보기"
+                onClick={() => onOpenModal("sports")}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
           </div>
 
+          {/* Program 3: Peace Forum & Archiving */}
           <div className="program-card reveal-on-scroll delay-200" data-program="forum" id="program-forum">
             <div className="program-num">03</div>
             <div className="program-main-info">

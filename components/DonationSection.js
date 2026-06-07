@@ -86,7 +86,7 @@ export default function DonationSection() {
           <div className="donation-text reveal-on-scroll">
             <span className="section-subtitle highlight-text">MAKE A DIFFERENCE</span>
             <h2>
-              통합의 실천적 무대를<br />넓히는 동참의 발걸음
+              한반도의 내일을 함께 만드는<br />가장 따뜻한 동행
             </h2>
             <p className="donation-desc" style={{ color: "var(--color-text-muted)" }}>
               여러분의 소중한 동참은 탈북민 이웃들이 더라운드의 실천적 무대에서 주체적인 전문가와 리더로 일어설 수 있도록 하는 데 전액 사용됩니다.
