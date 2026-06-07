@@ -4,14 +4,6 @@ import { useState, useEffect } from "react";
 
 const mockNewsList = [
   {
-    id: "news-1",
-    category: "hana",
-    badge: "남북하나재단",
-    title: "2026년 하반기 남북이탈주민 정착지원금 지급 일정 및 신청 안내",
-    date: "2026. 06. 05",
-    link: "https://www.koreahana.or.kr"
-  },
-  {
     id: "news-2",
     category: "scholarship",
     badge: "장학정보",
@@ -39,7 +31,6 @@ const mockNewsList = [
 
 const tabs = [
   { id: "all", label: "전체보기" },
-  { id: "hana", label: "남북하나재단" },
   { id: "scholarship", label: "장학정보" },
   { id: "housing", label: "주택정보" },
   { id: "job", label: "일자리" },
