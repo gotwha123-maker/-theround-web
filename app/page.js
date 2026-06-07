@@ -112,18 +112,64 @@ export default function Home() {
 
   const modalData = getModalContent();
 
+  const [showBarriers, setShowBarriers] = useState(false);
+  const [showSolutions, setShowSolutions] = useState(false);
+
   return (
     <>
       <Header />
       <main>
         <Hero />
         <div id="stats"><Stats /></div>
-        <div id="about"><About /></div>
-        <BarriersSection />
-        <div id="solutions"><SolutionsSection onOpenModal={openModal} /></div>
+        
+        {/* 한반도 디자이너 (Moved Up) */}
         <div id="designers"><DesignersSection /></div>
+        
+        {/* 더라운드 정체성 */}
+        <div id="about"><About /></div>
+        
+        {/* 이음 뉴스 */}
         <SettlementNewsSection />
+
+        {/* 이음 스토리 */}
         <div id="stories"><StoriesSection /></div>
+
+        {/* 핵심 사업 (Collapsible) */}
+        <div id="solutions" className="section-compact">
+          {!showSolutions ? (
+            <div className="container text-center py-5">
+              <h2 className="section-title-simple">핵심 사업</h2>
+              <p className="section-lead-simple">더라운드가 진행하는 주체적 역량 설계와 연대 프로젝트를 확인해 보세요.</p>
+              <button className="btn btn-outline btn-lg" onClick={() => setShowSolutions(true)}>사업 내용 자세히 보기</button>
+            </div>
+          ) : (
+            <div className="reveal-on-scroll active">
+              <SolutionsSection onOpenModal={openModal} />
+              <div className="text-center pb-5">
+                <button className="btn btn-text" onClick={() => setShowSolutions(false)}>접기 &uarr;</button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 우리의 과제 (Collapsible) */}
+        <div id="barriers" className="section-compact" style={{ backgroundColor: "var(--color-bg-secondary)" }}>
+          {!showBarriers ? (
+            <div className="container text-center py-5">
+              <h2 className="section-title-simple">우리의 과제</h2>
+              <p className="section-lead-simple">우리가 함께 풀어야 할 실천적 장벽과 설계 과제들을 확인해 보세요.</p>
+              <button className="btn btn-outline btn-lg" onClick={() => setShowBarriers(true)}>과제 내용 자세히 보기</button>
+            </div>
+          ) : (
+            <div className="reveal-on-scroll active">
+              <BarriersSection />
+              <div className="text-center pb-5">
+                <button className="btn btn-text" onClick={() => setShowBarriers(false)}>접기 &uarr;</button>
+              </div>
+            </div>
+          )}
+        </div>
+
         <AboutFounder />
         <DonationSection />
         <div id="contact"><ContactSection /></div>

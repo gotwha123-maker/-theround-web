@@ -3,12 +3,10 @@ export default function BarriersSection() {
     <section id="barriers" className="section barriers-section">
       <div className="container">
         <div className="barriers-intro text-center reveal-on-scroll">
-          <span className="barriers-subtitle">CHALLENGES & DESIGN TASKS</span>
-          <h3>
-            통합의 실천적 무대<br />우리가 함께 풀어야 할 세 가지 과제
-          </h3>
+          <span className="barriers-subtitle">CHALLENGES</span>
+          <h2>우리의 과제</h2>
           <p>
-            수치는 삶의 기록입니다. 더라운드는 분단의 관성이 남긴 구체적인 지점들을 포착하고 이를 통합의 기회로 전환하기 위한 정교한 설계를 시작합니다.
+            더라운드는 통합의 과정에서 마주하는 구체적인 장벽들을 포착하고 해결책을 설계합니다.
           </p>
         </div>
 

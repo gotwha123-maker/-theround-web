@@ -1,45 +1,28 @@
 export default function Hero() {
   return (
     <section className="hero-section">
-      <div className="hero-bg-overlay"></div>
       <div className="hero-container">
         <div className="hero-content reveal-on-scroll">
-          <span className="badge">A Circular Table for All</span>
+          <span className="badge" style={{ color: "white", borderColor: "rgba(255,255,255,0.4)" }}>
+            Global Advocate Community
+          </span>
           <h1>
-            하나의 한반도<br />
-            <span className="highlight-text">새로운 상상을 시작할 시간</span>
+            한반도의 미래를 디자인하는 탈북 청년,<br />
+            <span className="highlight-text" style={{ color: "#fff", textDecoration: "underline", textUnderlineOffset: "8px", textDecorationColor: "var(--color-primary)" }}>
+              그들이 쓰는 새로운 인권의 역사
+            </span>
           </h1>
           <p className="hero-lead">
-            분단의 어제에 머물지 않습니다.<br />
-            출신과 세대의 벽을 넘어, 우리가 먼저 하나 된 한반도의 오늘을 증명합니다.
+            더라운드는 탈북민이 단순 수혜자를 넘어 통합의 주역으로 우뚝 서고,<br />
+            전 세계에 북한 인권의 가치를 확산하는 확장자가 되는 커뮤니티입니다.
           </p>
           <div className="hero-buttons">
-            <a href="#about" className="btn btn-primary btn-lg">
-              우리의 철학
+            <a href="#designers" className="btn btn-primary btn-lg">
+              디자이너 만나보기
             </a>
-            <a href="#solutions" className="btn btn-outline btn-lg">
-              더라운드 활동
+            <a href="#about" className="btn btn-outline btn-lg" style={{ color: "white", borderColor: "white" }}>
+              더라운드 정체성
             </a>
-          </div>
-        </div>
-        <div className="hero-visual reveal-on-scroll delay-200">
-          <div className="hero-visual-card">
-            <img
-              src="/assets/hero_illustration.png"
-              alt="더라운드의 비전을 담은 공식 일러스트 - 남북 청년의 연대와 원형 테이블"
-              className="hero-img"
-              style={{
-                borderRadius: "24px",
-                boxShadow: "0 30px 60px rgba(0,0,0,0.2)",
-                objectFit: "contain",
-                backgroundColor: "var(--color-bg-secondary)",
-                padding: "0"
-              }}
-            />
-            <div className="glass-tag">
-              <span className="tag-dot"></span>
-              <span>함께 그리는 내일</span>
-            </div>
           </div>
         </div>
       </div>

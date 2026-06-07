@@ -118,8 +118,8 @@ export default function SettlementNewsSection() {
     <section id="settlement-news" className="section settlement-news-section" style={{ backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
-          <span className="section-subtitle">SETTLEMENT INFORMATION</span>
-          <h2 style={{ marginBottom: "2rem" }}>먼저 온 통일민 정착 가이드 & 뉴스</h2>
+          <span className="section-subtitle">E-UM NEWS</span>
+          <h2 style={{ marginBottom: "2rem" }}>이음 뉴스</h2>
         </div>
 
         {/* Categories Tab navigation with horizontal scroll on mobile */}

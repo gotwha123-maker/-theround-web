@@ -2,22 +2,27 @@ export default function About() {
   return (
     <section id="about" className="section about-section reveal-on-scroll">
       <div className="container">
+        <div className="section-header text-center">
+          <span className="section-subtitle">OUR IDENTITY</span>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>
+            더라운드 정체성
+          </h2>
+        </div>
         <div className="about-brand-card reveal-on-scroll">
           <div className="about-mission text-center">
             <span className="section-subtitle">VISION & IDENTITY</span>
             <h2>
-              경계를 허물고<br />
-              <span className="highlight-text">내일을 디자인하는 더라운드</span>
+              한반도의 미래,<br />
+              <span className="highlight-text">우리가 먼저 잇는 원형 테이블</span>
             </h2>
             <div className="mission-divider"></div>
             <p className="mission-lead">
-              비영리 민간단체 <strong className="text-highlight">더라운드(The Round)</strong>는 세대와 배경을 넘어<br />
-              모두가 대등한 파트너로 마주 앉는 <strong className="text-highlight-neutral">원형 테이블</strong>입니다.
+              비영리 민간단체 <strong className="text-highlight">더라운드(The Round)</strong>는 탈북민이 수혜자를 넘어<br />
+              통합의 <strong className="text-highlight-neutral">주역</strong>으로 서는 커뮤니티입니다.
             </p>
             <p className="mission-desc" style={{ marginTop: "1.5rem" }}>
-              남북의 경험을 품은 선구자들이 단순한 수혜의 대상을 넘어,<br />
-              우리 사회의 <strong className="text-highlight-neutral">주체적인 구성원</strong>이자 <strong className="text-highlight">한반도 통합의 미래</strong>를 직접 설계하는<br />
-              <strong>'디자이너'</strong>로 도약하도록 돕는 실천적 연대망입니다.
+              단순한 정착 지원을 넘어, 선구자들이 한반도 통일 미래의 주역이 되고<br />
+              전 세계에 북한 인권 문제의 인식을 확산하는 <strong className="text-highlight">확장자</strong>로 성장하도록 돕는 실천적 연대망입니다.
             </p>
           </div>
         </div>

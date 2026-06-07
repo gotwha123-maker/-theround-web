@@ -187,13 +187,12 @@ export default function DesignersSection() {
     <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-primary)" }}>
       <div className="container">
         <div className="section-header text-center">
-          <span className="section-subtitle">HANBANDO DESIGNERS</span>
+          <span className="section-subtitle">PEOPLE OF THE FUTURE</span>
           <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>
-            한반도의 내일을 그리는<br />
-            <span className="highlight-text">한반도 디자이너 & 전문 강사</span>
+            한반도 디자이너
           </h2>
-          <p className="section-lead" style={{ fontSize: "1.15rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>
-            남북의 경험을 품은 전문가들이 생생한 스토리와 깊은 통찰로 우리 사회의 편견을 해소하고 화합의 비전을 나눕니다.
+          <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>
+            남북의 경험을 품은 선구자들이 한반도 통합의 비전을 실천하며 우리 사회의 인식을 새롭게 디자인합니다.
           </p>
         </div>
 

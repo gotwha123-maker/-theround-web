@@ -150,8 +150,8 @@ export default function StoriesSection() {
     <section id="stories" className="section stories-section">
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
-          <span className="section-subtitle">LATEST STORIES</span>
-          <h2>최근 실천 사례와 일상 소식</h2>
+          <span className="section-subtitle">E-UM STORIES</span>
+          <h2>이음 스토리</h2>
           <p className="section-lead">더라운드가 만들어나가는 작지만 의미 있는 현장 소식들을 전해드립니다.</p>
         </div>
 

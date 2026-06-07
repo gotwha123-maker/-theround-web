@@ -132,44 +132,44 @@
     }
   ],
   "connections": {
-    "schedule-trigger-node": {
+    "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "fetch- Hana-Foundation-rss",
+            "node": "Fetch Hana Foundation News",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "fetch- Hana-Foundation-rss": {
+    "Fetch Hana Foundation News": {
       "main": [
         [
           {
-            "node": "openai-ai-summarizer",
+            "node": "AI Summarizer Node",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "openai-ai-summarizer": {
+    "AI Summarizer Node": {
       "main": [
         [
           {
-            "node": "filter-relevant-node",
+            "node": "Filter Relevant News",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "filter-relevant-node": {
+    "Filter Relevant News": {
       "main": [
         [
           {
-            "node": "insert-airtable-node",
+            "node": "Insert into Airtable",
             "type": "main",
             "index": 0
           }

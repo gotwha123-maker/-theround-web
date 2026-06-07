@@ -5,13 +5,10 @@ export default function SolutionsSection({ onOpenModal }) {
     <section id="solutions" className="section solutions-section dark-bg">
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
-          <span className="section-subtitle">OUR SOLUTIONS & ACTIVITIES</span>
-          <h2>
-            분단의 문턱을 넘어<br />
-            <span className="highlight-text">공동체의 주역으로 나아가는 통로</span>
-          </h2>
+          <span className="section-subtitle">CORE PROGRAMS</span>
+          <h2>핵심 사업</h2>
           <p className="section-lead">
-            더라운드는 우리 곁의 선구자들이 잠재력을 발휘하여 통합 한반도의 새로운 리더로 도약할 수 있도록 실질적인 성장 기반을 구축합니다.
+            더라운드는 탈북민이 주역으로 성장하고 전문성을 발휘할 수 있는 실질적인 토대를 만듭니다.
           </p>
         </div>
 
