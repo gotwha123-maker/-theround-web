@@ -8,9 +8,12 @@ export default function TalkTalk() {
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
+    region: "",
+    affiliation: "",
+    email: "",
+    agreement: false,
     orgName: "",
     jobRole: "",
-    location: "",
     volunteerArea: "",
     items: [],
     details: ""
@@ -18,7 +21,10 @@ export default function TalkTalk() {
 
   const openModal = (type) => {
     setModalType(type);
-    setFormData({ name: "", contact: "", orgName: "", jobRole: "", location: "", volunteerArea: "", items: [], details: "" });
+    setFormData({ 
+      name: "", contact: "", region: "", affiliation: "", email: "", agreement: false,
+      orgName: "", jobRole: "", volunteerArea: "", items: [], details: "" 
+    });
     document.body.style.overflow = "hidden";
   };
 
@@ -28,8 +34,11 @@ export default function TalkTalk() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
   };
 
   const handleCheckboxChange = (e) => {
@@ -44,10 +53,13 @@ export default function TalkTalk() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.agreement) {
+      alert("더라운드 회원등록 및 개인정보 활용에 동의해 주세요.");
+      return;
+    }
     setSubmitting(true);
     
     try {
-      // In a real app, this would trigger n8n or send to API
       console.log("Submitting TalkTalk Form:", modalType, formData);
       
       const res = await fetch("/api/contact", {
@@ -56,7 +68,7 @@ export default function TalkTalk() {
         body: JSON.stringify({
           ...formData,
           subject: `[TalkTalk] ${modalType.toUpperCase()} 신청`,
-          message: `유형: ${modalType}\n상세내용: ${formData.details}\n선택항목: ${formData.items.join(", ")}\n기관/회사: ${formData.orgName}\n역할: ${formData.jobRole}\n근무지: ${formData.location}\n봉사분야: ${formData.volunteerArea}`
+          message: `유형: ${modalType}\n상세내용: ${formData.details}\n지역: ${formData.region}\n소속: ${formData.affiliation}\n이메일: ${formData.email}\n선택항목: ${formData.items.join(", ")}\n기관/회사: ${formData.orgName}\n역할: ${formData.jobRole}\n봉사분야: ${formData.volunteerArea}\n회원가입동의: ${formData.agreement ? '예' : '아니오'}`
         })
       });
 
@@ -147,7 +159,7 @@ export default function TalkTalk() {
       {modalType && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeModal}></div>
-          <div className="modal-container" style={{ maxWidth: "550px", width: "90%", maxHeight: "90vh", overflowY: "auto", borderRadius: "24px" }}>
+          <div className="modal-container" style={{ maxWidth: "600px", width: "95%", maxHeight: "90vh", overflowY: "auto", borderRadius: "24px" }}>
             <button className="modal-close" onClick={closeModal}>&times;</button>
             <div className="modal-body" style={{ padding: "2.5rem" }}>
               <h3 style={{ marginBottom: "1.5rem", color: "var(--color-primary)", fontSize: "1.5rem", fontWeight: 800 }}>
@@ -158,18 +170,43 @@ export default function TalkTalk() {
                 {modalType === 'story' && "스토리 공유 요청"}
               </h3>
               
-              <form onSubmit={handleSubmit}>
-                <div className="form-group" style={{ marginBottom: "1rem" }}>
-                  <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>성함 및 연락처 *</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="성함과 연락처를 남겨주세요" required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
+              <form onSubmit={handleSubmit} className="admin-form">
+                {/* 1. 개인 인적사항 */}
+                <div style={{ marginBottom: "2rem" }}>
+                  <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderBottom: "1px solid #eee", paddingBottom: "0.5rem" }}>신청자 정보</h4>
+                  <div className="form-row" style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+                    <div className="form-group" style={{ flex: 1 }}>
+                      <label>성함 *</label>
+                      <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="성함" required />
+                    </div>
+                    <div className="form-group" style={{ flex: 1 }}>
+                      <label>연락처 *</label>
+                      <input type="text" name="contact" value={formData.contact} onChange={handleInputChange} placeholder="연락처" required />
+                    </div>
+                  </div>
+                  <div className="form-row" style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+                    <div className="form-group" style={{ flex: 1 }}>
+                      <label>지역 (구/시 단위) *</label>
+                      <input type="text" name="region" value={formData.region} onChange={handleInputChange} placeholder="예: 서울 금천구" required />
+                    </div>
+                    <div className="form-group" style={{ flex: 1 }}>
+                      <label>소속 *</label>
+                      <input type="text" name="affiliation" value={formData.affiliation} onChange={handleInputChange} placeholder="직장/학교 등" required />
+                    </div>
+                  </div>
+                  <div className="form-group" style={{ marginBottom: "1rem" }}>
+                    <label>이메일 주소 *</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="example@email.com" required />
+                  </div>
                 </div>
 
+                {/* 2. 각 유형별 추가 정보 */}
                 {modalType === 'giving' && (
-                  <div className="form-group" style={{ marginBottom: "1rem" }}>
+                  <div className="form-group" style={{ marginBottom: "1.5rem" }}>
                     <label style={{ display: "block", marginBottom: "0.8rem", fontWeight: 700 }}>나눔 품목 선택 *</label>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.5rem" }}>
                       {["생활용품", "화장품", "의류", "도서", "전자제품", "기타"].map(item => (
-                        <label key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
+                        <label key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem" }}>
                           <input type="checkbox" value={item} onChange={handleCheckboxChange} />
                           <span>{item}</span>
                         </label>
@@ -179,26 +216,20 @@ export default function TalkTalk() {
                 )}
 
                 {modalType === 'job' && (
-                  <>
-                    <div className="form-group" style={{ marginBottom: "1rem" }}>
-                      <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>회사 / 기관명 *</label>
-                      <input type="text" name="orgName" value={formData.orgName} onChange={handleInputChange} placeholder="회사 또는 기관명" required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
-                    </div>
-                    <div className="form-group" style={{ marginBottom: "1rem" }}>
-                      <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>채용 분야 및 직무</label>
-                      <input type="text" name="jobRole" value={formData.jobRole} onChange={handleInputChange} placeholder="예: 사무직, 매장관리 등" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
-                    </div>
-                  </>
+                  <div className="form-group" style={{ marginBottom: "1rem" }}>
+                    <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>채용 상세 (분야/조건)</label>
+                    <input type="text" name="jobRole" value={formData.jobRole} onChange={handleInputChange} placeholder="예: 사무직, 매장관리 등" />
+                  </div>
                 )}
 
                 {modalType === 'volunteer' && (
                   <div className="form-group" style={{ marginBottom: "1rem" }}>
                     <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>관심 봉사 분야</label>
                     <select name="volunteerArea" value={formData.volunteerArea} onChange={handleInputChange} style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)", background: "white" }}>
-                      <option value="">관심 분야를 선택하세요</option>
+                      <option value="">분야를 선택하세요</option>
                       <option value="행사 운영 지원">행사 운영 지원</option>
-                      <option value="디자인/영상 재능기부">디자인/영상 재능기부</option>
-                      <option value="멘토링/교육">멘토링/교육</option>
+                      <option value="디자인/영상">디자인/영상</option>
+                      <option value="교육/멘토링">멘토링</option>
                       <option value="기타">기타</option>
                     </select>
                   </div>
@@ -206,7 +237,25 @@ export default function TalkTalk() {
 
                 <div className="form-group" style={{ marginBottom: "1.5rem" }}>
                   <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>상세 내용</label>
-                  <textarea name="details" value={formData.details} onChange={handleInputChange} placeholder="전달하고 싶은 내용을 자유롭게 적어주세요." rows="4" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
+                  <textarea name="details" value={formData.details} onChange={handleInputChange} placeholder="추가적인 요청이나 상세 내용을 적어주세요." rows="3" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
+                </div>
+
+                {/* 3. 회원가입 및 약관 동의 */}
+                <div style={{ background: "#f8fafc", padding: "1rem", borderRadius: "12px", marginBottom: "2rem" }}>
+                  <label style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", cursor: "pointer" }}>
+                    <input 
+                      type="checkbox" 
+                      name="agreement" 
+                      checked={formData.agreement} 
+                      onChange={handleInputChange} 
+                      style={{ marginTop: "0.3rem" }} 
+                      required
+                    />
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: "1.5" }}>
+                      <strong>더라운드 회원등록 및 개인정보 활용 동의 *</strong><br />
+                      보내주신 정보는 더라운드 커뮤니티 회원 관리 및 뉴스레터 발송, 활동 안내를 위해 사용됩니다.
+                    </span>
+                  </label>
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
