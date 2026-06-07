@@ -5,49 +5,51 @@ import { useState, useEffect } from "react";
 const mockNewsList = [
   {
     id: "news-1",
-    category: "welfare",
-    badge: "지원의료비/임대주택",
-    title: "2026년 하반기 한국이탈주민 공공임대주택 우선 공급 신청 절차 및 가이드",
-    date: "2026. 06. 04",
-    excerpt: "국토교통부와 LH는 무주택 이탈주민 세대를 위해 하반기 매입임대 및 전세임대주택 우선 공급 대상자를 모집합니다. 보증금 지원 및 장기 거주 혜택이 주어집니다.",
-    tag: "마감: 6/30",
-    url: "#"
+    category: "hana",
+    badge: "남북하나재단",
+    title: "2026년 하반기 남북이탈주민 정착지원금 지급 일정 및 신청 안내",
+    date: "2026. 06. 05",
+    link: "https://www.koreahana.or.kr"
   },
   {
     id: "news-2",
-    category: "education",
-    badge: "장학금 300만원 지원",
-    title: "남북하나재단 대학생 장학금 신청 및 보육료 무상 지원 공고",
-    date: "2026. 05. 28",
-    excerpt: "남북하나재단은 이탈주민 자녀들의 학업 안정을 위해 성적 우수 및 일반 장학생을 선발합니다. 영유아를 둔 가정의 어린이집 무상 보육 지원금 혜택도 함께 연계됩니다.",
-    tag: "지원금: 최대 300만원",
-    url: "#"
+    category: "scholarship",
+    badge: "장학정보",
+    title: "글로벌 한반도 인재 육성을 위한 하반기 장학금 수혜자 모집",
+    date: "2026. 06. 02",
+    link: "#"
   },
   {
     id: "news-3",
-    category: "jobs",
-    badge: "국비 전액 지원",
-    title: "중장년 이탈주민 맞춤 직업 훈련 (요양보호사, 바리스타 자격증 무료 취득반)",
-    date: "2026. 05. 18",
-    excerpt: "광명 일자리센터는 중장년층 이탈주민의 재취업을 돕기 위해 전문 자격증 무료 취득 교육생을 모집합니다. 교육 완료 후 우대 기업으로 즉각 알선 혜택이 주어집니다.",
-    tag: "전액 무료 / 취업 연계",
-    url: "#"
+    category: "housing",
+    badge: "주택정보",
+    title: "LH/SH 공공임대주택 통합 모집 공고 (가산동 및 수도권 지역)",
+    date: "2026. 05. 28",
+    link: "https://apply.lh.or.kr"
   },
   {
     id: "news-4",
-    category: "health",
-    badge: "무료 치과/검진 혜택",
-    title: "광명시 협약 의료원 무료 건강검진 및 종합 치과 치료 지원 안내",
-    date: "2026. 05. 10",
-    excerpt: "더라운드와 지역 협약 병원이 연계하여 모든 탈북민 주민 대상 무료 정밀 건강검진과 안과/치과(틀니 및 기본 보철) 비급여 진료비를 지원합니다.",
-    tag: "혜택: 정밀 검진 무료",
-    url: "#"
+    category: "job",
+    badge: "일자리",
+    title: "사회적 기업 연계 상반기 신입사원 채용 공고 (특별전형 포함)",
+    date: "2026. 05. 25",
+    link: "#"
   }
 ];
 
+const tabs = [
+  { id: "all", label: "전체보기" },
+  { id: "hana", label: "남북하나재단" },
+  { id: "scholarship", label: "장학정보" },
+  { id: "housing", label: "주택정보" },
+  { id: "job", label: "일자리" },
+  { id: "university", label: "대학생활" },
+  { id: "research", label: "연구설문" }
+];
+
 export default function SettlementNewsSection() {
+  const [activeTab, setActiveTab] = useState("all");
   const [newsList, setNewsList] = useState(mockNewsList);
-  const [activeTab, setActiveTab] = useState("all"); // all, welfare, education, jobs, health
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
@@ -57,60 +59,31 @@ export default function SettlementNewsSection() {
         const res = await fetch("/api/settlement-news", { cache: 'no-store' });
         if (res.ok && isMounted) {
           const data = await res.json();
-          if (data && data.length > 0) {
-            setNewsList(data);
-          }
+          if (data && data.length > 0) setNewsList(data);
         }
       } catch (err) {
-        console.error("Failed to fetch live settlement news, using defaults:", err);
+        console.error("Failed to fetch live news:", err);
       }
     }
     fetchNews();
     return () => { isMounted = false; };
   }, []);
 
-  useEffect(() => {
-    if (newsList.length > 0) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      document.querySelectorAll(".news-card.reveal-on-scroll").forEach((el) => {
-        observer.observe(el);
-      });
-
-      return () => observer.disconnect();
-    }
-  }, [activeTab, newsList]);
-
   const filteredNews = activeTab === "all" 
     ? newsList 
-    : newsList.filter(news => news.category === activeTab);
+    : newsList.filter(item => item.category === activeTab);
 
   const visibleList = showAll ? filteredNews : filteredNews.slice(0, 4);
 
-  const tabs = [
-    { id: "all", label: "전체소식" },
-    { id: "welfare", label: "기본복지/주거" },
-    { id: "education", label: "보육/자녀교육" },
-    { id: "jobs", label: "일자리/직업훈련" },
-    { id: "health", label: "의료/무료법률" }
-  ];
-
-  const getCategoryStyle = (category) => {
-    switch (category) {
-      case "welfare": return { bg: "#EEF2FF", color: "#4338CA", label: "기본복지/주거" };
-      case "education": return { bg: "#ECFDF5", color: "#047857", label: "보육/교육" };
-      case "jobs": return { bg: "#FFFBEB", color: "#B45309", label: "일자리/직업훈련" };
-      case "health": return { bg: "#FEF2F2", color: "#B91C1C", label: "의료/무료법률" };
-      default: return { bg: "#F3F4F6", color: "#374151", label: "기타소식" };
+  const getCategoryStyle = (cat) => {
+    switch(cat) {
+      case 'hana': return { bg: "rgba(13, 148, 136, 0.1)", color: "var(--color-primary)" };
+      case 'scholarship': return { bg: "rgba(59, 130, 246, 0.1)", color: "#3b82f6" };
+      case 'housing': return { bg: "rgba(139, 92, 246, 0.1)", color: "#8b5cf6" };
+      case 'job': return { bg: "rgba(245, 158, 11, 0.1)", color: "#f59e0b" };
+      case 'university': return { bg: "rgba(16, 185, 129, 0.1)", color: "#10b981" };
+      case 'research': return { bg: "rgba(239, 68, 68, 0.1)", color: "#ef4444" };
+      default: return { bg: "#f3f4f6", color: "#6b7280" };
     }
   };
 
@@ -122,24 +95,27 @@ export default function SettlementNewsSection() {
           <h2 style={{ marginBottom: "2rem" }}>뉴스레터</h2>
         </div>
 
-        {/* Categories Tab navigation with horizontal scroll on mobile */}
-        <div className="tabs-container-wrapper" style={{ overflowX: "auto", display: "flex", justifyContent: "center", marginBottom: "3rem", paddingBottom: "0.5rem" }}>
+        {/* Tab Menu */}
+        <div className="tabs-container" style={{ overflowX: "auto", display: "flex", justifyContent: "center", marginBottom: "3rem", paddingBottom: "0.5rem" }}>
           <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => { setActiveTab(tab.id); setShowAll(false); }}
-                className={`btn ${activeTab === tab.id ? "btn-primary" : "btn-outline"}`}
+                onClick={() => {
+                    setActiveTab(tab.id);
+                    setShowAll(false);
+                }}
                 style={{
-                  padding: "0.5rem 1.4rem",
-                  fontSize: "0.85rem",
-                  fontWeight: "600",
-                  borderRadius: "8px",
-                  transition: "all 0.2s ease",
-                  border: activeTab === tab.id ? "none" : "1px solid var(--color-border)",
-                  color: activeTab === tab.id ? "white" : "var(--color-text-primary)",
-                  backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "var(--color-bg-primary)",
-                  boxShadow: activeTab === tab.id ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
+                  padding: "0.7rem 1.4rem",
+                  borderRadius: "50px",
+                  fontSize: "0.95rem",
+                  fontWeight: 600,
+                  transition: "all 0.3s ease",
+                  border: activeTab === tab.id ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
+                  backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
+                  color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
+                  cursor: "pointer",
+                  boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "none"
                 }}
               >
                 {tab.label}
@@ -148,73 +124,62 @@ export default function SettlementNewsSection() {
           </div>
         </div>
 
-        {/* News Cards list */}
-        <div className="news-cards-grid responsive-grid-4">
-          {filteredNews.length === 0 ? (
-            <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "4rem", color: "var(--color-text-muted)" }}>
-              등록된 정착 혜택 정보가 없습니다.
+        {/* News Grid */}
+        <div className="news-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+          {visibleList.length === 0 ? (
+            <div className="text-center" style={{ gridColumn: "1/-1", padding: "4rem", color: "var(--color-text-muted)" }}>
+              해당 카테고리의 최신 소식이 아직 업데이트되지 않았습니다.
             </div>
           ) : (
             visibleList.map((news) => {
               const style = getCategoryStyle(news.category);
               return (
-                <article 
+                <a 
+                  href={news.link || "#"} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   key={news.id} 
-                  className="news-card reveal-on-scroll"
+                  className="news-item-card reveal-on-scroll"
                   style={{
-                    background: "var(--color-bg-primary)",
-                    borderRadius: "16px",
-                    padding: "1.8rem",
+                    background: "white",
+                    padding: "2rem",
+                    borderRadius: "20px",
                     border: "1px solid var(--color-border)",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
                     display: "flex",
                     flexDirection: "column",
-                    boxShadow: "0 2px 4px rgba(0,0,0,0.02)",
-                    transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                    cursor: "pointer"
+                    height: "100%"
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-4px)";
-                    e.currentTarget.style.boxShadow = "0 12px 24px rgba(0,0,0,0.06)";
+                    e.currentTarget.style.transform = "translateY(-5px)";
+                    e.currentTarget.style.boxShadow = "var(--shadow-md)";
+                    e.currentTarget.style.borderColor = "var(--color-primary)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 2px 4px rgba(0,0,0,0.02)";
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.borderColor = "var(--color-border)";
                   }}
-                  onClick={() => window.open(news.url, "_blank")}
                 >
-                  <div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.2rem" }}>
-                      <span 
-                        style={{
-                          backgroundColor: style.bg,
-                          color: style.color,
-                          fontSize: "0.75rem",
-                          fontWeight: 700,
-                          padding: "0.3rem 0.7rem",
-                          borderRadius: "6px"
-                        }}
-                      >
-                        {style.label}
-                      </span>
-                      <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>{news.date}</span>
-                    </div>
-                    <h3 style={{ fontSize: "1.1rem", color: "var(--color-text-primary)", fontWeight: 700, lineHeight: 1.4, marginBottom: "0.8rem", height: "3.1rem", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "keep-all" }}>
-                      {news.title}
-                    </h3>
-                    <p style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: 1.75, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: "1rem" }}>
-                      {news.excerpt || "남북하나재단의 상세 공지사항을 확인하시려면 클릭하세요."}
-                    </p>
-                  </div>
-                  
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", borderTop: "1px solid var(--color-border)", paddingTop: "1.2rem" }}>
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: 700 }}>
-                      자세히 보기 &rarr;
-                    </span>
-                    <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
-                      출처: 남북하나재단
-                    </span>
-                  </div>
-                </article>
+                  <span style={{ 
+                    display: "inline-block", 
+                    backgroundColor: style.bg, 
+                    color: style.color, 
+                    padding: "0.3rem 0.8rem", 
+                    borderRadius: "6px", 
+                    fontSize: "0.75rem", 
+                    fontWeight: 700,
+                    marginBottom: "1rem",
+                    alignSelf: "flex-start"
+                  }}>
+                    {news.badge}
+                  </span>
+                  <h3 style={{ fontSize: "1.1rem", lineHeight: 1.5, color: "var(--color-text-primary)", marginBottom: "1.5rem", flexGrow: 1, fontWeight: 700 }}>
+                    {news.title}
+                  </h3>
+                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-dim)" }}>{news.date}</span>
+                </a>
               );
             })
           )}
@@ -223,27 +188,17 @@ export default function SettlementNewsSection() {
         {filteredNews.length > 4 && (
           <div className="text-center" style={{ marginTop: "3.5rem" }}>
             <button 
-              className="btn" 
-              style={{ 
-                minWidth: "220px", 
-                borderRadius: "50px", 
-                fontWeight: 600,
-                fontSize: "0.95rem",
-                padding: "0.8rem 2.5rem",
-                color: "var(--color-primary)",
-                border: "1.5px solid var(--color-primary)",
-                backgroundColor: "transparent",
-                transition: "all 0.3s ease"
-              }}
+              className="btn-text" 
               onClick={() => setShowAll(!showAll)}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--color-primary)";
-                e.currentTarget.style.color = "white";
+              style={{ 
+                color: "var(--color-primary)", 
+                fontSize: "1rem", 
+                fontWeight: 600,
+                padding: "0.5rem 1rem",
+                cursor: "pointer"
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = "var(--color-primary)";
-              }}
+              onMouseEnter={(e) => e.currentTarget.style.textDecoration = "underline"}
+              onMouseLeave={(e) => e.currentTarget.style.textDecoration = "none"}
             >
               {showAll ? "간략히 보기" : "전체보기"}
             </button>
