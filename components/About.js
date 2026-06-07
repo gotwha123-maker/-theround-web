@@ -11,23 +11,23 @@ export default function About() {
         <div className="about-brand-card reveal-on-scroll">
           <div className="about-mission text-center">
             <h2>
-              한반도의 내일,<br />
-              <span className="highlight-text">함께 만드는 원형 테이블</span>
+              한반도의 미래,<br />
+              <span className="highlight-text">함께 디자인하는 통합의 장</span>
             </h2>
             <div className="mission-divider"></div>
             <p className="mission-lead">
-              비영리 민간단체 <strong>더라운드(The Round)</strong>는 탈북민이 수혜자를 넘어<br />
-              우리 사회의 주도적인 구성원이자 통합의 리더로 서는 무대입니다.
+              비영리 민간단체 <strong>더라운드(The Round)</strong>는 우리 사회의 다양한 파트너들이<br />
+              대등한 위치에서 소통하며 통합의 내일을 설계하는 열린 커뮤니티입니다.
             </p>
             <p className="mission-desc" style={{ marginTop: "1.5rem" }}>
-              우리는 탈북민의 경험과 역량을 결합하여 한반도 통일 미래의 주역을 양성하며,<br />
-              북한 인권의 가치를 전 세계에 알리는 실천적 연대를 지향합니다.
+              우리는 각자의 경험과 지성을 결합하여 한반도의 평화로운 미래를 준비하며,<br />
+              보편적 가치로서의 인권을 널리 알리고 실천하는 연대의 힘을 믿습니다.
             </p>
           </div>
         </div>
 
         <div className="about-values-block" style={{ marginTop: "5rem" }}>
-          <div className="values-header text-center">
+...
             <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>핵심 가치</h3>
           </div>
           <div className="values-grid">

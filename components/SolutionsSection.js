@@ -8,7 +8,7 @@ export default function SolutionsSection({ onOpenModal }) {
           <span className="section-subtitle">CORE PROGRAMS</span>
           <h2>핵심 사업</h2>
           <p className="section-lead">
-            더라운드는 탈북민이 주도적으로 역량을 발휘하고 우리 사회의 전문 인력으로 성장할 수 있는 실질적인 토대를 만듭니다.
+            더라운드는 우리 사회의 파트너들이 전문성을 발휘하고 함께 성장할 수 있는 실질적인 토대를 만듭니다.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function SolutionsSection({ onOpenModal }) {
               </span>
               <h3>리더십 스쿨</h3>
               <p>
-                전문가 멘토링과 실무 중심의 교육을 통해 탈북민이 각자의 커리어와 비즈니스 모델을 스스로 설계하는 역량 강화 과정입니다.
+                전문가 멘토링과 교육을 통해 각자의 커리어와 비전을 스스로 설계하는 역량 강화 과정입니다.
               </p>
             </div>
             <button 
@@ -68,7 +68,7 @@ export default function SolutionsSection({ onOpenModal }) {
               </span>
               <h3>유니원 FC (스포츠 연대)</h3>
               <p>
-                축구를 통해 남과 북의 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 현장입니다. 스포츠를 매개로 건강한 공동체를 형성합니다.
+                스포츠를 통해 다양한 배경을 가진 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 장입니다.
               </p>
             </div>
             <button 
@@ -103,7 +103,7 @@ export default function SolutionsSection({ onOpenModal }) {
               </span>
               <h3>평화 포럼 및 아카이빙</h3>
               <p>
-                탈북민들의 생생한 삶의 기록을 가치 있는 자산으로 남기고, 학술적 논의를 통해 사회 통합의 새로운 담론을 선도합니다.
+                생생한 삶의 기록을 보존하고, 심도 있는 토론을 통해 사회 통합의 새로운 패러다임을 제시합니다.
               </p>
             </div>
             <button 
