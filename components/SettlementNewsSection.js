@@ -148,7 +148,7 @@ export default function SettlementNewsSection() {
               return (
                 <div 
                   key={news.id} 
-                  className="news-item-card reveal-on-scroll"
+                  className="news-item-card reveal-on-scroll active"
                   style={{
                     background: "white",
                     padding: "2rem",
