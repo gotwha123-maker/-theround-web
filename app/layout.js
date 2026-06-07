@@ -1,4 +1,5 @@
 import { Noto_Sans_KR, Outfit } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const notoSansKR = Noto_Sans_KR({
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
