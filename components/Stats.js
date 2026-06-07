@@ -59,11 +59,10 @@ export default function Stats() {
         <div className="section-header text-center">
           <span className="section-subtitle">THE REALITY & DATA</span>
           <h2>
-            데이터가 가리키는 한반도<br />
-            <span className="highlight-text">더라운드가 디자인할 통합의 좌표</span>
+            데이터가 가리키는 한반도 통합의 좌표
           </h2>
           <p className="section-lead">
-            분단의 지표를 넘어 숫자가 말하지 못하는 삶의 현장을 마주하고, 실천적인 통합의 무대를 함께 설계합니다.
+            분단의 수치를 넘어 우리 사회의 포용력을 높이고, 실질적인 통합의 길을 찾아가는 객관적 지표를 공유합니다.
           </p>
         </div>
 
