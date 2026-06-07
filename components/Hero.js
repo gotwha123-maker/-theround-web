@@ -10,7 +10,7 @@ const slides = [
     lead: "더라운드는 한반도 통합에 기여할 시민의 역할을 함께 만들어가고자 합니다.\n탈북청년을 통합의 주체로 세우고, 그들의 이야기를 연결하여 한반도의 통합을 준비합니다.",
     btnText: "더라운드 소개",
     link: "#about",
-    bg: "url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop')", // Mountain landscape
+    bg: "url('https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=2000&auto=format&fit=crop')", // Cinematic misty river (Tumen River vibe)
     type: "default"
   },
   {
