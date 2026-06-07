@@ -20,6 +20,7 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
   const [modalType, setModalType] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -112,7 +113,7 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <Hero />
+        <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         
         {/* 현황 및 데이터 (통계 유지) */}
         <div id="stats"><Stats /></div>
@@ -130,7 +131,7 @@ export default function Home() {
         <TalkTalk />
         
         {/* 뉴스 및 활동 */}
-        <SettlementNewsSection />
+        <SettlementNewsSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div id="stories"><StoriesSection /></div>
 
         <AboutFounder />

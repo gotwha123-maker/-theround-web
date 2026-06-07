@@ -66,10 +66,17 @@ const tabs = [
   { id: "welfare", label: "생활지원" }
 ];
 
-export default function SettlementNewsSection() {
+export default function SettlementNewsSection({ searchQuery = "", setSearchQuery = () => {} }) {
   const [activeTab, setActiveTab] = useState("scholarship"); // Scholarship as default
   const [newsList, setNewsList] = useState(mockNewsList);
   const [showAll, setShowAll] = useState(false);
+
+  const recommendedTags = [
+    { label: "장학금", query: "장학" },
+    { label: "LH임대주택", query: "LH" },
+    { label: "취업바우처", query: "취업바우처" },
+    { label: "건강검진", query: "건강검진" }
+  ];
 
   useEffect(() => {
     let isMounted = true;
@@ -88,7 +95,19 @@ export default function SettlementNewsSection() {
     return () => { isMounted = false; };
   }, []);
 
-  const filteredNews = newsList.filter(item => item.category === activeTab);
+  const filteredNews = newsList.filter(item => {
+    if (searchQuery.trim() !== "") {
+      const q = searchQuery.toLowerCase().trim();
+      return (
+        (item.title && item.title.toLowerCase().includes(q)) ||
+        (item.excerpt && item.excerpt.toLowerCase().includes(q)) ||
+        (item.badge && item.badge.toLowerCase().includes(q)) ||
+        (item.tag && item.tag.toLowerCase().includes(q))
+      );
+    }
+    return item.category === activeTab;
+  });
+  
   const visibleList = showAll ? filteredNews : filteredNews.slice(0, 4);
 
   const getCategoryStyle = (cat) => {
@@ -111,40 +130,219 @@ export default function SettlementNewsSection() {
           <h2 style={{ marginBottom: "2rem" }}>뉴스레터</h2>
         </div>
 
-        {/* Tab Menu - Removed 'All' Tab */}
-        <div className="tabs-container" style={{ overflowX: "auto", display: "flex", justifyContent: "center", marginBottom: "3rem", paddingBottom: "0.5rem" }}>
-          <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
-            {tabs.map((tab) => (
+        {/* Search Bar & Recommended Tags */}
+        <div className="search-section" style={{
+          maxWidth: "500px",
+          margin: "0 auto 2.5rem auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.8rem"
+        }}>
+          <div style={{
+            position: "relative",
+            width: "100%",
+            display: "flex",
+            alignItems: "center"
+          }}>
+            <svg 
+              style={{
+                position: "absolute",
+                left: "1.2rem",
+                width: "1.2rem",
+                height: "1.2rem",
+                color: "var(--color-text-dim)",
+                pointerEvents: "none"
+              }}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            
+            <input
+              type="text"
+              placeholder="뉴스레터 공고 검색 (예: 장학, 임대주택)"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setShowAll(false);
+              }}
+              style={{
+                width: "100%",
+                padding: "0.8rem 3rem 0.8rem 2.8rem",
+                borderRadius: "50px",
+                border: "1.5px solid var(--color-border)",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                fontSize: "0.95rem",
+                outline: "none",
+                transition: "all 0.3s ease",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.02)"
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = "var(--color-primary)";
+                e.target.style.boxShadow = "0 4px 15px rgba(220, 20, 20, 0.08)";
+                e.target.style.backgroundColor = "white";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "var(--color-border)";
+                e.target.style.boxShadow = "0 2px 8px rgba(0,0,0,0.02)";
+                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+              }}
+            />
+
+            {searchQuery && (
               <button
-                key={tab.id}
                 onClick={() => {
-                    setActiveTab(tab.id);
-                    setShowAll(false);
+                  setSearchQuery("");
+                  setShowAll(false);
                 }}
                 style={{
-                  padding: "0.7rem 1.4rem",
-                  borderRadius: "50px",
-                  fontSize: "0.95rem",
-                  fontWeight: 600,
-                  transition: "all 0.3s ease",
-                  border: activeTab === tab.id ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
-                  backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
-                  color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
+                  position: "absolute",
+                  right: "1rem",
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.3rem",
+                  color: "var(--color-text-dim)",
                   cursor: "pointer",
-                  boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "none"
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0.2rem",
+                  borderRadius: "50%"
                 }}
               >
-                {tab.label}
+                &times;
+              </button>
+            )}
+          </div>
+
+          <div style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.5rem",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+            <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginRight: "0.2rem" }}>추천 검색어:</span>
+            {recommendedTags.map((tag) => (
+              <button
+                key={tag.label}
+                onClick={() => {
+                  setSearchQuery(tag.query);
+                  setShowAll(false);
+                }}
+                style={{
+                  background: searchQuery === tag.query ? "var(--color-primary-light, rgba(220, 20, 20, 0.08))" : "rgba(0, 0, 0, 0.03)",
+                  border: "none",
+                  borderRadius: "20px",
+                  padding: "0.3rem 0.7rem",
+                  fontSize: "0.8rem",
+                  fontWeight: 600,
+                  color: searchQuery === tag.query ? "var(--color-primary)" : "var(--color-text-muted)",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+                onMouseOver={(e) => {
+                  if (searchQuery !== tag.query) {
+                    e.currentTarget.style.background = "rgba(0, 0, 0, 0.06)";
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (searchQuery !== tag.query) {
+                    e.currentTarget.style.background = "rgba(0, 0, 0, 0.03)";
+                  }
+                }}
+              >
+                #{tag.label}
               </button>
             ))}
           </div>
         </div>
 
+        {/* Tab Menu - Replaced by query indicator if searching */}
+        <div className="tabs-container" style={{ 
+          overflowX: "auto", 
+          display: "flex", 
+          justifyContent: "center", 
+          marginBottom: "3rem", 
+          paddingBottom: "0.5rem",
+          transition: "opacity 0.3s ease",
+        }}>
+          {searchQuery ? (
+            <div style={{
+              padding: "0.7rem 1.8rem",
+              borderRadius: "50px",
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              backgroundColor: "rgba(0, 0, 0, 0.05)",
+              color: "var(--color-text-primary)",
+              border: "1px solid var(--color-border)"
+            }}>
+              검색 결과 ({filteredNews.length}건)
+            </div>
+          ) : (
+            <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                      setActiveTab(tab.id);
+                      setShowAll(false);
+                  }}
+                  style={{
+                    padding: "0.7rem 1.4rem",
+                    borderRadius: "50px",
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    transition: "all 0.3s ease",
+                    border: activeTab === tab.id ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
+                    backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
+                    color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
+                    cursor: "pointer",
+                    boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "none"
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* News Grid */}
         <div className="news-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
           {visibleList.length === 0 ? (
-            <div className="text-center" style={{ gridColumn: "1/-1", padding: "4rem", color: "var(--color-text-muted)" }}>
-              해당 카테고리의 최신 소식이 아직 업데이트되지 않았습니다.
+            <div className="text-center" style={{ gridColumn: "1/-1", padding: "4rem 2rem", color: "var(--color-text-muted)", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+              <svg style={{ width: "3.5rem", height: "3.5rem", color: "var(--color-text-dim)", marginBottom: "0.5rem" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text-primary)" }}>
+                {searchQuery ? `"${searchQuery}"에 대한 검색 결과가 없습니다.` : "해당 카테고리의 최신 소식이 아직 업데이트되지 않았습니다."}
+              </div>
+              <p style={{ fontSize: "0.9rem", margin: "0" }}>다른 검색어를 입력하거나 아래 버튼을 눌러 검색어를 초기화해보세요.</p>
+              {searchQuery && (
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setShowAll(false);
+                  }}
+                  style={{
+                    marginTop: "1rem",
+                    padding: "0.5rem 1.2rem",
+                    borderRadius: "30px",
+                    border: "none",
+                    backgroundColor: "var(--color-primary)",
+                    color: "white",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    boxShadow: "0 3px 8px rgba(220, 20, 20, 0.15)"
+                  }}
+                >
+                  검색 초기화
+                </button>
+              )}
             </div>
           ) : (
             visibleList.map((news) => {
