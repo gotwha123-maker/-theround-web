@@ -60,8 +60,6 @@ export default function TalkTalk() {
     setSubmitting(true);
     
     try {
-      console.log("Submitting TalkTalk Form:", modalType, formData);
-      
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -98,71 +96,103 @@ export default function TalkTalk() {
           </p>
         </div>
 
+        {/* Major Actions: Giving, Jobs, Volunteer */}
         <div className="talktalk-grid" style={{ 
           display: "grid", 
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
-          gap: "2rem", 
+          gap: "1.5rem", 
           marginTop: "4rem" 
         }}>
           <div className="talk-card reveal-on-scroll" style={{ 
             background: "var(--color-bg-secondary)", 
-            padding: "2.5rem", 
+            padding: "2rem", 
             borderRadius: "24px", 
             border: "1px solid var(--color-border)",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            boxShadow: "var(--shadow-md)"
           }}>
             <div>
-              <h3 style={{ marginBottom: "1rem", color: "var(--color-primary)" }}>더라운드에 제안하기</h3>
-              <p style={{ marginBottom: "2rem", color: "var(--color-text-muted)" }}>더라운드와 함께하고 싶은 활동이나 새로운 아이디어가 있다면 언제든 제안해 주세요.</p>
+              <div style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </div>
+              <h3 style={{ marginBottom: "0.8rem", fontSize: "1.4rem" }}>나눔 요청하기</h3>
+              <p style={{ marginBottom: "1.5rem", color: "var(--color-text-muted)", fontSize: "0.95rem" }}>물품, 화장품, 의류 등 소중한 마음을 나누고 싶은 분들의 신청을 기다립니다.</p>
             </div>
-            <button onClick={() => openModal('proposal')} className="btn btn-outline btn-block">제안 요청하기</button>
+            <button onClick={() => openModal('giving')} className="btn btn-primary btn-block">나눔 신청하기</button>
           </div>
 
           <div className="talk-card reveal-on-scroll delay-100" style={{ 
             background: "var(--color-bg-secondary)", 
-            padding: "2.5rem", 
+            padding: "2rem", 
             borderRadius: "24px", 
             border: "1px solid var(--color-border)",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            boxShadow: "var(--shadow-md)"
           }}>
             <div>
-              <h3 style={{ marginBottom: "1rem", color: "var(--color-primary)" }}>나의 스토리 알리기</h3>
-              <p style={{ marginBottom: "2rem", color: "var(--color-text-muted)" }}>당신의 소중한 삶의 궤적과 이야기를 세상과 나누고 싶다면 지금 요청해 주세요.</p>
+              <div style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+              <h3 style={{ marginBottom: "0.8rem", fontSize: "1.4rem" }}>구인 요청하기</h3>
+              <p style={{ marginBottom: "1.5rem", color: "var(--color-text-muted)", fontSize: "0.95rem" }}>한반도의 미래를 함께 만들어갈 역량 있는 파트너를 찾으시는 기관 및 기업의 요청을 받습니다.</p>
             </div>
-            <button onClick={() => openModal('story')} className="btn btn-outline btn-block">스토리 공유 요청</button>
+            <button onClick={() => openModal('job')} className="btn btn-primary btn-block">구인 요청하기</button>
+          </div>
+
+          <div className="talk-card reveal-on-scroll delay-200" style={{ 
+            background: "var(--color-bg-secondary)", 
+            padding: "2rem", 
+            borderRadius: "24px", 
+            border: "1px solid var(--color-border)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            boxShadow: "var(--shadow-md)"
+          }}>
+            <div>
+              <div style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h3 style={{ marginBottom: "0.8rem", fontSize: "1.4rem" }}>자원봉사 신청</h3>
+              <p style={{ marginBottom: "1.5rem", color: "var(--color-text-muted)", fontSize: "0.95rem" }}>더라운드의 다양한 활동 현장에서 따뜻한 힘을 보태주실 봉사자분들을 모십니다.</p>
+            </div>
+            <button onClick={() => openModal('volunteer')} className="btn btn-primary btn-block">봉사 신청하기</button>
           </div>
         </div>
 
-        <div className="talktalk-sub-menu reveal-on-scroll delay-200" style={{ 
+        {/* Secondary Actions (Smaller) */}
+        <div className="talktalk-sub-menu reveal-on-scroll delay-300" style={{ 
           display: "flex", 
           justifyContent: "center", 
           gap: "1.5rem", 
           marginTop: "3rem",
-          flexWrap: "wrap"
+          flexWrap: "wrap",
+          padding: "2rem",
+          background: "rgba(0,0,0,0.02)",
+          borderRadius: "100px"
         }}>
-          <button onClick={() => openModal('giving')} style={{ padding: "0.8rem 1.5rem", background: "rgba(13, 148, 136, 0.05)", borderRadius: "50px", color: "var(--color-primary)", fontWeight: 600, fontSize: "0.9rem", border: "1px solid rgba(13, 148, 136, 0.1)", cursor: "pointer" }}>
-            나눔하기
+          <button onClick={() => openModal('proposal')} style={{ background: "none", border: "none", color: "var(--color-text-muted)", fontWeight: 600, fontSize: "0.95rem", cursor: "pointer", textDecoration: "underline" }}>
+            더라운드에 제안하기
           </button>
-          <button onClick={() => openModal('job')} style={{ padding: "0.8rem 1.5rem", background: "rgba(13, 148, 136, 0.05)", borderRadius: "50px", color: "var(--color-primary)", fontWeight: 600, fontSize: "0.9rem", border: "1px solid rgba(13, 148, 136, 0.1)", cursor: "pointer" }}>
-            구인요청
-          </button>
-          <button onClick={() => openModal('volunteer')} style={{ padding: "0.8rem 1.5rem", background: "rgba(13, 148, 136, 0.05)", borderRadius: "50px", color: "var(--color-primary)", fontWeight: 600, fontSize: "0.9rem", border: "1px solid rgba(13, 148, 136, 0.1)", cursor: "pointer" }}>
-            자원봉사 신청하기
+          <span style={{ color: "#ccc" }}>|</span>
+          <button onClick={() => openModal('story')} style={{ background: "none", border: "none", color: "var(--color-text-muted)", fontWeight: 600, fontSize: "0.95rem", cursor: "pointer", textDecoration: "underline" }}>
+            나의 스토리 공유하기
           </button>
         </div>
       </div>
 
+      {/* TalkTalk Modals */}
       {modalType && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeModal}></div>
           <div className="modal-container" style={{ maxWidth: "600px", width: "95%", maxHeight: "90vh", overflowY: "auto", borderRadius: "24px" }}>
             <button className="modal-close" onClick={closeModal}>&times;</button>
             <div className="modal-body" style={{ padding: "2.5rem" }}>
-              <h3 style={{ marginBottom: "1.5rem", color: "var(--color-primary)", fontSize: "1.5rem", fontWeight: 800 }}>
+              <h3 style={{ marginBottom: "1.5rem", color: "var(--color-primary)", fontSize: "1.6rem", fontWeight: 800 }}>
                 {modalType === 'giving' && "나눔하기 신청"}
                 {modalType === 'job' && "구인요청 신청"}
                 {modalType === 'volunteer' && "자원봉사 신청"}
@@ -173,7 +203,7 @@ export default function TalkTalk() {
               <form onSubmit={handleSubmit} className="admin-form">
                 {/* 1. 개인 인적사항 */}
                 <div style={{ marginBottom: "2rem" }}>
-                  <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderBottom: "1px solid #eee", paddingBottom: "0.5rem" }}>신청자 정보</h4>
+                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderBottom: "1px solid #eee", paddingBottom: "0.5rem" }}>신청자 정보</h4>
                   <div className="form-row" style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
                     <div className="form-group" style={{ flex: 1 }}>
                       <label>성함 *</label>
@@ -216,14 +246,14 @@ export default function TalkTalk() {
                 )}
 
                 {modalType === 'job' && (
-                  <div className="form-group" style={{ marginBottom: "1rem" }}>
-                    <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>채용 상세 (분야/조건)</label>
-                    <input type="text" name="jobRole" value={formData.jobRole} onChange={handleInputChange} placeholder="예: 사무직, 매장관리 등" />
+                  <div className="form-group" style={{ marginBottom: "1.5rem" }}>
+                    <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>회사 / 기관명 *</label>
+                    <input type="text" name="orgName" value={formData.orgName} onChange={handleInputChange} placeholder="회사 또는 기관명" required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
                   </div>
                 )}
 
                 {modalType === 'volunteer' && (
-                  <div className="form-group" style={{ marginBottom: "1rem" }}>
+                  <div className="form-group" style={{ marginBottom: "1.5rem" }}>
                     <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>관심 봉사 분야</label>
                     <select name="volunteerArea" value={formData.volunteerArea} onChange={handleInputChange} style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)", background: "white" }}>
                       <option value="">분야를 선택하세요</option>
@@ -237,12 +267,12 @@ export default function TalkTalk() {
 
                 <div className="form-group" style={{ marginBottom: "1.5rem" }}>
                   <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 700 }}>상세 내용</label>
-                  <textarea name="details" value={formData.details} onChange={handleInputChange} placeholder="추가적인 요청이나 상세 내용을 적어주세요." rows="3" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
+                  <textarea name="details" value={formData.details} onChange={handleInputChange} placeholder="추가적인 요청이나 상세 내용을 적어주세요." rows="4" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
                 </div>
 
                 {/* 3. 회원가입 및 약관 동의 */}
-                <div style={{ background: "#f8fafc", padding: "1rem", borderRadius: "12px", marginBottom: "2rem" }}>
-                  <label style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", cursor: "pointer" }}>
+                <div style={{ background: "#f8fafc", padding: "1.2rem", borderRadius: "16px", marginBottom: "2rem" }}>
+                  <label style={{ display: "flex", alignItems: "flex-start", gap: "0.8rem", cursor: "pointer" }}>
                     <input 
                       type="checkbox" 
                       name="agreement" 
@@ -251,14 +281,14 @@ export default function TalkTalk() {
                       style={{ marginTop: "0.3rem" }} 
                       required
                     />
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: "1.5" }}>
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: "1.6" }}>
                       <strong>더라운드 회원등록 및 개인정보 활용 동의 *</strong><br />
-                      보내주신 정보는 더라운드 커뮤니티 회원 관리 및 뉴스레터 발송, 활동 안내를 위해 사용됩니다.
+                      보내주신 정보는 더라운드 커뮤니티 회원 관리 및 뉴스레터 발송, 활동 안내를 위해 소중하게 사용됩니다.
                     </span>
                   </label>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
+                <button type="submit" className="btn btn-primary btn-block btn-lg" disabled={submitting}>
                   {submitting ? "처리 중..." : "신청 완료하기"}
                 </button>
               </form>
