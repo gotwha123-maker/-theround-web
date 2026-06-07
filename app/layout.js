@@ -50,8 +50,7 @@ export const metadata = {
     type: "website",
   },
   verification: {
-    google: "google-site-verification-token-placeholder",
-    naver: "naver-site-verification-token-placeholder",
+    naver: "cd6494f434aa59b40ce0842513f36806e5e12913",
   },
   other: {
     "Cache-Control": "no-cache, no-store, must-revalidate",
