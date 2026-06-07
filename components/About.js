@@ -5,50 +5,50 @@ export default function About() {
         <div className="section-header text-center">
           <span className="section-subtitle">VISION & MISSION</span>
           <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>
-            우리가 꿈꾸는 내일
+            미션과 비전
           </h2>
         </div>
         <div className="about-brand-card reveal-on-scroll">
           <div className="about-mission text-center">
             <h2>
-              소중한 가치를 잇는,<br />
-              <span className="highlight-text">한반도 미래 준비의 시작</span>
+              한반도 통합을 향한 연결,<br />
+              <span className="highlight-text">함께 열어가는 상생의 미래</span>
             </h2>
             <div className="mission-divider"></div>
             <p className="mission-lead">
-              비영리 민간단체 <strong>더라운드(The Round)</strong>는 뜻을 같이하는 파트너들이 모여<br />
-              한반도 통합을 위해 마음을 나누고 힘을 보태는 소중한 공간입니다.
+              비영리 민간단체 <strong>더라운드(The Round)</strong>는 통일 미래를 준비하는 사람들이 모여<br />
+              우리 사회의 통합과 상생의 가치를 실현하는 전문 커뮤니티입니다.
             </p>
             <p className="mission-desc" style={{ marginTop: "1.5rem" }}>
-              우리는 인권에 대한 소중한 인식을 전 세계와 연결하는 **브릿지(Bridge)**가 되고,<br />
-              함께하는 커뮤니티를 통해 통합 한반도의 내일을 진정성 있게 준비합니다.
+              우리는 보편적 인권과 가치에 대한 인식을 전 세계로 확산하는 **가교(Bridge)** 역할을 수행하며,<br />
+              통합 한반도의 주역들이 역량을 발휘할 수 있는 실천적 토대를 구축합니다.
             </p>
           </div>
         </div>
 
         <div className="about-values-block" style={{ marginTop: "5rem" }}>
           <div className="values-header text-center">
-            <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>우리의 지향점</h3>
+            <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>핵심 가치</h3>
           </div>
           <div className="values-grid">
             <div className="value-card">
-              <h4>보편적 가치의 확산</h4>
+              <h4>인권과 존엄의 가치</h4>
               <p>
-                인권과 존엄의 가치를 소중히 여기며, 이를 전 세계 이웃들과 연결하여 깊은 공감을 만들어냅니다.
+                보편적 인권과 존엄성을 최우선으로 하며, 국제 사회와 협력하여 한반도 평화에 대한 공감대를 넓힙니다.
               </p>
             </div>
 
             <div className="value-card">
-              <h4>함께하는 사람들의 힘</h4>
+              <h4>주체적 역량 강화</h4>
               <p>
-                통합의 내일을 함께할 소중한 인연들을 모으고, 그분들이 역량을 발휘할 수 있도록 지지하고 응원합니다.
+                사회 통합을 이끌어갈 인재들을 조직화하고, 전문성을 바탕으로 우리 사회의 주도적인 구성원으로 성장하도록 돕습니다.
               </p>
             </div>
 
             <div className="value-card">
-              <h4>진심을 담은 커뮤니티</h4>
+              <h4>상생과 공존의 연대</h4>
               <p>
-                따뜻한 커뮤니티를 기반으로 통일에 대한 인식을 넓혀가며, 서로의 다름을 존중하는 화합의 장을 만듭니다.
+                다양한 배경을 가진 사람들이 소통하며 상호 존중하는 문화를 만들고, 통합 한반도를 위한 실질적인 준비를 이어갑니다.
               </p>
             </div>
           </div>
