@@ -11,17 +11,17 @@ export default function About() {
         <div className="about-brand-card reveal-on-scroll">
           <div className="about-mission text-center">
             <h2>
-              한반도 통합을 향한 연결,<br />
-              <span className="highlight-text">함께 열어가는 상생의 미래</span>
+              글로벌 가치를 잇는,<br />
+              <span className="highlight-text">한반도 미래를 위한 준비</span>
             </h2>
             <div className="mission-divider"></div>
             <p className="mission-lead">
-              비영리 민간단체 <strong>더라운드(The Round)</strong>는 통일 미래를 준비하는 사람들이 모여<br />
-              우리 사회의 통합과 상생의 가치를 실현하는 전문 커뮤니티입니다.
+              비영리 민간단체 <strong>더라운드(The Round)</strong>는 한반도 통일 미래를 열어갈 사람들을 모으고 조직하여,<br />
+              보편적 가치에 대한 인식을 세계와 연결하는 든든한 가교가 되고자 합니다.
             </p>
             <p className="mission-desc" style={{ marginTop: "1.5rem" }}>
-              우리는 보편적 인권과 가치에 대한 인식을 전 세계로 확산하는 **가교(Bridge)** 역할을 수행하며,<br />
-              통합 한반도의 주역들이 역량을 발휘할 수 있는 실천적 토대를 구축합니다.
+              우리는 커뮤니티를 강화하여 한반도 문제에 대한 인식을 확산하며,<br />
+              통일 시대를 실질적으로 이끌어갈 주역들과 함께 건강한 변화를 만들어갑니다.
             </p>
           </div>
         </div>
@@ -32,23 +32,23 @@ export default function About() {
           </div>
           <div className="values-grid">
             <div className="value-card">
-              <h4>인권과 존엄의 가치</h4>
+              <h4>인식의 글로벌 확산</h4>
               <p>
-                보편적 인권과 존엄성을 최우선으로 하며, 국제 사회와 협력하여 한반도 평화에 대한 공감대를 넓힙니다.
+                보편적 인권과 가치에 대한 인식을 국제 사회에 전달하고, 한반도 평화에 대한 글로벌 공감대를 넓힙니다.
               </p>
             </div>
 
             <div className="value-card">
-              <h4>주체적 역량 강화</h4>
+              <h4>사람 중심의 조직화</h4>
               <p>
-                사회 통합을 이끌어갈 인재들을 조직화하고, 전문성을 바탕으로 우리 사회의 주도적인 구성원으로 성장하도록 돕습니다.
+                통일 미래를 준비할 인재들을 발굴하여 조직하고, 그들이 역량을 발휘할 수 있는 실천적 토대를 마련합니다.
               </p>
             </div>
 
             <div className="value-card">
-              <h4>상생과 공존의 연대</h4>
+              <h4>커뮤니티 기반의 실천</h4>
               <p>
-                다양한 배경을 가진 사람들이 소통하며 상호 존중하는 문화를 만들고, 통합 한반도를 위한 실질적인 준비를 이어갑니다.
+                강화된 커뮤니티를 통해 통일에 대한 인식을 넓히고, 상호 존중과 화합을 위한 구체적인 활동을 이어갑니다.
               </p>
             </div>
           </div>

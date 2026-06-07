@@ -4,12 +4,12 @@ export default function Hero() {
       <div className="hero-container">
         <div className="hero-content reveal-on-scroll">
           <h1>
-            한반도 통일 미래를 준비하며,<br />
-            <span className="highlight-text">그 보편적 가치를 세계와 연결합니다</span>
+            한반도 통일 미래를 위한 사람들을 모으고,<br />
+            <span className="highlight-text">그 가치를 세계와 연결하는 가교가 됩니다</span>
           </h1>
           <p className="hero-lead">
-            더라운드는 통합의 내일을 향한 공감대를 형성하고,<br />
-            사람 중심의 실천을 통해 한반도의 평화로운 미래를 여는 가교가 됩니다.
+            더라운드는 통일 미래를 준비하는 주역들을 발굴하여 조직화하고,<br />
+            커뮤니티를 강화하여 보편적 가치에 대한 인식을 전 세계로 확산합니다.
           </p>
           <div className="hero-buttons">
             <a href="#about" className="btn btn-primary btn-lg">
