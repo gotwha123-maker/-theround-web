@@ -66,9 +66,9 @@ export default function SolutionsSection({ onOpenModal }) {
                   fontWeight: 700,
                 }}
               >
-                통일확산 & 커뮤니티
+                커뮤니티 강화
               </span>
-              <h3>통일확산 & 커뮤니티</h3>
+              <h3>통일인식 확산</h3>
               <p>
                 스포츠와 문화적 소통을 통해 보이지 않는 장벽을 허물고, 대등한 구성원으로서 건강한 유대를 형성하는 화합의 장입니다.
               </p>

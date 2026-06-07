@@ -27,7 +27,7 @@ export default function About() {
 
         <div className="about-values-block" style={{ marginTop: "5rem" }}>
           <div className="values-header text-center">
-            <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>우리의 실천 (What We Do)</h3>
+            <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>우리의 실천</h3>
           </div>
           <div className="values-grid">
             <div className="value-card">

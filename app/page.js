@@ -69,7 +69,7 @@ export default function Home() {
     }
     if (modalType === "sports") {
       return {
-        title: "통일확산 & 커뮤니티",
+        title: "통일인식 확산",
         content: (
           <div>
             <div style={{ marginBottom: "2rem" }}>
