@@ -40,7 +40,7 @@
         "promptType": "custom",
         "text": "=아래의 뉴스 콘텐츠를 읽고, 탈북민(북한이탈주민) 세대 전체(가족, 자녀, 청년, 중장년, 노년 등)에게 실질적인 정착 혜택이나 복지 지원, 일자리 지원, 의료 혜택, 교육 지원 등의 정보가 포함되어 있는지 확인해 주세요.\n\n뉴스 제목: {{$json.title}}\n뉴스 내용 요약: {{$json.description || $json.content}}\n\n만약 관련성이 높다면, 다음 형식의 JSON 객체로 결과를 반환해 주세요. 관련이 없는 일반 뉴스나 동향 기사라면 빈 JSON 객체 `{}`를 반환해 주세요.\n\n반환 형식:\n{\n  \"relevant\": true,\n  \"category\": \"welfare\" | \"education\" | \"jobs\" | \"health\", (복지/주거는 welfare, 교육/장학금은 education, 취업/훈련은 jobs, 의료/법률은 health)\n  \"badge\": \"예: 무료 치과 혜택 / 장학금 300만원\",\n  \"title\": \"가독성을 위해 요약 정리한 뉴스 제목 (30자 이내)\",\n  \"excerpt\": \"이탈주민에게 실질적으로 도움을 주는 혜택 내용을 요약한 3줄 요약 문장 (약 120자 내외)\",\n  \"tag\": \"예: 전액 무료 / 선착순 마감\"\n}",
         "options": {
-          "systemMessage": "당신은 비영리 단체 '더라운드'의 유능한 AI 어시스턴트입니다. 한국의 복지 정보 공문을 정착민들이 이해하기 쉽도록 친근하고 명료하게 변환해 주는 역할을 맡고 있습니다."
+          "systemMessage": "당신은 비영리 단체 '더라운드'의 유능하고 철두철미한 AI 어시스턴트(Fact-Checker)입니다. 한국의 복지 정보 공문을 정착민들이 이해하기 쉽도록 명료하게 변환하는 역할과 동시에, 사실에 근거한 객관적인 정보만을 필터링하는 역할을 담당합니다. 뉴스나 공고의 출처가 불명확하거나, 개인의 주관적인 주장/의견이 섞여 있거나, 검증되지 않은 홍보성 문구가 포함되어 있다면 관련성이 없다고 판단하여 반드시 'relevant: false'로 응답하십시오. 오직 신뢰할 수 있는 공공기관, 단체, 학교 등에서 발표한 공적 지원 정책, 복지/장학 혜택, 채용 정보 등 팩트 기반의 혜택 정보만 'relevant: true'로 요약해 주어야 합니다."
         }
       },
       "id": "openai-ai-summarizer",
@@ -79,6 +79,54 @@
     },
     {
       "parameters": {
+        "url": "={{$node[\"Fetch Hana Foundation News\"].json.link}}",
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          },
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text",
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "verify-url-node",
+      "name": "Verify URL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1080,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.statusCode}}",
+              "operation": "equal",
+              "value2": 200
+            }
+          ]
+        }
+      },
+      "id": "is-url-active-node",
+      "name": "Is URL Active?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        300
+      ]
+    },
+    {
+      "parameters": {
         "operation": "append",
         "base": "appvhPHdiMuC6Q3oA",
         "table": "SettlementNews",
@@ -86,15 +134,15 @@
           "fieldValues": [
             {
               "fieldId": "category",
-              "fieldValue": "={{$json.category}}"
+              "fieldValue": "={{$node[\"AI Summarizer Node\"].json.category}}"
             },
             {
               "fieldId": "badge",
-              "fieldValue": "={{$json.badge}}"
+              "fieldValue": "={{$node[\"AI Summarizer Node\"].json.badge}}"
             },
             {
               "fieldId": "title",
-              "fieldValue": "={{$json.title}}"
+              "fieldValue": "={{$node[\"AI Summarizer Node\"].json.title}}"
             },
             {
               "fieldId": "date",
@@ -102,15 +150,15 @@
             },
             {
               "fieldId": "excerpt",
-              "fieldValue": "={{$json.excerpt}}"
+              "fieldValue": "={{$node[\"AI Summarizer Node\"].json.excerpt}}"
             },
             {
               "fieldId": "tag",
-              "fieldValue": "={{$json.tag}}"
+              "fieldValue": "={{$node[\"AI Summarizer Node\"].json.tag}}"
             },
             {
               "fieldId": "url",
-              "fieldValue": "=#"
+              "fieldValue": "={{$node[\"Fetch Hana Foundation News\"].json.link}}"
             }
           ]
         },
@@ -121,12 +169,56 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 1,
       "position": [
-        1100,
+        1520,
         300
       ],
       "credentials": {
         "airtableApi": {
           "id": "airtable-credential-id"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "custom",
+        "text": "=아래의 요약된 복지/혜택 공고 정보를 바탕으로, 카카오톡 및 텔레그램 등의 SNS 채널에 공유할 친근하고 가독성 좋은 SNS 홍보 문구를 작성해 주세요.\n\n카테고리: {{$node[\"AI Summarizer Node\"].json.category}}\n배지: {{$node[\"AI Summarizer Node\"].json.badge}}\n제목: {{$node[\"AI Summarizer Node\"].json.title}}\n혜택 요약: {{$node[\"AI Summarizer Node\"].json.excerpt}}\n태그: {{$node[\"AI Summarizer Node\"].json.tag}}\n원문 링크: {{$node[\"Fetch Hana Foundation News\"].json.link}}\n\n[작성 가이드라인]:\n1. 이탈주민들에게 유익한 정보를 친절하고 정중한 어조로 안내하세요.\n2. 핵심 혜택과 신청 대상, 방법을 이모지와 불릿 포인트로 한눈에 들어오게 요약해 주세요.\n3. 마지막에 해당 카테고리와 관련된 해시태그(예: #더라운드 #탈북민지원 #장학금 등)를 3~4개 추가해 주세요.\n4. 원문 링크를 포함하여 유저들이 상세 내용을 확인할 수 있게 하세요.\n\n출력은 오직 SNS 피드에 즉시 게시할 수 있는 텍스트만 반환해 주세요.",
+        "options": {
+          "systemMessage": "당신은 비영리 단체 '더라운드'의 SNS 채널을 운영하는 유능한 SNS 홍보 에이전트(SNS & Sharing Agent)입니다. 공고 내용을 요약하여 전달력이 높고 감동을 주는 SNS 홍보 피드를 작성합니다."
+        }
+      },
+      "id": "openai-sns-creator",
+      "name": "Create SNS Message",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credential-id"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8025489945",
+        "text": "=📢 *[더라운드 실시간 정착뉴스 알림]* 📢\n\n{{$json.text}}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "telegram-sns-broadcast",
+      "name": "Telegram SNS Broadcast",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-credential-id"
         }
       }
     }
@@ -169,7 +261,51 @@
       "main": [
         [
           {
+            "node": "Verify URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify URL": {
+      "main": [
+        [
+          {
+            "node": "Is URL Active?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is URL Active?": {
+      "main": [
+        [
+          {
             "node": "Insert into Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert into Airtable": {
+      "main": [
+        [
+          {
+            "node": "Create SNS Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create SNS Message": {
+      "main": [
+        [
+          {
+            "node": "Telegram SNS Broadcast",
             "type": "main",
             "index": 0
           }

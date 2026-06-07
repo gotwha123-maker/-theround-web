@@ -68,10 +68,32 @@
     },
     {
       "parameters": {
+        "promptType": "custom",
+        "text": "=아래의 신청 및 문의 내역을 확인하고, 문의의 카테고리를 분류하고 학생에게 전달할 정중하고 친절한 답변 메일 초안을 작성해 주세요.\n\n[신청 및 문의 정보]\n- 신청자: {{$json.name}}\n- 이메일: {{$json.email}}\n- 유형: {{$json.event_type === 'lecture_booking' ? '강연 및 1:1 상담 신청' : '1:1 문의'}}\n- 신청 주제: {{$json.topic}}\n- 상세 내용: {{$json.details}}\n\n[가이드라인]\n1. 문의 내용을 면밀히 파악하여 카테고리(대학 대입 전형 / 자녀 장학금 및 지원금 / 취업 및 일자리 / 기타 복지) 중 하나로 판단하고 답변을 시작하세요.\n2. 신청자의 이름을 따뜻하게 부르며, 더라운드에 관심을 가져주셔서 감사하다는 환영 인사를 포함해 주세요.\n3. 문의한 주제에 대해 실질적인 도움이나 추가 확인이 필요한 내용을 정중하게 기재해 주세요. (예: 대입 전형의 경우 '접수처 및 제출 서류 확인 등을 친절히 대행/안내해 드리겠다', 장학금의 경우 '최신 장학금 선발 일정과 지원 자격을 검토해 주겠다' 등)\n4. 마지막으로 빠른 시일 내에 담당 디자이너가 추가 연락을 취할 예정임을 알리고 정중한 맺음말로 마무리해 주세요.\n\n결과는 다음 형식의 JSON 객체로 반환해 주세요:\n{\n  \"inquiry_category\": \"대입 / 장학금 / 취업 / 기타\",\n  \"ai_draft_reply\": \"메원본문으로 바로 활용할 수 있는 줄바꿈(\\n)이 포함된 친절한 답변 초안 내용\"\n}",
+        "options": {
+          "systemMessage": "당신은 비영리 단체 '더라운드'의 친절하고 전문적인 AI 답변 어시스턴트(Inquiry Assistant Agent)입니다. 신청자나 문의자의 눈높이에 맞춰 따뜻하고 실용적인 이메일 답변 초안을 대신 작성해 주는 역할을 합니다."
+        }
+      },
+      "id": "draft-ai-reply",
+      "name": "Draft AI Reply",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credential-id"
+        }
+      }
+    },
+    {
+      "parameters": {
         "conditions": {
           "string": [
             {
-              "value1": "={{$json.event_type}}",
+              "value1": "={{$node[\"Format Request Data\"].json.event_type}}",
               "value2": "lecture_booking"
             }
           ]
@@ -82,7 +104,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        700,
+        920,
         300
       ]
     },
@@ -91,14 +113,14 @@
         "sendTo": "gotwha123@gmail.com",
         "subject": "=📢 [더라운드] 실시간 강연/상담 신청서가 접수되었습니다!",
         "emailType": "html",
-        "messageHtml": "=<h3>📢 더라운드 강연 신청서 접수 알림</h3>\n<hr />\n<p><strong>신청자 이름:</strong> {{$json.name}}</p>\n<p><strong>이메일:</strong> {{$json.email}}</p>\n<p><strong>연락처:</strong> {{$json.phone}}</p>\n<p><strong>희망 디자이너:</strong> {{$json.designer}}</p>\n<p><strong>신청 주제:</strong> {{$json.topic}}</p>\n<p><strong>희망 일자:</strong> {{$json.date}}</p>\n<p><strong>상세 요청사항:</strong></p>\n<blockquote style=\"background: #f9f9f9; border-left: 5px solid #ccc; padding: 10px;\">\n  {{$json.details}}\n</blockquote>\n<hr />\n<p>Airtable 클라우드 데이터베이스에 자동으로 저장되었으며, 자세한 정보는 대시보드에서 확인해 주세요.</p>"
+        "messageHtml": "=<h3>📢 더라운드 강연 신청서 접수 알림</h3>\n<hr />\n<p><strong>신청자 이름:</strong> {{$node[\"Format Request Data\"].json.name}}</p>\n<p><strong>이메일:</strong> {{$node[\"Format Request Data\"].json.email}}</p>\n<p><strong>연락처:</strong> {{$node[\"Format Request Data\"].json.phone}}</p>\n<p><strong>희망 디자이너:</strong> {{$node[\"Format Request Data\"].json.designer}}</p>\n<p><strong>신청 주제:</strong> {{$node[\"Format Request Data\"].json.topic}}</p>\n<p><strong>희망 일자:</strong> {{$node[\"Format Request Data\"].json.date}}</p>\n<p><strong>상세 요청사항:</strong></p>\n<blockquote style=\"background: #f9f9f9; border-left: 5px solid #ccc; padding: 10px;\">\n  {{$node[\"Format Request Data\"].json.details}}\n</blockquote>\n<hr />\n<h4>🤖 AI 답변 작성 에이전트 추천 초안 (분류: {{$json.inquiry_category}})</h4>\n<blockquote style=\"background: #eef9ff; border-left: 5px solid #0066cc; padding: 15px; white-space: pre-wrap; font-family: sans-serif;\">\n  {{$json.ai_draft_reply}}\n</blockquote>\n<hr />\n<p>Airtable 클라우드 데이터베이스에 자동으로 저장되었으며, 자세한 정보는 대시보드에서 확인해 주세요.</p>"
       },
       "id": "Send Booking Email",
       "name": "Send Booking Email",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 1,
       "position": [
-        950,
+        1170,
         200
       ]
     },
@@ -107,21 +129,21 @@
         "sendTo": "gotwha123@gmail.com",
         "subject": "=✉️ [더라운드] 홈페이지 1:1 문의글이 등록되었습니다.",
         "emailType": "html",
-        "messageHtml": "=<h3>✉️ 더라운드 1:1 문의 접수 알림</h3>\n<hr />\n<p><strong>작성자 이름:</strong> {{$json.name}}</p>\n<p><strong>이메일:</strong> {{$json.email}}</p>\n<p><strong>문의 제목:</strong> {{$json.topic}}</p>\n<p><strong>문의 내용:</strong></p>\n<blockquote style=\"background: #f9f9f9; border-left: 5px solid #ccc; padding: 10px;\">\n  {{$json.details}}\n</blockquote>\n<hr />\n<p>Airtable의 InquiryRequests 테이블에 실시간 저장 완료되었습니다.</p>"
+        "messageHtml": "=<h3>✉️ 더라운드 1:1 문의 접수 알림</h3>\n<hr />\n<p><strong>작성자 이름:</strong> {{$node[\"Format Request Data\"].json.name}}</p>\n<p><strong>이메일:</strong> {{$node[\"Format Request Data\"].json.email}}</p>\n<p><strong>문의 제목:</strong> {{$node[\"Format Request Data\"].json.topic}}</p>\n<p><strong>문의 내용:</strong></p>\n<blockquote style=\"background: #f9f9f9; border-left: 5px solid #ccc; padding: 10px;\">\n  {{$node[\"Format Request Data\"].json.details}}\n</blockquote>\n<hr />\n<h4>🤖 AI 답변 작성 에이전트 추천 초안 (분류: {{$json.inquiry_category}})</h4>\n<blockquote style=\"background: #eef9ff; border-left: 5px solid #0066cc; padding: 15px; white-space: pre-wrap; font-family: sans-serif;\">\n  {{$json.ai_draft_reply}}\n</blockquote>\n<hr />\n<p>Airtable의 InquiryRequests 테이블에 실시간 저장 완료되었습니다.</p>"
       },
       "id": "Send Inquiry Email",
       "name": "Send Inquiry Email",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 1,
       "position": [
-        950,
+        1170,
         400
       ]
     },
     {
       "parameters": {
         "chatId": "8025489945",
-        "text": "=📢 *[더라운드] 새로운 신청 도착*\n\n👤 *성함:* {{$json.name}}\n📧 *이메일:* {{$json.email}}\n📞 *연락처:* {{$json.phone}}\n🎨 *디자이너:* {{$json.designer}}\n📚 *주제:* {{$json.topic}}\n📅 *희망일:* {{$json.date}}\n\n📝 *내용:* \n{{$json.details}}",
+        "text": "=📢 *[더라운드] 새로운 신청 도착 (AI 추천 답변 포함)*\n\n👤 *성함:* {{$node[\"Format Request Data\"].json.name}}\n📧 *이메일:* {{$node[\"Format Request Data\"].json.email}}\n📞 *연락처:* {{$node[\"Format Request Data\"].json.phone}}\n🎨 *디자이너:* {{$node[\"Format Request Data\"].json.designer}}\n📚 *주제:* {{$node[\"Format Request Data\"].json.topic}}\n📅 *희망일:* {{$node[\"Format Request Data\"].json.date}}\n\n📝 *신청 내용:* \n{{$node[\"Format Request Data\"].json.details}}\n\n🤖 *AI 답변 초안 (분류: {{$json.inquiry_category}}):\n{{$json.ai_draft_reply}}*",
         "additionalFields": {
           "parse_mode": "Markdown"
         }
@@ -131,7 +153,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        1200,
+        1420,
         300
       ],
       "credentials": {
@@ -154,6 +176,17 @@
       ]
     },
     "Format Request Data": {
+      "main": [
+        [
+          {
+            "node": "Draft AI Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft AI Reply": {
       "main": [
         [
           {
