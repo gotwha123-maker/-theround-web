@@ -79,9 +79,15 @@ export async function GET() {
   const apiKey = process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
 
+  const cacheHeaders = {
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0"
+  };
+
   // Use fallback if no credentials found or to ensure immediate visibility
   if (!apiKey || !baseId) {
-    return NextResponse.json(fallbackNewsList);
+    return NextResponse.json(fallbackNewsList, { headers: cacheHeaders });
   }
 
   try {
@@ -98,24 +104,62 @@ export async function GET() {
 
     const data = await res.json();
     if (!data.records || data.records.length === 0) {
-        return NextResponse.json(fallbackNewsList);
+        return NextResponse.json(fallbackNewsList, { headers: cacheHeaders });
     }
 
     // Merge live data with fallback to ensure categories are always populated
-    const records = data.records.map((r) => ({
-      id: r.id,
-      category: r.fields.category,
-      badge: r.fields.badge,
-      title: r.fields.title,
-      date: r.fields.date,
-      excerpt: r.fields.excerpt,
-      tag: r.fields.tag,
-      url: r.fields.url || "#",
-    })).filter(r => r.category !== 'research'); // Ensure 'research' is filtered out
+    const records = data.records.map((r) => {
+      let category = (r.fields.category || "").trim().toLowerCase();
+      let badge = r.fields.badge;
 
-    return NextResponse.json(records);
+      // Normalize Category to match client tabs (scholarship, housing, job, university)
+      if (category === "jobs" || category === "job") {
+        category = "job";
+        if (!badge) badge = "일자리";
+      } else if (category === "education") {
+        const title = r.fields.title || "";
+        if (title.includes("대학") || title.includes("입시") || title.includes("가이드북")) {
+          category = "university";
+          if (!badge) badge = "대학생활";
+        } else {
+          category = "scholarship";
+          if (!badge) badge = "장학정보";
+        }
+      } else if (category === "scholarship") {
+        category = "scholarship";
+        if (!badge) badge = "장학정보";
+      } else if (category === "housing") {
+        category = "housing";
+        if (!badge) badge = "주택정보";
+      } else if (category === "university") {
+        category = "university";
+        if (!badge) badge = "대학생활";
+      } else if (category === "welfare" || category === "health") {
+        const title = r.fields.title || "";
+        if (title.includes("일자리") || title.includes("채용") || title.includes("취업") || title.includes("자금")) {
+          category = "job";
+          if (!badge) badge = "일자리";
+        } else {
+          category = "scholarship";
+          if (!badge) badge = "지원정보";
+        }
+      }
+
+      return {
+        id: r.id,
+        category: category,
+        badge: badge || "공지사항",
+        title: r.fields.title,
+        date: r.fields.date,
+        excerpt: r.fields.excerpt || "",
+        tag: r.fields.tag,
+        url: r.fields.url || r.fields.link || "#",
+      };
+    }).filter(r => r.category !== 'research' && ['scholarship', 'housing', 'job', 'university'].includes(r.category));
+
+    return NextResponse.json(records, { headers: cacheHeaders });
   } catch (err) {
     console.error("Airtable fetch error, using fallbacks:", err);
-    return NextResponse.json(fallbackNewsList);
+    return NextResponse.json(fallbackNewsList, { headers: cacheHeaders });
   }
 }

@@ -88,11 +88,17 @@ const fallbackStories = [
 ];
 
 export async function GET() {
-  const apiKey = process.env.AIRTABLE_API_KEY;
+  const apiKey = process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
 
+  const cacheHeaders = {
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0"
+  };
+
   if (!apiKey || !baseId) {
-    return NextResponse.json(fallbackStories);
+    return NextResponse.json(fallbackStories, { headers: cacheHeaders });
   }
 
   try {
@@ -117,10 +123,10 @@ export async function GET() {
       content: r.fields.content_html,
     }));
 
-    return NextResponse.json(records);
+    return NextResponse.json(records, { headers: cacheHeaders });
   } catch (err) {
     console.error("Airtable fetch error, using fallbacks:", err);
-    return NextResponse.json(fallbackStories);
+    return NextResponse.json(fallbackStories, { headers: cacheHeaders });
   }
 }
 
