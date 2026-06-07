@@ -45,7 +45,7 @@ export default function BarriersSection() {
             </p>
             <div className="barrier-solution">
               <span className="solution-badge">Design Solution</span>
-              <p className="solution-text">남북 청년이 어우러지는 스포츠단과 문화 교류를 통해 주체적인 유대를 형성합니다.</p>
+              <p className="solution-text">남북의 사람들이 어우러지는 스포츠단과 문화 교류를 통해 주체적인 유대를 형성합니다.</p>
               <a href="#solutions" className="solution-link">연대 네트워크 확인하기 &rarr;</a>
             </div>
           </div>

@@ -8,7 +8,7 @@ export default function SolutionsSection({ onOpenModal }) {
           <span className="section-subtitle">CORE PROGRAMS</span>
           <h2>핵심 사업</h2>
           <p className="section-lead">
-            더라운드는 탈북민이 주역으로 성장하고 전문성을 발휘할 수 있는 실질적인 토대를 만듭니다.
+            더라운드는 탈북민이 주도적으로 역량을 발휘하고 우리 사회의 전문 인력으로 성장할 수 있는 실질적인 토대를 만듭니다.
           </p>
         </div>
 
@@ -31,16 +31,14 @@ export default function SolutionsSection({ onOpenModal }) {
               >
                 주체적 역량 설계
               </span>
-              <h3>
-                청년 리더십 스쿨 <span className="sub-title">(Youth Leadership School)</span>
-              </h3>
+              <h3>리더십 스쿨</h3>
               <p>
-                단순 지원을 넘어 청년들이 스스로의 커리어와 경제적 자립을 설계하는 역량 강화 무대입니다. 1:1 전문가 멘토링과 실무 중심 코칭으로 미래의 핵심 인재를 양성합니다.
+                전문가 멘토링과 실무 중심의 교육을 통해 탈북민이 각자의 커리어와 비즈니스 모델을 스스로 설계하는 역량 강화 과정입니다.
               </p>
             </div>
             <button 
               className="btn btn-icon-only open-modal-btn" 
-              aria-label="청년 리더십 스쿨 상세 정보 보기"
+              aria-label="리더십 스쿨 상세 정보 보기"
               onClick={() => onOpenModal("school")}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -68,16 +66,14 @@ export default function SolutionsSection({ onOpenModal }) {
               >
                 수평적 연대와 교류
               </span>
-              <h3>
-                스포츠 연대 유니원 FC <span className="sub-title">(UniOne FC Sports Solidarity)</span>
-              </h3>
+              <h3>유니원 FC (스포츠 연대)</h3>
               <p>
-                그라운드 위에서 땀을 흘리며 대등한 파트너로서 우정을 쌓습니다. 스포츠를 매개로 남북 청년과 시민들이 편견 없이 어우러지는 가장 역동적인 화합의 현장입니다.
+                축구를 통해 남과 북의 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 현장입니다. 스포츠를 매개로 건강한 공동체를 형성합니다.
               </p>
             </div>
             <button 
               className="btn btn-icon-only open-modal-btn" 
-              aria-label="유니원 FC 스포츠 교류 상세 정보 보기"
+              aria-label="유니원 FC 상세 정보 보기"
               onClick={() => onOpenModal("sports")}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -105,19 +101,17 @@ export default function SolutionsSection({ onOpenModal }) {
               >
                 통합 담론의 선도
               </span>
-              <h3>
-                평화 포럼 및 아카이빙 <span className="sub-title">(Peace Forum & Archiving)</span>
-              </h3>
+              <h3>평화 포럼 및 아카이빙</h3>
               <p>
-                학술적 논의와 생생한 삶의 기록을 통해 사회 통합의 새로운 패러다임을 제시합니다. 선구자들의 서사를 가치 있는 기록으로 남겨 시민들과 공유하며 인식의 지평을 넓힙니다.
+                탈북민들의 생생한 삶의 기록을 가치 있는 자산으로 남기고, 학술적 논의를 통해 사회 통합의 새로운 담론을 선도합니다.
               </p>
             </div>
             <button 
               className="btn btn-icon-only open-modal-btn" 
-              aria-label="평화 포럼 및 아카이빙 상세 정보 보기"
+              aria-label="평화 포럼 상세 정보 보기"
               onClick={() => onOpenModal("forum")}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>

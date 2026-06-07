@@ -19,13 +19,13 @@ export default function DonationSection() {
     if (amount <= 10000) {
       return (
         <span>
-          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 새로운 시작을 준비하는 청년 1명에게 월 1회 기초 도서 및 정서 멘토링을 연계해 줄 수 있습니다.
+          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 새로운 시작을 준비하는 이웃 1명에게 월 1회 기초 도서 및 정서 멘토링을 연계해 줄 수 있습니다.
         </span>
       );
     } else if (amount <= 30000) {
       return (
         <span>
-          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 2명의 청년에게 역량 개발 아카데미 교육 기재 및 직무 멘토링 매칭 비용으로 적립됩니다.
+          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 2명의 선구자에게 역량 개발 아카데미 교육 기재 및 직무 멘토링 매칭 비용으로 적립됩니다.
         </span>
       );
     } else if (amount <= 50000) {

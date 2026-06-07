@@ -6,12 +6,12 @@ const defaultStories = [
   { 
     id: 1, 
     date: '2026. 06. 01', 
-    title: '남북청년 리더십 아카데미: 한반도의 미래를 디자인하는 청년 리더 육성', 
-    excerpt: '단순한 정착을 넘어, 남북 청년들이 각자의 전문성을 바탕으로 우리 사회의 갈등을 조율하고 새로운 가치를 창출하는 핵심 리더로 성장합니다.', 
+    title: '리더십 아카데미: 한반도의 미래를 디자인하는 리더 육성', 
+    excerpt: '단순한 정착을 넘어, 남북의 파트너들이 각자의 전문성을 바탕으로 우리 사회의 갈등을 조율하고 새로운 가치를 창출하는 핵심 리더로 성장합니다.', 
     img: 'assets/story_academy_censored.png', 
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
-      <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">남북 청년들이 우리 사회의 수혜자에 머물지 않고, 적극적으로 사회 문제 해결에 참여하는 '주권자'로 거듭나도록 돕는 고도화된 실무 교육 과정입니다.</p>
+      <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">탈북민들이 우리 사회의 수혜자에 머물지 않고, 적극적으로 사회 문제 해결에 참여하는 '주권자'로 거듭나도록 돕는 고도화된 실무 교육 과정입니다.</p>
       
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[긍정적 임팩트]</h4>
       <ul style="margin-bottom: 2rem; padding-left: 1.5rem; line-height: 2; color: var(--color-text-primary);">
@@ -21,7 +21,7 @@ const defaultStories = [
       </ul>
       
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[더라운드의 비전]</h4>
-      <p style="background: var(--color-bg-alt); padding: 1.5rem; border-radius: 12px; font-style: italic; color: var(--color-text-muted);">"아카데미를 수료한 청년들은 각자의 자리에서 작은 통일을 실천하는 변화의 주역이 될 것입니다. 이들이 빚어낼 한반도의 새로운 청사진을 기대합니다."</p>
+      <p style="background: var(--color-bg-alt); padding: 1.5rem; border-radius: 12px; font-style: italic; color: var(--color-text-muted);">"아카데미를 수료한 리더들은 각자의 자리에서 작은 통일을 실천하는 변화의 주역이 될 것입니다. 이들이 빚어낼 한반도의 새로운 청사진을 기대합니다."</p>
     `
   },
   { 
@@ -32,7 +32,7 @@ const defaultStories = [
     img: 'assets/story_soccer_censored.png', 
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
-      <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">말보다는 행동과 땀방울이 때로는 더 큰 이해를 낳습니다. 축구를 매개로 남북 청년들이 한 팀이 되어 상호 신뢰와 협동심을 기르는 역동적인 소통 프로그램입니다.</p>
+      <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">말보다는 행동과 땀방울이 때로는 더 큰 이해를 낳습니다. 축구를 매개로 남북의 파트너들이 한 팀이 되어 상호 신뢰와 협동심을 기르는 역동적인 소통 프로그램입니다.</p>
       
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[긍정적 임팩트]</h4>
       <ul style="margin-bottom: 2rem; padding-left: 1.5rem; line-height: 2; color: var(--color-text-primary);">
@@ -70,7 +70,7 @@ const defaultStories = [
     id: 4, 
     date: '2026. 05. 05', 
     title: '인식 개선 캠페인 "공존의 길": 지역 사회의 포용력을 넓히다', 
-    excerpt: '남북 청년들이 직접 기획한 캠페인을 통해 지역 주민들과 직접 만나 소통하며, 낡은 편견을 건강하고 열린 시각으로 디자인하는 퍼블릭 리더십 활동입니다.', 
+    excerpt: '탈북민들이 직접 기획한 캠페인을 통해 지역 주민들과 직접 만나 소통하며, 낡은 편견을 건강하고 열린 시각으로 디자인하는 퍼블릭 리더십 활동입니다.', 
     img: 'assets/story_cafe_censored.png', 
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
@@ -80,7 +80,7 @@ const defaultStories = [
       <ul style="margin-bottom: 2rem; padding-left: 1.5rem; line-height: 2; color: var(--color-text-primary);">
         <li>지역 주민들과의 문턱 없는 스킨십을 통한 심리적 장벽 완화</li>
         <li>북한이탈주민에 대한 막연한 편견을 객관적 사실과 공감으로 전환</li>
-        <li>참여 청년들에게는 사회 구성원으로서의 당당함과 효능감 부여</li>
+        <li>참여 구성원들에게는 사회 구성원으로서의 당당함과 효능감 부여</li>
       </ul>
       
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[더라운드의 비전]</h4>
@@ -150,9 +150,9 @@ export default function StoriesSection() {
     <section id="stories" className="section stories-section">
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
-          <span className="section-subtitle">E-UM STORIES</span>
-          <h2>이음 스토리</h2>
-          <p className="section-lead">더라운드가 만들어나가는 작지만 의미 있는 현장 소식들을 전해드립니다.</p>
+          <span className="section-subtitle">ACTIVITY STORIES</span>
+          <h2>활동 스토리</h2>
+          <p className="section-lead">더라운드가 만들어나가는 의미 있는 현장 소식들을 전해드립니다.</p>
         </div>
 
         <div className="stories-grid" id="stories-grid">

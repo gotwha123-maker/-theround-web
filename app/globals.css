@@ -359,14 +359,14 @@ a {
     transition: var(--transition-normal);
 }
 
-/* Hero Section Overhaul */
+/* Hero Section Overhaul - Professional Visionary Style */
 .hero-section {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=2000&auto=format&fit=crop'); /* People looking at the future, back view */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -376,8 +376,23 @@ a {
     padding: 0;
 }
 
-.hero-bg-overlay {
-    display: none; /* Using background-image with gradient instead */
+/* Overlap the map graphic via a pseudo-element for clarity */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Korea_map_modern.svg/800px-Korea_map_modern.svg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.25; /* Increased opacity for clarity */
+    filter: invert(1) brightness(2); /* Make it white/glow */
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hero-container {
@@ -386,6 +401,7 @@ a {
     margin: 0 auto;
     display: block;
     z-index: 10;
+    position: relative;
 }
 
 .hero-content {

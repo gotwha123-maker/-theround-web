@@ -16,16 +16,15 @@ import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const [modalType, setModalType] = useState(null); // null, school, sports, forum
+  const [modalType, setModalType] = useState(null);
 
   useEffect(() => {
-    // Scroll Animation Observer (reveal-on-scroll)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("active");
-            observer.unobserve(entry.target); // Animate only once
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -52,18 +51,16 @@ export default function Home() {
   const getModalContent = () => {
     if (modalType === "school") {
       return {
-        title: "청년 리더십 스쿨",
+        title: "리더십 스쿨",
         content: (
           <div>
-            <h4 style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>[핵심 목적 및 설계]</h4>
             <p style={{ marginBottom: "1.5rem", lineHeight: "1.8" }}>
-              자립준비 또는 정착 중인 남북 청년들이 각자의 지성과 가능성을 바탕으로, 스스로의 커리어와 리더십 로드맵을 설계하는 실무 전문 역량 강화 교육 과정입니다.
+              탈북민이 우리 사회의 전문가로 성장할 수 있도록 1:1 멘토링과 실무 비즈니스 교육을 제공합니다.
             </p>
-            <h4 style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>[제공 혜택]</h4>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2", marginBottom: "1.5rem" }}>
-              <li>현직 대기업/글로벌 멘토와의 1:1 진로 매칭 멘토링</li>
-              <li>사회적 기업 및 창업 실무를 위한 소규모 집중 세미나</li>
-              <li>리더십 도서 무상 제공 및 수료자 네트워킹 지원</li>
+            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2" }}>
+              <li>전문가 1:1 진로 매칭</li>
+              <li>사회적 창업 및 실무 세미나</li>
+              <li>수료자 네트워크 지원</li>
             </ul>
           </div>
         )
@@ -71,18 +68,16 @@ export default function Home() {
     }
     if (modalType === "sports") {
       return {
-        title: "스포츠 연대 유니원 FC",
+        title: "유니원 FC",
         content: (
           <div>
-            <h4 style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>[그라운드 위에서의 연대]</h4>
             <p style={{ marginBottom: "1.5rem", lineHeight: "1.8" }}>
-              축구라는 보편적인 스포츠 언어를 통해 심리적 거리와 이질감을 허물고, 서로를 동등한 팀원으로 받아들이는 건강한 통합의 장입니다.
+              축구라는 공통의 언어로 남북의 사람들이 편견 없이 소통하며 건강한 공동체를 만듭니다.
             </p>
-            <h4 style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>[활동 안내]</h4>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2", marginBottom: "1.5rem" }}>
-              <li>매주 토요일 정기 훈련 및 지역 아마추어 팀들과의 친선 경기</li>
-              <li>전문 코칭스태프 영입을 통한 성숙한 스포츠맨십 훈련</li>
-              <li>소외 없는 관계 형성을 위한 분기별 합동 체육대회 및 식사 나눔</li>
+            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2" }}>
+              <li>매주 정기 훈련 및 친선 경기</li>
+              <li>전문 코칭 지원</li>
+              <li>합동 체육대회 및 교류 활동</li>
             </ul>
           </div>
         )
@@ -93,15 +88,13 @@ export default function Home() {
         title: "평화 포럼 및 아카이빙",
         content: (
           <div>
-            <h4 style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>[사회의 인식 변화와 기록]</h4>
             <p style={{ marginBottom: "1.5rem", lineHeight: "1.8" }}>
-              선구자들의 삶의 궤적을 엮는 구술사 아카이빙을 구축하고, 편견의 언어에서 공존의 담론으로 시민 인식을 디자인하는 평화/학술 포럼입니다.
+              선구자들의 삶의 기록을 보존하고, 학술 토론을 통해 사회 통합의 새로운 패러다임을 제시합니다.
             </p>
-            <h4 style={{ color: "var(--color-primary)", marginBottom: "1rem" }}>[주요 성과]</h4>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2", marginBottom: "1.5rem" }}>
-              <li>연간 학술 세미나 및 시민 개방형 평화 토크 콘서트 개최</li>
-              <li>탈북 청년/주민들의 삶과 꿈을 기록하는 도서 출판</li>
-              <li>다큐멘터리 제작 및 다국어 아카이빙 서비스 제공</li>
+            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2" }}>
+              <li>시민 개방형 토크 콘서트</li>
+              <li>탈북 서사 도서 출판 및 기록</li>
+              <li>다국어 디지털 아카이빙</li>
             </ul>
           </div>
         )
@@ -112,63 +105,27 @@ export default function Home() {
 
   const modalData = getModalContent();
 
-  const [showBarriers, setShowBarriers] = useState(false);
-  const [showSolutions, setShowSolutions] = useState(false);
-
   return (
     <>
       <Header />
       <main>
         <Hero />
+        
+        {/* 현황 및 데이터 (통계 유지) */}
         <div id="stats"><Stats /></div>
         
-        {/* 한반도 디자이너 (Moved Up) */}
-        <div id="designers"><DesignersSection /></div>
-        
-        {/* 더라운드 정체성 */}
+        {/* 비전 및 미션 (상단 배치) */}
         <div id="about"><About /></div>
         
-        {/* 이음 뉴스 */}
+        {/* 핵심 사업 (상단 배치) */}
+        <div id="solutions"><SolutionsSection onOpenModal={openModal} /></div>
+
+        {/* 한반도 디자이너 (상단 노출) */}
+        <div id="designers"><DesignersSection /></div>
+        
+        {/* 뉴스 및 활동 */}
         <SettlementNewsSection />
-
-        {/* 이음 스토리 */}
         <div id="stories"><StoriesSection /></div>
-
-        {/* 핵심 사업 (Collapsible) */}
-        <div id="solutions" className="section-compact">
-          {!showSolutions ? (
-            <div className="container text-center py-5">
-              <h2 className="section-title-simple">핵심 사업</h2>
-              <p className="section-lead-simple">더라운드가 진행하는 주체적 역량 설계와 연대 프로젝트를 확인해 보세요.</p>
-              <button className="btn btn-outline btn-lg" onClick={() => setShowSolutions(true)}>사업 내용 자세히 보기</button>
-            </div>
-          ) : (
-            <div className="reveal-on-scroll active">
-              <SolutionsSection onOpenModal={openModal} />
-              <div className="text-center pb-5">
-                <button className="btn btn-text" onClick={() => setShowSolutions(false)}>접기 &uarr;</button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* 우리의 과제 (Collapsible) */}
-        <div id="barriers" className="section-compact" style={{ backgroundColor: "var(--color-bg-secondary)" }}>
-          {!showBarriers ? (
-            <div className="container text-center py-5">
-              <h2 className="section-title-simple">우리의 과제</h2>
-              <p className="section-lead-simple">우리가 함께 풀어야 할 실천적 장벽과 설계 과제들을 확인해 보세요.</p>
-              <button className="btn btn-outline btn-lg" onClick={() => setShowBarriers(true)}>과제 내용 자세히 보기</button>
-            </div>
-          ) : (
-            <div className="reveal-on-scroll active">
-              <BarriersSection />
-              <div className="text-center pb-5">
-                <button className="btn btn-text" onClick={() => setShowBarriers(false)}>접기 &uarr;</button>
-              </div>
-            </div>
-          )}
-        </div>
 
         <AboutFounder />
         <DonationSection />
@@ -192,4 +149,3 @@ export default function Home() {
     </>
   );
 }
-
