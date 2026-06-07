@@ -16,6 +16,8 @@ import DonationSection from "../components/DonationSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   const [modalType, setModalType] = useState(null);
 

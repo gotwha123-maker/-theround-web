@@ -73,6 +73,8 @@ const fallbackNewsList = [
   }
 ];
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const apiKey = process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
