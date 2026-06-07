@@ -22,7 +22,7 @@ export default function BarriersSection() {
               [경제적 자립 설계]<br />경험의 단절에서 전문적 도약으로
             </h3>
             <p className="barrier-text">
-              서로 다른 경제 체제에서 오는 경험의 간극은 성장을 가로막는 첫 번째 과제입니다. 더라운드는 이 간극을 메우는 것을 넘어, 선구자들이 자본주의 시장의 핵심 인재로 거듭나도록 자립의 로드맵을 디자인합니다.
+              서로 다른 경제 체제에서 오는 경험의 간극은 성장을 가로막는 첫 번째 과제입니다. 더라운드는 이 간극을 메우는 것을 넘어, 구성원들이 우리 사회의 핵심 인재로 거듭나도록 자립의 로드맵을 함께 고민합니다.
             </p>
             <div className="barrier-solution">
               <span className="solution-badge">Design Solution</span>

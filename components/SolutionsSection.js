@@ -8,7 +8,7 @@ export default function SolutionsSection({ onOpenModal }) {
           <span className="section-subtitle">CORE PROGRAMS</span>
           <h2>핵심 사업</h2>
           <p className="section-lead">
-            더라운드는 우리 사회의 파트너들이 전문성을 발휘하고 함께 성장할 수 있는 실질적인 토대를 만듭니다.
+            더라운드는 우리 사회의 구성원들이 전문성을 발휘하고 함께 성장할 수 있는 실질적인 토대를 만듭니다.
           </p>
         </div>
 

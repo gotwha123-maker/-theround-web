@@ -7,7 +7,7 @@ const defaultStories = [
     id: 1, 
     date: '2026. 06. 01', 
     title: '리더십 아카데미: 한반도의 미래를 디자인하는 리더 육성', 
-    excerpt: '단순한 정착을 넘어, 남북의 파트너들이 각자의 전문성을 바탕으로 우리 사회의 갈등을 조율하고 새로운 가치를 창출하는 핵심 리더로 성장합니다.', 
+    excerpt: '단순한 정착을 넘어, 남북의 구성원들이 각자의 전문성을 바탕으로 우리 사회의 갈등을 조율하고 새로운 가치를 창출하는 핵심 리더로 성장합니다.', 
     img: 'assets/story_academy_censored.png', 
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
@@ -32,7 +32,7 @@ const defaultStories = [
     img: 'assets/story_soccer_censored.png', 
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
-      <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">말보다는 행동과 땀방울이 때로는 더 큰 이해를 낳습니다. 축구를 매개로 남북의 파트너들이 한 팀이 되어 상호 신뢰와 협동심을 기르는 역동적인 소통 프로그램입니다.</p>
+      <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">말보다는 행동과 땀방울이 때로는 더 큰 이해를 낳습니다. 축구를 매개로 남북의 구성원들이 한 팀이 되어 상호 신뢰와 협동심을 기르는 역동적인 소통 프로그램입니다.</p>
       
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[긍정적 임팩트]</h4>
       <ul style="margin-bottom: 2rem; padding-left: 1.5rem; line-height: 2; color: var(--color-text-primary);">

@@ -25,7 +25,7 @@ export default function DonationSection() {
     } else if (amount <= 30000) {
       return (
         <span>
-          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 2명의 선구자에게 역량 개발 아카데미 교육 기재 및 직무 멘토링 매칭 비용으로 적립됩니다.
+          매월 <strong>{amount.toLocaleString()}원</strong>의 후원은 2명의 구성원에게 역량 개발 아카데미 교육 기재 및 직무 멘토링 매칭 비용으로 적립됩니다.
         </span>
       );
     } else if (amount <= 50000) {

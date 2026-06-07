@@ -40,7 +40,7 @@ export default function About() {
             <div className="value-card">
               <h4>스토리 기록</h4>
               <p>
-                선구자들의 삶과 소중한 이야기를 기록하여 보편적 가치를 널리 알리고 공감대를 형성합니다.
+                구성원들의 삶과 소중한 이야기를 기록하여 보편적 가치를 널리 알리고 공감대를 형성합니다.
               </p>
             </div>
 

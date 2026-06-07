@@ -10,7 +10,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="brand-desc">
-              배경과 세대를 넘어 모든 이가 동등한 파트너로 만나는 한반도 미래의 원형 테이블입니다.
+              배경과 세대를 넘어 모든 이가 대등한 구성원으로 만나는 한반도 미래의 원형 테이블입니다.
             </p>
           </div>
           <div className="footer-links">
