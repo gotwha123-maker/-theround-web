@@ -61,9 +61,6 @@ export default function Stats() {
           <h2>
             데이터가 가리키는 한반도 통합의 좌표
           </h2>
-          <p className="section-lead">
-            분단의 수치를 넘어 우리 사회의 포용력을 높이고, 실질적인 통합의 길을 찾아가는 객관적 지표를 공유합니다.
-          </p>
         </div>
 
         <div className="stats-counters-grid">

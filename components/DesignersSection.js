@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 
 const mockDesigners = [
   {
+    id: "des-5",
+    img: "assets/김소연.webp",
+    ko: { name: "김소연", tag: "가수·뮤지션", slogan: '"목소리로 한반도의 희망을 노래하는 뮤지션"', specialty: "정서적 통합 음악 / 고난 극복 서사", bio: "역경을 딛고 일어선 개인의 삶을 음악에 담아 전달하며, 남북한이 공통으로 느끼는 보편적 감수성을 통해 하나 됨을 이끌어냅니다.", career: "• TV조선 \"미스트롯 3\" 최종 6위\n• \"탈북 심청이\" 별명으로 트로트 가수 활동\n• MBN \"특종세상\" 등 다수 방송 출연\n• 전국 희망 콘서트 및 정착 강연 진행" }
+  },
+  {
     id: "des-0",
     img: "assets/김은주.jpg",
     ko: { name: "김은주", tag: "작가·인권활동가", slogan: '"열한 살의 유서에서 전 세계를 울린 희망의 작가로"', specialty: "북한 인권 실상 증언 / 글로벌 인권 소통 / 회고록 집필", bio: "김은주 작가는 1986년 북한 함경북도에서 태어나 고난의 행군 시기 극심한 기아를 겪었습니다. 11살의 나이에 굶주림 속에서 썼던 유서의 기억을 담은 회고록 《열한 살의 유서》(A Thousand Miles to Freedom)를 통해 전 세계에 북한의 실상을 알렸습니다. 현재는 국제 무대에서 북한 주민들의 자유와 인권을 위해 목소리를 내고 있습니다.", career: "• 서강대학교 중국문화학과 졸업\n• 회고록 《열한 살의 유서》 8개 국어 번역 및 베스트셀러 달성\n• 통일부 북한인권증진위원\n• 북한이탈주민 글로벌교육센터(FSI) 간사\n• 유엔(UN) 본부 및 제네바 인권이사회 증언\n• 다큐멘터리 《비욘드 유토피아》 출연" }
@@ -24,16 +29,6 @@ const mockDesigners = [
     ko: { name: "김아라", tag: "배우·방송인", slogan: '"예술을 통해 남북의 거리를 좁히는 화합의 아이콘"', specialty: "남북 문화 예술 / 미디어 속 북한 이미지", bio: "영화와 드라마를 넘나드는 배우로서, 문화 예술 콘텐츠가 가진 정서적 힘을 활용해 남북한 주민들이 서로를 따뜻하게 이해하도록 돕습니다.", career: "• 드라마 \"사랑의 불시착\" 출연 (사택 마을 주민)\n• 웹드라마 \"아는 사람\" 여주인공 역\n• 채널A \"이제 만나러 갑니다\" 메인 출연\n• 남북 문화 예술 교류 홍보대사 활동" }
   },
   {
-    id: "des-4",
-    img: "assets/박유성.jpg",
-    ko: { name: "박유성", tag: "감독·유튜버", slogan: '"미디어의 프레임을 넘어 새로운 북한을 그리는 감독"', specialty: "영상 서사 분석 / 미디어 편견 해소", bio: "영화를 전공한 전문가의 시각으로 북한을 재해석하며, 자극적인 이미지를 넘어 생생한 삶의 이야기를 영상과 강연으로 디자인합니다.", career: "• 유튜브 \"북한남자\" 채널 운영 및 기획\n• 다큐멘터리 영화 \"메콩강에 악어가 산다\" 감독\n• 동국대학교 영화영상학과 전공\n• 최근 사회 공헌 및 정책 참여 활동" }
-  },
-  {
-    id: "des-5",
-    img: "assets/김소연.webp",
-    ko: { name: "김소연", tag: "가수·뮤지션", slogan: '"목소리로 한반도의 희망을 노래하는 뮤지션"', specialty: "정서적 통합 음악 / 고난 극복 서사", bio: "역경을 딛고 일어선 개인의 삶을 음악에 담아 전달하며, 남북한이 공통으로 느끼는 보편적 감수성을 통해 하나 됨을 이끌어냅니다.", career: "• TV조선 \"미스트롯 3\" 최종 6위\n• \"탈북 심청이\" 별명으로 트로트 가수 활동\n• MBN \"특종세상\" 등 다수 방송 출연\n• 전국 희망 콘서트 및 정착 강연 진행" }
-  },
-  {
     id: "des-6",
     img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000",
     ko: { name: "나민희", tag: "유튜버·엘리트", slogan: '"우리가 몰랐던 진짜 평양의 일상을 전하는 디자이너"', specialty: "평양 상류층 문화 / 북한 엘리트 교육", bio: "유럽 유학 및 북한 엘리트 집안의 경험을 바탕으로, 기존의 고정관념에서 벗어난 세련되고 정확한 평양의 실상을 대중에게 전달합니다.", career: "• 유튜브 \"평양여자 나민희\" 채널 운영\n• 유럽(몰타) 유학 및 파견 근무 경험\n• 이화여자대학교 정치외교학과 재학\n• 방송 \"이제 만나러 갑니다\" 전문 패널" }
@@ -42,6 +37,11 @@ const mockDesigners = [
     id: "des-7",
     img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1000",
     ko: { name: "김강혁", tag: "방송인·활동가", slogan: '"북한의 체제 모순을 넘어 자유의 가치를 증언하는 리더"', specialty: "북한 사회 체제 분석 / 군대 실상 교육", bio: "북한 내부의 생생한 군 조직 생활과 사회 체제를 날카롭게 분석하며, 남북의 사람들이 함께 가져야 할 자유와 민주주의의 가치를 강연합니다.", career: "• 채널A \"이제 만나러 갑니다\" 정규 출연\n• 북한 인권 개선 캠페인 및 활동가\n• 공공기관/학교 대상 통일 안보 강사\n• 다수의 사회 정책 포럼 발제자" }
+  },
+  {
+    id: "des-4",
+    img: "assets/박유성.jpg",
+    ko: { name: "박유성", tag: "감독·유튜버", slogan: '"미디어의 프레임을 넘어 새로운 북한을 그리는 감독"', specialty: "영상 서사 분석 / 미디어 편견 해소", bio: "영화를 전공한 전문가의 시각으로 북한을 재해석하며, 자극적인 이미지를 넘어 생생한 삶의 이야기를 영상과 강연으로 디자인합니다.", career: "• 유튜브 \"북한남자\" 채널 운영 및 기획\n• 다큐멘터리 영화 \"메콩강에 악어가 산다\" 감독\n• 동국대학교 영화영상학과 전공\n• 최근 사회 공헌 및 정책 참여 활동" }
   },
   {
     id: "des-8",
@@ -77,9 +77,11 @@ export default function DesignersSection() {
         const res = await fetch("/api/designers", { cache: 'no-store' });
         if (res.ok && isMounted) {
           const data = await res.json();
-          console.log("Fetched designers count:", data.length);
           if (data && data.length > 0) {
-            setDesigners(data);
+            // Keep the order defined by the user even after fetching live data
+            const liveMap = new Map(data.map(d => [d.id, d]));
+            const orderedList = mockDesigners.map(d => liveMap.get(d.id) || d);
+            setDesigners(orderedList);
           }
         }
       } catch (err) {
@@ -162,7 +164,6 @@ export default function DesignersSection() {
   };
 
   useEffect(() => {
-    // Re-initialize animations after data is loaded
     if (designers.length > 0) {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -192,21 +193,17 @@ export default function DesignersSection() {
             한반도 디자이너
           </h2>
           <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>
-            한반도 통합의 비전을 실천하며 우리 사회의 인식을 새롭게 디자인하는 전문가들입니다.
+            한반도 통합을 위한 디자이너를 소개합니다.
           </p>
         </div>
 
-        {/* Responsive Grid */}
         <div className="designers-grid-container" style={{ marginTop: "4rem" }}>
           {designers.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--color-text-muted)' }}>
               디자이너 정보를 안전하게 불러오는 중입니다...
             </div>
           ) : (
-            <div 
-              className="designers-grid responsive-grid-4" 
-              id="designers-grid"
-            >
+            <div className="designers-grid responsive-grid-4" id="designers-grid">
               {visibleList.map((d) => (
                 <div 
                   className="designer-card reveal-on-scroll" 
@@ -226,12 +223,7 @@ export default function DesignersSection() {
                     <img
                       src={d.img}
                       alt={d.ko?.name || "디자이너"}
-                      style={{ 
-                        width: "100%", 
-                        height: "100%", 
-                        objectFit: "cover",
-                        transition: "transform 0.5s ease"
-                      }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
                       onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.08)"}
                       onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
                       onError={(e) => {
@@ -260,7 +252,6 @@ export default function DesignersSection() {
                       fontSize: "0.85rem", 
                       color: "var(--color-primary)", 
                       fontWeight: "700",
-                      fontStyle: "normal",
                       lineHeight: "1.4",
                       display: "-webkit-box",
                       WebkitLineClamp: "2",
@@ -310,100 +301,39 @@ export default function DesignersSection() {
       {/* Designer Detail Modal */}
       {selectedDesigner && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div className="modal-overlay" onClick={closeDetail} style={{ opacity: 1, pointerEvents: 'auto' }}></div>
-          <div className="modal-container" style={{ 
-            maxWidth: "900px", 
-            width: "95%", 
-            backgroundColor: "var(--color-bg-secondary)", 
-            borderRadius: "32px", 
-            boxShadow: "var(--shadow-lg)",
-            zIndex: 2001,
-            position: "relative"
-          }}>
+          <div className="modal-overlay" onClick={closeDetail}></div>
+          <div className="modal-container" style={{ maxWidth: "900px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", position: "relative" }}>
             <button className="modal-close" onClick={closeDetail} style={{ top: "25px", right: "25px" }}>&times;</button>
             <div className="modal-body" style={{ padding: "0" }}>
               <div className="designer-detail-layout">
-                {/* Left Side: Photo & Quick Info */}
                 <div className="designer-detail-left">
-                  <div style={{ 
-                    width: "220px", 
-                    height: "220px", 
-                    borderRadius: "50%", 
-                    overflow: "hidden", 
-                    margin: "0 auto 2rem",
-                    boxShadow: "var(--shadow-md)",
-                    border: "6px solid white"
-                  }}>
-                    <img 
-                      src={selectedDesigner.img} 
-                      alt={selectedDesigner.ko.name} 
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      onError={(e) => {
-                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedDesigner.ko.name)}&background=f44336&color=fff&size=512`;
-                      }}
-                    />
+                  <div style={{ width: "220px", height: "220px", borderRadius: "50%", overflow: "hidden", margin: "0 auto 2rem", border: "6px solid white", boxShadow: "var(--shadow-md)" }}>
+                    <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
-                  <span style={{ 
-                    color: "var(--color-primary)", 
-                    fontWeight: 800, 
-                    fontSize: "0.9rem", 
-                    letterSpacing: "1px",
-                    textTransform: "uppercase" 
-                  }}>{selectedDesigner.ko.tag}</span>
+                  <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase" }}>{selectedDesigner.ko.tag}</span>
                   <h2 style={{ fontSize: "2.4rem", fontWeight: 800, margin: "0.5rem 0", color: "var(--color-text-primary)" }}>{selectedDesigner.ko.name}</h2>
-                  <p style={{ fontSize: "1.05rem", color: "var(--color-primary)", fontWeight: "700", fontStyle: "normal", marginBottom: "2rem" }}>{selectedDesigner.ko.slogan}</p>
-                  
-                  <div style={{ 
-                    backgroundColor: "white", 
-                    padding: "1.2rem", 
-                    borderRadius: "16px", 
-                    fontSize: "0.9rem",
-                    border: "2px solid hsla(5, 75%, 48%, 0.1)",
-                    textAlign: "left",
-                    boxShadow: "inset 0 2px 4px rgba(0,0,0,0.02)"
-                  }}>
-                    <strong style={{ display: "block", color: "var(--color-text-primary)", marginBottom: "0.6rem", fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.5px" }}>전문 분야</strong>
-                    <span style={{ color: "var(--color-text-primary)", lineHeight: "1.6", fontWeight: "500" }}>{selectedDesigner.ko.specialty}</span>
+                  <p style={{ fontSize: "1.05rem", color: "var(--color-primary)", fontWeight: "700" }}>{selectedDesigner.ko.slogan}</p>
+                  <div style={{ backgroundColor: "white", padding: "1.2rem", borderRadius: "16px", fontSize: "0.9rem", border: "2px solid hsla(5, 75%, 48%, 0.1)", textAlign: "left" }}>
+                    <strong style={{ display: "block", color: "var(--color-text-primary)", marginBottom: "0.6rem", fontSize: "0.8rem", textTransform: "uppercase" }}>전문 분야</strong>
+                    <span>{selectedDesigner.ko.specialty}</span>
                   </div>
                 </div>
-
-                {/* Right Side: Detailed Content */}
                 <div className="designer-detail-right">
-                  <div style={{ marginBottom: "3rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1.2rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                  <div style={{ marginBottom: "2.5rem" }}>
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
                       <span style={{ width: "4px", height: "18px", backgroundColor: "var(--color-primary)", borderRadius: "2px" }}></span>
                       강사 소개
                     </h3>
-                    <p style={{ fontSize: "1.05rem", color: "var(--color-text-primary)", lineHeight: "1.8", whiteSpace: "pre-line" }}>
-                      {selectedDesigner.ko.bio}
-                    </p>
+                    <p style={{ fontSize: "1.05rem", color: "var(--color-text-primary)", lineHeight: "1.8", whiteSpace: "pre-line" }}>{selectedDesigner.ko.bio}</p>
                   </div>
-
-                  <div style={{ marginBottom: "3.5rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1.2rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                  <div style={{ marginBottom: "3rem" }}>
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
                       <span style={{ width: "4px", height: "18px", backgroundColor: "var(--color-primary)", borderRadius: "2px" }}></span>
                       주요 경력 및 활동
                     </h3>
-                    <div style={{ 
-                      fontSize: "1rem", 
-                      color: "var(--color-text-muted)", 
-                      lineHeight: "2", 
-                      whiteSpace: "pre-line",
-                      backgroundColor: "var(--color-bg-primary)",
-                      padding: "1.5rem",
-                      borderRadius: "16px"
-                    }}>
-                      {selectedDesigner.ko.career}
-                    </div>
+                    <div style={{ fontSize: "1rem", color: "var(--color-text-muted)", lineHeight: "2", whiteSpace: "pre-line", backgroundColor: "var(--color-bg-primary)", padding: "1.5rem", borderRadius: "16px" }}>{selectedDesigner.ko.career}</div>
                   </div>
-
-                  <button 
-                    className="btn btn-primary btn-block btn-lg" 
-                    onClick={() => openBooking(selectedDesigner.ko.name)}
-                    style={{ borderRadius: "16px", fontSize: "1.1rem" }}
-                  >
-                    강연 및 교육 의뢰하기
-                  </button>
+                  <button className="btn btn-primary btn-block btn-lg" onClick={() => openBooking(selectedDesigner.ko.name)} style={{ borderRadius: "16px" }}>강연 및 교육 의뢰하기</button>
                 </div>
               </div>
             </div>
@@ -413,147 +343,32 @@ export default function DesignersSection() {
 
       {/* Booking Form Modal */}
       {bookingOpen && (
-        <div className="modal open" id="designer-booking" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div className="modal-overlay" onClick={closeBooking} style={{ opacity: 1, pointerEvents: 'auto' }}></div>
-          <div className="modal-container" style={{ maxWidth: "650px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", maxHeight: "90vh", overflowY: "auto", position: "relative", zIndex: 2002 }}>
+        <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div className="modal-overlay" onClick={closeBooking}></div>
+          <div className="modal-container" style={{ maxWidth: "650px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", maxHeight: "90vh", overflowY: "auto", position: "relative" }}>
             <button className="modal-close" onClick={closeBooking} style={{ top: "20px", right: "20px" }}>&times;</button>
             <div className="modal-body" style={{ padding: "3.5rem" }}>
               <h3 style={{ fontSize: "1.8rem", fontWeight: 800, marginBottom: "2rem", color: "var(--color-primary)", textAlign: "center" }}>강연 섭외 신청 (한반도 디자이너)</h3>
-              
               <form onSubmit={handleSubmit} className="admin-form">
-                
-                {/* 1. 기본 정보 */}
-                <div style={{ marginBottom: "2.5rem" }}>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderBottom: "2px solid #f3f4f6", paddingBottom: "0.5rem" }}>1. 기본 정보</h4>
-                  <div className="form-group" style={{ marginBottom: "1rem" }}>
-                    <label>기관/단체명 *</label>
-                    <input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} placeholder="기관명을 입력하세요" required />
-                  </div>
-                  <div className="form-row" style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
-                    <div className="form-group" style={{ flex: 1 }}>
-                      <label>신청자 성함 *</label>
-                      <input type="text" name="clientName" value={formData.clientName} onChange={handleChange} placeholder="성함을 입력하세요" required />
-                    </div>
-                    <div className="form-group" style={{ flex: 1 }}>
-                      <label>연락처/이메일 *</label>
-                      <input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} placeholder="연락 가능한 정보를 입력하세요" required />
-                    </div>
+                <div style={{ marginBottom: "2rem" }}>
+                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)" }}>1. 기본 정보</h4>
+                  <div className="form-group" style={{ marginBottom: "1rem" }}><label>기관/단체명 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required /></div>
+                  <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                    <div className="form-group" style={{ flex: 1 }}><label>신청자 성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required /></div>
+                    <div className="form-group" style={{ flex: 1 }}><label>연락처/이메일 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required /></div>
                   </div>
                 </div>
-
-                {/* 2. 강연 상세 정보 */}
-                <div style={{ marginBottom: "2.5rem" }}>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderBottom: "2px solid #f3f4f6", paddingBottom: "0.5rem" }}>2. 강연 상세 정보</h4>
-                  <div className="form-group" style={{ marginBottom: "1.5rem" }}>
-                    <label>희망 디자이너(강사) *</label>
-                    <select name="designerName" value={formData.designerName} onChange={handleChange} required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)", backgroundColor: "white" }}>
-                      <option value="">디자이너 선택 (또는 추천받기)</option>
-                      <option value="추천 희망">분야에 맞는 디자이너 추천 희망</option>
-                      {activeDesigners.map(d => (
-                        <option key={d.id} value={d.ko.name}>{d.ko.name} ({d.ko.tag})</option>
-                      ))}
+                <div style={{ marginBottom: "2rem" }}>
+                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)" }}>2. 강연 정보</h4>
+                  <div className="form-group" style={{ marginBottom: "1rem" }}>
+                    <label>희망 디자이너 *</label>
+                    <select name="designerName" value={formData.designerName} onChange={handleChange} required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }}>
+                      <option value="">디자이너 선택</option>
+                      {activeDesigners.map(d => <option key={d.id} value={d.ko.name}>{d.ko.name}</option>)}
                     </select>
                   </div>
-
-                  <div className="form-group" style={{ marginBottom: "2rem" }}>
-                    <label style={{ display: "block", fontSize: "0.95rem", fontWeight: 700, marginBottom: "1rem", color: "var(--color-text-primary)" }}>교육 대상 *</label>
-                    <div className="chips-wrapper" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-                      {["초등학생", "중고등학생", "일반시민", "교회", "기업/공공기관", "전문연구자"].map(t => (
-                        <label key={t} className="select-chip">
-                          <input type="radio" name="target" value={t} checked={formData.target === t} onChange={handleChange} required />
-                          <span style={{ 
-                            padding: "0.7rem 1.4rem", 
-                            borderRadius: "12px", 
-                            fontSize: "0.9rem", 
-                            fontWeight: 600,
-                            border: formData.target === t ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
-                            backgroundColor: formData.target === t ? "rgba(220, 20, 20, 0.05)" : "white",
-                            color: formData.target === t ? "var(--color-primary)" : "var(--color-text-muted)",
-                            transition: "all 0.2s ease"
-                          }}>{t}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="form-group" style={{ marginBottom: "1.5rem" }}>
-                    <label style={{ display: "block", fontSize: "0.95rem", fontWeight: 700, marginBottom: "1rem", color: "var(--color-text-primary)" }}>핵심 주제 *</label>
-                    <div className="chips-wrapper" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-                      {["북한 일상/문화", "경제/장마당", "탈북 및 정착 서사", "남북 언어/소통", "통합 비전/리더십"].map(topic => (
-                        <label key={topic} className="select-chip">
-                          <input type="radio" name="topic" value={topic} checked={formData.topic === topic} onChange={handleChange} required />
-                          <span style={{ 
-                            padding: "0.7rem 1.4rem", 
-                            borderRadius: "12px", 
-                            fontSize: "0.9rem", 
-                            fontWeight: 600,
-                            border: formData.topic === topic ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
-                            backgroundColor: formData.topic === topic ? "rgba(220, 20, 20, 0.05)" : "white",
-                            color: formData.topic === topic ? "var(--color-primary)" : "var(--color-text-muted)",
-                            transition: "all 0.2s ease"
-                          }}>{topic}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
                 </div>
-
-                {/* 3. 일정 및 예산 */}
-                <div style={{ marginBottom: "2.5rem" }}>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderBottom: "2px solid #f3f4f6", paddingBottom: "0.5rem" }}>3. 일정 및 예산</h4>
-                  <div className="form-row" style={{ display: "flex", gap: "1rem", marginBottom: "1.5rem" }}>
-                    <div className="form-group" style={{ flex: 1 }}>
-                      <label>희망 날짜 *</label>
-                      <input type="date" name="date" value={formData.date} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group" style={{ flex: 1 }}>
-                      <label>선호 시간대 *</label>
-                      <select name="time" value={formData.time} onChange={handleChange} required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)", backgroundColor: "white" }}>
-                        <option value="">시간대 선택</option>
-                        <option value="오전 (09:00~12:00)">오전 (09:00~12:00)</option>
-                        <option value="오후 (13:00~18:00)">오후 (13:00~18:00)</option>
-                        <option value="저녁 (19:00~21:00)">저녁 (19:00~21:00)</option>
-                        <option value="협의 가능">협의 가능</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="form-group" style={{ marginBottom: "1.5rem" }}>
-                    <label style={{ display: "block", fontSize: "0.95rem", fontWeight: 700, marginBottom: "1rem", color: "var(--color-text-primary)" }}>강사료 예산 범위 *</label>
-                    <div className="chips-wrapper" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
-                      {["30만원 이하", "30~50만원", "50만원 이상", "내부 규정 따름"].map(b => (
-                        <label key={b} className="select-chip">
-                          <input type="radio" name="budget" value={b} checked={formData.budget === b} onChange={handleChange} required />
-                          <span style={{ 
-                            padding: "0.7rem 1.4rem", 
-                            borderRadius: "12px", 
-                            fontSize: "0.9rem", 
-                            fontWeight: 600,
-                            border: formData.budget === b ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
-                            backgroundColor: formData.budget === b ? "rgba(220, 20, 20, 0.05)" : "white",
-                            color: formData.budget === b ? "var(--color-primary)" : "var(--color-text-muted)",
-                            transition: "all 0.2s ease"
-                          }}>{b}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-group" style={{ marginBottom: "2.5rem" }}>
-                  <label>추가 요청사항</label>
-                  <textarea 
-                    name="details" 
-                    value={formData.details} 
-                    onChange={handleChange} 
-                    placeholder="기타 문의사항이나 요청하실 내용을 적어주세요." 
-                    rows="3" 
-                  />
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ borderRadius: "12px", padding: "1.2rem", fontSize: "1.1rem", fontWeight: 700 }} disabled={submitting}>
-                  {submitting ? "발송 중..." : "섭외 신청 완료하기"}
-                </button>
+                <button type="submit" className="btn btn-primary btn-block btn-lg" disabled={submitting}>{submitting ? "발송 중..." : "섭외 신청 완료하기"}</button>
               </form>
             </div>
           </div>
