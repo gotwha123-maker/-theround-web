@@ -164,7 +164,7 @@ export default function TalkTalk() {
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeModal}></div>
           <div className="modal-container" style={{ maxWidth: "600px", width: "95%", maxHeight: "90vh", overflowY: "auto", borderRadius: "24px" }}>
-            <button className="modal-close" onClick={closeDetail}>&times;</button>
+            <button className="modal-close" onClick={closeModal}>&times;</button>
             <div className="modal-body" style={{ padding: "2.5rem" }}>
               <h3 style={{ marginBottom: "1.5rem", color: "var(--color-primary)", fontSize: "1.6rem", fontWeight: 800 }}>
                 {modalType === 'giving' && "나눔하기 신청"}
