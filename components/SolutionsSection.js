@@ -68,10 +68,9 @@ export default function SolutionsSection({ onOpenModal }) {
               >
                 통일확산 & 커뮤니티
               </span>
-              <h3>1) 유니원 FC & 2) 통일포차</h3>
+              <h3>통일확산 & 커뮤니티</h3>
               <p>
-                1) 유니원 FC: 스포츠를 통해 경계를 허무는 화합의 장<br />
-                2) 통일포차: 문화와 소통으로 일상의 통합을 실천하는 무대
+                스포츠와 문화적 소통을 통해 보이지 않는 장벽을 허물고, 대등한 구성원으로서 건강한 유대를 형성하는 화합의 장입니다.
               </p>
             </div>
             <div style={{ display: "flex", gap: "0.5rem" }}>

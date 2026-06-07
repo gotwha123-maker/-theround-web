@@ -69,17 +69,17 @@ export default function Home() {
     }
     if (modalType === "sports") {
       return {
-        title: "유니원 FC",
+        title: "통일확산 & 커뮤니티",
         content: (
           <div>
-            <p style={{ marginBottom: "1.5rem", lineHeight: "1.8" }}>
-              축구라는 공통의 언어로 남북의 사람들이 편견 없이 소통하며 건강한 공동체를 만듭니다.
-            </p>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2" }}>
-              <li>매주 정기 훈련 및 친선 경기</li>
-              <li>전문 코칭 지원</li>
-              <li>합동 체육대회 및 교류 활동</li>
-            </ul>
+            <div style={{ marginBottom: "2rem" }}>
+              <h4 style={{ color: "var(--color-primary)", marginBottom: "0.5rem" }}>1) 유니원 FC (UniOne FC)</h4>
+              <p style={{ lineHeight: "1.8" }}>스포츠를 통해 남과 북의 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 현장입니다. 매주 정기 훈련과 경기를 통해 건강한 공동체를 형성합니다.</p>
+            </div>
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h4 style={{ color: "var(--color-primary)", marginBottom: "0.5rem" }}>2) 통일포차 (Unification Pocha)</h4>
+              <p style={{ lineHeight: "1.8" }}>맛있는 음식과 문화적 요소를 융합하여 시민들과 함께 경직된 통일 이야기를 일상 속 축제처럼 가볍게 풀어내는 쌍방향 소통 무대입니다.</p>
+            </div>
           </div>
         )
       };
