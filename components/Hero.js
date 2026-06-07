@@ -118,11 +118,11 @@ export default function Hero() {
 
           <div className="hero-container" style={{ position: "relative", zIndex: 10 }}>
             <div className={`hero-content ${index === current ? 'animate-up' : ''}`}>
-              <h1 style={{ fontSize: "3.2rem", fontWeight: 900, marginBottom: "1.5rem", wordBreak: "keep-all" }}>
+              <h1>
                 {slide.title}<br />
-                <span className="highlight-text" style={{ color: "var(--color-primary-light, #3dd1c0)" }}>{slide.subtitle}</span>
+                <span className="highlight-text">{slide.subtitle}</span>
               </h1>
-              <p className="hero-lead" style={{ fontSize: "1.25rem", whiteSpace: "pre-line", marginBottom: "3rem", opacity: 0.9, lineHeight: "1.8" }}>
+              <p className="hero-lead">
                 {slide.lead}
               </p>
               <div className="hero-buttons">
