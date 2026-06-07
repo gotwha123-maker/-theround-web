@@ -51,6 +51,7 @@ export const metadata = {
   },
   verification: {
     naver: "cd6494f434aa59b40ce0842513f36806e5e12913",
+    google: "wm-UT8kCBQG_7odFtSijOR5lrVlg0nKsHo95uZbxV1s",
   },
   other: {
     "Cache-Control": "no-cache, no-store, must-revalidate",
