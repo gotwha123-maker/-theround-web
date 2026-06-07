@@ -8,7 +8,7 @@ const mockNewsList = [
     id: "sc-1",
     category: "scholarship",
     badge: "한국장학재단",
-    title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22)",
+    title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22 마감)",
     date: "2026. 06. 07",
     link: "https://www.kosaf.go.kr"
   },
@@ -20,14 +20,6 @@ const mockNewsList = [
     date: "2026. 06. 07",
     link: "https://www.kosaf.go.kr"
   },
-  {
-    id: "sc-3",
-    category: "scholarship",
-    badge: "기부장학금",
-    title: "[예고] 2026년 하반기 푸른등대 기부장학금 신규 선발 (7월 초)",
-    date: "2026. 06. 01",
-    link: "https://www.kosaf.go.kr"
-  },
   // 2. Housing
   {
     id: "hs-1",
@@ -36,6 +28,31 @@ const mockNewsList = [
     title: "2026년 1차 행복주택 입주자 모집 공고 (서울 전역)",
     date: "2026. 06. 07",
     link: "https://www.i-sh.co.kr"
+  },
+  {
+    id: "hs-2",
+    category: "housing",
+    badge: "LH공사",
+    title: "2026년 기존주택 전세임대 입주자 수시 모집 안내",
+    date: "2026. 06. 07",
+    link: "https://apply.lh.or.kr"
+  },
+  // 3. Jobs
+  {
+    id: "jb-1",
+    category: "job",
+    badge: "국내채용",
+    title: "[국내] 한국가스공사 2026년도 신입사원 특별전형",
+    date: "2026. 06. 07",
+    link: "https://www.kogas.or.kr"
+  },
+  {
+    id: "jb-2",
+    category: "job",
+    badge: "Global",
+    title: "[Global] UN WFP North Asia Relations Internship",
+    date: "2026. 06. 05",
+    link: "https://www.wfp.org/careers"
   }
 ];
 
@@ -43,8 +60,7 @@ const tabs = [
   { id: "scholarship", label: "장학정보" },
   { id: "housing", label: "주택정보" },
   { id: "job", label: "일자리" },
-  { id: "university", label: "대학생활" },
-  { id: "research", label: "연구설문" }
+  { id: "university", label: "대학생활" }
 ];
 
 export default function SettlementNewsSection() {
