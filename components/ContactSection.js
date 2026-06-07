@@ -95,6 +95,19 @@ export default function ContactSection() {
                   <p>theround2030@naver.com</p>
                 </div>
               </li>
+              <li style={{ display: "flex", gap: "1rem", marginBottom: "1.5rem" }}>
+                <div className="icon-wrap" style={{ color: "var(--color-primary)" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <strong>공식 홈페이지</strong>
+                  <p>www.theroundyouth.org</p>
+                </div>
+              </li>
             </ul>
 
             <div className="map-placeholder">
