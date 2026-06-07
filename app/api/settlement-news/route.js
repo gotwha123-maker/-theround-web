@@ -1,44 +1,79 @@
 import { NextResponse } from "next/server";
 
+/**
+ * New Fallback Data using the Latest Scraped Items
+ */
 const fallbackNewsList = [
   {
-    id: "news-1",
-    category: "welfare",
-    badge: "지원의료비/임대주택",
-    title: "2026년 하반기 한국이탈주민 공공임대주택 우선 공급 신청 절차 및 가이드",
-    date: "2026. 06. 04",
-    excerpt: "국토교통부와 LH는 무주택 이탈주민 세대를 위해 하반기 매입임대 및 전세임대주택 우선 공급 대상자를 모집합니다. 보증금 지원 및 장기 거주 혜택이 주어집니다.",
-    tag: "마감: 6/30",
+    id: "fb-1",
+    category: "scholarship",
+    badge: "장학정보",
+    title: "2026년 하반기 푸른등대 삼성 기부장학금 신규장학생 선발 안내",
+    date: "2026. 06. 07",
+    excerpt: "삼성 기탁금을 활용한 사회적 배려계층 대학생 지원 장학금",
+    url: "https://www.kosaf.go.kr"
+  },
+  {
+    id: "fb-2",
+    category: "scholarship",
+    badge: "장학정보",
+    title: "드림재단 제12기 탈북대학생 장학금 신청 공고",
+    date: "2026. 06. 01",
+    excerpt: "꿈을 향해 도전하는 탈북 대학생들을 위한 전용 장학 혜택",
     url: "#"
   },
   {
-    id: "news-2",
-    category: "education",
-    badge: "장학금 300만원 지원",
-    title: "남북하나재단 대학생 장학금 신청 및 보육료 무상 지원 공고",
-    date: "2026. 05. 28",
-    excerpt: "남북하나재단은 이탈주민 자녀들의 학업 안정을 위해 성적 우수 및 일반 장학생을 선발합니다. 영유아를 둔 가정의 어린이집 무상 보육 지원금 혜택도 함께 연계됩니다.",
-    tag: "지원금: 최대 300만원",
+    id: "fb-3",
+    category: "housing",
+    badge: "주택정보",
+    title: "[LH] 서울 금천구 가산동 인근 청년 매입임대주택 예비입주자 상시모집",
+    date: "2026. 06. 07",
+    excerpt: "가산디지털단지 인근 역세권 청년 주거 지원 공고",
+    url: "https://apply.lh.or.kr"
+  },
+  {
+    id: "fb-4",
+    category: "housing",
+    badge: "주택정보",
+    title: "[SH] 2026년도 제1차 행복주택 입주자 모집 (구로/금천 지역)",
+    date: "2026. 05. 30",
+    excerpt: "서울시 거주 무주택 구성원을 위한 공공임대주택 정보",
+    url: "https://www.i-sh.co.kr"
+  },
+  {
+    id: "fb-5",
+    category: "job",
+    badge: "국내일자리",
+    title: "[국내] 한국가스공사 2026년도 신입사원 채용 (사회적 배려 대상자 특별전형)",
+    date: "2026. 06. 07",
+    excerpt: "공공기관 사회적 책임 실현을 위한 특별 채용 전형 안내",
+    url: "https://www.kogas.or.kr"
+  },
+  {
+    id: "fb-6",
+    category: "job",
+    badge: "해외일자리",
+    title: "[Global] UN World Food Programme (WFP) North Asia Relations Internship",
+    date: "2026. 06. 05",
+    excerpt: "국제기구 내 한반도 관련 실무 경험 및 글로벌 리더십 기회",
+    url: "https://www.wfp.org/careers"
+  },
+  {
+    id: "fb-7",
+    category: "university",
+    badge: "대학생활",
+    title: "2027학년도 주요 대학 북한이탈주민 특별전형 입시 가이드북 배포",
+    date: "2026. 06. 07",
+    excerpt: "스카이(SKY) 및 서울 주요 대학 입시 전략 및 필수 체크리스트",
     url: "#"
   },
   {
-    id: "news-3",
-    category: "jobs",
-    badge: "국비 전액 지원",
-    title: "중장년 이탈주민 맞춤 직업 훈련 (요양보호사, 바리스타 자격증 무료 취득반)",
-    date: "2026. 05. 18",
-    excerpt: "광명 일자리센터는 중장년층 이탈주민의 재취업을 돕기 위해 전문 자격증 무료 취득 교육생을 모집합니다. 교육 완료 후 우대 기업으로 즉각 알선 혜택이 주어집니다.",
-    tag: "전액 무료 / 취업 연계",
-    url: "#"
-  },
-  {
-    id: "news-4",
-    category: "health",
-    badge: "무료 치과/검진 혜택",
-    title: "광명시 협약 의료원 무료 건강검진 및 종합 치과 치료 지원 안내",
-    date: "2026. 05. 10",
-    excerpt: "더라운드와 지역 협약 병원이 연계하여 모든 탈북민 주민 대상 무료 정밀 건강검진과 안과/치과(틀니 및 기본 보철) 비급여 진료비를 지원합니다.",
-    tag: "혜택: 정밀 검진 무료",
+    id: "fb-8",
+    category: "research",
+    badge: "연구설문",
+    title: "[연구] 남북 통합 과정의 정서적 경험에 관한 심층 인터뷰 대상자 모집",
+    date: "2026. 06. 07",
+    excerpt: "한반도 미래 설계를 위한 소중한 목소리를 들려주세요 (소정의 사례비 지급)",
     url: "#"
   }
 ];
@@ -47,6 +82,7 @@ export async function GET() {
   const apiKey = process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
 
+  // Use fallback if no credentials found
   if (!apiKey || !baseId) {
     return NextResponse.json(fallbackNewsList);
   }
@@ -58,12 +94,16 @@ export async function GET() {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      next: { revalidate: 0 }, // Disable cache
+      next: { revalidate: 0 },
     });
 
     if (!res.ok) throw new Error("Airtable request failed");
 
     const data = await res.json();
+    if (!data.records || data.records.length === 0) {
+        return NextResponse.json(fallbackNewsList);
+    }
+
     const records = data.records.map((r) => ({
       id: r.id,
       category: r.fields.category,

@@ -7,24 +7,32 @@ const mockNewsList = [
     id: "news-2",
     category: "scholarship",
     badge: "장학정보",
-    title: "글로벌 한반도 인재 육성을 위한 하반기 장학금 수혜자 모집",
-    date: "2026. 06. 02",
-    link: "#"
+    title: "2026년 하반기 푸른등대 삼성 기부장학금 신규장학생 선발 안내",
+    date: "2026. 06. 07",
+    link: "https://www.kosaf.go.kr"
   },
   {
     id: "news-3",
     category: "housing",
     badge: "주택정보",
-    title: "LH/SH 공공임대주택 통합 모집 공고 (가산동 및 수도권 지역)",
-    date: "2026. 05. 28",
+    title: "[LH] 서울 금천구 가산동 인근 청년 매입임대주택 예비입주자 상시모집",
+    date: "2026. 06. 07",
     link: "https://apply.lh.or.kr"
   },
   {
     id: "news-4",
     category: "job",
     badge: "일자리",
-    title: "사회적 기업 연계 상반기 신입사원 채용 공고 (특별전형 포함)",
-    date: "2026. 05. 25",
+    title: "[국내] 한국가스공사 2026년도 신입사원 채용 (특별전형)",
+    date: "2026. 06. 07",
+    link: "https://www.kogas.or.kr"
+  },
+  {
+    id: "news-5",
+    category: "university",
+    badge: "대학생활",
+    title: "2027학년도 주요 대학 북한이탈주민 특별전형 입시 가이드북 배포",
+    date: "2026. 06. 07",
     link: "#"
   }
 ];
