@@ -40,7 +40,7 @@ const slides = [
     lead: "스토리는 사람을 연결합니다. 연결은 공감을 만들고, 공감은 한반도의 미래를 바꿉니다.\n더라운드와 함께하는 새로운 소통을 시작해 보세요.",
     btnText: "자세히 보기",
     link: "#talktalk",
-    bg: "url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=2000&auto=format&fit=crop')", // People landscape
+    bg: "url('https://images.unsplash.com/photo-1454165833767-02a698d1316a?q=80&w=2000&auto=format&fit=crop')", // Professional Research/Meeting
     type: "default"
   }
 ];
