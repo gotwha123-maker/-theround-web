@@ -9,31 +9,23 @@ const mockNewsList = [
     category: "scholarship",
     badge: "한국장학재단",
     title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22 마감)",
-    date: "2026. 06. 07",
+    date: "2026. 05. 22",
     link: "https://www.kosaf.go.kr"
   },
   {
     id: "sc-2",
     category: "scholarship",
-    badge: "주거지원",
-    title: "2026학년도 2학기 주거안정장학금 신청 안내",
-    date: "2026. 06. 07",
-    link: "https://www.kosaf.go.kr"
+    badge: "남북하나재단",
+    title: "2026년 북향민 청년 ‘미래날개’ 응시료 지원 사업 공고 (~12.5)",
+    date: "2026. 04. 16",
+    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20102"
   },
   // 2. Housing
   {
     id: "hs-1",
     category: "housing",
-    badge: "SH공사",
-    title: "2026년 1차 행복주택 입주자 모집 공고 (서울 전역)",
-    date: "2026. 06. 07",
-    link: "https://www.i-sh.co.kr"
-  },
-  {
-    id: "hs-2",
-    category: "housing",
     badge: "LH공사",
-    title: "2026년 기존주택 전세임대 입주자 수시 모집 안내",
+    title: "2026년 청년 매입임대주택 및 행복주택 공고 확인",
     date: "2026. 06. 07",
     link: "https://apply.lh.or.kr"
   },
@@ -41,18 +33,28 @@ const mockNewsList = [
   {
     id: "jb-1",
     category: "job",
-    badge: "국내채용",
-    title: "[국내] 한국가스공사 2026년도 신입사원 특별전형",
-    date: "2026. 06. 07",
-    link: "https://www.kogas.or.kr"
+    badge: "남북하나재단",
+    title: "제1회 슬기로운 일자리 찾기 프로그램 참가자 모집공고 (~6.10)",
+    date: "2026. 05. 27",
+    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20174"
   },
+  // 4. University
   {
-    id: "jb-2",
-    category: "job",
-    badge: "Global",
-    title: "[Global] UN WFP North Asia Relations Internship",
-    date: "2026. 06. 05",
-    link: "https://www.wfp.org/careers"
+    id: "un-1",
+    category: "university",
+    badge: "남북하나재단",
+    title: "2026년 진로·진학 1:1 맞춤형 전문 상담 신청 안내 (~11.30)",
+    date: "2026. 03. 05",
+    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=19983"
+  },
+  // 5. Welfare
+  {
+    id: "wf-1",
+    category: "welfare",
+    badge: "남북하나재단",
+    title: "2026년 북향민 건강검진(피폭 실태조사)사업 참여 희망자 모집 (~11.30)",
+    date: "2026. 03. 27",
+    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20042"
   }
 ];
 
@@ -60,7 +62,8 @@ const tabs = [
   { id: "scholarship", label: "장학정보" },
   { id: "housing", label: "주택정보" },
   { id: "job", label: "일자리" },
-  { id: "university", label: "대학생활" }
+  { id: "university", label: "대학생활" },
+  { id: "welfare", label: "생활지원" }
 ];
 
 export default function SettlementNewsSection() {
@@ -94,6 +97,7 @@ export default function SettlementNewsSection() {
       case 'housing': return { bg: "rgba(139, 92, 246, 0.1)", color: "#8b5cf6" };
       case 'job': return { bg: "rgba(245, 158, 11, 0.1)", color: "#f59e0b" };
       case 'university': return { bg: "rgba(16, 185, 129, 0.1)", color: "#10b981" };
+      case 'welfare': return { bg: "rgba(13, 148, 136, 0.1)", color: "#0d9488" }; // Teal color
       case 'research': return { bg: "rgba(239, 68, 68, 0.1)", color: "#ef4444" };
       default: return { bg: "#f3f4f6", color: "#6b7280" };
     }

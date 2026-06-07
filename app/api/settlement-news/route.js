@@ -10,66 +10,58 @@ const fallbackNewsList = [
     category: "scholarship",
     badge: "한국장학재단",
     title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22 마감)",
-    date: "2026. 06. 07",
-    excerpt: "모든 대학생 대상 등록금 지원 (기초/차상위 전액 지원). 6월 22일 18:00 마감.",
+    date: "2026. 05. 22",
+    excerpt: "한국장학재단에서 실시하는 대학생 등록금 지원 사업으로, 6월 22일 18시까지 신청을 접수합니다.",
     url: "https://www.kosaf.go.kr"
   },
   {
     id: "sc-2",
     category: "scholarship",
-    badge: "주거지원",
-    title: "2026학년도 2학기 주거안정장학금 신청 안내",
-    date: "2026. 06. 07",
-    excerpt: "기초/차상위 대학생 대상 월 최대 20만원 주거비 지원.",
-    url: "https://www.kosaf.go.kr"
+    badge: "남북하나재단",
+    title: "2026년 북향민 청년 ‘미래날개’ 응시료 지원 사업 공고 (~12.5)",
+    date: "2026. 04. 16",
+    excerpt: "북한이탈주민 청년들의 어학 및 자격증 시험 응시료를 지원하여 구직 비용 부담을 완화해 드립니다.",
+    url: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20102"
   },
   // 2. Housing
   {
     id: "hs-1",
     category: "housing",
-    badge: "SH공사",
-    title: "2026년 1차 행복주택 입주자 모집 공고 (서울 전역)",
-    date: "2026. 06. 07",
-    excerpt: "청년, 신혼부부, 고령자 대상 시세 60~80% 수준 임대주택 공급.",
-    url: "https://www.i-sh.co.kr"
-  },
-  {
-    id: "hs-2",
-    category: "housing",
     badge: "LH공사",
-    title: "2026년 기존주택 전세임대 입주자 수시 모집 안내",
+    title: "2026년 청년 매입임대주택 및 행복주택 공고 확인",
     date: "2026. 06. 07",
-    excerpt: "원하는 집을 구하면 LH가 계약 후 저렴하게 재임대하는 방식.",
+    excerpt: "LH청약플러스 홈페이지의 임대주택 공고를 통해 지역별 청년 매입임대, 행복주택 등의 모집 일정을 확인할 수 있습니다.",
     url: "https://apply.lh.or.kr"
   },
   // 3. Jobs
   {
     id: "jb-1",
     category: "job",
-    badge: "국내채용",
-    title: "[국내] 한국가스공사 2026년도 신입사원 특별전형",
-    date: "2026. 06. 07",
-    excerpt: "공공기관 사회적 책임 실현을 위한 특별 채용 전형.",
-    url: "https://www.kogas.or.kr"
-  },
-  {
-    id: "jb-2",
-    category: "job",
-    badge: "Global",
-    title: "[Global] UN WFP North Asia Relations Internship",
-    date: "2026. 06. 05",
-    excerpt: "국제기구 내 한반도 관련 실무 경험 및 글로벌 리더십 기회.",
-    url: "https://www.wfp.org/careers"
+    badge: "남북하나재단",
+    title: "제1회 슬기로운 일자리 찾기 프로그램 참가자 모집공고 (~6.10)",
+    date: "2026. 05. 27",
+    excerpt: "남북하나재단에서 북한이탈주민들의 취업 역량 강화 및 일자리 정보 연계를 위해 프로그램을 운영합니다.",
+    url: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20174"
   },
   // 4. University
   {
     id: "un-1",
     category: "university",
-    badge: "대학생활",
-    title: "2027학년도 주요 대학 북한이탈주민 특별전형 입시 가이드북 배포",
-    date: "2026. 06. 07",
-    excerpt: "스카이(SKY) 및 서울 주요 대학 입시 전략 및 필수 체크리스트.",
-    url: "#"
+    badge: "남북하나재단",
+    title: "2026년 진로·진학 1:1 맞춤형 전문 상담 신청 안내 (~11.30)",
+    date: "2026. 03. 05",
+    excerpt: "북향민 청소년 및 자녀들의 대학교 입시 및 진학 준비를 돕기 위한 1:1 맞춤형 전문 상담을 지원합니다.",
+    url: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=19983"
+  },
+  // 5. Welfare
+  {
+    id: "wf-1",
+    category: "welfare",
+    badge: "남북하나재단",
+    title: "2026년 북향민 건강검진(피폭 실태조사)사업 참여 희망자 모집 (~11.30)",
+    date: "2026. 03. 27",
+    excerpt: "북한이탈주민의 건강 관리 및 의료 지원을 위해 정밀 건강검진 참여 대상을 모집합니다.",
+    url: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20042"
   }
 ];
 
@@ -112,13 +104,13 @@ export async function GET() {
       let category = (r.fields.category || "").trim().toLowerCase();
       let badge = r.fields.badge;
 
-      // Normalize Category to match client tabs (scholarship, housing, job, university)
+      // Normalize Category to match client tabs (scholarship, housing, job, university, welfare)
       if (category === "jobs" || category === "job") {
         category = "job";
         if (!badge) badge = "일자리";
       } else if (category === "education") {
         const title = r.fields.title || "";
-        if (title.includes("대학") || title.includes("입시") || title.includes("가이드북")) {
+        if (title.includes("대학") || title.includes("입시") || title.includes("가이드북") || title.includes("진학") || title.includes("진로") || title.includes("학습")) {
           category = "university";
           if (!badge) badge = "대학생활";
         } else {
@@ -140,8 +132,8 @@ export async function GET() {
           category = "job";
           if (!badge) badge = "일자리";
         } else {
-          category = "scholarship";
-          if (!badge) badge = "지원정보";
+          category = "welfare";
+          if (!badge) badge = "생활지원";
         }
       }
 
@@ -155,7 +147,7 @@ export async function GET() {
         tag: r.fields.tag,
         url: r.fields.url || r.fields.link || "#",
       };
-    }).filter(r => r.category !== 'research' && ['scholarship', 'housing', 'job', 'university'].includes(r.category));
+    }).filter(r => r.category !== 'research' && ['scholarship', 'housing', 'job', 'university', 'welfare'].includes(r.category));
 
     return NextResponse.json(records, { headers: cacheHeaders });
   } catch (err) {
