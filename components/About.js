@@ -27,14 +27,14 @@ export default function About() {
         </div>
 
         <div className="about-values-block" style={{ marginTop: "5rem" }}>
-...
+          <div className="values-header text-center">
             <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem" }}>핵심 가치</h3>
           </div>
           <div className="values-grid">
             <div className="value-card">
               <h4>자유와 존엄</h4>
               <p>
-                탈북민이 대한민국에서 안전하고 당당하게 정착하도록 돕고, 북한 주민의 보편적 인권을 수호합니다.
+                구성원들이 대한민국에서 안전하고 당당하게 정착하도록 돕고, 보편적 인권을 수호합니다.
               </p>
             </div>
 
@@ -48,7 +48,7 @@ export default function About() {
             <div className="value-card">
               <h4>주체적 리더십</h4>
               <p>
-                탈북민이 사회 전문가로 성장하여 한반도의 다양한 비전을 스스로 이끌어갈 수 있도록 지원합니다.
+                구성원이 사회 전문가로 성장하여 한반도의 다양한 비전을 스스로 이끌어갈 수 있도록 지원합니다.
               </p>
             </div>
           </div>
