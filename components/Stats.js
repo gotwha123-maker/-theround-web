@@ -181,15 +181,19 @@ export default function Stats() {
                     fill="none"
                   ></circle>
                   <circle
-                    className="gender-progress-circle"
                     cx="50"
                     cy="50"
                     r="40"
                     stroke="url(#gender-grad)"
                     strokeWidth="8"
                     fill="none"
-                    strokeDasharray="251.2"
-                    strokeDashoffset="70.3"
+                    style={{ 
+                      transform: "rotate(-90deg)", 
+                      transformOrigin: "50% 50%", 
+                      strokeDasharray: "251.327", 
+                      strokeDashoffset: "69.869",
+                      transition: "stroke-dashoffset 1.5s ease" 
+                    }}
                   ></circle>
                   <defs>
                     <linearGradient id="gender-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -199,19 +203,19 @@ export default function Stats() {
                   </defs>
                 </svg>
                 <div className="gender-center-text">
-                  <span className="gender-number">72.2%</span>
-                  <span className="gender-label-sub">여성 비율</span>
+                  <span className="gender-number" style={{ color: "#ff4d4d" }}>72.2%</span>
+                  <span className="gender-label-sub" style={{ color: "#ff4d4d" }}>여성 비율</span>
                 </div>
               </div>
 
               <div className="gender-legend">
                 <div className="legend-item">
-                  <span className="legend-dot female"></span>
-                  <span className="legend-text">여성: 24,944명 (72.2%)</span>
+                  <span className="legend-dot female" style={{ backgroundColor: "#ff4d4d" }}></span>
+                  <span className="legend-text" style={{ color: "#ff4d4d" }}>여성: 24,944명 (72.2%)</span>
                 </div>
                 <div className="legend-item">
-                  <span className="legend-dot male"></span>
-                  <span className="legend-text">남성: 9,593명 (27.8%)</span>
+                  <span className="legend-dot male" style={{ backgroundColor: "#ffffff" }}></span>
+                  <span className="legend-text" style={{ color: "#ffffff" }}>남성: 9,593명 (27.8%)</span>
                 </div>
               </div>
             </div>
