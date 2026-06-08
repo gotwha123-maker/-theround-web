@@ -164,11 +164,6 @@ export default function Header() {
                   문의
                 </a>
               </li>
-              <li className="nav-item">
-                <a href="/admin" className="nav-link" style={{ color: "var(--color-primary)", fontWeight: 800 }} onClick={closeMenu}>
-                  ADMIN
-                </a>
-              </li>
               {!isLoggedIn ? (
                 <li className="nav-item">
                   <span 

@@ -2,422 +2,179 @@
 
 import { useState, useEffect } from "react";
 
-const mockNewsList = [
-  // 1. Scholarships
-  {
-    id: "sc-1",
-    category: "scholarship",
-    badge: "한국장학재단",
-    title: "2026학년도 2학기 국가장학금 1차 신청 공고 (~6/22 마감)",
-    date: "2026. 05. 22",
-    link: "https://www.kosaf.go.kr"
-  },
-  {
-    id: "sc-2",
-    category: "scholarship",
-    badge: "남북하나재단",
-    title: "2026년 북향민 청년 ‘미래날개’ 응시료 지원 사업 공고 (~12.5)",
-    date: "2026. 04. 16",
-    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20102"
-  },
-  // 2. Housing
-  {
-    id: "hs-1",
-    category: "housing",
-    badge: "LH공사",
-    title: "2026년 청년 매입임대주택 및 행복주택 공고 확인",
-    date: "2026. 06. 07",
-    link: "https://apply.lh.or.kr"
-  },
-  // 3. Jobs
-  {
-    id: "jb-1",
-    category: "job",
-    badge: "남북하나재단",
-    title: "제1회 슬기로운 일자리 찾기 프로그램 참가자 모집공고 (~6.10)",
-    date: "2026. 05. 27",
-    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20174"
-  },
-  // 4. University
-  {
-    id: "un-1",
-    category: "university",
-    badge: "남북하나재단",
-    title: "2026년 진로·진학 1:1 맞춤형 전문 상담 신청 안내 (~11.30)",
-    date: "2026. 03. 05",
-    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=19983"
-  },
-  // 5. Welfare
-  {
-    id: "wf-1",
-    category: "welfare",
-    badge: "남북하나재단",
-    title: "2026년 북향민 건강검진(피폭 실태조사)사업 참여 희망자 모집 (~11.30)",
-    date: "2026. 03. 27",
-    link: "https://www.koreahana.or.kr/home/kor/board.do?menuPos=52&act=detail&idx=20042"
-  }
-];
-
-const tabs = [
-  { id: "scholarship", label: "장학정보" },
-  { id: "housing", label: "주택정보" },
-  { id: "job", label: "일자리" },
-  { id: "university", label: "대학생활" },
-  { id: "welfare", label: "생활지원" }
-];
-
 export default function SettlementNewsSection({ searchQuery = "", setSearchQuery = () => {} }) {
-  const [activeTab, setActiveTab] = useState("scholarship"); // Scholarship as default
-  const [newsList, setNewsList] = useState(mockNewsList);
+  const [activeTab, setActiveTab] = useState("전체");
+  const [newsList, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
 
-  const recommendedTags = [
-    { label: "장학금", query: "장학" },
-    { label: "LH임대주택", query: "LH" },
-    { label: "취업바우처", query: "취업바우처" },
-    { label: "건강검진", query: "건강검진" }
+  const tabs = [
+    { id: "전체", label: "전체보기" },
+    { id: "장학", label: "장학정보" },
+    { id: "주택", label: "주택정보" },
+    { id: "일자리", label: "일자리" },
+    { id: "교육", label: "교육/역량" },
+    { id: "복지", label: "생활/복지" }
   ];
 
   useEffect(() => {
-    let isMounted = true;
     async function fetchNews() {
       try {
         const res = await fetch("/api/settlement-news", { cache: 'no-store' });
-        if (res.ok && isMounted) {
+        if (res.ok) {
           const data = await res.json();
-          if (data && data.length > 0) setNewsList(data);
+          // Sort by date descending
+          const sorted = data.sort((a, b) => {
+             const dateA = a.date ? new Date(a.date.replace(/\./g, '-')) : new Date(0);
+             const dateB = b.date ? new Date(b.date.replace(/\./g, '-')) : new Date(0);
+             return dateB - dateA;
+          });
+          setNewsList(sorted);
         }
       } catch (err) {
-        console.error("Failed to fetch live news:", err);
+        console.error("Failed to fetch news:", err);
+      } finally {
+        setLoading(false);
       }
     }
     fetchNews();
-    return () => { isMounted = false; };
   }, []);
 
   const filteredNews = newsList.filter(item => {
-    if (searchQuery.trim() !== "") {
-      const q = searchQuery.toLowerCase().trim();
-      return (
-        (item.title && item.title.toLowerCase().includes(q)) ||
-        (item.excerpt && item.excerpt.toLowerCase().includes(q)) ||
-        (item.badge && item.badge.toLowerCase().includes(q)) ||
-        (item.tag && item.tag.toLowerCase().includes(q))
-      );
-    }
-    return item.category === activeTab;
+    const q = searchQuery.toLowerCase().trim();
+    const matchesSearch = q === "" || 
+      (item.title && item.title.toLowerCase().includes(q)) || 
+      (item.badge && item.badge.toLowerCase().includes(q)) ||
+      (item.category && item.category.toLowerCase().includes(q));
+    
+    const matchesTab = activeTab === "전체" || 
+      (item.category && item.category === getCategoryKey(activeTab)) ||
+      (item.title && item.title.includes(activeTab));
+
+    return matchesSearch && matchesTab;
   });
+
+  function getCategoryKey(label) {
+    switch(label) {
+      case '장학정보': return 'scholarship';
+      case '주택정보': return 'housing';
+      case '일자리': return 'job';
+      case '교육/역량': return 'university';
+      case '생활/복지': return 'welfare';
+      default: return label;
+    }
+  }
   
   const visibleList = showAll ? filteredNews : filteredNews.slice(0, 4);
 
-  const getCategoryStyle = (cat) => {
+  const getCategoryColor = (cat) => {
     switch(cat) {
-      case 'scholarship': return { bg: "rgba(59, 130, 246, 0.1)", color: "#3b82f6" };
-      case 'housing': return { bg: "rgba(139, 92, 246, 0.1)", color: "#8b5cf6" };
-      case 'job': return { bg: "rgba(245, 158, 11, 0.1)", color: "#f59e0b" };
-      case 'university': return { bg: "rgba(16, 185, 129, 0.1)", color: "#10b981" };
-      case 'welfare': return { bg: "rgba(13, 148, 136, 0.1)", color: "#0d9488" }; // Teal color
-      case 'research': return { bg: "rgba(239, 68, 68, 0.1)", color: "#ef4444" };
-      default: return { bg: "#f3f4f6", color: "#6b7280" };
+      case 'scholarship': return "#3b82f6";
+      case 'housing': return "#8b5cf6";
+      case 'job': return "#f59e0b";
+      case 'university': return "#10b981";
+      case 'welfare': return "#ec4899";
+      default: return "var(--color-primary)";
+    }
+  };
+
+  const getCategoryLabel = (cat) => {
+    switch(cat) {
+      case 'scholarship': return "장학정보";
+      case 'housing': return "주택정보";
+      case 'job': return "일자리";
+      case 'university': return "교육/역량";
+      case 'welfare': return "생활/복지";
+      default: return cat;
     }
   };
 
   return (
-    <section id="settlement-news" className="section settlement-news-section" style={{ backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)" }}>
+    <section id="news" className="section settlement-news-section" style={{ backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
-          <span className="section-subtitle">NEWSLETTER</span>
-          <h2 style={{ marginBottom: "2rem" }}>뉴스레터</h2>
+          <span className="section-subtitle">DAILY AUTOMATION</span>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>정착 지원 소식</h2>
+          <p style={{ color: "var(--color-text-muted)", marginBottom: "2.5rem" }}>
+            매일 구글 검색 및 주요 기관 공고를 크로스체크하여 실시간으로 업데이트합니다.
+          </p>
         </div>
 
-        {/* Tab Menu - Replaced by query indicator if searching */}
-        <div className="tabs-container" style={{ 
-          overflowX: "auto", 
-          display: "flex", 
-          justifyContent: "center", 
-          marginBottom: "2rem", 
-          paddingBottom: "0.5rem",
-          transition: "opacity 0.3s ease",
-        }}>
-          {searchQuery ? (
-            <div style={{
-              padding: "0.7rem 1.8rem",
-              borderRadius: "50px",
-              fontSize: "0.95rem",
-              fontWeight: 700,
-              backgroundColor: "rgba(0, 0, 0, 0.05)",
-              color: "var(--color-text-primary)",
-              border: "1px solid var(--color-border)"
-            }}>
-              검색 결과 ({filteredNews.length}건)
-            </div>
-          ) : (
-            <div className="tabs-wrapper" style={{ display: "flex", gap: "0.8rem", whiteSpace: "nowrap" }}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                      setActiveTab(tab.id);
-                      setShowAll(false);
-                  }}
-                  style={{
-                    padding: "0.7rem 1.4rem",
-                    borderRadius: "50px",
-                    fontSize: "0.95rem",
-                    fontWeight: 600,
-                    transition: "all 0.3s ease",
-                    border: activeTab === tab.id ? "2px solid var(--color-primary)" : "1.5px solid var(--color-border)",
-                    backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
-                    color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
-                    cursor: "pointer",
-                    boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "none"
-                  }}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Search Bar & Recommended Tags */}
-        <div className="search-section" style={{
-          maxWidth: "500px",
-          margin: "0 auto 3rem auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.8rem"
-        }}>
-          <div style={{
-            position: "relative",
-            width: "100%",
-            display: "flex",
-            alignItems: "center"
-          }}>
-            <svg 
+        {/* Tab Menu */}
+        <div className="tabs-container" style={{ display: "flex", justifyContent: "center", gap: "0.8rem", marginBottom: "3rem", flexWrap: "wrap" }}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => { setActiveTab(tab.id); setShowAll(false); }}
               style={{
-                position: "absolute",
-                left: "1.2rem",
-                width: "1.2rem",
-                height: "1.2rem",
-                color: "var(--color-text-dim)",
-                pointerEvents: "none"
-              }}
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            
-            <input
-              type="text"
-              placeholder="뉴스레터 공고 검색 (예: 장학, 임대주택)"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setShowAll(false);
-              }}
-              style={{
-                width: "100%",
-                padding: "0.8rem 3rem 0.8rem 2.8rem",
+                padding: "0.7rem 1.5rem",
                 borderRadius: "50px",
-                border: "1.5px solid var(--color-border)",
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
-                fontSize: "0.95rem",
-                outline: "none",
-                transition: "all 0.3s ease",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.02)"
+                border: "1.5px solid",
+                borderColor: activeTab === tab.id ? "var(--color-primary)" : "var(--color-border)",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.2s",
+                backgroundColor: activeTab === tab.id ? "var(--color-primary)" : "white",
+                color: activeTab === tab.id ? "white" : "var(--color-text-muted)",
+                boxShadow: activeTab === tab.id ? "0 4px 12px rgba(220, 20, 20, 0.15)" : "var(--shadow-sm)"
               }}
-              onFocus={(e) => {
-                e.target.style.borderColor = "var(--color-primary)";
-                e.target.style.boxShadow = "0 4px 15px rgba(220, 20, 20, 0.08)";
-                e.target.style.backgroundColor = "white";
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = "var(--color-border)";
-                e.target.style.boxShadow = "0 2px 8px rgba(0,0,0,0.02)";
-                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
-              }}
-            />
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-            {searchQuery && (
-              <button
-                onClick={() => {
-                  setSearchQuery("");
-                  setShowAll(false);
-                }}
-                style={{
-                  position: "absolute",
-                  right: "1rem",
-                  background: "none",
-                  border: "none",
-                  fontSize: "1.3rem",
-                  color: "var(--color-text-dim)",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "0.2rem",
-                  borderRadius: "50%"
-                }}
-              >
-                &times;
-              </button>
-            )}
-          </div>
-
-          <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.5rem",
-            justifyContent: "center",
-            alignItems: "center"
-          }}>
-            <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginRight: "0.2rem" }}>추천 검색어:</span>
-            {recommendedTags.map((tag) => (
-              <button
-                key={tag.label}
-                onClick={() => {
-                  setSearchQuery(tag.query);
-                  setShowAll(false);
-                }}
-                style={{
-                  background: searchQuery === tag.query ? "var(--color-primary-light, rgba(220, 20, 20, 0.08))" : "rgba(0, 0, 0, 0.03)",
-                  border: "none",
-                  borderRadius: "20px",
-                  padding: "0.3rem 0.7rem",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  color: searchQuery === tag.query ? "var(--color-primary)" : "var(--color-text-muted)",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease"
-                }}
-                onMouseOver={(e) => {
-                  if (searchQuery !== tag.query) {
-                    e.currentTarget.style.background = "rgba(0, 0, 0, 0.06)";
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (searchQuery !== tag.query) {
-                    e.currentTarget.style.background = "rgba(0, 0, 0, 0.03)";
-                  }
-                }}
-              >
-                #{tag.label}
-              </button>
-            ))}
-          </div>
+        {/* Search Bar */}
+        <div style={{ maxWidth: "600px", margin: "0 auto 3.5rem auto", position: "relative" }}>
+          <input 
+            type="text" 
+            placeholder="어떤 소식을 찾으시나요? (예: 장학금, LH)"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ width: "100%", padding: "1.2rem 1.5rem 1.2rem 3.5rem", borderRadius: "50px", border: "1px solid var(--color-border)", fontSize: "1.05rem", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.02)" }}
+          />
+          <span style={{ position: "absolute", left: "1.3rem", top: "50%", transform: "translateY(-50%)", fontSize: "1.2rem" }}>🔍</span>
         </div>
 
         {/* News Grid */}
-        <div className="news-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-          {visibleList.length === 0 ? (
-            <div className="text-center" style={{ gridColumn: "1/-1", padding: "4rem 2rem", color: "var(--color-text-muted)", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
-              <svg style={{ width: "3.5rem", height: "3.5rem", color: "var(--color-text-dim)", marginBottom: "0.5rem" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text-primary)" }}>
-                {searchQuery ? `"${searchQuery}"에 대한 검색 결과가 없습니다.` : "해당 카테고리의 최신 소식이 아직 업데이트되지 않았습니다."}
-              </div>
-              <p style={{ fontSize: "0.9rem", margin: "0" }}>다른 검색어를 입력하거나 아래 버튼을 눌러 검색어를 초기화해보세요.</p>
-              {searchQuery && (
-                <button
-                  onClick={() => {
-                    setSearchQuery("");
-                    setShowAll(false);
-                  }}
-                  style={{
-                    marginTop: "1rem",
-                    padding: "0.5rem 1.2rem",
-                    borderRadius: "30px",
-                    border: "none",
-                    backgroundColor: "var(--color-primary)",
-                    color: "white",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    boxShadow: "0 3px 8px rgba(220, 20, 20, 0.15)"
-                  }}
-                >
-                  검색 초기화
-                </button>
-              )}
+        <div className="news-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+          {loading ? (
+            <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "5rem" }}>
+               <div className="spinner" style={{ margin: "0 auto 1.5rem auto", width: "40px", height: "40px", border: "4px solid rgba(0,0,0,0.1)", borderTopColor: "var(--color-primary)", borderRadius: "50%", animation: "spin 1s linear infinite" }}></div>
+               데이터를 실시간으로 크로스체크 중입니다...
             </div>
-          ) : (
-            visibleList.map((news) => {
-              const style = getCategoryStyle(news.category);
-              return (
-                <div 
-                  key={news.id} 
-                  className="news-item-card reveal-on-scroll active"
-                  style={{
-                    background: "white",
-                    padding: "2rem",
-                    borderRadius: "20px",
-                    border: "1px solid var(--color-border)",
-                    transition: "all 0.3s ease",
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%"
-                  }}
-                >
-                  <span style={{ 
-                    display: "inline-block", 
-                    backgroundColor: style.bg, 
-                    color: style.color, 
-                    padding: "0.3rem 0.8rem", 
-                    borderRadius: "6px", 
-                    fontSize: "0.75rem", 
-                    fontWeight: 700,
-                    marginBottom: "1rem",
-                    alignSelf: "flex-start"
-                  }}>
-                    {news.badge}
+          ) : visibleList.length > 0 ? (
+            visibleList.map((item) => (
+              <div key={item.id} className="news-card reveal-on-scroll active" style={{ background: "white", borderRadius: "24px", padding: "2.5rem", border: "1px solid var(--color-border)", display: "flex", flexDirection: "column", height: "100%", transition: "transform 0.3s", boxShadow: "var(--shadow-sm)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+                  <span style={{ backgroundColor: `${getCategoryColor(item.category)}15`, color: getCategoryColor(item.category), padding: "0.4rem 1rem", borderRadius: "50px", fontSize: "0.8rem", fontWeight: 800 }}>
+                    {getCategoryLabel(item.category)}
                   </span>
-                  <h3 style={{ fontSize: "1.1rem", lineHeight: 1.5, color: "var(--color-text-primary)", marginBottom: "1.5rem", flexGrow: 1, fontWeight: 700 }}>
-                    {news.title}
-                  </h3>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-dim)" }}>{news.date}</span>
-                    <a 
-                      href={news.link || news.url || "#"} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ 
-                        fontSize: "0.85rem", 
-                        color: "var(--color-primary)", 
-                        fontWeight: 700,
-                        textDecoration: "underline"
-                      }}
-                    >
-                      신청하러 가기 &rarr;
-                    </a>
-                  </div>
+                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", fontWeight: 500 }}>{item.date || new Date().toLocaleDateString('ko-KR').replace(/\s/g, '').slice(0, -1)}</span>
                 </div>
-              );
-            })
+                <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: "1.5rem", flexGrow: 1, lineHeight: "1.6", color: "var(--color-text-primary)" }}>{item.title}</h3>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "1.5rem", borderTop: "1px solid #f1f1f1" }}>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#777" }}>{item.badge || "공공기관"}</span>
+                  <a href={item.url || item.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-primary)", fontWeight: 800, textDecoration: "none", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.3rem" }}>공고보기 <span>&rarr;</span></a>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "5rem", color: "#aaa", backgroundColor: "white", borderRadius: "24px", border: "2px dashed #eee" }}>현재 검색 조건에 맞는 최신 소식이 없습니다.</div>
           )}
         </div>
 
         {filteredNews.length > 4 && (
-          <div className="text-center" style={{ marginTop: "3.5rem" }}>
-            <button 
-              className="btn-text" 
-              onClick={() => setShowAll(!showAll)}
-              style={{ 
-                color: "var(--color-primary)", 
-                fontSize: "1rem", 
-                fontWeight: 600,
-                padding: "0.5rem 1rem",
-                cursor: "pointer"
-              }}
-            >
-              {showAll ? "간략히 보기" : "전체보기"}
+          <div style={{ textAlign: "center", marginTop: "4rem" }}>
+            <button onClick={() => setShowAll(!showAll)} style={{ background: "white", border: "1.5px solid var(--color-primary)", color: "var(--color-primary)", fontWeight: 800, padding: "0.8rem 2rem", borderRadius: "50px", cursor: "pointer", transition: "all 0.2s" }}>
+              {showAll ? "간략히 보기" : `전체 소식 더보기 (${filteredNews.length}건)`}
             </button>
           </div>
         )}
       </div>
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      `}} />
     </section>
   );
 }
