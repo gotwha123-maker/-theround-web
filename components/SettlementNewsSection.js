@@ -89,6 +89,13 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
     }
   };
 
+  const formatDate = (dateStr) => {
+    if (!dateStr || dateStr.includes("관리자") || dateStr.length < 5) {
+      return new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\s/g, '').slice(0, -1);
+    }
+    return dateStr;
+  };
+
   return (
     <section id="news" className="section settlement-news-section" style={{ backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
@@ -150,7 +157,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
                   <span style={{ backgroundColor: `${getCategoryColor(item.category)}15`, color: getCategoryColor(item.category), padding: "0.4rem 1rem", borderRadius: "50px", fontSize: "0.8rem", fontWeight: 800 }}>
                     {getCategoryLabel(item.category)}
                   </span>
-                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", fontWeight: 500 }}>{item.date || new Date().toLocaleDateString('ko-KR').replace(/\s/g, '').slice(0, -1)}</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", fontWeight: 500 }}>{formatDate(item.date)}</span>
                 </div>
                 <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: "1.5rem", flexGrow: 1, lineHeight: "1.6", color: "var(--color-text-primary)" }}>{item.title}</h3>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "1.5rem", borderTop: "1px solid #f1f1f1" }}>
