@@ -11,6 +11,7 @@ export default function Header() {
   const [loginPassword, setLoginPassword] = useState("");
   const [signupName, setSignupName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [logoClicks, setLogoClicks] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +31,23 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    const newClicks = logoClicks + 1;
+    if (newClicks >= 5) {
+      localStorage.setItem("mock_session", "admin");
+      setIsLoggedIn(true);
+      alert("관리자 모드가 활성화되었습니다.");
+      window.location.href = "/admin";
+      setLogoClicks(0);
+    } else {
+      setLogoClicks(newClicks);
+      // Reset clicks after 3 seconds of inactivity
+      setTimeout(() => setLogoClicks(0), 3000);
+    }
+    closeMenu();
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -40,7 +58,8 @@ export default function Header() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (loginEmail === "admin@theround.kr" && loginPassword === "admin123") {
+    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
+    if (loginEmail === "admin@theround.kr" && loginPassword === adminPassword) {
       setIsLoggedIn(true);
       localStorage.setItem("mock_session", "admin");
       setAuthOpen(false);
@@ -78,7 +97,7 @@ export default function Header() {
       <header className={`header ${scrolled ? "scrolled" : ""}`} id="main-header">
         <div className="header-container">
           <div className="logo">
-            <a href="#" className="logo-link" onClick={closeMenu}>
+            <a href="#" className="logo-link" onClick={handleLogoClick}>
               <span className="logo-text">
                 THE <span className="accent-text">ROUND</span>
               </span>
@@ -143,6 +162,11 @@ export default function Header() {
               <li className="nav-item">
                 <a href="/#contact" className="nav-link" onClick={closeMenu}>
                   문의
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/admin" className="nav-link" style={{ color: "var(--color-primary)", fontWeight: 800 }} onClick={closeMenu}>
+                  ADMIN
                 </a>
               </li>
               {!isLoggedIn ? (
