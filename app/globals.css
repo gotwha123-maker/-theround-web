@@ -2319,6 +2319,50 @@ a {
         gap: 1rem;
     }
 
+    /* Compact TalkTalk Section for Mobile */
+    .talktalk-section {
+        padding: 4rem 0 !important;
+    }
+    .talktalk-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        gap: 1rem !important;
+        padding: 0.5rem 1rem 2rem 1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .talktalk-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .talk-card {
+        flex: 0 0 280px; /* Smaller width for horizontal layout */
+        padding: 2rem 1.5rem !important;
+        min-height: auto !important;
+    }
+    .talk-icon-wrapper {
+        width: 48px !important;
+        height: 48px !important;
+        margin-bottom: 1rem !important;
+    }
+    .talk-icon-wrapper svg {
+        width: 20px;
+        height: 20px;
+    }
+    .talk-card-title {
+        font-size: 1.15rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .talk-card-desc {
+        font-size: 0.85rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.5;
+    }
+    .talk-card-btn {
+        padding: 0.8rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+
     /* TalkTalk sub-bar mobile horizontal layout */
     .talktalk-sub-bar {
         flex-wrap: nowrap !important;
@@ -2326,6 +2370,7 @@ a {
         justify-content: flex-start !important;
         padding: 0.5rem 1rem 1.5rem 1rem;
         gap: 0.8rem;
+        margin-top: 2rem !important;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
