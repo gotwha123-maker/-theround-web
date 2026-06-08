@@ -100,11 +100,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
     <section id="news" className="section settlement-news-section" style={{ backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
-          <span className="section-subtitle">DAILY AUTOMATION</span>
           <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>정착 지원 소식</h2>
-          <p style={{ color: "var(--color-text-muted)", marginBottom: "2.5rem" }}>
-            매일 구글 검색 및 주요 기관 공고를 크로스체크하여 실시간으로 업데이트합니다.
-          </p>
         </div>
 
         {/* Tab Menu */}
@@ -148,7 +144,6 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
           {loading ? (
             <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "5rem" }}>
                <div className="spinner" style={{ margin: "0 auto 1.5rem auto", width: "40px", height: "40px", border: "4px solid rgba(0,0,0,0.1)", borderTopColor: "var(--color-primary)", borderRadius: "50%", animation: "spin 1s linear infinite" }}></div>
-               데이터를 실시간으로 크로스체크 중입니다...
             </div>
           ) : visibleList.length > 0 ? (
             visibleList.map((item) => (
