@@ -18,10 +18,11 @@ jobs:
           
       - name: Install Dependencies
         run: |
-          npm install axios cheerio airtable dotenv
+          npm install axios cheerio airtable dotenv openai
           
       - name: Run Sync Script
         env:
           AIRTABLE_PERSONAL_ACCESS_TOKEN: ${{ secrets.AIRTABLE_PERSONAL_ACCESS_TOKEN }}
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/sync-news.js

@@ -54,7 +54,7 @@ export default function TalkTalk() {
   };
 
   return (
-    <section id="talktalk" className="section talktalk-section">
+    <section id="talktalk" className="talktalk-section">
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
           <span className="section-subtitle">COMMUNICATION HUB</span>
@@ -67,64 +67,104 @@ export default function TalkTalk() {
         </div>
 
         {/* Main Big Cards (Top Row) */}
-        <div className="talktalk-grid" style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
-          gap: "1.5rem", 
-          marginTop: "4rem" 
-        }}>
+        <div className="talktalk-grid">
           {[
-            { id: 'giving', title: '나눔 요청하기', desc: '물품, 화장품, 의류 등 소중한 마음을 나누고 싶은 분들의 신청을 기다립니다.', icon: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' },
-            { id: 'job', title: '탈북민 구인요청', desc: '한반도의 미래를 함께 만들어갈 인재를 찾으시는 기관 및 기업의 요청을 받습니다.', icon: 'M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16' },
-            { id: 'survey', title: '설문조사 의뢰하기', desc: '학술 연구 및 정책 제안을 위한 설문조사 대상자 모집 및 분석 지원을 의뢰하세요.', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' }
+            { 
+              id: 'giving', 
+              badge: '따뜻한 연대',
+              title: '나눔 요청하기', 
+              desc: '물품, 화장품, 의류 등 소중한 마음을 나누고 싶은 분들의 신청을 기다립니다.', 
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              ),
+              className: 'card-giving'
+            },
+            { 
+              id: 'job', 
+              badge: '자립의 기반',
+              title: '탈북민 구인요청', 
+              desc: '한반도의 미래를 함께 만들어갈 인재를 찾으시는 기관 및 기업의 요청을 받습니다.', 
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+              ),
+              className: 'card-job'
+            },
+            { 
+              id: 'survey', 
+              badge: '학술·정책 연구',
+              title: '설문조사 의뢰하기', 
+              desc: '학술 연구 및 정책 제안을 위한 설문조사 대상자 모집 및 분석 지원을 의뢰하세요.', 
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              ),
+              className: 'card-survey'
+            }
           ].map((item) => (
-            <div key={item.id} className="talk-card reveal-on-scroll" style={{ background: "var(--color-bg-secondary)", padding: "2.5rem", borderRadius: "24px", border: "1px solid var(--color-border)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <div>
-                <h3 style={{ marginBottom: "1rem", color: "var(--color-primary)", fontWeight: 800 }}>{item.title}</h3>
-                <p style={{ marginBottom: "2rem", color: "var(--color-text-muted)" }}>{item.desc}</p>
+            <div key={item.id} className={`talk-card ${item.className} reveal-on-scroll`}>
+              <div style={{ width: "100%" }}>
+                <span className="talk-badge">{item.badge}</span>
+                <div className="talk-icon-wrapper">{item.icon}</div>
+                <h3 className="talk-card-title">{item.title}</h3>
+                <p className="talk-card-desc">{item.desc}</p>
               </div>
-              <button onClick={() => openModal(item.id)} className="btn btn-primary btn-block">신청하기</button>
+              <button onClick={() => openModal(item.id)} className="talk-card-btn">
+                신청 완료하기 &rarr;
+              </button>
             </div>
           ))}
         </div>
 
         {/* Small Action Menu (Bottom Row - High Visibility Pills) */}
-        <div className="talktalk-sub-bar reveal-on-scroll delay-300" style={{ 
-          display: "flex", 
-          justifyContent: "center", 
-          gap: "1rem", 
-          marginTop: "3.5rem",
-          flexWrap: "wrap"
-        }}>
+        <div className="talktalk-sub-bar reveal-on-scroll delay-300">
           {[
-            { id: 'volunteer', label: '자원봉사 신청하기' },
-            { id: 'proposal', label: '더라운드 제안하기' },
-            { id: 'story', label: '나의 스토리 공유' }
+            { 
+              id: 'volunteer', 
+              label: '자원봉사 신청하기',
+              icon: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              )
+            },
+            { 
+              id: 'proposal', 
+              label: '더라운드 제안하기',
+              icon: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              )
+            },
+            { 
+              id: 'story', 
+              label: '나의 스토리 공유',
+              icon: (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                </svg>
+              )
+            }
           ].map((action) => (
             <button 
               key={action.id}
               onClick={() => openModal(action.id)}
-              style={{
-                background: "rgba(13, 148, 136, 0.05)",
-                border: "1.5px solid var(--color-primary)",
-                color: "var(--color-primary)",
-                padding: "0.8rem 1.8rem",
-                borderRadius: "50px",
-                fontSize: "1rem",
-                fontWeight: 800,
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 12px rgba(13, 148, 136, 0.1)"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "var(--color-primary)";
-                e.currentTarget.style.color = "white";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(13, 148, 136, 0.05)";
-                e.currentTarget.style.color = "var(--color-primary)";
-              }}
+              className="btn-sub-action"
             >
+              {action.icon}
               {action.label}
             </button>
           ))}
