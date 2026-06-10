@@ -67,7 +67,7 @@ export default function DesignersSection() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [formData, setFormData] = useState({
     clientOrg: "",
-    orgType: "public",
+    orgType: "공공기관·지자체",
     clientName: "",
     clientPosition: "팀장·실무자",
     clientContact: "",
@@ -159,6 +159,16 @@ export default function DesignersSection() {
     }
   };
 
+  useEffect(() => {
+    if (designers.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("active"); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll(".designer-card").forEach((el) => observer.observe(el));
+      return () => observer.disconnect();
+    }
+  }, [visibleList]);
+
   return (
     <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-primary)" }}>    
       <div className="container">
@@ -247,12 +257,12 @@ export default function DesignersSection() {
                     <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>기관 유형 *</label>
                         <select name="orgType" value={formData.orgType} onChange={handleChange}>
-                          {["공공기관·지자체", "초·중·고교", "대학교·대학원", "일반기업", "NGO·비영리", "기타"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["공공기관·지자체", "초·중·고교", "대학교·대학원", "일반기업", "NGO·비영리", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>담당자 직함 *</label>
                         <select name="clientPosition" value={formData.clientPosition} onChange={handleChange}>
-                          {["주무관·사무관", "교사·교수", "팀장·실무자", "대표·임원", "학생회·동아리장"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["주무관·사무관", "교사·교수", "팀장·실무자", "대표·임원", "학생회·동아리장"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
@@ -265,19 +275,19 @@ export default function DesignersSection() {
                     <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>2. 행사 개요</h4>
                     <div className="form-group"><label>행사 성격 *</label>
                       <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange}>
-                        {["정착지원 교육", "인식개선 캠페인", "리더십 역량강화", "문화·예술 행사", "정책자문·포럼"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        {["정착지원 교육", "인식개선 캠페인", "리더십 역량강화", "문화·예술 행사", "정책자문·포럼"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
                     <div className="form-group"><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required /></div>
                     <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>진행 방식 *</label>
                         <select name="locationType" value={formData.locationType} onChange={handleChange}>
-                          {["오프라인 현장 강연", "실시간 온라인(Zoom 등)", "사전 녹화 송출"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["오프라인 현장 강연", "실시간 온라인(Zoom 등)", "사전 녹화 송출"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>강연 시간 *</label>
                         <select name="time1" value={formData.time1} onChange={handleChange}>
-                          {["1시간 이내", "2시간(표준)", "3시간 이상", "전일 워크숍"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["1시간 이내", "2시간(표준)", "3시간 이상", "전일 워크숍"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
@@ -290,37 +300,37 @@ export default function DesignersSection() {
                     <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>주요 연령대 *</label>
                         <select name="audienceAge" value={formData.audienceAge} onChange={handleChange}>
-                          {["청소년", "대학생·취준생", "일반 성인", "시니어", "전문가·공무원"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["청소년", "대학생·취준생", "일반 성인", "시니어", "전문가·공무원"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required /></div>
                     </div>
                     <div className="form-group"><label>청중 성향 *</label>
                       <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange}>
-                        {["입문(기초지식 없음)", "심화(전문지식 희망)", "인식개선 필요", "실무 적용 희망"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        {["입문(기초지식 없음)", "심화(전문지식 희망)", "인식개선 필요", "실무 적용 희망"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
                     <div className="form-group"><label>강연 형태 *</label>
                       <select name="lectureType" value={formData.lectureType} onChange={handleChange}>
-                        {["단독 강연", "토크 콘서트(Q&A 위주)", "패널 토론", "1:1 멘토링"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        {["단독 강연", "토크 콘서트(Q&A 위주)", "패널 토론", "1:1 멘토링"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
 
                     <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>4. 예산 및 조건</h4>
                     <div className="form-group"><label>강연료 규모 *</label>
                       <select name="budgetRange" value={formData.budgetRange} onChange={handleChange}>
-                        {["기관 내부 규정에 따름", "30~50만원", "50~100만원", "100만원 이상", "협의 필요"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        {["기관 내부 규정에 따름", "30~50만원", "50~100만원", "100만원 이상", "협의 필요"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
                     <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>정산 방법 *</label>
                         <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange}>
-                          {["세금계산서 발행", "카드 결제", "원천세 신고(개인 이체)", "기타"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["세금계산서 발행", "카드 결제", "원천세 신고(개인 이체)", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>추가 지원 여부</label>
                         <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange}>
-                          {["교통비 별도 지급", "숙박 제공 가능", "식사 제공 가능", "해당 없음"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["교통비 별도 지급", "숙박 제공 가능", "식사 제공 가능", "해당 없음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
@@ -329,12 +339,12 @@ export default function DesignersSection() {
                     <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>회신 희망 기한 *</label>
                         <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange}>
-                          {["3일 이내(긴급)", "1주일 이내", "2주일 이내", "여유 있음"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["3일 이내(긴급)", "1주일 이내", "2주일 이내", "여유 있음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>선정 이유 *</label>
                         <select name="loveCall" value={formData.loveCall} onChange={handleChange}>
-                          {["방송 출연 모습이 좋아서", "저서 내용을 직접 듣고 싶어서", "주제와 경력이 일치해서", "더라운드의 전문성 신뢰", "지인 강력 추천"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                          {["방송 출연 모습이 좋아서", "저서 내용을 직접 듣고 싶어서", "주제와 경력이 일치해서", "더라운드의 전문성 신뢰", "지인 강력 추천"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
