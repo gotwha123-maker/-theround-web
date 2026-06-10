@@ -1,41 +1,33 @@
 import { NextResponse } from "next/server";
+import fs from 'fs';
+import path from 'path';
 
-/**
- * 100% Local Managed Designers Data (by Kodari Agent)
- * Airtable integration is temporarily bypassed to prioritize manual profile updates.
- */
-const fallbackDesigners = [
-  {
-    id: "des-5",
-    img: "assets/김소연.webp",
-    ko: { name: "김소연", tag: "가수·뮤지션", slogan: '"목소리로 한반도의 희망을 노래하는 뮤지션"', specialty: "정서적 통합 음악 / 고난 극복 서사", bio: "역경을 딛고 일어선 개인의 삶을 음악에 담아 전달하며, 남북한이 공통으로 느끼는 보편적 감수성을 통해 하나 됨을 이끌어냅니다.", career: "• TV조선 \"미스트롯 3\" 최종 6위\n• \"탈북 심청이\" 별명으로 트로트 가수 활동\n• MBN \"특종세상\" 등 다수 방송 출연\n• 전국 희망 콘서트 및 정착 강연 진행" }
-  },
-  {
-    id: "des-0",
-    img: "assets/김은주.jpg",
-    ko: { name: "김은주", tag: "작가·인권활동가", slogan: '"열한 살의 유서에서 전 세계를 울린 희망의 작가로"', specialty: "북한 인권 실상 증언 / 글로벌 인권 소통 / 회고록 집필", bio: "김은주 작가는 1986년 북한 함경북도에서 태어나 고난의 행군 시기 극심한 기아를 겪었습니다. 11살의 나이에 굶주림 속에서 썼던 유서의 기억을 담은 회고록 《열한 살의 유서》(A Thousand Miles to Freedom)를 통해 전 세계에 북한의 실상을 알렸습니다. 현재는 국제 무대에서 북한 주민들의 자유와 인권을 위해 목소리를 내고 있습니다.", career: "• 서강대학교 중국문화학과 졸업\n• 회고록 《열한 살의 유서》 8개 국어 번역 및 베스트셀러 달성\n• 통일부 북한인권증진위원\n• 북한이탈주민 글로벌교육센터(FSI) 간사\n• 유엔(UN) 본부 및 제네바 인권이사회 증언\n• 다큐멘터리 《비욘드 유토피아》 출연" }
-  },
-  {
-    id: "des-1",
-    img: "assets/이영현.jpg",
-    ko: { name: "이영현", tag: "변호사·인권가", slogan: '"법률의 시선으로 남북의 마음을 잇는 변호사"', specialty: "탈북민 법률 자문 / 북한 인권 정책", bio: "대한민국 1호 탈북민 변호사로서 법률적 전문성을 바탕으로 우리 사회 정착 과정의 실질적인 갈등을 해결하며, 보편적 인권과 통합의 가치를 새롭게 디자인합니다.", career: "• 법무법인 이래 파트너 변호사\n• 대한변협 인권재단 사무총장\n• KIS(Korea Internet Studio) 대표\n• 제8회 변호사시험 합격 / 연세대 법대 졸" }
-  },
-  {
-    id: "des-4",
-    img: "assets/박유성.jpg",
-    ko: { name: "박유성", tag: "감독·유튜버", slogan: '"미디어의 프레임을 넘어 새로운 북한을 그리는 감독"', specialty: "영상 서사 분석 / 미디어 편견 해소", bio: "영화를 전공한 전문가의 시각으로 북한을 재해석하며, 자극적인 이미지를 넘어 생생한 삶의 이야기를 영상과 강연으로 디자인합니다.", career: "• 유튜브 \"북한남자\" 채널 운영 및 기획\n• 다큐멘터리 영화 \"메콩강에 악어가 산다\" 감독\n• 동국대학교 영화영상학과 전공\n• 최근 사회 공헌 및 정책 참여 활동" }
-  },
-  {
-    id: "des-3",
-    img: "assets/김아라.jpg",
-    ko: { name: "김아라", tag: "배우·방송인", slogan: '"예술을 통해 남북의 거리를 좁히는 화합의 아이콘"', specialty: "남북 문화 예술 / 미디어 속 북한 이미지", bio: "영화와 드라마를 넘나드는 배우로서, 문화 예술 콘텐츠가 가진 정서적 힘을 활용해 남북한 주민들이 서로를 따뜻하게 이해하도록 돕습니다.", career: "• 드라마 \"사랑의 불시착\" 출연 (사택 마을 주민)\n• 웹드라마 \"아는 사람\" 여주인공 역\n• 채널A \"이제 만나러 갑니다\" 메인 출연\n• 남북 문화 예술 교류 홍보대사 활동" }
-  },
-  {
-    id: "des-7",
-    img: "assets/김강우.jpg",
-    ko: { name: "김강우", tag: "방송인·작가", slogan: '"기록으로 남북의 마음을 잇는 디자이너"', specialty: "북한 실상 증언 / 도서 집필 / 사회 활동", bio: "북한 내부의 생생한 경험을 바탕으로, 우리가 몰랐던 북한의 진실을 글과 목소리로 전합니다. 최근 저서를 통해 남북 청년들에게 희망의 메시지를 전달하고 있습니다.", career: "• 저서 《나의 지옥은 나를 죽이지 못했다》 집필 및 발간\n• 채널A \"이제 만나러 갑니다\" 정규 출연\n• 북한 인권 개선 캠페인 및 활동가\n• 공공기관/학교 대상 통일 안보 강사" }
+const DATA_PATH = path.join(process.cwd(), 'public/data/designers.json');
+
+// Helper to read local data
+const getLocalData = () => {
+  try {
+    if (fs.existsSync(DATA_PATH)) {
+      return JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+    }
+  } catch (e) {
+    console.error("Local Designers DB read error:", e);
   }
-];
+  return [];
+};
+
+// Helper to write local data
+const saveLocalData = (data) => {
+  try {
+    const dir = path.dirname(DATA_PATH);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+    return true;
+  } catch (e) {
+    console.error("Local Designers DB write error:", e);
+    return false;
+  }
+};
 
 export async function GET() {
   const cacheHeaders = {
@@ -43,8 +35,52 @@ export async function GET() {
     "Pragma": "no-cache",
     "Expires": "0"
   };
+  return NextResponse.json(getLocalData(), { headers: cacheHeaders });
+}
 
-  // We bypass Airtable to ensure immediate visibility of local changes
-  console.log("[System] Serving Designer Profiles from Local Managed Data.");
-  return NextResponse.json(fallbackDesigners, { headers: cacheHeaders });
+export async function PATCH(req) {
+  try {
+    const body = await req.json();
+    const { id, isHidden, order } = body;
+
+    if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
+
+    const designers = getLocalData();
+    const index = designers.findIndex(d => d.id === id);
+
+    if (index !== -1) {
+      if (isHidden !== undefined) designers[index].isHidden = isHidden;
+      // You can add more fields here if the admin UI supports them
+      saveLocalData(designers);
+      return NextResponse.json({ success: true });
+    }
+
+    return NextResponse.json({ error: "Designer not found" }, { status: 404 });
+  } catch (err) {
+    console.error("Local PATCH error:", err);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    const body = await req.json();
+    const { id } = body;
+
+    if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
+
+    let designers = getLocalData();
+    const initialLength = designers.length;
+    designers = designers.filter(d => d.id !== id);
+
+    if (designers.length < initialLength) {
+      saveLocalData(designers);
+      return NextResponse.json({ success: true });
+    }
+
+    return NextResponse.json({ error: "Designer not found" }, { status: 404 });
+  } catch (err) {
+    console.error("Local DELETE error:", err);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
