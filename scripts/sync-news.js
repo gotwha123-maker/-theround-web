@@ -79,15 +79,42 @@ async function fetchLH() {
   return items;
 }
 
-// 3. AI Verification
+// 3. Fetch Naver News (Current Affairs)
+async function fetchNaverNews() {
+  console.log('[Source] Fetching Naver News (RSS)...');
+  const items = [];
+  const keywords = ['탈북민 지원', '북한이탈주민', '남북청년'];
+  try {
+    for (const keyword of keywords) {
+      const { data } = await axiosGet(`https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(keyword)}&sm=tab_srt&sort=1`);
+      const $ = cheerio.load(data);
+      $('.news_area').each((i, el) => {
+        if (i < 3) {
+          const titleEl = $(el).find('.news_tit');
+          const title = titleEl.text().trim();
+          const link = titleEl.attr('href');
+          const date = $(el).find('.info_group span').first().text().trim() || '최신';
+          if (title) items.push({ title, date, url: link, source: '네이버 뉴스' });
+        }
+      });
+    }
+  } catch (e) { console.error('  ! Naver News failed:', e.message); }
+  return items;
+}
+
+// 4. AI Verification
 async function verify(rawItems) {
   console.log(`[AI] Verifying ${rawItems.length} items...`);
   const verified = [];
-  for (const item of rawItems) {
+  // Use a map to prevent duplicates by URL
+  const uniqueItems = Array.from(new Map(rawItems.map(item => [item.url, item])).values());
+
+  for (const item of uniqueItems) {
     try {
-      const prompt = `탈북민 정착 지원 정보인지 분석하여 JSON으로 반환하라. 
-형식: {valid: bool, title: string (정제된 제목), excerpt: string (친절한 한국어 요약, 2줄), category: "scholarship"|"housing"|"job"|"welfare"|"university", badge: string}. 
+      const prompt = `탈북민 정착 지원 정보이거나 긍정적인 사회 통합 소식인지 분석하여 JSON으로 반환하라. 
+형식: {valid: bool, title: string, excerpt: string (친절한 한국어 요약, 2줄), category: "scholarship"|"housing"|"job"|"welfare"|"university"|"culture", badge: string}. 
 제목: ${item.title}, 출처: ${item.source}`;
+      
       const res = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [{ role: 'system', content: '너는 탈북민 정착 지원 전문가이다. 모든 요약은 따뜻하고 친절한 해요체 한국어로 작성하라.' }, { role: 'user', content: prompt }],
@@ -100,7 +127,7 @@ async function verify(rawItems) {
           ...data,
           date: item.date,
           url: item.url,
-          tag: 'AI검증'
+          tag: item.source === '네이버 뉴스' ? '언론보도' : '기관공고'
         });
       }
     } catch (e) { console.error('  ! AI error:', e.message); }
@@ -109,12 +136,12 @@ async function verify(rawItems) {
 }
 
 async function run() {
-  const raw = [...await scrapeHana(), ...await fetchLH()];
+  const raw = [...await scrapeHana(), ...await fetchLH(), ...await fetchNaverNews()];
   const verified = await verify(raw);
   
   if (!fs.existsSync(path.dirname(BACKUP_PATH))) fs.mkdirSync(path.dirname(BACKUP_PATH), { recursive: true });
   fs.writeFileSync(BACKUP_PATH, JSON.stringify(verified, null, 2));
-  console.log(`[Local] Saved ${verified.length} items to ${BACKUP_PATH}`);
+  console.log(`[Local] Saved ${verified.length} items (Naver News Included) to ${BACKUP_PATH}`);
 
   if (base) {
     console.log('[Airtable] Syncing...');
