@@ -6,17 +6,17 @@ const mockDesigners = [
   {
     id: "des-5",
     img: "assets/김소연.webp",
-    ko: { name: "김소연", tag: "가수·뮤지션", slogan: '"목소리로 한반도의 희망을 노래하는 뮤지션"', specialty: "정서적 통합 음악 / 고난 극복 서사", bio: "역경을 딛고 일어선 개인의 삶을 음악에 담아 전달하며, 남북한이 공통으로 느끼는 보편적 감수성을 통해 하나 됨을 이끌어냅니다.", career: "• TV조선 \"미스트롯 3\" 최종 6위\n• \"탈북 심청이\" 별명으로 트로트 가수 활동\n• MBN \"특종세상\" 등 다수 방송 출연\n• 전국 희망 콘서트 및 정착 강연 진행" }
+    ko: { name: "김소연", tag: "가수·뮤지션", slogan: '"목소리로 한반도의 희망을 노래하는 뮤지션"', specialty: "정서적 통합  음악 / 고난 극복 서사", bio: "역경을 딛고 일어선 개인의 삶을 음악에 담아 전달하며, 남북한이 공통으로 느끼는 보편적 감수성을  통해 하나 됨을 이끌어냅니다.", career: "• TV조선 \"미스트롯 3\" 최종 6위\n• \"탈북 심청이\" 별명으로 트로트 가수 활동\n• MBN \"특종세상\" 등 다수 방송 출연\n• 전국 희망 콘서트 및 정착 강연 진행" }
   },
   {
     id: "des-0",
     img: "assets/김은주.jpg",
-    ko: { name: "김은주", tag: "작가·인권활동가", slogan: '"열한 살의 유서에서 전 세계를 울린 희망의 작가로"', specialty: "북한 인권 실상 증언 / 글로벌 인권 소통 / 회고록 집필", bio: "김은주 작가는 1986년 북한 함경북도에서 태어나 고난의 행군 시기 극심한 기아를 겪었습니다. 11살의 나이에 굶주림 속에서 썼던 유서의 기억을 담은 회고록 《열한 살의 유서》(A Thousand Miles to Freedom)를 통해 전 세계에 북한의 실상을 알렸습니다. 현재는 국제 무대에서 북한 주민들의 자유와 인권을 위해 목소리를 내고 있습니다.", career: "• 서강대학교 중국문화학과 졸업\n• 회고록 《열한 살의 유서》 8개 국어 번역 및 베스트셀러 달성\n• 통일부 북한인권증진위원\n• 북한이탈주민 글로벌교육센터(FSI) 간사\n• 유엔(UN) 본부 및 제네바 인권이사회 증언\n• 다큐멘터리 《비욘드 유토피아》 출연" }
+    ko: { name: "김은주", tag: "작가·인권활동가", slogan: '"열한 살의 유서에서 전 세계를 울린 희망의 작가로"', specialty: "북한 인권 실상 증언 / 글로벌 인권 소통 / 회고록 집필", bio: "김은주 작가는 1986년 북한 함경북도에서 태어나 고난의 행군 시기 극 심한 기아를 겪었습니다. 11살의 나이에 굶주림 속에서 썼던 유서의 기억을 담은 회고록 《열한 살의 유서》(A Thousand Miles to Freedom)를 통해 전 세계에 북한의 실상을 알렸습니다. 현재는 국제 무대에서 북한 주민들의 자유와 인권을 위해 목소리를 내고 있습니다.", career: "• 서강대학교 중국문화학과 졸업\n• 회고록 《열한 살의 유서》 8개 국어 번역 및 베스트셀러 달성\n• 통일부 북한인권 증진위원\n• 북한이탈주민 글로벌교육센터(FSI) 간사\n• 유엔(UN) 본부 및 제네바 인권이사회 증언\n• 다큐멘터리 《비욘드 유토피아 》 출연" }
   },
   {
     id: "des-1",
     img: "assets/이영현.jpg",
-    ko: { name: "이영현", tag: "변호사·인권가", slogan: '"법률의 시선으로 남북의 마음을 잇는 변호사"', specialty: "탈북민 법률 자문 / 북한 인권 정책", bio: "대한민국 1호 탈북민 변호사로서 법률적 전문성을 바탕으로 우리 사회 정착 과정의 실질적인 갈등을 해결하며, 보편적 인권과 통합의 가치를 새롭게 디자인합니다.", career: "• 법무법인 이래 파트너 변호사\n• 대한변협 인권재단 사무총장\n• KIS(Korea Internet Studio) 대표\n• 제8회 변호사시험 합격 / 연세대 법대 졸" }
+    ko: { name: "이영현", tag: "변호사·인권가", slogan: '"법률의 시선으로 남북의 마음을 잇는 변호사"', specialty: "탈북민 법 률 자문 / 북한 인권 정책", bio: "대한민국 1호 탈북민 변호사로서 법률적 전문성을 바탕으로 우리 사회 정착 과정의 실질적인 갈등 을 해결하며, 보편적 인권과 통합의 가치를 새롭게 디자인합니다.", career: "• 법무법인 이래 파트너 변호사\n• 대한변협 인권재단  사무총장\n• KIS(Korea Internet Studio) 대표\n• 제8회 변호사시험 합격 / 연세대 법대 졸" }
   },
   {
     id: "des-4",
@@ -29,22 +29,10 @@ const mockDesigners = [
     ko: { name: "김아라", tag: "배우·방송인", slogan: '"예술을 통해 남북의 거리를 좁히는 화합의 아이콘"', specialty: "남북 문화 예술 / 미디어 속 북한 이미지", bio: "영화와 드라마를 넘나드는 배우로서, 문화 예술 콘텐츠가 가진 정서적 힘을 활용해 남북한 주민들이 서로를 따뜻하게 이해하도록 돕습니다.", career: "• 드라마 \"사랑의 불시착\" 출연 (사택 마을 주민)\n• 웹드라마 \"아는 사람\" 여주인공 역\n• 채널A \"이제 만나러 갑니다\" 메인 출연\n• 남북 문화 예술 교류 홍보대사 활동" }
   },
   {
-    id: "des-2",
-    isHidden: true,
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000",
-    ko: { name: "정유나", tag: "방송인·유튜버", slogan: '"북한의 진실을 세계에 전하는 글로벌 디자이너"', specialty: "북한 실상 증언 / 글로벌 인권 소통", bio: "뛰어난 영어 실력과 대중적인 입담을 겸비한 인권 활동가로, 다양한 미디어를 통해 북한의 실상을 알리고 남북한 사이의 편견을 해소하는 활동을 합니다.", career: "• 유튜브 \"정유나 TV\" 운영 (구독자 30만+)\n• 채널A \"이제 만나러 갑니다\" 고정 출연\n• 투자자 짐 로저스 방한 전담 통역\n• 북한 인권 운동 및 국제 강연 다수" }
-  },
-  {
-    id: "des-6",
-    isHidden: true,
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000",
-    ko: { name: "나민희", tag: "유튜버·엘리트", slogan: '"우리가 몰랐던 진짜 평양의 일상을 전하는 디자이너"', specialty: "평양 상류층 문화 / 북한 엘리트 교육", bio: "유럽 유학 및 북한 엘리트 집안의 경험을 바탕으로, 기존의 고정관념에서 벗어난 세련되고 정확한 평양의 실상을 대중에게 전달합니다.", career: "• 유튜브 \"평양여자 나민희\" 채널 운영\n• 유럽(몰타) 유학 및 파견 근무 경험\n• 이화여자대학교 정치외교학과 재학\n• 방송 \"이제 만나러 갑니다\" 전문 패널" }
-  },
-  {
     id: "des-7",
     isHidden: false,
     img: "assets/김강우.jpg",
-    ko: { name: "김강우", tag: "방송인·작가", slogan: '"기록으로 남북의 마음을 잇는 디자이너"', specialty: "북한 실상 증언 / 도서 집필 / 사회 활동", bio: "북한 내부의 생생한 경험을 바탕으로, 우리가 몰랐던 북한의 진실을 글과 목소리로 전합니다. 최근 저서를 통해 남북 청년들에게 희망의 메시지를 전달하고 있습니다.", career: "• 저서 《나의 지옥은 나를 죽이지 못했다》 집필 및 발간\n• 채널A \"이제 만나러 갑니다\" 정규 출연\n• 북한 인권 개선 캠페인 및 활동가\n• 공공기관/학교 대상 통일 안보 강사" }      
+    ko: { name: "김강우", tag: "방송인·작가", slogan: '"기록으로 남북의 마음을 잇는 디자이너"', specialty: "북한 실상 증언 / 도서 집필 / 사회 활동", bio: "북한 내부의 생생한 경험을 바탕으로, 우리가 몰랐던 북한의 진실을 글과 목소리로 전합니다. 최근 저서를 통해 남북 청년들에게 희망의 메시지를 전달하고 있습니다.", career: "• 저서 《나의 지옥은 나를 죽이지 못했다》 집필 및 발 간\n• 채널A \"이제 만나러 갑니다\" 정규 출연\n• 북한 인권 개선 캠페인 및 활동가\n• 공공기관/학교 대상 통일 안보 강사" }      
   },
   {
     id: "des-10",
@@ -53,10 +41,22 @@ const mockDesigners = [
     ko: { name: "정하늘", tag: "방송인·통일교육 강사", slogan: '"꿈과 도전을 통해 남북의 벽을 허무는 메신저"', specialty: "정착 성공 수기 / 통일 교육 / 방송 활동", bio: "탈북 과정과 남한 정착기에서의 생생한 경험을 바탕으로, 대한민국에서 꿈을 실현해 나가는 희망의 메시지를 전달합니다. 편견을 넘어선 따뜻한 통합의 미래를 디자인합니다.", career: "• 채널A \"이제 만나러 갑니다\"(이만갑) 다수 출연\n• 남북하나재단 '찾아가는 통일교육' 전문 강사\n• 주요 공공기관 및 군부대 대상 통일 안보 강연\n• 정착 성공 사례 발표 및 토크 콘서트 패널 활동" }
   },
   {
+    id: "des-2",
+    isHidden: true,
+    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000",
+    ko: { name: "정유나", tag: "방송인·유튜버", slogan: '"북한의 진실을 세계에 전하는 글로벌 디자이너"', specialty: "북한 실 상 증언 / 글로벌 인권 소통", bio: "뛰어난 영어 실력과 대중적인 입담을 겸비한 인권 활동가로, 다양한 미디어를 통해 북한의 실상 을 알리고 남북한 사이의 편견을 해소하는 활동을 합니다.", career: "• 유튜브 \"정유나 TV\" 운영 (구독자 30만+)\n• 채널A \"이제 만나러 갑니다\" 고정 출연\n• 투자자 짐 로저스 방한 전담 통역\n• 북한 인권 운동 및 국제 강연 다수" }
+  },
+  {
+    id: "des-6",
+    isHidden: true,
+    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000",
+    ko: { name: "나민희", tag: "유튜버·엘리트", slogan: '"우리가 몰랐던 진짜 평양의 일상을 전하는 디자이너"', specialty: "평 양 상류층 문화 / 북한 엘리트 교육", bio: "유럽 유학 및 북한 엘리트 집안의 경험을 바탕으로, 기존의 고정관념에서 벗어난 세련되 고 정확한 평양의 실상을 대중에게 전달합니다.", career: "• 유튜브 \"평양여자 나민희\" 채널 운영\n• 유럽(몰타) 유학 및 파견 근 무 경험\n• 이화여자대학교 정치외교학과 재학\n• 방송 \"이제 만나러 갑니다\" 전문 패널" }
+  },
+  {
     id: "des-8",
     isHidden: true,
     img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000",
-    ko: { name: "이은평", tag: "방송인·분석가", slogan: '"핵시설 부대 출신의 눈으로 본 국제 정세 전문가"', specialty: "북한 국방 기술 / 러시아 파병 실상", bio: "북한 특수 공병 부대 근무 및 러시아 파병 경험을 토대로, 현재 급변하는 한반도 안보 상황과 국제 정세의 이면을 생생하게 해설합니다.", career: "• 북한군 131부대(핵시설 건설) 근무\n• 러시아 파병 근무 중 탈북 및 한국 입국\n• 파병 북한군 지원 캠페인 및 스피치 활동\n• 채널A \"이제 만나러 갑니다\" 출연" }
+    ko: { name: "이은평", tag: "방송인·분석가", slogan: '"핵시설 부대 출신의 눈으로 본 국제 정세 전문가"', specialty: "북한  국방 기술 / 러시아 파병 실상", bio: "북한 특수 공병 부대 근무 및 러시아 파병 경험을 토대로, 현재 급변하는 한반도 안보 상황과 국제 정세의 이면을 생생하게 해설합니다.", career: "• 북한군 131부대(핵시설 건설) 근무\n• 러시아 파병 근무 중 탈북 및 한국 입 국\n• 파병 북한군 지원 캠페인 및 스피치 활동\n• 채널A \"이제 만나러 갑니다\" 출연" }
   }
 ];
 
@@ -67,14 +67,28 @@ export default function DesignersSection() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [formData, setFormData] = useState({
     clientOrg: "",
+    orgType: "public",
     clientName: "",
+    clientPosition: "팀장·실무자",
     clientContact: "",
+    clientEmail: "",
     designerName: "",
-    target: "",
+    eventPurpose: "인식개선 캠페인",
     topic: "",
-    date: "",
-    time: "",
-    budget: "",
+    date1: "",
+    time1: "2시간(표준)",
+    date2: "",
+    locationType: "오프라인 현장 강연",
+    address: "",
+    audienceAge: "대학생·취준생",
+    audienceCount: "",
+    audienceTrait: "입문(기초지식 없음)",
+    lectureType: "단독 강연",
+    budgetRange: "기관 내부 규정에 따름",
+    paymentMethod: "세금계산서 발행",
+    additionalSupport: "해당 없음",
+    replyDeadline: "1주일 이내",
+    loveCall: "더라운드의 전문성 신뢰",
     details: ""
   });
   const [submitting, setSubmitting] = useState(false);
@@ -82,13 +96,11 @@ export default function DesignersSection() {
   useEffect(() => {
     let isMounted = true;
     async function fetchDesigners() {
-      console.log("Fetching designers...");
       try {
         const res = await fetch("/api/designers", { cache: 'no-store' });
         if (res.ok && isMounted) {
           const data = await res.json();
           if (data && data.length > 0) {
-            // Keep the order and hidden status defined in mockDesigners
             const liveMap = new Map(data.map(d => [d.id, d]));
             const orderedList = mockDesigners.map(d => ({
                 ...d,
@@ -106,19 +118,10 @@ export default function DesignersSection() {
   }, []);
 
   const activeDesigners = designers.filter(d => !d.isHidden);
-  // User specifically wants Park Yu-seong (des-4) at 4th position.
-  // The visible list will be Kim So-yeon, Kim Eun-ju, Lee Young-hyeon, Park Yu-seong, Kim Ara.
   const visibleList = showAll ? activeDesigners : activeDesigners;
 
-  const openDetail = (d) => {
-    setSelectedDesigner(d);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeDetail = () => {
-    setSelectedDesigner(null);
-    document.body.style.overflow = "";
-  };
+  const openDetail = (d) => { setSelectedDesigner(d); document.body.style.overflow = "hidden"; };
+  const closeDetail = () => { setSelectedDesigner(null); document.body.style.overflow = ""; };
 
   useEffect(() => {
     const handleOpenBooking = () => openBooking();
@@ -133,15 +136,8 @@ export default function DesignersSection() {
     document.body.style.overflow = "hidden";
   };
 
-  const closeBooking = () => {
-    setBookingOpen(false);
-    document.body.style.overflow = "";
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const closeBooking = () => { setBookingOpen(false); document.body.style.overflow = ""; };
+  const handleChange = (e) => { const { name, value } = e.target; setFormData(prev => ({ ...prev, [name]: value })); };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -154,166 +150,48 @@ export default function DesignersSection() {
       });
       if (res.ok) {
         alert("강연 의뢰 신청이 정상적으로 완료되었습니다! 담당자가 연락드리겠습니다.");
-        setFormData({
-          clientOrg: "",
-          clientName: "",
-          clientContact: "",
-          designerName: "",
-          target: "",
-          topic: "",
-          date: "",
-          time: "",
-          budget: "",
-          details: ""
-        });
         closeBooking();
-      } else {
-        alert("신청 중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
     } catch (err) {
       console.error(err);
-      alert("네트워크 통신 중 오류가 발생했습니다.");
     } finally {
       setSubmitting(false);
     }
   };
 
-  useEffect(() => {
-    if (designers.length > 0) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      document.querySelectorAll(".designer-card").forEach((el) => {
-        observer.observe(el);
-      });
-
-      return () => observer.disconnect();
-    }
-  }, [visibleList]);
-
   return (
-    <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-primary)" }}>
+    <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-primary)" }}>    
       <div className="container">
         <div className="section-header text-center">
           <span className="section-subtitle">PEOPLE OF THE FUTURE</span>
-          <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>
-            한반도 디자이너
-          </h2>
-          <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>
-            한반도 통합을 위한 디자이너를 소개합니다.
-          </p>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>한반도 디자이너</h2>
+          <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>한반도 통합을 위한 디자이너를 소개합니다.</p>
         </div>
 
         <div className="designers-grid-container" style={{ marginTop: "4rem" }}>
-          {designers.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--color-text-muted)' }}>
-              디자이너 정보를 안전하게 불러오는 중입니다...
-            </div>
-          ) : (
-            <div className="designers-grid responsive-grid-4" id="designers-grid">
-              {visibleList.map((d) => (
-                <div 
-                  className="designer-card reveal-on-scroll" 
-                  key={d.id}
-                  style={{ 
-                    background: "var(--color-bg-secondary)",
-                    borderRadius: "24px",
-                    overflow: "hidden",
-                    boxShadow: "var(--shadow-md)",
-                    border: "1px solid var(--color-border)",
-                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    cursor: "pointer"
-                  }}
-                  onClick={() => openDetail(d)}
-                >
-                  <div className="designer-img-wrapper" style={{ position: "relative", width: "100%", aspectRatio: "1/1.2", overflow: "hidden" }}>
-                    <img
-                      src={d.img}
-                      alt={d.ko?.name || "디자이너"}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
-                      onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.08)"}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
-                      onError={(e) => {
-                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(d.ko?.name || "D")}&background=f44336&color=fff&size=512`;
-                      }}
-                    />
-                  </div>
-                  <div className="designer-info" style={{ padding: "1.5rem", textAlign: "center" }}>
-                    <span className="designer-tag" style={{ 
-                      display: "inline-block",
-                      backgroundColor: "var(--color-primary)",
-                      color: "white", 
-                      fontWeight: 700, 
-                      fontSize: "0.75rem",
-                      padding: "0.3rem 1rem",
-                      borderRadius: "4px",
-                      marginBottom: "0.8rem",
-                      boxShadow: "0 2px 4px rgba(220, 20, 20, 0.2)"
-                    }}>
-                      {d.ko?.tag}
-                    </span>
-                    <h3 className="designer-name" style={{ fontSize: "1.3rem", fontWeight: 800, margin: "0 0 0.6rem 0", color: "var(--color-text-primary)" }}>
-                      {d.ko?.name}
-                    </h3>
-                    <p className="designer-slogan" style={{ 
-                      fontSize: "0.85rem", 
-                      color: "var(--color-primary)", 
-                      fontWeight: "700",
-                      lineHeight: "1.4",
-                      display: "-webkit-box",
-                      WebkitLineClamp: "2",
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      margin: "0 auto",
-                      maxWidth: "90%"
-                    }}>
-                      {d.ko?.slogan}
-                    </p>
-                  </div>
+          <div className="designers-grid responsive-grid-4">
+            {visibleList.map((d) => (
+              <div className="designer-card reveal-on-scroll" key={d.id} style={{ background: "var(--color-bg-secondary)", borderRadius: "24px", overflow: "hidden", boxShadow: "var(--shadow-md)", border: "1px solid var(--color-border)", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", cursor: "pointer" }} onClick={() => openDetail(d)}>
+                <div className="designer-img-wrapper" style={{ position: "relative", width: "100%", aspectRatio: "1/1.2", overflow: "hidden" }}>
+                  <img src={d.img} alt={d.ko?.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
-              ))}
-            </div>
-          )}
+                <div className="designer-info" style={{ padding: "1.5rem", textAlign: "center" }}>
+                  <span className="designer-tag" style={{ display: "inline-block", backgroundColor: "var(--color-primary)", color: "white", fontWeight: 700, fontSize: "0.75rem", padding: "0.3rem 1rem", borderRadius: "4px", marginBottom: "0.8rem" }}>{d.ko?.tag}</span>
+                  <h3 className="designer-name" style={{ fontSize: "1.3rem", fontWeight: 800, margin: "0 0 0.6rem 0", color: "var(--color-text-primary)" }}>{d.ko?.name}</h3>
+                  <p className="designer-slogan" style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: "700", lineHeight: "1.4" }}>{d.ko?.slogan}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="text-center" style={{ marginTop: "3.5rem" }}>
-          <button 
-            className="btn" 
-            style={{ 
-              minWidth: "220px", 
-              borderRadius: "50px", 
-              fontWeight: 600,
-              fontSize: "0.95rem",
-              padding: "0.8rem 2.5rem",
-              color: "var(--color-primary)",
-              border: "1.5px solid var(--color-primary)",
-              backgroundColor: "transparent",
-              transition: "all 0.3s ease"
-            }}
-            onClick={() => setShowAll(!showAll)}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--color-primary)";
-              e.currentTarget.style.color = "white";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = "var(--color-primary)";
-            }}
-          >
+          <button className="btn" style={{ minWidth: "220px", borderRadius: "50px", fontWeight: 600, fontSize: "0.95rem", padding: "0.8rem 2.5rem", color: "var(--color-primary)", border: "1.5px solid var(--color-primary)", backgroundColor: "transparent" }} onClick={() => setShowAll(!showAll)}>
             {showAll ? "간략히 보기" : "전체보기"}
           </button>
         </div>
       </div>
 
-      {/* Designer Detail Modal */}
       {selectedDesigner && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeDetail}></div>
@@ -325,30 +203,24 @@ export default function DesignersSection() {
                   <div style={{ width: "220px", height: "220px", borderRadius: "50%", overflow: "hidden", margin: "0 auto 2rem", border: "6px solid white", boxShadow: "var(--shadow-md)" }}>
                     <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
-                  <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase" }}>{selectedDesigner.ko.tag}</span>
-                  <h2 style={{ fontSize: "2.4rem", fontWeight: 800, margin: "0.5rem 0", color: "var(--color-text-primary)" }}>{selectedDesigner.ko.name}</h2>
-                  <p style={{ fontSize: "1.05rem", color: "var(--color-primary)", fontWeight: "700" }}>{selectedDesigner.ko.slogan}</p>
-                  <div style={{ backgroundColor: "white", padding: "1.2rem", borderRadius: "16px", fontSize: "0.9rem", border: "2px solid hsla(5, 75%, 48%, 0.1)", textAlign: "left" }}>
-                    <strong style={{ display: "block", color: "var(--color-text-primary)", marginBottom: "0.6rem", fontSize: "0.8rem", textTransform: "uppercase" }}>전문 분야</strong>
+                  <span style={{ color: "var(--color-primary)", fontWeight: 800 }}>{selectedDesigner.ko.tag}</span>
+                  <h2 style={{ fontSize: "2.4rem", fontWeight: 800, margin: "0.5rem 0" }}>{selectedDesigner.ko.name}</h2>
+                  <p style={{ color: "var(--color-primary)", fontWeight: "700" }}>{selectedDesigner.ko.slogan}</p>
+                  <div style={{ backgroundColor: "white", padding: "1.2rem", borderRadius: "16px", textAlign: "left", marginTop: "1rem" }}>
+                    <strong style={{ display: "block", fontSize: "0.8rem" }}>전문 분야</strong>
                     <span>{selectedDesigner.ko.specialty}</span>
                   </div>
                 </div>
                 <div className="designer-detail-right">
                   <div style={{ marginBottom: "2.5rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                      <span style={{ width: "4px", height: "18px", backgroundColor: "var(--color-primary)", borderRadius: "2px" }}></span>
-                      강사 소개
-                    </h3>
-                    <p style={{ fontSize: "1.05rem", color: "var(--color-text-primary)", lineHeight: "1.8", whiteSpace: "pre-line" }}>{selectedDesigner.ko.bio}</p>
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem" }}>강사 소개</h3>
+                    <p style={{ fontSize: "1.05rem", lineHeight: "1.8", whiteSpace: "pre-line" }}>{selectedDesigner.ko.bio}</p>
                   </div>
                   <div style={{ marginBottom: "3rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                      <span style={{ width: "4px", height: "18px", backgroundColor: "var(--color-primary)", borderRadius: "2px" }}></span>
-                      주요 경력 및 활동
-                    </h3>
-                    <div style={{ fontSize: "1rem", color: "var(--color-text-muted)", lineHeight: "2", whiteSpace: "pre-line", backgroundColor: "var(--color-bg-primary)", padding: "1.5rem", borderRadius: "16px" }}>{selectedDesigner.ko.career}</div>
+                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem" }}>주요 경력 및 활동</h3>
+                    <div style={{ fontSize: "1rem", lineHeight: "2", whiteSpace: "pre-line", backgroundColor: "var(--color-bg-primary)", padding: "1.5rem", borderRadius: "16px" }}>{selectedDesigner.ko.career}</div>
                   </div>
-                  <button className="btn btn-primary btn-block btn-lg" onClick={() => openBooking(selectedDesigner.ko.name)} style={{ borderRadius: "16px" }}>강연 및 교육 의뢰하기</button>
+                  <button className="btn btn-primary btn-block btn-lg" onClick={() => openBooking(selectedDesigner.ko.name)}>강연 및 교육 의뢰하기</button>
                 </div>
               </div>
             </div>
@@ -356,34 +228,127 @@ export default function DesignersSection() {
         </div>
       )}
 
-      {/* Booking Form Modal */}
       {bookingOpen && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeBooking}></div>
-          <div className="modal-container" style={{ maxWidth: "650px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", maxHeight: "90vh", overflowY: "auto", position: "relative" }}>
+          <div className="modal-container" style={{ maxWidth: "1000px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", maxHeight: "95vh", overflowY: "auto", position: "relative" }}>
             <button className="modal-close" onClick={closeBooking} style={{ top: "20px", right: "20px" }}>&times;</button>
-            <div className="modal-body" style={{ padding: "3.5rem" }}>
-              <h3 style={{ fontSize: "1.8rem", fontWeight: 800, marginBottom: "2rem", color: "var(--color-primary)", textAlign: "center" }}>강연 섭외 신청 (한반도 디자이너)</h3>
+            <div className="modal-body" style={{ padding: "3rem" }}>
+              <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청 (Master)</h3>
+              <p style={{ textAlign: "center", color: "var(--color-text-muted)", marginBottom: "3rem" }}>불필요한 조율 과정을 줄이기 위해 모든 항목을 '선택형'으로 구성했습니다.</p>
+              
               <form onSubmit={handleSubmit} className="admin-form">
-                <div style={{ marginBottom: "2rem" }}>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)" }}>1. 기본 정보</h4>
-                  <div className="form-group" style={{ marginBottom: "1rem" }}><label>기관/단체명 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required /></div>
-                  <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
-                    <div className="form-group" style={{ flex: 1 }}><label>신청자 성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required /></div>
-                    <div className="form-group" style={{ flex: 1 }}><label>연락처/이메일 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required /></div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "3rem" }}>
+                  
+                  {/* Left Column: Who & What */}
+                  <div>
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem" }}>1. 신청 기관 및 담당자</h4>
+                    <div className="form-group"><label>기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>기관 유형 *</label>
+                        <select name="orgType" value={formData.orgType} onChange={handleChange}>
+                          {["공공기관·지자체", "초·중·고교", "대학교·대학원", "일반기업", "NGO·비영리", "기타"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group" style={{ flex: 1 }}><label>담당자 직함 *</label>
+                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange}>
+                          {["주무관·사무관", "교사·교수", "팀장·실무자", "대표·임원", "학생회·동아리장"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required /></div>
+                      <div className="form-group" style={{ flex: 1 }}><label>연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required /></div>
+                    </div>
+                    <div className="form-group"><label>이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required /></div>
+
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>2. 행사 개요</h4>
+                    <div className="form-group"><label>행사 성격 *</label>
+                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange}>
+                        {["정착지원 교육", "인식개선 캠페인", "리더십 역량강화", "문화·예술 행사", "정책자문·포럼"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                      </select>
+                    </div>
+                    <div className="form-group"><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>진행 방식 *</label>
+                        <select name="locationType" value={formData.locationType} onChange={handleChange}>
+                          {["오프라인 현장 강연", "실시간 온라인(Zoom 등)", "사전 녹화 송출"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group" style={{ flex: 1 }}><label>강연 시간 *</label>
+                        <select name="time1" value={formData.time1} onChange={handleChange}>
+                          {["1시간 이내", "2시간(표준)", "3시간 이상", "전일 워크숍"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="form-group"><label>상세 주소 (오프라인 시)</label><input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="출장비 산정용" /></div>
+                  </div>
+
+                  {/* Right Column: Details & Benefits */}
+                  <div>
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem" }}>3. 청중 및 강연 상세</h4>
+                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>주요 연령대 *</label>
+                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange}>
+                          {["청소년", "대학생·취준생", "일반 성인", "시니어", "전문가·공무원"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required /></div>
+                    </div>
+                    <div className="form-group"><label>청중 성향 *</label>
+                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange}>
+                        {["입문(기초지식 없음)", "심화(전문지식 희망)", "인식개선 필요", "실무 적용 희망"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                      </select>
+                    </div>
+                    <div className="form-group"><label>강연 형태 *</label>
+                      <select name="lectureType" value={formData.lectureType} onChange={handleChange}>
+                        {["단독 강연", "토크 콘서트(Q&A 위주)", "패널 토론", "1:1 멘토링"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                      </select>
+                    </div>
+
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>4. 예산 및 조건</h4>
+                    <div className="form-group"><label>강연료 규모 *</label>
+                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange}>
+                        {["기관 내부 규정에 따름", "30~50만원", "50~100만원", "100만원 이상", "협의 필요"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                      </select>
+                    </div>
+                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>정산 방법 *</label>
+                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange}>
+                          {["세금계산서 발행", "카드 결제", "원천세 신고(개인 이체)", "기타"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group" style={{ flex: 1 }}><label>추가 지원 여부</label>
+                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange}>
+                          {["교통비 별도 지급", "숙박 제공 가능", "식사 제공 가능", "해당 없음"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                    </div>
+
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>5. 마감 및 선정 이유</h4>
+                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>회신 희망 기한 *</label>
+                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange}>
+                          {["3일 이내(긴급)", "1주일 이내", "2주일 이내", "여유 있음"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group" style={{ flex: 1 }}><label>선정 이유 *</label>
+                        <select name="loveCall" value={formData.loveCall} onChange={handleChange}>
+                          {["방송 출연 모습이 좋아서", "저서 내용을 직접 듣고 싶어서", "주제와 경력이 일치해서", "더라운드의 전문성 신뢰", "지인 강력 추천"].map(opt => <option key={item} value={opt}>{opt}</option>)}
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div style={{ marginBottom: "2rem" }}>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)" }}>2. 강연 정보</h4>
-                  <div className="form-group" style={{ marginBottom: "1rem" }}>
-                    <label>희망 디자이너 *</label>
-                    <select name="designerName" value={formData.designerName} onChange={handleChange} required style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", border: "1px solid var(--color-border)" }}>
-                      <option value="">디자이너 선택</option>
-                      {activeDesigners.map(d => <option key={d.id} value={d.ko.name}>{d.ko.name}</option>)}
-                    </select>
-                  </div>
+
+                <div className="form-group" style={{ marginTop: "2rem" }}><label>기타 요청사항</label><textarea name="details" rows="3" value={formData.details} onChange={handleChange} placeholder="추가로 전달하실 내용을 자유롭게 적어주세요."></textarea></div>
+
+                <div style={{ textAlign: "center", marginTop: "3rem" }}>
+                  <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ height: "4.5rem", fontSize: "1.3rem", borderRadius: "20px", boxShadow: "0 8px 24px rgba(220, 20, 20, 0.2)" }} disabled={submitting}>
+                    {submitting ? "전송 중..." : "위 내용으로 섭외 신청 완료하기"}
+                  </button>
+                  <p style={{ marginTop: "1.5rem", fontSize: "0.9rem", color: "var(--color-text-muted)" }}>신청서 접수 즉시 담당자에게 알림이 전송됩니다.</p>
                 </div>
-                <button type="submit" className="btn btn-primary btn-block btn-lg" disabled={submitting}>{submitting ? "발송 중..." : "섭외 신청 완료하기"}</button>
               </form>
             </div>
           </div>
