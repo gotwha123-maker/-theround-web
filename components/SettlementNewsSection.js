@@ -23,10 +23,9 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
         const res = await fetch("/api/settlement-news", { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
-          // Sort by date descending
           const sorted = data.sort((a, b) => {
-             const dateA = a.date ? new Date(a.date.replace(/\./g, '-')) : new Date(0);
-             const dateB = b.date ? new Date(b.date.replace(/\./g, '-')) : new Date(0);
+             const dateA = a.date && !a.date.includes('관리자') ? new Date(a.date.replace(/\./g, '-')) : new Date(0);
+             const dateB = b.date && !b.date.includes('관리자') ? new Date(b.date.replace(/\./g, '-')) : new Date(0);
              return dateB - dateA;
           });
           setNewsList(sorted);
@@ -48,24 +47,24 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       (item.category && item.category.toLowerCase().includes(q));
     
     const matchesTab = activeTab === "전체" || 
-      (item.category && item.category === getCategoryKey(activeTab)) ||
-      (item.title && item.title.includes(activeTab));
+      (item.category && item.category === getCategoryKey(activeTab));
 
     return matchesSearch && matchesTab;
   });
 
-  function getCategoryKey(label) {
-    switch(label) {
-      case '장학정보': return 'scholarship';
-      case '주택정보': return 'housing';
+  function getCategoryKey(tabId) {
+    switch(tabId) {
+      case '장학': return 'scholarship';
+      case '주택': return 'housing';
       case '일자리': return 'job';
-      case '교육/역량': return 'university';
-      case '생활/복지': return 'welfare';
-      default: return label;
+      case '교육': return 'university';
+      case '복지': return 'welfare';
+      default: return tabId;
     }
   }
   
-  const visibleList = showAll ? filteredNews : filteredNews.slice(0, 4);
+  // Initially show 6, show all if button clicked
+  const visibleList = showAll ? filteredNews : filteredNews.slice(0, 6);
 
   const getCategoryColor = (cat) => {
     switch(cat) {
@@ -147,17 +146,30 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
             </div>
           ) : visibleList.length > 0 ? (
             visibleList.map((item) => (
-              <div key={item.id} className="news-card reveal-on-scroll active" style={{ background: "white", borderRadius: "24px", padding: "2.5rem", border: "1px solid var(--color-border)", display: "flex", flexDirection: "column", height: "100%", transition: "transform 0.3s", boxShadow: "var(--shadow-sm)" }}>
+              <div key={item.id} className="news-card reveal-on-scroll active" style={{ background: "white", borderRadius: "24px", padding: "2.5rem", border: "1px solid var(--color-border)", display: "flex", flexDirection: "column", height: "100%", transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)", boxShadow: "var(--shadow-sm)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-                  <span style={{ backgroundColor: `${getCategoryColor(item.category)}15`, color: getCategoryColor(item.category), padding: "0.4rem 1rem", borderRadius: "50px", fontSize: "0.8rem", fontWeight: 800 }}>
+                  <span style={{ 
+                    backgroundColor: `${getCategoryColor(item.category)}15`, 
+                    color: getCategoryColor(item.category), 
+                    padding: "0.5rem 1rem", 
+                    borderRadius: "50px", 
+                    fontSize: "0.85rem", 
+                    fontWeight: 800,
+                    border: `1px solid ${getCategoryColor(item.category)}20`
+                  }}>
                     {getCategoryLabel(item.category)}
                   </span>
-                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", fontWeight: 500 }}>{formatDate(item.date)}</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", fontWeight: 600 }}>{formatDate(item.date)}</span>
                 </div>
-                <h3 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: "1.5rem", flexGrow: 1, lineHeight: "1.6", color: "var(--color-text-primary)" }}>{item.title}</h3>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "1.5rem", borderTop: "1px solid #f1f1f1" }}>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#777" }}>{item.badge || "공공기관"}</span>
-                  <a href={item.url || item.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-primary)", fontWeight: 800, textDecoration: "none", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.3rem" }}>공고보기 <span>&rarr;</span></a>
+                <h3 style={{ fontSize: "1.3rem", fontWeight: 800, marginBottom: "1rem", lineHeight: "1.45", color: "var(--color-text-primary)" }}>{item.title}</h3>
+                <p className="news-excerpt" style={{ color: "var(--color-text-muted)", fontSize: "1rem", lineHeight: "1.7", marginBottom: "2rem", flexGrow: 1 }}>
+                  {item.excerpt || "탈북민 정착에 도움이 되는 실질적인 혜택 정보를 확인해 보세요."}
+                </p>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "1.5rem", borderTop: "1px solid var(--color-border)" }}>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-primary)" }}>{item.badge || "공공기관"}</span>
+                  <a href={item.url || item.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-text-primary)", fontWeight: 800, textDecoration: "none", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.4rem", transition: "all 0.2s" }} className="btn-detail-link">
+                    자세히 보기 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
                 </div>
               </div>
             ))
@@ -166,7 +178,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
           )}
         </div>
 
-        {filteredNews.length > 4 && (
+        {filteredNews.length > 6 && (
           <div style={{ textAlign: "center", marginTop: "4rem" }}>
             <button onClick={() => setShowAll(!showAll)} style={{ background: "white", border: "1.5px solid var(--color-primary)", color: "var(--color-primary)", fontWeight: 800, padding: "0.8rem 2rem", borderRadius: "50px", cursor: "pointer", transition: "all 0.2s" }}>
               {showAll ? "간략히 보기" : `전체 소식 더보기 (${filteredNews.length}건)`}

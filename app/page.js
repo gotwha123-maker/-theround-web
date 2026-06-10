@@ -11,7 +11,6 @@ import DesignersSection from "../components/DesignersSection";
 import BarriersSection from "../components/BarriersSection";
 import SolutionsSection from "../components/SolutionsSection";
 import StoriesSection from "../components/StoriesSection";
-import AboutFounder from "../components/AboutFounder";
 import DonationSection from "../components/DonationSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
@@ -134,7 +133,6 @@ export default function Home() {
         <SettlementNewsSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div id="stories"><StoriesSection /></div>
 
-        <AboutFounder />
         <DonationSection />
         <div id="contact"><ContactSection /></div>
       </main>

@@ -2131,11 +2131,26 @@ a {
 
 @media (max-width: 768px) {
     .section {
-        padding: 5rem 0;
+        padding: 3.5rem 0;
     }
     
     .header-actions .btn-header-donate {
         display: none;
+    }
+
+    .news-card {
+        padding: 1.5rem !important;
+        border-radius: 20px !important;
+    }
+
+    .news-card h4 {
+        font-size: 1.15rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .news-card .news-excerpt {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
     }
 
     .hamburger {

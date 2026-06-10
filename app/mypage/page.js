@@ -6,18 +6,24 @@ import Footer from "../../components/Footer";
 
 export default function MyPage() {
   const [mounted, setMounted] = useState(false);
+  const [userData, setUserData] = useState({ name: "동반자", joinDate: "2026. 06. 09" });
 
   useEffect(() => {
     setMounted(true);
     // Basic auth check
     const session = localStorage.getItem("mock_session");
-    if (!session || session !== "user") {
-      // If not logged in as user, check if admin. If admin, go to admin. Else go home.
-      if (session === "admin") {
-        window.location.href = "/admin";
-      } else {
-        window.location.href = "/";
-      }
+    if (!session || (session !== "user" && session !== "admin")) {
+      window.location.href = "/";
+    }
+
+    // Load actual user data from localStorage
+    const storedName = localStorage.getItem("theround_user_name");
+    const storedDate = localStorage.getItem("theround_join_date");
+    if (storedName) {
+      setUserData({
+        name: storedName,
+        joinDate: storedDate || new Date().toLocaleDateString()
+      });
     }
   }, []);
 
@@ -33,7 +39,7 @@ export default function MyPage() {
             <span className="section-subtitle">COMPANION LOUNGE</span>
             <h2 style={{ fontSize: "2rem", fontWeight: 800 }}>
               환영합니다!<br/>
-              <span className="highlight-text">더라운드 디지털 동반자님</span>
+              <span className="highlight-text">더라운드 {userData.name}님</span>
             </h2>
           </div>
 
@@ -65,42 +71,64 @@ export default function MyPage() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", position: "relative", zIndex: 2 }}>
               <div>
                 <p style={{ fontSize: "0.75rem", opacity: 0.8, marginBottom: "0.2rem" }}>MEMBER</p>
-                <p style={{ fontSize: "1.2rem", fontWeight: 700 }}>홍길동 후원자님</p>
+                <p style={{ fontSize: "1.2rem", fontWeight: 700 }}>{userData.name} 후원자님</p>
               </div>
               <div style={{ textAlign: "right" }}>
                 <p style={{ fontSize: "0.75rem", opacity: 0.8, marginBottom: "0.2rem" }}>SINCE</p>
-                <p style={{ fontSize: "1rem", fontFamily: "monospace" }}>2026. 06</p>
+                <p style={{ fontSize: "1rem", fontFamily: "monospace" }}>{userData.joinDate}</p>
               </div>
             </div>
           </div>
 
-          {/* Thank You Message */}
-          <div style={{
-            background: "var(--color-bg-secondary)",
-            borderRadius: "20px",
-            padding: "2.5rem",
-            border: "1px solid var(--color-border)",
-            boxShadow: "var(--shadow-sm)",
-            lineHeight: "1.7",
-            color: "var(--color-text-primary)"
-          }}>
-            <h3 style={{ fontSize: "1.2rem", color: "var(--color-primary)", marginBottom: "1.2rem", fontWeight: 800 }}>
-              먼저 온 통일민과 함께, 한반도의 내일을 그립니다.
-            </h3>
-            <p style={{ marginBottom: "1.2rem", fontSize: "0.95rem" }}>
-              안녕하세요 동반자님. 더라운드에 가입해 주셔서 진심으로 감사드립니다.
-            </p>
-            <p style={{ marginBottom: "1.2rem", fontSize: "0.95rem" }}>
-              동반자님의 관심과 참여는 우리 사회의 보이지 않는 장벽을 허물고, 남북 청년들이 각자의 전문성을 살려 사회의 리더로 성장하는 데 가장 큰 원동력이 됩니다.
-            </p>
-            <p style={{ marginBottom: "1.2rem", fontSize: "0.95rem" }}>
-              이곳 라운지에서는 앞으로 동반자님만을 위한 특별한 행사 초청, 정기 간행물, 그리고 투명한 후원금 사용 내역을 확인하실 수 있도록 준비 중입니다.
-            </p>
-            <p style={{ fontWeight: 700, color: "var(--color-text-primary)", fontSize: "0.95rem" }}>
-              작은 연대가 모여 거대한 변화를 만듭니다. 그 변화의 시작에 함께해 주셔서 고맙습니다.
-            </p>
-            <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px dashed var(--color-border)", textAlign: "right", fontStyle: "italic", color: "var(--color-text-muted)", fontSize: "0.9rem" }}>
-              - 더라운드 팀 일동 드림
+          {/* Member Exclusive Content Section (Migrated) */}
+          <div className="exclusive-content-section" style={{ marginTop: "1rem", paddingTop: "0rem" }}>
+            <h4 style={{ marginBottom: "1.5rem", color: "var(--color-primary)", display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "1.2rem", fontWeight: 800 }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              회원님을 위한 특별한 감사
+            </h4>
+            
+            {/* Gratitude Video */}
+            <div className="video-placeholder" style={{ width: "100%", aspectRatio: "16/9", background: "#000", borderRadius: "20px", position: "relative", overflow: "hidden", marginBottom: "2rem", boxShadow: "var(--shadow-lg)" }}>
+              <img src="/assets/story_book.png" alt="감사 영상 썸네일" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.6 }} />
+              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "white" }}>
+                <button className="play-btn" style={{ width: "70px", height: "70px", borderRadius: "50%", background: "var(--color-primary)", border: "none", color: "white", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", marginBottom: "1rem", transition: "all 0.3s", boxShadow: "0 0 20px rgba(var(--color-primary-rgb), 0.5)" }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+                <span style={{ fontWeight: 700, fontSize: "1.1rem", textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>더라운드 감사 메시지 (영상)</span>
+              </div>
+            </div>
+
+            {/* Digital Gratitude Card (Enhanced) */}
+            <div className="gratitude-card-ui" style={{ 
+              background: "#fff", 
+              padding: "3rem 2rem", 
+              borderRadius: "24px", 
+              border: "1px solid var(--color-border)", 
+              boxShadow: "var(--shadow-md)", 
+              position: "relative", 
+              overflow: "hidden", 
+              backgroundImage: "radial-gradient(var(--color-primary) 0.6px, transparent 0.6px)", 
+              backgroundSize: "24px 24px", 
+              backgroundColor: "#fffaf4" 
+            }}>
+              <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
+                <div style={{ fontFamily: "'Georgia', serif", fontStyle: "italic", color: "var(--color-primary)", fontSize: "1.4rem", marginBottom: "1.5rem", fontWeight: 700 }}>Thank You Card</div>
+                <p style={{ fontSize: "1.1rem", lineHeight: 2, color: "var(--color-text-primary)", fontWeight: 600, wordBreak: "keep-all" }}>
+                  "회원님의 따뜻한 동행이<br/>
+                  한반도 청년들의 내일을 설계하는<br/>
+                  가장 든든한 주춧돌이 되었습니다."
+                </p>
+                <p style={{ marginTop: "1.5rem", fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: 1.8 }}>
+                  작은 연대가 모여 거대한 변화를 만듭니다.<br/>
+                  그 변화의 시작에 함께해 주셔서 고맙습니다.
+                </p>
+                <div style={{ marginTop: "2rem", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "1.5rem", fontSize: "0.9rem", color: "var(--color-text-muted)", fontWeight: 700 }}>
+                  더라운드(The Round) 임직원 일동 드림
+                </div>
+              </div>
+              <div style={{ position: "absolute", bottom: "-20px", right: "-20px", opacity: 0.08, transform: "rotate(-15deg)" }}>
+                <svg width="150" height="150" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+              </div>
             </div>
           </div>
 

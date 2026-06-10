@@ -62,13 +62,17 @@ export default function Header() {
     if (loginEmail === "admin@theround.kr" && loginPassword === adminPassword) {
       setIsLoggedIn(true);
       localStorage.setItem("mock_session", "admin");
+      localStorage.setItem("theround_user_name", "관리자");
       setAuthOpen(false);
-      window.location.href = "/admin"; // Redirect to admin page
+      window.location.href = "/admin";
     } else if (loginEmail && loginPassword) {
       setIsLoggedIn(true);
       localStorage.setItem("mock_session", "user");
+      // 이메일에서 아이디 부분만 추출하여 임시 이름으로 저장 (실제 데이터 연동 전까지)
+      const tempName = loginEmail.split('@')[0];
+      localStorage.setItem("theround_user_name", tempName);
       setAuthOpen(false);
-      window.location.href = "/mypage"; // Redirect to user page
+      window.location.href = "/mypage";
     } else {
       alert("이메일 또는 비밀번호가 일치하지 않습니다.");
     }
@@ -80,6 +84,8 @@ export default function Header() {
       alert(`${signupName}님, 더라운드의 디지털 동반자가 되신 것을 환영합니다!`);
       setIsLoggedIn(true);
       localStorage.setItem("mock_session", "user");
+      localStorage.setItem("theround_user_name", signupName);
+      localStorage.setItem("theround_join_date", new Date().toLocaleDateString());
       setAuthOpen(false);
       window.location.href = "/mypage";
     }
@@ -247,15 +253,23 @@ export default function Header() {
               </div>
 
               {authMode === "login" ? (
-                <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+                <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }} autoComplete="new-password">
+                  {/* Fake inputs to fool browser autocomplete */}
+                  <input style={{ display: "none" }} type="text" name="fake-user-name" />
+                  <input style={{ display: "none" }} type="password" name="fake-password" />
+                  
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                     <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>이메일 주소</label>
                     <input 
                       type="email" 
+                      name="tr_secure_user_email"
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
+                      onFocus={(e) => e.target.removeAttribute('readonly')}
+                      readOnly
                       placeholder="이메일을 입력하세요" 
                       required 
+                      autoComplete="off"
                       style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
                     />
                   </div>
@@ -264,10 +278,14 @@ export default function Header() {
                     <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>비밀번호</label>
                     <input 
                       type="password" 
+                      name="tr_secure_user_password"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
+                      onFocus={(e) => e.target.removeAttribute('readonly')}
+                      readOnly
                       placeholder="비밀번호를 입력하세요" 
                       required 
+                      autoComplete="new-password"
                       style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
                     />
                   </div>

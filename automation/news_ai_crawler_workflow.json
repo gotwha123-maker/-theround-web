@@ -2,6 +2,17 @@
   "name": "더라운드 탈북민 정착 뉴스 AI 자동 수집 및 요약 업로더",
   "nodes": [
     {
+      "parameters": {},
+      "id": "manual-trigger-node",
+      "name": "When Clicked",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        100
+      ]
+    },
+    {
       "parameters": {
         "rule": {
           "interval": [
@@ -26,8 +37,36 @@
         "url": "https://www.nkrf.or.kr/main/rss.do",
         "options": {}
       },
-      "id": "fetch- Hana-Foundation-rss",
+      "id": "fetch-hana-foundation-rss",
       "name": "Fetch Hana Foundation News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        420,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.korea.kr/rss/dept_unikorea.xml",
+        "options": {}
+      },
+      "id": "fetch-unikorea-rss",
+      "name": "Fetch Ministry of Unification News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        420,
+        150
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.korea.kr/rss/local.xml",
+        "options": {}
+      },
+      "id": "fetch-local-gov-rss",
+      "name": "Fetch Local Gov News (8 Cities)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4,
       "position": [
@@ -37,10 +76,81 @@
     },
     {
       "parameters": {
+        "url": "https://apply.lh.or.kr/rss/rss.do?boardId=62",
+        "options": {}
+      },
+      "id": "fetch-lh-housing-rss",
+      "name": "Fetch LH Housing News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        420,
+        450
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.korea.kr/rss/policy.xml?deptId=1492000",
+        "options": {}
+      },
+      "id": "fetch-employment-rss",
+      "name": "Fetch Employment & Job News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        420,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "base": "appG3mE1NuXLHp4tp",
+        "table": "SettlementNews",
+        "additionalFields": {
+          "filterByFormula": "=url = '{{$json.link}}'"
+        }
+      },
+      "id": "check-duplicate-node",
+      "name": "Check for Duplicates",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ],
+      "credentials": {
+        "airtableApi": {
+          "id": "2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.length === 0}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "is-new-content-node",
+      "name": "Is New Content?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        920,
+        300
+      ]
+    },
+    {
+      "parameters": {
         "promptType": "custom",
-        "text": "=아래의 뉴스 콘텐츠를 읽고, 탈북민(북한이탈주민) 세대 전체(가족, 자녀, 청년, 중장년, 노년 등)에게 실질적인 정착 혜택이나 복지 지원, 일자리 지원, 의료 혜택, 교육 지원 등의 정보가 포함되어 있는지 확인해 주세요.\n\n뉴스 제목: {{$json.title}}\n뉴스 내용 요약: {{$json.description || $json.content}}\n\n만약 관련성이 높다면, 다음 형식의 JSON 객체로 결과를 반환해 주세요. 관련이 없는 일반 뉴스나 동향 기사라면 빈 JSON 객체 `{}`를 반환해 주세요.\n\n반환 형식:\n{\n  \"relevant\": true,\n  \"category\": \"welfare\" | \"education\" | \"jobs\" | \"health\", (복지/주거는 welfare, 교육/장학금은 education, 취업/훈련은 jobs, 의료/법률은 health)\n  \"badge\": \"예: 무료 치과 혜택 / 장학금 300만원\",\n  \"title\": \"가독성을 위해 요약 정리한 뉴스 제목 (30자 이내)\",\n  \"excerpt\": \"이탈주민에게 실질적으로 도움을 주는 혜택 내용을 요약한 3줄 요약 문장 (약 120자 내외)\",\n  \"tag\": \"예: 전액 무료 / 선착순 마감\"\n}",
+        "text": "=아래의 뉴스 콘텐츠를 읽고, 탈북민(북한이탈주민) 세대 전체(가족, 자녀, 청년, 중장년, 노년 등)에게 실질적인 정착 혜택이나 복지 지원, 일자리 지원, 의료 혜택, 교육 지원 등의 정보가 포함되어 있는지 확인해 주세요.\n\n뉴스 제목: {{$json.title}}\n뉴스 내용 요약: {{$json.description || $json.content}}\n\n만약 관련성이 높다면, 다음 형식의 JSON 객체로 결과를 반환해 주세요. 관련이 없는 일반 뉴스나 동향 기사라면 빈 JSON 객체 `{}`를 반환해 주세요.\n\n반환 형식:\n{\n  \"relevant\": true,\n  \"category\": \"welfare\" | \"education\" | \"jobs\" | \"health\", (복지/주거는 welfare, 교육/장학금은 education, 취업/훈련은 jobs, 의료/법률은 health)\n  \"badge\": \"예: 🎁 무료 치과 혜택 / 🎓 장학금 300만원\",\n  \"title\": \"가독성을 위해 요약 정리한 뉴스 제목 (30자 이내)\",\n  \"excerpt\": \"이탈주민에게 실질적으로 도움을 주는 혜택 내용을 요약한 3줄 요약 문장. 딱딱한 말투보다는 '~해 드려요', '~받으실 수 있어요'와 같이 친절하고 정중한 어조를 사용하세요. (약 120자 내외)\",\n  \"tag\": \"예: 전액 무료 / 선착순 마감\"\n}",
         "options": {
-          "systemMessage": "당신은 비영리 단체 '더라운드'의 유능하고 철두철미한 AI 어시스턴트(Fact-Checker)입니다. 한국의 복지 정보 공문을 정착민들이 이해하기 쉽도록 명료하게 변환하는 역할과 동시에, 사실에 근거한 객관적인 정보만을 필터링하는 역할을 담당합니다. 뉴스나 공고의 출처가 불명확하거나, 개인의 주관적인 주장/의견이 섞여 있거나, 검증되지 않은 홍보성 문구가 포함되어 있다면 관련성이 없다고 판단하여 반드시 'relevant: false'로 응답하십시오. 오직 신뢰할 수 있는 공공기관, 단체, 학교 등에서 발표한 공적 지원 정책, 복지/장학 혜택, 채용 정보 등 팩트 기반의 혜택 정보만 'relevant: true'로 요약해 주어야 합니다."
+          "systemMessage": "당신은 비영리 단체 '더라운드'의 유능하고 따뜻한 AI 어시스턴트(TheRound Helper)입니다. 한국의 복지 정보 공문을 정착민들이 이해하기 쉽도록 명료하게 변환하는 역할과 동시에, 정착민들의 삶을 진심으로 응원하는 마음을 담아 정보를 필터링합니다. 오직 신뢰할 수 있는 공공기관, 단체에서 발표한 실질적인 혜택 정보만 'relevant: true'로 요약해 주되, 문장은 항상 다정하고 정중하게 작성해야 합니다."
         }
       },
       "id": "openai-ai-summarizer",
@@ -48,12 +158,12 @@
       "type": "n8n-nodes-base.openAi",
       "typeVersion": 1,
       "position": [
-        640,
+        1140,
         300
       ],
       "credentials": {
         "openAiApi": {
-          "id": "openai-credential-id"
+          "id": "1"
         }
       }
     },
@@ -73,13 +183,13 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        860,
+        1360,
         300
       ]
     },
     {
       "parameters": {
-        "url": "={{$node[\"Fetch Hana Foundation News\"].json.link}}",
+        "url": "={{$json.link}}",
         "options": {
           "redirect": {
             "redirect": {
@@ -100,7 +210,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4,
       "position": [
-        1080,
+        1580,
         300
       ]
     },
@@ -121,14 +231,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1300,
+        1800,
         300
       ]
     },
     {
       "parameters": {
         "operation": "append",
-        "base": "appvhPHdiMuC6Q3oA",
+        "base": "appG3mE1NuXLHp4tp",
         "table": "SettlementNews",
         "fieldsUi": {
           "fieldValues": [
@@ -158,7 +268,7 @@
             },
             {
               "fieldId": "url",
-              "fieldValue": "={{$node[\"Fetch Hana Foundation News\"].json.link}}"
+              "fieldValue": "={{$json.link}}"
             }
           ]
         },
@@ -169,21 +279,21 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 1,
       "position": [
-        1520,
+        2020,
         300
       ],
       "credentials": {
         "airtableApi": {
-          "id": "airtable-credential-id"
+          "id": "2"
         }
       }
     },
     {
       "parameters": {
         "promptType": "custom",
-        "text": "=아래의 요약된 복지/혜택 공고 정보를 바탕으로, 카카오톡 및 텔레그램 등의 SNS 채널에 공유할 친근하고 가독성 좋은 SNS 홍보 문구를 작성해 주세요.\n\n카테고리: {{$node[\"AI Summarizer Node\"].json.category}}\n배지: {{$node[\"AI Summarizer Node\"].json.badge}}\n제목: {{$node[\"AI Summarizer Node\"].json.title}}\n혜택 요약: {{$node[\"AI Summarizer Node\"].json.excerpt}}\n태그: {{$node[\"AI Summarizer Node\"].json.tag}}\n원문 링크: {{$node[\"Fetch Hana Foundation News\"].json.link}}\n\n[작성 가이드라인]:\n1. 이탈주민들에게 유익한 정보를 친절하고 정중한 어조로 안내하세요.\n2. 핵심 혜택과 신청 대상, 방법을 이모지와 불릿 포인트로 한눈에 들어오게 요약해 주세요.\n3. 마지막에 해당 카테고리와 관련된 해시태그(예: #더라운드 #탈북민지원 #장학금 등)를 3~4개 추가해 주세요.\n4. 원문 링크를 포함하여 유저들이 상세 내용을 확인할 수 있게 하세요.\n\n출력은 오직 SNS 피드에 즉시 게시할 수 있는 텍스트만 반환해 주세요.",
+        "text": "=아래의 요약된 복지/혜택 정보를 바탕으로, 더라운드 SNS 채널에 게시할 따뜻하고 희망찬 홍보 문구를 작성해 주세요. \n\n카테고리: {{$node[\"AI Summarizer Node\"].json.category}}\n배지: {{$node[\"AI Summarizer Node\"].json.badge}}\n제목: {{$node[\"AI Summarizer Node\"].json.title}}\n혜택 요약: {{$node[\"AI Summarizer Node\"].json.excerpt}}\n태그: {{$node[\"AI Summarizer Node\"].json.tag}}\n원문 링크: {{$json.link}}\n\n[작성 가이드라인]:\n1. 도입부에서 \"함께 걷는 이웃, 더라운드입니다! 😊\"와 같이 따뜻한 인사를 건네며 시작하세요.\n2. \"새로운 시작을 응원하는 마음을 담아 오늘의 유익한 소식을 가져왔어요.\"와 같은 응원의 메시지를 포함하세요.\n3. 핵심 혜택과 신청 방법을 이모지를 적극 활용하여 가독성 있게 정리해 주세요.\n4. 어조는 매우 친근하면서도 격식 있는 '해요체'를 사용하세요.\n5. 마지막에 #더라운드 #함께하는성장 #정착지원 과 함께 해당 소식에 맞는 해시태그를 추가해 주세요.\n\n출력은 오직 SNS 피드에 즉시 게시할 수 있는 텍스트만 반환해 주세요.",
         "options": {
-          "systemMessage": "당신은 비영리 단체 '더라운드'의 SNS 채널을 운영하는 유능한 SNS 홍보 에이전트(SNS & Sharing Agent)입니다. 공고 내용을 요약하여 전달력이 높고 감동을 주는 SNS 홍보 피드를 작성합니다."
+          "systemMessage": "당신은 비영리 단체 '더라운드'의 SNS 채널을 운영하는 '공감과 나눔의 에이전트'입니다. 단순한 정보 전달을 넘어 정착민들에게 위로와 힘이 되는 따뜻한 글쓰기를 지향합니다. 당신의 글은 읽는 이에게 '우리는 혼자가 아니구나'라는 느낌을 주어야 합니다."
         }
       },
       "id": "openai-sns-creator",
@@ -191,12 +301,12 @@
       "type": "n8n-nodes-base.openAi",
       "typeVersion": 1,
       "position": [
-        1740,
+        2240,
         300
       ],
       "credentials": {
         "openAiApi": {
-          "id": "openai-credential-id"
+          "id": "1"
         }
       }
     },
@@ -213,7 +323,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        1960,
+        2460,
         300
       ],
       "credentials": {
@@ -224,6 +334,37 @@
     }
   ],
   "connections": {
+    "When Clicked": {
+      "main": [
+        [
+          {
+            "node": "Fetch Hana Foundation News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Ministry of Unification News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Local Gov News (8 Cities)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch LH Housing News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Employment & Job News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Schedule Trigger": {
       "main": [
         [
@@ -231,11 +372,97 @@
             "node": "Fetch Hana Foundation News",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Fetch Ministry of Unification News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Local Gov News (8 Cities)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch LH Housing News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Employment & Job News",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
     },
     "Fetch Hana Foundation News": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Ministry of Unification News": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Local Gov News (8 Cities)": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch LH Housing News": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Employment & Job News": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Is New Content?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is New Content?": {
       "main": [
         [
           {

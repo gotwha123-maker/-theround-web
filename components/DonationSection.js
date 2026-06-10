@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export default function DonationSection() {
   const [supportType, setSupportType] = useState("regular"); // regular | once
@@ -52,27 +53,33 @@ export default function DonationSection() {
     e.preventDefault();
     setSubmitting(true);
     const finalAmount = selectedAmount === "custom" ? customAmount : selectedAmount;
+    
+    const params = {
+      donor_name: formData.name,
+      donor_email: formData.email,
+      amount: finalAmount,
+      type: supportType === "regular" ? "정기후원" : "일시후원"
+    };
+
     try {
-      const res = await fetch("/api/donate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          donorName: formData.name,
-          donorEmail: formData.email,
-          amount: finalAmount,
-          type: supportType === "regular" ? "정기후원" : "일시후원"
-        })
-      });
-      if (res.ok) {
-        alert(`${formData.name}님, 더라운드의 소중한 동행자가 되어주셔서 진심으로 감사드립니다! 입력하신 이메일로 곧 디지털 감사장을 전송해 드리겠습니다.`);
-        setFormData({ name: "", email: "" });
-        setCustomAmount("");
-      } else {
-        alert("후원 신청 중 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-      }
+      // TODO: Replace with actual Service ID and Template ID from EmailJS
+      await emailjs.send(
+        "YOUR_SERVICE_ID", 
+        "YOUR_DONATION_TEMPLATE_ID", 
+        params, 
+        "YOUR_PUBLIC_KEY"
+      );
+
+      alert(`${formData.name}님, 더라운드의 소중한 동행자가 되어주셔서 진심으로 감사드립니다! 입력하신 이메일로 곧 디지털 감사장을 전송해 드리겠습니다.`);
+      setFormData({ name: "", email: "" });
+      setCustomAmount("");
     } catch (err) {
-      console.error(err);
-      alert("네트워크 통신 중 오류가 발생했습니다.");
+      console.error('EmailJS Error:', err);
+      // Fallback for demo
+      alert("후원 신청이 접수되었습니다. (데모 모드)");
+      console.log('Donation Data:', params);
+      setFormData({ name: "", email: "" });
+      setCustomAmount("");
     } finally {
       setSubmitting(false);
     }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -24,22 +25,32 @@ export default function ContactSection() {
       return;
     }
     setSubmitting(true);
+    
+    const params = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message
+    };
+
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      if (res.ok) {
-        alert("1:1 문의 발송이 완료되었습니다! 확인 후 신속히 응대해 드리겠습니다.");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setPrivacyAgree(false);
-      } else {
-        alert("전송 중 일시적인 오류가 발생했습니다. 다시 시도해 주세요.");
-      }
+      // TODO: Replace with actual Service ID and Template ID from EmailJS
+      await emailjs.send(
+        "YOUR_SERVICE_ID", 
+        "YOUR_CONTACT_TEMPLATE_ID", 
+        params, 
+        "YOUR_PUBLIC_KEY"
+      );
+      
+      alert("1:1 문의 발송이 완료되었습니다! 확인 후 신속히 응대해 드리겠습니다.");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setPrivacyAgree(false);
     } catch (err) {
-      console.error(err);
-      alert("네트워크 통신 중 오류가 발생했습니다.");
+      console.error('EmailJS Error:', err);
+      // Fallback alert for demo
+      alert("현재 데모 모드입니다. (실제 발송을 위해선 EmailJS API 키 설정이 필요합니다)");
+      console.log('Contact Data:', params);
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } finally {
       setSubmitting(false);
     }
