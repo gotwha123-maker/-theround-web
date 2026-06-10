@@ -83,7 +83,7 @@ async function fetchLH() {
 async function fetchNaverNews() {
   console.log('[Source] Fetching Naver News (RSS)...');
   const items = [];
-  const keywords = ['탈북민 지원', '북한이탈주민', '남북청년'];
+  const keywords = ['탈북민 지원', '북한이탈주민 지원금', '남북청년 교류', '하나재단 공고', '탈북민 취업', '북향민 정착'];
   try {
     for (const keyword of keywords) {
       const { data } = await axiosGet(`https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(keyword)}&sm=tab_srt&sort=1`);

@@ -14,7 +14,8 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
     { id: "주택", label: "주택정보" },
     { id: "일자리", label: "일자리" },
     { id: "교육", label: "교육/역량" },
-    { id: "복지", label: "생활/복지" }
+    { id: "복지", label: "생활/복지" },
+    { id: "문화", label: "문화/새소식" }
   ];
 
   useEffect(() => {
@@ -59,11 +60,11 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       case '일자리': return 'job';
       case '교육': return 'university';
       case '복지': return 'welfare';
+      case '문화': return 'culture';
       default: return tabId;
     }
   }
   
-  // Initially show 6, show all if button clicked
   const visibleList = showAll ? filteredNews : filteredNews.slice(0, 6);
 
   const getCategoryColor = (cat) => {
@@ -73,6 +74,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       case 'job': return "#f59e0b";
       case 'university': return "#10b981";
       case 'welfare': return "#ec4899";
+      case 'culture': return "#06b6d4";
       default: return "var(--color-primary)";
     }
   };
@@ -84,6 +86,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       case 'job': return "일자리";
       case 'university': return "교육/역량";
       case 'welfare': return "생활/복지";
+      case 'culture': return "문화/새소식";
       default: return cat;
     }
   };
@@ -100,10 +103,13 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       <div className="container">
         <div className="section-header text-center reveal-on-scroll">
           <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>정착 지원 소식</h2>
+          <p style={{ color: "var(--color-text-muted)", fontSize: "1.1rem" }}>
+            탈북민과 남북 청년을 위한 실시간 혜택과 언론 보도를 전해드립니다.
+          </p>
         </div>
 
         {/* Tab Menu */}
-        <div className="tabs-container" style={{ display: "flex", justifyContent: "center", gap: "0.8rem", marginBottom: "3rem", flexWrap: "wrap" }}>
+        <div className="tabs-container" style={{ display: "flex", justifyContent: "center", gap: "0.8rem", marginBottom: "3rem", flexWrap: "wrap", marginTop: "2rem" }}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -130,7 +136,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
         <div style={{ maxWidth: "600px", margin: "0 auto 3.5rem auto", position: "relative" }}>
           <input 
             type="text" 
-            placeholder="어떤 소식을 찾으시나요? (예: 장학금, LH)"
+            placeholder="어떤 소식을 찾으시나요? (예: 지원금, 장학금)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ width: "100%", padding: "1.2rem 1.5rem 1.2rem 3.5rem", borderRadius: "50px", border: "1px solid var(--color-border)", fontSize: "1.05rem", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.02)" }}
@@ -166,7 +172,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
                   {item.excerpt || "탈북민 정착에 도움이 되는 실질적인 혜택 정보를 확인해 보세요."}
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: "1.5rem", borderTop: "1px solid var(--color-border)" }}>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-primary)" }}>{item.badge || "공공기관"}</span>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-primary)" }}>{item.tag || "공공기관"}</span>
                   <a href={item.url || item.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-text-primary)", fontWeight: 800, textDecoration: "none", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.4rem", transition: "all 0.2s" }} className="btn-detail-link">
                     자세히 보기 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
