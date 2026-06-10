@@ -241,108 +241,108 @@ export default function DesignersSection() {
       {bookingOpen && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeBooking}></div>
-          <div className="modal-container" style={{ maxWidth: "1000px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", maxHeight: "95vh", overflowY: "auto", position: "relative" }}>
-            <button className="modal-close" onClick={closeBooking} style={{ top: "20px", right: "20px" }}>&times;</button>
-            <div className="modal-body" style={{ padding: "2rem 3rem" }}>
-              <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "2rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청</h3>
+          <div className="modal-container mobile-scroll-fix" style={{ maxWidth: "1000px", width: "98%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "24px", maxHeight: "98vh", overflowY: "auto", position: "relative", boxShadow: "0 20px 50px rgba(0,0,0,0.3)" }}>
+            <button className="modal-close" onClick={closeBooking} style={{ top: "15px", right: "15px", zIndex: 10 }}>&times;</button>
+            <div className="modal-body" style={{ padding: "1.5rem" }}>
+              <h3 style={{ fontSize: "1.6rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청</h3>
               
               <form onSubmit={handleSubmit} className="admin-form">
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "2rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
                   
                   {/* Left Column: Who & What */}
                   <div>
-                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem" }}>1. 신청 기관 및 담당자</h4>
-                    <div className="form-group"><label>기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required /></div>
-                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>1. 신청 기관 및 담당자</h4>
+                    <div className="form-group"><label>기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>기관 유형 *</label>
-                        <select name="orgType" value={formData.orgType} onChange={handleChange}>
+                        <select name="orgType" value={formData.orgType} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["공공기관·지자체", "초·중·고교", "대학교·대학원", "일반기업", "NGO·비영리", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>담당자 직함 *</label>
-                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange}>
+                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["주무관·사무관", "교사·교수", "팀장·실무자", "대표·임원", "학생회·동아리장"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
-                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required /></div>
-                      <div className="form-group" style={{ flex: 1 }}><label>연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
+                      <div className="form-group" style={{ flex: 1 }}><label>연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
                     </div>
-                    <div className="form-group"><label>이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required /></div>
+                    <div className="form-group"><label>이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
 
-                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>2. 행사 개요</h4>
+                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2rem" }}>2. 행사 개요</h4>
                     <div className="form-group"><label>행사 성격 *</label>
-                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange}>
+                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange} style={{ padding: "0.7rem" }}>
                         {["정착지원 교육", "인식개선 캠페인", "리더십 역량강화", "문화·예술 행사", "정책자문·포럼"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-group"><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required /></div>
-                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                    <div className="form-group"><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>진행 방식 *</label>
-                        <select name="locationType" value={formData.locationType} onChange={handleChange}>
+                        <select name="locationType" value={formData.locationType} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["오프라인 현장 강연", "실시간 온라인(Zoom 등)", "사전 녹화 송출"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>강연 시간 *</label>
-                        <select name="time1" value={formData.time1} onChange={handleChange}>
+                        <select name="time1" value={formData.time1} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["1시간 이내", "2시간(표준)", "3시간 이상", "전일 워크숍"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
-                    <div className="form-group"><label>상세 주소 (오프라인 시)</label><input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="출장비 산정용" /></div>
+                    <div className="form-group"><label>상세 주소 (오프라인 시)</label><input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="출장비 산정용" style={{ padding: "0.7rem" }} /></div>
                   </div>
 
                   {/* Right Column: Details & Benefits */}
                   <div>
-                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem" }}>3. 청중 및 강연 상세</h4>
-                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>3. 청중 및 강연 상세</h4>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>주요 연령대 *</label>
-                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange}>
+                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["청소년", "대학생·취준생", "일반 성인", "시니어", "전문가·공무원"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required /></div>
+                      <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
                     </div>
                     <div className="form-group"><label>청중 성향 *</label>
-                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange}>
+                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange} style={{ padding: "0.7rem" }}>
                         {["입문(기초지식 없음)", "심화(전문지식 희망)", "인식개선 필요", "실무 적용 희망"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
                     <div className="form-group"><label>강연 형태 *</label>
-                      <select name="lectureType" value={formData.lectureType} onChange={handleChange}>
+                      <select name="lectureType" value={formData.lectureType} onChange={handleChange} style={{ padding: "0.7rem" }}>
                         {["단독 강연", "토크 콘서트(Q&A 위주)", "패널 토론", "1:1 멘토링"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
 
-                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>4. 예산 및 조건</h4>
+                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2rem" }}>4. 예산 및 조건</h4>
                     <div className="form-group"><label>강연료 규모 *</label>
-                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange}>
+                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange} style={{ padding: "0.7rem" }}>
                         {["기관 내부 규정에 따름", "30~50만원", "50~100만원", "100만원 이상", "협의 필요"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>정산 방법 *</label>
-                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange}>
+                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["세금계산서 발행", "카드 결제", "원천세 신고(개인 이체)", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>추가 지원 여부</label>
-                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange}>
+                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["교통비 별도 지급", "숙박 제공 가능", "식사 제공 가능", "해당 없음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
 
-                    <h4 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.8rem", marginTop: "3rem" }}>5. 마감 및 선정 이유</h4>
-                    <div className="form-row" style={{ display: "flex", gap: "1rem" }}>
+                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2rem" }}>5. 마감 및 선정 이유</h4>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>회신 희망 기한 *</label>
-                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange}>
+                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["3일 이내(긴급)", "1주일 이내", "2주일 이내", "여유 있음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>선정 이유 *</label>
-                        <select name="loveCall" value={formData.loveCall} onChange={handleChange}>
+                        <select name="loveCall" value={formData.loveCall} onChange={handleChange} style={{ padding: "0.7rem" }}>
                           {["방송 출연 모습이 좋아서", "저서 내용을 직접 듣고 싶어서", "주제와 경력이 일치해서", "더라운드의 전문성 신뢰", "지인 강력 추천"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
@@ -350,19 +350,27 @@ export default function DesignersSection() {
                   </div>
                 </div>
 
-                <div className="form-group" style={{ marginTop: "2rem" }}><label>기타 요청사항</label><textarea name="details" rows="3" value={formData.details} onChange={handleChange} placeholder="추가로 전달하실 내용을 자유롭게 적어주세요."></textarea></div>
+                <div className="form-group" style={{ marginTop: "1.5rem" }}><label>기타 요청사항</label><textarea name="details" rows="2" value={formData.details} onChange={handleChange} placeholder="추가 전달 내용" style={{ padding: "0.7rem" }}></textarea></div>
 
-                <div style={{ textAlign: "center", marginTop: "3rem" }}>
-                  <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ height: "4.5rem", fontSize: "1.3rem", borderRadius: "20px", boxShadow: "0 8px 24px rgba(220, 20, 20, 0.2)" }} disabled={submitting}>
-                    {submitting ? "전송 중..." : "위 내용으로 섭외 신청 완료하기"}
+                <div style={{ textAlign: "center", marginTop: "2rem" }}>
+                  <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ height: "3.5rem", fontSize: "1.1rem", borderRadius: "15px", boxShadow: "0 5px 15px rgba(220, 20, 20, 0.2)" }} disabled={submitting}>
+                    {submitting ? "전송 중..." : "신청 완료하기"}
                   </button>
-                  <p style={{ marginTop: "1.5rem", fontSize: "0.9rem", color: "var(--color-text-muted)" }}>신청서 접수 즉시 담당자에게 알림이 전송됩니다.</p>
                 </div>
               </form>
             </div>
           </div>
         </div>
       )}
+      <style jsx>{`
+        .designer-card:hover .img-overlay { opacity: 1 !important; }
+        @media (max-width: 600px) {
+          .modal-container { width: 100% !important; border-radius: 0 !important; max-height: 100vh !important; }
+          .admin-form label { font-size: 0.8rem !important; }
+          .admin-form input, .admin-form select, .admin-form textarea { font-size: 0.9rem !important; }
+          .modal-body { padding: 1rem !important; }
+        }
+      `}</style>
     </section>
   );
 }
