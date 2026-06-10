@@ -105,7 +105,8 @@ async function verify(rawItems) {
 
   for (const item of uniqueItems) {
     try {
-      const prompt = `탈북민, 북한, 남북관계 관련 소식인지 판단하라. 
+      const prompt = `판단 결과를 반드시 JSON 형식으로 반환하라.
+탈북민, 북한, 남북관계 관련 소식인지 판단하라. 
 조금이라도 관련이 있다면 valid: true로 하라.
 형식: {valid: bool, title: string, excerpt: string (친절한 한국어 요약, 2줄), category: "scholarship"|"housing"|"job"|"welfare"|"university"|"culture", badge: string}. 
 제목: ${item.title}, 출처: ${item.source}`;
