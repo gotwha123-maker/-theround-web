@@ -243,12 +243,11 @@ export default function DesignersSection() {
           <div className="modal-overlay" onClick={closeBooking}></div>
           <div className="modal-container" style={{ maxWidth: "1000px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", maxHeight: "95vh", overflowY: "auto", position: "relative" }}>
             <button className="modal-close" onClick={closeBooking} style={{ top: "20px", right: "20px" }}>&times;</button>
-            <div className="modal-body" style={{ padding: "3rem" }}>
-              <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청 (Master)</h3>
-              <p style={{ textAlign: "center", color: "var(--color-text-muted)", marginBottom: "3rem" }}>불필요한 조율 과정을 줄이기 위해 모든 항목을 '선택형'으로 구성했습니다.</p>
+            <div className="modal-body" style={{ padding: "2rem 3rem" }}>
+              <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "2rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청</h3>
               
               <form onSubmit={handleSubmit} className="admin-form">
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "3rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "2rem" }}>
                   
                   {/* Left Column: Who & What */}
                   <div>
