@@ -65,7 +65,7 @@ async function scrapeHanaFoundation() {
       if (i < 8) {
         const a = $(el).find('a').first();
         const title = a.text().trim();
-        const date = $(el).find('td').last().prev().text().trim().replace(/-/g, '.');
+        const date = $(el).find('td').last().text().trim().replace(/-/g, '.');
         if (title) items.push({ title, date, source: '하나재단', url: 'https://www.koreahana.or.kr/home/kor/board.do?menuPos=52' });
       }
     });

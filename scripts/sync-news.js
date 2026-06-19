@@ -38,7 +38,7 @@ async function scrapeHana() {
       if (i < 20) {
         const titleEl = $(el).find('a').first();
         const title = titleEl.text().trim();
-        const date = $(el).find('td').last().prev().text().trim().replace(/-/g, '.');
+        const date = $(el).find('td').last().text().trim().replace(/-/g, '.');
         let onclick = titleEl.attr('onclick') || '';
         let href = 'https://www.koreahana.or.kr/home/kor/board.do?menuPos=52'; 
         const params = onclick.match(/'([^']+)'/g);
@@ -119,7 +119,7 @@ async function verify(rawItems) {
       const data = JSON.parse(res.choices[0].message.content);
       if (data.valid) {
         verified.push({
-          id: Buffer.from(item.url).toString('base64').substring(0, 16),
+          id: Buffer.from(item.url).toString('base64'),
           ...data,
           date: item.date,
           url: item.url,

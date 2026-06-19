@@ -5,6 +5,9 @@ on:
     - cron: '0 1 * * *' # Every day at 01:00 UTC (10:00 KST)
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -26,3 +29,11 @@ jobs:
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/sync-news.js
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/news.json
+          git diff-index --quiet HEAD || (git commit -m "chore: auto-update settlement news" && git push)
+
