@@ -303,7 +303,8 @@ async function runCensor() {
       console.log(`Blurring ${finalFacesToBlur.length} participant faces...`);
       for (const face of finalFacesToBlur) {
         // 얼굴 영역 크기 대비 더욱 확실한 신원 보호를 위해 블러 반경을 24로 상향
-        applyFaceBlur(image, face.x, face.y, face.size, 24);
+        // 너무 작은 얼굴은 페더링 마스크 때문에 블러가 약해지므로 최소 크기를 55px로 강제 보정하여 확실히 뭉갭니다.
+        applyFaceBlur(image, face.x, face.y, Math.max(55, face.size), 24);
       }
 
       // 6. 결과 저장
