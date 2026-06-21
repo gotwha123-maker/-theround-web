@@ -489,17 +489,22 @@ export default function AcademySeason1Page() {
               
               {/* CSS 스타일링을 위한 반응형 스타일 태그 삽입 */}
               <style dangerouslySetInnerHTML={{__html: `
+                .plaque-sticky-container {
+                  position: static;
+                }
                 @media (min-width: 992px) {
                   .plaque-layout-grid {
                     grid-template-columns: 1fr 1.3fr !important;
+                  }
+                  .plaque-sticky-container {
+                    position: sticky !important;
+                    top: 120px;
                   }
                 }
               `}} />
 
               {/* [좌측] 프리미엄 위촉패 액자 UI (수여 취지와 실제 문구 고정) */}
-              <div style={{
-                position: "sticky",
-                top: "120px",
+              <div className="plaque-sticky-container" style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
