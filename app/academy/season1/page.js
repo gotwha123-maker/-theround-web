@@ -127,7 +127,7 @@ const activityGallery = [
   { src: "/assets/activity_censored_2.jpg", title: "기업가치 특강", desc: "이상하 멘토가 들려주는 기업가치 평가와 재무 전략 강연" },
   { src: "/assets/activity_censored_3.jpg", title: "사회적 역할과 CSR 특강", desc: "최규복 멘토가 제시하는 현대 기업의 사회적 책임에 관한 세션" },
   { src: "/assets/activity_censored_4.jpg", title: "제1기 단체 응원 사진", desc: "리더십 아카데미를 무사히 마칠 것을 다짐하며 남북 청년들과 함께한 단체 사진" },
-  { src: "/assets/activity_censored_5.jpg", title: "백오피스 멘토링 세션", desc: "이상하 회장이 제시하는 인사/조직 관리 핵심 실무 지식 강연" },
+  { src: "/assets/activity_censored_5.jpg", title: "백오피스 멘토링 세션", desc: "최성우 CHRO 멘토가 제시하는 인사/조직 관리 핵심 실무 지식 강연" },
   { src: "/assets/activity_censored_6.jpg", title: "강연 및 질의응답 피드백", desc: "강연을 경청하며 개인 비즈니스 모델의 개선 방향을 토론하는 소그룹 시간" },
   { src: "/assets/activity_censored_7.jpg", title: "비즈니스 모델 심층 토론", desc: "참여 청년들이 설계해 온 비전을 멘토들과 함께 분석하고 정교화하는 과정" },
   { src: "/assets/activity_censored_8.jpg", title: "아카데미 수료 기념 단체사진 (1)", desc: "총 5회차의 대장정을 성공적으로 완주한 후 다 함께 모여 촬영한 수료 사진" },
