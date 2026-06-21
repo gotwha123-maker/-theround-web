@@ -125,7 +125,6 @@ const plaqueGallery = [
 const activityGallery = [
   { src: "/assets/activity_censored_1.jpg", title: "네트워킹 식사 세션", desc: "식사를 나누며 진행된 격의 없는 대화와 고민 상담 시간" },
   { src: "/assets/activity_censored_2.jpg", title: "기업가치 특강", desc: "이상하 멘토가 들려주는 기업가치 평가와 재무 전략 강연" },
-  { src: "/assets/activity_censored_3.jpg", title: "사회적 역할과 CSR 특강", desc: "최규복 멘토가 제시하는 현대 기업의 사회적 책임에 관한 세션" },
   { src: "/assets/activity_censored_4.jpg", title: "제1기 단체 응원 사진", desc: "리더십 아카데미를 무사히 마칠 것을 다짐하며 남북 청년들과 함께한 단체 사진" },
   { src: "/assets/activity_censored_5.jpg", title: "백오피스 멘토링 세션", desc: "최성우 CHRO 멘토가 제시하는 인사/조직 관리 핵심 실무 지식 강연" },
   { src: "/assets/activity_censored_6.jpg", title: "강연 및 질의응답 피드백", desc: "강연을 경청하며 개인 비즈니스 모델의 개선 방향을 토론하는 소그룹 시간" },
