@@ -57,9 +57,9 @@ const imageTargets = [
     manualFaces: []
   },
   {
-    fileName: 'media__1782039657681.jpg', // 세미나 최성우 강연
+    fileName: 'media__1782050476575.jpg', // 세미나 최성우 강연 (새 이미지)
     mentors: [
-      { rx: 0.07, ry: 0.32, radius: 0.04 }   // 최성우 고문님
+      { rx: 0.626, ry: 0.307, radius: 0.038 }   // 최성우 고문님
     ],
     manualFaces: []
   },
