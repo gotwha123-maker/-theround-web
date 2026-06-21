@@ -38,8 +38,10 @@ const imageTargets = [
     mentors: [
       { rx: 0.063, ry: 0.33, radius: 0.04 }  // 이상하 회장님 (좌측 서 계신 분)
     ],
-    ignoreDetectionIds: [7, 20], // 7, 20은 이상하 회장님 보존 (11, 12, 17번 앞에 앉은 청년들은 다시 블러 처리 복원)
-    manualFaces: []
+    ignoreDetectionIds: [7, 20], // 7, 20은 이상하 회장님 보존
+    manualFaces: [
+      { rx: 0.370, ry: 0.585, radius: 0.055 } // 13번 인물 (사용자 피드백으로 확실히 가려지도록 넓은 블러 추가)
+    ]
   },
   {
     fileName: 'media__1782039657482.jpg', // 세미나실 최규복 강연
