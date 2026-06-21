@@ -34,9 +34,9 @@ const imageTargets = [
     ]
   },
   {
-    fileName: 'media__1782039657474.jpg', // 세미나실 이상하 강연
+    fileName: 'media__1782039657681.jpg', // 세미나실 이상하 강연 (새 이미지)
     mentors: [
-      { rx: 0.70, ry: 0.37, radius: 0.038 }  // 이상하 회장님
+      { rx: 0.07, ry: 0.32, radius: 0.04 }  // 이상하 회장님 (좌측 서 계신 분)
     ],
     manualFaces: []
   },
