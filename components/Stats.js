@@ -176,7 +176,7 @@ export default function Stats() {
                     cx="50"
                     cy="50"
                     r="40"
-                    stroke="var(--color-bg-primary)"
+                    stroke="#e2e8f0"
                     strokeWidth="8"
                     fill="none"
                   ></circle>
@@ -214,8 +214,8 @@ export default function Stats() {
                   <span className="legend-text" style={{ color: "#ff4d4d" }}>여성: 24,944명 (72.2%)</span>
                 </div>
                 <div className="legend-item">
-                  <span className="legend-dot male" style={{ backgroundColor: "#ffffff" }}></span>
-                  <span className="legend-text" style={{ color: "#ffffff" }}>남성: 9,593명 (27.8%)</span>
+                  <span className="legend-dot male" style={{ backgroundColor: "#cbd5e1" }}></span>
+                  <span className="legend-text" style={{ color: "#6b7280" }}>남성: 9,593명 (27.8%)</span>
                 </div>
               </div>
             </div>

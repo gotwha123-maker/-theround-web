@@ -1,0 +1,4 @@
+### 1. 참가자 얼굴 개별 정밀 페더링 블러(흐림 효과) 가공
+- **스크립트 구현**: [censor_activity_images.js](file:///c:/Users/thero/Desktop/theround-web-next/scratch/censor_activity_images.js)를 신설하여, 멘토진들의 얼굴이나 주변 배경(테이블, 음식, 의복, 칠판 등)은 손상 없이 선명하게 유지하면서 **일반 참가자(남북 청년 학생들) 개개인의 얼굴 부위만 콕 집어서 원형 알파 페더 마스크(Circular Feather Mask)**를 입히는 정밀 좌표 감쇄 알고리즘을 작성했습니다.
+- **알고리즘 상세**: 중심점`(rx, ry)`에서 외곽 반지름 영역으로 갈수록 블러의 투명도가 `1.0`에서 `0.0`으로 부드럽게 줄어들게 하여(Fade-out), 블러 처리된 부분의 사각형 테두리 경계선이 칼로 자른 듯이 보이지 않고 주변 원본 이미지와 자연스럽게 융합되도록 고급 페더링(Feathering) 처리를 추가했습니다.
+- **이미지 생성**: `node scratch/censor_activity_images.js` 명령을 실행해 원본 15장 이미지에 대해 포토샵 보정 수준의 고품질 소프트 원형 블러가 적용된 15장의 가공본(`activity_censored_1.jpg` ~ `activity_censored_15.jpg`)을 `public/assets/`에 성공적으로 최종 갱신 완료했습니다.

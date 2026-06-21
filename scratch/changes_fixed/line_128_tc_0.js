@@ -1,0 +1,18 @@
+"# 아카데미 현장 활동 사진 블러 처리 및 갤러리 연동 완료 보고서
+
+제1기 남북청년 리더십 아카데미의 현장감 넘치는 스냅사진 15장에 대해 일반 참가자 청년들의 개인 정보 및 얼굴 노출 보호 처리를 위한 블러(흐림 효과) 작업을 완료하고, 이를 웹사이트의 신규 갤러리 섹션으로 전시하는 개편을 성공적으로 마쳤습니다.
+
+## 작업 완료 항목
+
+### 1. 참가자 얼굴 블러(흐림 효과) 가공
+- **스크립트 구현**: [censor_activity_images.js](file:///c:/Users/thero/Desktop/theround-web-next/scratch/censor_activity_images.js)를 신설하여, 멘토(이상하, 이광성, 최규복, 임정택, 박한울, 김승환, 최성우 등)들의 얼굴은 그대로 유지하면서 일반 참가자(남북 청년 학생들)들의 얼굴이 위치한 좌석 테이블 및 단체 라인 좌표 영역에 블러(흐림 효과)를 입히는 자동화 흐름을 제작했습니다.
+- **이미지 생성**: `node scratch/censor_activity_images.js` 명령을 실행해 원본 15장 이미지에 대해 자연스럽고 식별 불가능한 블러 효과(Radius 18)가 적용된 가공본(`activity_censored_1.jpg` ~ `activity_censored_15.jpg`)을 `public/assets/`에 성공적으로 생성 및 저장 완료했습니다.
+
+### 2. 현장 활동 데이터셋 추가
+- [page.js](file:///c:/Users/thero/Desktop/theround-web-next/app/academy/season1/page.js#L124-L141)에 15개 가공 이미지 리소스의 경로와 강의, 식사, 아모레퍼시픽 사옥 투어 등 생생한 순간을 묘사하는 제목 및 설명 메타데이터 배열 `activityGallery`를 바인딩했습니다.
+
+### 3. "05 ACTIVE GALLERY" 현장 활동 기록 섹션 추가
+- 위촉패 수여식 섹션 바로 하단에 **"아카데미 현장 활동 기록"** 섹션을 아름답게 신설했습니다.
+- 3~4열 반응형 카드 격자 레이아웃(`gridTemplateColumns`)을 통해 15장의 사진이 질서 정연하게 노출됩니다.
+- 각 카드에
+<truncated 1057 bytes>

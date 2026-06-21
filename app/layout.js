@@ -20,6 +20,7 @@ export const viewport = {
 };
 
 export const metadata = {
+  metadataBase: new URL("https://www.theroundyouth.org"),
   title: "더라운드 (The Round) | 북한이탈주민 정착 지원 정보 플랫폼",
   description: "탈북민 자녀 장학금, 대학 특례 입시, 취업 지원금 등 북한이탈주민과 남북 청년들에게 꼭 필요한 실질적인 정착 혜택 정보를 AI가 실시간으로 수집하여 가장 빠르게 전달합니다.",
   keywords: [
@@ -34,14 +35,17 @@ export const metadata = {
     "통일 NGO",
     "정착 지원 서비스"
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "더라운드 (The Round) | 한반도의 내일을 디자인하는 테이블",
     description: "탈북민 자녀 장학금, 대학 대입 전형 입시 소식, 일자리 채용 및 지원금 소식 등 북한이탈주민과 남북 청년을 위한 정착 지원 혜택을 투명하게 전하는 한반도 통합 플랫폼입니다.",
-    url: "https://theroundyouth.org",
+    url: "https://www.theroundyouth.org",
     siteName: "더라운드 (The Round)",
     images: [
       {
-        url: "https://theroundyouth.org/assets/story_forum.png",
+        url: "/assets/story_forum.png",
         width: 1200,
         height: 630,
         alt: "더라운드 공식 홈페이지 소셜 공유 이미지",
@@ -50,9 +54,17 @@ export const metadata = {
     locale: "ko_KR",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "더라운드 (The Round) | 북한이탈주민 정착 지원 정보 플랫폼",
+    description: "탈북민 장학금, 입시, 취업 등 북한이탈주민을 위한 실질적인 혜택 정보를 실시간으로 제공합니다.",
+    images: ["/assets/story_forum.png"],
+  },
   verification: {
-    naver: "cd6494f434aa59b40ce0842513f36806e5e12913",
     google: "wm-UT8kCBQG_7odFtSijOR5lrVlg0nKsHo95uZbxV1s",
+    other: {
+      "naver-site-verification": "08b0aa762699a1e6e0f36e5636d346bd92455362",
+    },
   },
   other: {
     "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -67,12 +79,18 @@ export default function RootLayout({ children }) {
     "@type": "Organization",
     "name": "더라운드 (The Round)",
     "alternateName": "The Round",
-    "url": "https://theroundyouth.org",
-    "logo": "https://theroundyouth.org/assets/story_forum.png",
+    "url": "https://www.theroundyouth.org",
+    "logo": "https://www.theroundyouth.org/assets/story_forum.png",
+    "image": "https://www.theroundyouth.org/assets/story_forum.png",
     "sameAs": [
       "https://www.instagram.com/theroundyouth",
     ],
     "description": "북한이탈주민과 남북 청년을 위한 대학 입시, 장학 혜택, 정착 주거 지원 및 취업 정보를 수집하고 제공하는 한반도 통합 지원 플랫폼입니다.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "theroundyouth@gmail.com"
+    }
   };
 
   return (

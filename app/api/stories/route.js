@@ -7,6 +7,7 @@ const fallbackStories = [
     title: '남북청년 리더십 아카데미: 한반도의 미래를 디자인하는 청년 리더 육성', 
     excerpt: '단순한 정착을 넘어, 남북 청년들이 각자의 전문성을 바탕으로 우리 사회의 갈등을 조율하고 새로운 가치를 창출하는 핵심 리더로 성장합니다.', 
     img: 'assets/story_academy_censored.png', 
+    category: 'academy-season2',
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
       <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">남북 청년들이 우리 사회의 수혜자에 머물지 않고, 적극적으로 사회 문제 해결에 참여하는 '주권자'로 거듭나도록 돕는 고도화된 실무 교육 과정입니다.</p>
@@ -28,6 +29,7 @@ const fallbackStories = [
     title: '스포츠 활동 "UniOne FC": 그라운드 위에서 증명하는 통합의 가능성', 
     excerpt: '땀 흘리며 달리는 90분. 스포츠라는 보편적인 언어를 통해 심리적 경계를 허물고, 서로를 동등한 팀원으로 긍정하는 화합의 장입니다.', 
     img: 'assets/story_soccer_censored.png', 
+    category: 'community',
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
       <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">말보다는 행동과 땀방울이 때로는 더 큰 이해를 낳습니다. 축구를 매개로 남북 청년들이 한 팀이 되어 상호 신뢰와 협동심을 기르는 역동적인 소통 프로그램입니다.</p>
@@ -49,6 +51,7 @@ const fallbackStories = [
     title: '더라운드 정기 송년회: 따뜻한 환대 속에서 다지는 연대의 힘', 
     excerpt: '서로의 일상을 지지하고 외로움을 극복할 수 있도록, 함께 음식을 나누고 한 해를 돌아보며 누구도 소외되지 않는 가족 같은 공동체를 만듭니다.', 
     img: 'assets/story_gathering_censored.png', 
+    category: 'community',
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
       <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">낯선 사회에서의 정착 과정은 종종 깊은 외로움을 동반합니다. 명절이나 연말연시, 함께 온기를 나눌 수 있는 든든한 '식구(食口)'가 되어주기 위한 정서적 안전망 구축 활동입니다.</p>
@@ -70,6 +73,7 @@ const fallbackStories = [
     title: '인식 개선 캠페인 "공존의 길": 지역 사회의 포용력을 넓히다', 
     excerpt: '남북 청년들이 직접 기획한 캠페인을 통해 지역 주민들과 직접 만나 소통하며, 낡은 편견을 건강하고 열린 시각으로 디자인하는 퍼블릭 리더십 활동입니다.', 
     img: 'assets/story_cafe_censored.png', 
+    category: 'other',
     content: `
       <h4 style="color: var(--color-primary); margin-bottom: 1.2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem; font-size: 1.2rem;">[활동 취지]</h4>
       <p style="margin-bottom: 2rem; color: var(--color-text-primary); line-height: 1.8;">통합은 일방적인 과정이 아니라 지역 공동체의 '상호 수용성'에 달려 있습니다. 이웃과 직접 마주하며 오해를 이해로 바꾸는 시민 참여형 인식 개선 프로그램입니다.</p>
@@ -121,6 +125,7 @@ export async function GET() {
       excerpt: r.fields.excerpt,
       img: r.fields.img_url || "https://images.unsplash.com/photo-1497215728101-856f4ea42174",
       content: r.fields.content_html,
+      category: r.fields.category || "other"
     }));
 
     return NextResponse.json(records, { headers: cacheHeaders });
@@ -140,7 +145,7 @@ export async function POST(req) {
 
   try {
     const body = await req.json();
-    const { title, date, excerpt, content_html, img_url } = body;
+    const { title, date, excerpt, content_html, img_url, category } = body;
 
     const url = `https://api.airtable.com/v0/${baseId}/Stories`;
     const res = await fetch(url, {
@@ -155,7 +160,8 @@ export async function POST(req) {
           date,
           excerpt,
           content_html,
-          img_url: img_url || "https://images.unsplash.com/photo-1497215728101-856f4ea42174"
+          img_url: img_url || "https://images.unsplash.com/photo-1497215728101-856f4ea42174",
+          category: category || "other"
         }
       })
     });

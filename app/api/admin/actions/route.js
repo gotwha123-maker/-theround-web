@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 const { exec } = require('child_process');
 
 export async function POST(req) {
+  // Use Vercel production environment variable for admin API authentication
+  const authHeader = req.headers.get("Authorization");
+  const secureToken = process.env.ADMIN_SECRET_TOKEN || "mock_admin_secret_token_2026";
+  if (!authHeader || authHeader !== `Bearer ${secureToken}`) {
+    return NextResponse.json({ error: "Unauthorized access denied" }, { status: 401 });
+  }
+
   const apiKey = process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || process.env.AIRTABLE_API_KEY;
   if (!apiKey) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

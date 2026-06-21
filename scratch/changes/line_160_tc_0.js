@@ -1,0 +1,4 @@
+### 1. 참가자 얼굴 개별 정밀 블러(흐림 효과) 가공
+- **스크립트 구현**: [censor_activity_images.js](file:///c:/Users/thero/Desktop/theround-web-next/scratch/censor_activity_images.js)를 신설하여, 멘토진들의 얼굴이나 주변 배경(테이블, 음식, 의복, 칠판 등)은 손상 없이 선명하게 유지하면서 **일반 참가자(남북 청년 학생들) 개개인의 얼굴 부위만 콕 집어서 원형 알파 마스크(Circular Alpha Mask)**를 입히는 정밀 좌표 감쇄 알고리즘을 작성했습니다.
+- **알고리즘 상세**: 원형 마스크 내부(얼굴 부위 전체)는 흐림 농도 감쇄 없이 100% 온전하게 균일한 강한 블러(Radius 16)를 입혀 얼굴 전체가 확실하게 가려져 특정될 수 없도록 개인 정보 보호 처리를 강화했으며, 지정된 원형 바깥 영역만 투명화하여 투박한 사각형 테두리를 방지했습니다.
+- **이미지 생성**: `node scratch/censor_activity_images.js` 명령을 실행해 원본 15장 이미지에 대해 포토샵 보정 수준의 고품질 소프트 원형 블러가 적용된 15장의 가공본(`activity_censored_1.jpg` ~ `activity_censored_15.jpg`)을 `public/assets/`에 성공적으로 최종 갱신 완료했습니다.

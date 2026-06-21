@@ -1,0 +1,2 @@
+- `[/]` 원본 사진 해상도 분석 및 참가자 블러 영역 매핑
+- `[ ]` Node.js Jimp 이미지 가공 스크립트 (`censor_activity_images.js`) 작성

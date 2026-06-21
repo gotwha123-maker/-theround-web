@@ -1,0 +1,3 @@
+### 1. 참가자 얼굴 개별 정밀 블러(흐림 효과) 가공
+- **스크립트 구현**: [censor_activity_images.js](file:///c:/Users/thero/Desktop/theround-web-next/scratch/censor_activity_images.js)를 신설하여, 멘토진들의 얼굴이나 강연장의 의복, 음식, 칠판 배경 등은 선명하게 그대로 유지하면서 **일반 참가자(남북 청년 학생들) 한 사람 한 사람의 얼굴(두상) 부위만 콕 집어서 개별 블러(Radius 15)**를 입히는 정밀 좌표(중심점 rx, ry 및 크기 radius 비율) 매핑 로직을 작성했습니다.
+- **이미지 생성**: `node scratch/censor_activity_images.js` 명령을 실행해 원본 15장 이미지에 대해 지저분한 사각형 뭉갬 없이 오직 인물 개별 얼굴만 자연스럽게 흐려진 15장의 고품질 가공본(`activity_censored_1.jpg` ~ `activity_censored_15.jpg`)을 `public/assets/`에 성공적으로 갱신 완료했습니다.

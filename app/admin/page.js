@@ -12,7 +12,7 @@ export default function AdminPage() {
   const [bookings, setBookings] = useState([]);
   const [isCrawling, setIsCrawling] = useState(false);
   const [showAddStory, setShowAddStory] = useState(false);
-  const [newStory, setNewStory] = useState({ title: '', date: '', excerpt: '', content_html: '' });
+  const [newStory, setNewStory] = useState({ title: '', date: '', excerpt: '', content_html: '', category: 'other' });
 
   useEffect(() => {
     setMounted(true);
@@ -23,11 +23,13 @@ export default function AdminPage() {
       return;
     }
 
-    // Fetch real stats
-    fetch('/api/admin/stats').then(res => res.json()).then(data => setStats(data)).catch(err => console.error(err));
+    // Fetch real stats with Authorization token
+    const headers = { "Authorization": "Bearer mock_admin_secret_token_2026" };
+
+    fetch('/api/admin/stats', { headers }).then(res => res.json()).then(data => setStats(data)).catch(err => console.error(err));
     fetch('/api/stories').then(res => res.json()).then(data => setStories(data)).catch(err => console.error(err));
     fetch('/api/designers').then(res => res.json()).then(data => setDesigners(data)).catch(err => console.error(err));
-    fetch('/api/admin/bookings').then(res => res.json()).then(data => setBookings(data)).catch(err => console.error(err));
+    fetch('/api/admin/bookings', { headers }).then(res => res.json()).then(data => setBookings(data)).catch(err => console.error(err));
 
   }, []);
 
@@ -38,14 +40,17 @@ export default function AdminPage() {
     try {
       const res = await fetch('/api/admin/actions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer mock_admin_secret_token_2026'
+        },
         body: JSON.stringify({ action: 'run_news_crawler' })
       });
       const data = await res.json();
       if (data.success) {
         alert("업데이트 완료:\n" + (data.message || "성공적으로 동기화되었습니다."));
         // Refresh stats
-        fetch('/api/admin/stats').then(res => res.json()).then(data => setStats(data));
+        fetch('/api/admin/stats', { headers: { "Authorization": "Bearer mock_admin_secret_token_2026" } }).then(res => res.json()).then(data => setStats(data));
       } else {
         alert("오류 발생: " + data.error);
       }
@@ -395,7 +400,7 @@ export default function AdminPage() {
                       if (res.ok) {
                         alert('성공적으로 등록되었습니다.');
                         setShowAddStory(false);
-                        setNewStory({ title: '', date: '', excerpt: '', content_html: '' });
+                        setNewStory({ title: '', date: '', excerpt: '', content_html: '', category: 'other' });
                         // Refresh stories and stats
                         fetch('/api/stories').then(res => res.json()).then(setStories);
                         fetch('/api/admin/stats').then(res => res.json()).then(setStats);
@@ -409,6 +414,17 @@ export default function AdminPage() {
                     <div style={{ marginBottom: "1rem" }}>
                       <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 600 }}>제목</label>
                       <input type="text" required style={{ width: "100%", padding: "0.8rem", border: "1px solid #d1d5db", borderRadius: "8px" }} value={newStory.title} onChange={e => setNewStory({...newStory, title: e.target.value})} />
+                    </div>
+                    <div style={{ marginBottom: "1rem" }}>
+                      <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 600 }}>카테고리</label>
+                      <select style={{ width: "100%", padding: "0.8rem", border: "1px solid #d1d5db", borderRadius: "8px" }} value={newStory.category} onChange={e => setNewStory({...newStory, category: e.target.value})}>
+                        <option value="academy-season1">남북청년 리더십 아카데미 시즌 1 (academy-season1)</option>
+                        <option value="academy-season2">남북청년 리더십 아카데미 시즌 2 (academy-season2)</option>
+                        <option value="legal">법률 1:1 멘토링 (legal)</option>
+                        <option value="community">커뮤니티 조성 & 연대 (community)</option>
+                        <option value="designer">한반도 디자이너 (designer)</option>
+                        <option value="other">기타 활동 (other)</option>
+                      </select>
                     </div>
                     <div style={{ marginBottom: "1rem" }}>
                       <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 600 }}>날짜 (YYYY. MM. DD)</label>

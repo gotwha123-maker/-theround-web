@@ -1,0 +1,2 @@
+- `[x]` Node.js Jimp 이미지 가공 스크립트 (`censor_activity_images.js`) 작성
+- `[/]` 이미지 가공 스크립트 실행 및 결과 파일 생성 검증

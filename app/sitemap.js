@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://theroundyouth.org";
+  const baseUrl = "https://www.theroundyouth.org";
   
   return [
     {

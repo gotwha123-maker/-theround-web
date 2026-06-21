@@ -564,12 +564,12 @@ a {
     color: white !important;
 }
 
-.scrolled .header {
+.header.scrolled {
     background: rgba(255, 255, 255, 0.9) !important;
     border-bottom: 1px solid var(--color-border) !important;
 }
 
-.scrolled .nav-link {
+.header.scrolled .nav-link {
     color: var(--color-text-primary) !important;
 }
 
@@ -3881,5 +3881,271 @@ a {
   color: #475569 !important;
   margin-bottom: 0.5rem !important;
 }
+
+/* ==========================================================================
+   Mobile Optimization Enhancements (Under 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Global Spacing & Typography */
+    html {
+        font-size: 15px; /* 약간 작게 하여 모바일 글자 가독성 향상 */
+    }
+    
+    body {
+        line-height: 1.7;
+    }
+    
+    /* 2. Header & Language Switcher Adjustments */
+    .header-container {
+        width: 92%;
+    }
+    
+    .lang-switcher-container {
+        margin-right: 10px !important;
+        padding: 4px 8px !important;
+        gap: 4px !important;
+    }
+    
+    .lang-switcher-container a, 
+    .lang-switcher-container span {
+        padding: 2px 8px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .btn-header-donate {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* 3. Hero Layout Optimization */
+    .hero-section {
+        min-height: 90vh !important;
+        padding-top: 80px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 1.5rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .hero-lead {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+        margin-bottom: 2.5rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    /* 4. Section Padding & Headings */
+    .section {
+        padding: 4rem 0 !important;
+    }
+    
+    .section-header {
+        margin-bottom: 2.5rem !important;
+    }
+    
+    .section-header h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .section-lead {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+    }
+    
+    /* 5. Cards & Grids Compact Styles */
+    .about-card, 
+    .talk-card, 
+    .designer-info {
+        padding: 2rem 1.5rem !important;
+        border-radius: 20px !important;
+    }
+    
+    .about-icon, 
+    .talk-icon-wrapper {
+        width: 52px !important;
+        height: 52px !important;
+        border-radius: 12px !important;
+        margin-bottom: 1.2rem !important;
+    }
+    
+    .talk-card-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    
+    .talk-card-desc {
+        font-size: 0.88rem !important;
+        margin-bottom: 1.8rem !important;
+    }
+    
+    /* 6. Modals & Dialogs Optimization */
+    .modal-container {
+        width: 94% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        border-radius: 20px !important;
+    }
+    
+    .modal-body {
+        padding: 2rem 1.5rem !important;
+    }
+    
+    .modal-body h3 {
+        font-size: 1.4rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* 7. Image and Visual Container fix */
+    .designer-img-wrapper {
+        height: 280px !important;
+    }
+
+    /* 8. Mobile Swipe Carousel (Horizontal Scroll Slider) */
+    .designers-grid,
+    .stories-grid,
+    .programs-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        padding-bottom: 1.5rem !important;
+        padding-top: 0.5rem !important;
+        gap: 1.2rem !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: thin !important;
+    }
+    
+    .designers-grid::-webkit-scrollbar,
+    .stories-grid::-webkit-scrollbar,
+    .programs-grid::-webkit-scrollbar {
+        height: 4px !important;
+    }
+    
+    .designers-grid::-webkit-scrollbar-thumb,
+    .stories-grid::-webkit-scrollbar-thumb,
+    .programs-grid::-webkit-scrollbar-thumb {
+        background: var(--color-primary) !important;
+        border-radius: 10px !important;
+    }
+    
+    .designers-grid::-webkit-scrollbar-track,
+    .stories-grid::-webkit-scrollbar-track,
+    .programs-grid::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .designer-card,
+    .story-card,
+    .program-card {
+        flex: 0 0 82% !important;
+        width: 82% !important;
+        scroll-snap-align: start !important;
+        margin: 0 !important;
+        box-shadow: var(--shadow-md) !important;
+        transition: transform 0.2s ease !important;
+    }
+    
+    .designer-card:hover,
+    .story-card:hover,
+    .program-card:hover {
+        transform: none !important;
+    }
+
+    /* Swipe Hint Indicators */
+    .designers-grid,
+    .stories-grid,
+    .programs-grid {
+        position: relative;
+    }
+    
+    .designers-grid::after,
+    .stories-grid::after,
+    .programs-grid::after {
+        content: "Swipe ➔" !important;
+        position: absolute !important;
+        bottom: 0px !important;
+        right: 16px !important;
+        font-size: 0.72rem !important;
+        font-weight: 800 !important;
+        color: var(--color-primary) !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        padding: 3px 10px !important;
+        border-radius: 20px !important;
+        border: 1px solid rgba(13, 148, 136, 0.2) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+        letter-spacing: 0.5px !important;
+        z-index: 10 !important;
+        pointer-events: none !important;
+        animation: swipeBounce 1.6s infinite ease-in-out !important;
+    }
+    
+    .dark-bg .programs-grid::after {
+        color: var(--color-accent-secondary) !important;
+        background: rgba(15, 23, 42, 0.9) !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    @keyframes swipeBounce {
+        0%, 100% {
+            transform: translateX(0);
+            opacity: 0.7;
+        }
+        50% {
+            transform: translateX(-6px);
+            opacity: 1;
+        }
+    }
+
+    /* Premium Mobile Optimization Upgrades */
+    
+    /* 1. Mobile Menu Glassmorphism */
+    .nav-menu {
+        background: rgba(255, 255, 255, 0.82) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    .header:not(.scrolled) .nav-menu {
+        background: rgba(15, 23, 42, 0.82) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    
+    .header:not(.scrolled) .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    /* 2. Text Break Optimization for Mobile Readability */
+    body, p, h1, h2, h3, h4, 
+    .hero-lead, 
+    .designer-bio, 
+    .story-excerpt, 
+    .program-main-info p, 
+    .about-card p,
+    .benefit-item p,
+    .donation-desc,
+    .contact-intro,
+    .talk-card-desc {
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    /* 3. Horizontal Carousel Fading Edge Overlay */
+    .designers-grid,
+    .stories-grid,
+    .programs-grid {
+        mask-image: linear-gradient(to right, black 0%, black 82%, transparent 98%) !important;
+        -webkit-mask-image: linear-gradient(to right, black 0%, black 82%, transparent 98%) !important;
+    }
+}
+
+
+
 
 

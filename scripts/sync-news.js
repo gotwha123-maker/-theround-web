@@ -87,9 +87,18 @@ async function fetchNaverNews() {
         if (i < 5) {
           const titleEl = $(el).find('.news_tit');
           const title = titleEl.text().trim();
-          const link = titleEl.attr('href');
+          const link = titleEl.attr('href') || '';
           const date = $(el).find('.info_group span').first().text().trim() || '최신';
-          if (title) items.push({ title, date, url: link, source: '네이버 뉴스' });
+          
+          // 출처 불명확 도메인 배제 필터 (개인 블로그, 카페, 사설 사이트 등)
+          const excludeDomains = ['blog.naver.com', 'blog.me', 'tistory.com', 'cafe.naver.com', 'cafe.daum.net', 'modoo.at', 'namu.wiki', 'kin.naver.com'];
+          const isInvalidDomain = excludeDomains.some(domain => link.includes(domain));
+          
+          if (title && link && !isInvalidDomain) {
+            // 실제 언론사 명칭을 파싱하여 소스로 지정
+            const pressName = $(el).find('.info.press').text().trim() || '언론보도';
+            items.push({ title, date, url: link, source: pressName });
+          }
         }
       });
     }
@@ -99,23 +108,46 @@ async function fetchNaverNews() {
 
 // 4. AI Verification - Relaxed Filtering
 async function verify(rawItems) {
-  console.log(`[AI] Verifying ${rawItems.length} items with relaxed rules...`);
+  console.log(`[AI] Verifying ${rawItems.length} items with strict verification rules...`);
   const verified = [];
   const uniqueItems = Array.from(new Map(rawItems.map(item => [item.url, item])).values());
 
   for (const item of uniqueItems) {
     try {
-      const prompt = `판단 결과를 반드시 JSON 형식으로 반환하라.
-탈북민, 북한, 남북관계 관련 소식인지 판단하라. 
-조금이라도 관련이 있다면 valid: true로 하라.
-형식: {valid: bool, title: string, excerpt: string (친절한 한국어 요약, 2줄), category: "scholarship"|"housing"|"job"|"welfare"|"university"|"culture", badge: string}. 
-제목: ${item.title}, 출처: ${item.source}`;
-      
+      const prompt = `당신은 북한이탈주민(탈북민)을 위한 신뢰성 높은 뉴스 및 공고를 정제하는 AI 검증 전문가입니다.
+아래 뉴스/공고 정보가 사실 확인이 되었으며, 공식적인 정부 기관, 지자체, 공기업 및 지정 공공 재단 등 신뢰할 수 있는 단체에서 공식적으로 배포한 유효한 정보인지 판별하십시오.
+
+[분석 정보]
+- 출처: ${item.source}
+- 제목: ${item.title}
+- 링크: ${item.url}
+
+[검증 기준]
+1. 공식 정부부처(통일부 등), 지자체(서울시, 경기도 등), 공기업(LH, SH 등), 신뢰성 높은 기관(남북하나재단 등)에서 공식 발표하거나 사실이 확인된 정착 지원(장학, 주택, 채용, 복지 등) 소식인가?
+2. 출처가 불분명한 뜬소문, 단순 개인 의견이나 칼럼, 홍보/광고성 글, 혹은 사실 확인이 되지 않은 단순 추측성 기사 등은 철저히 배제(valid: false)하십시오.
+3. 중복이나 노이즈가 없는 단정하고 깨끗한 제목으로 정제하십시오.
+4. 요약(excerpt)은 탈북 청년들에게 도움이 되는 어조로 친절하게 핵심 사실에 기반한 2줄 요약을 생성하십시오.
+5. 'badge'는 정보를 배포한 핵심 공공 기관이나 언론사의 이름을 정확하게 기록하십시오 (예: '남북하나재단', 'LH공사', '서울시' 등).
+
+반드시 아래 JSON 형식으로만 답변하십시오:
+{
+  "valid": true/false,
+  "title": "정제된 제목",
+  "excerpt": "핵심 사실에 기반한 친절한 2줄 요약",
+  "category": "scholarship" | "housing" | "job" | "welfare" | "university" | "culture",
+  "badge": "기관/출처명"
+}`;
+
       const res = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
-        messages: [{ role: 'system', content: '너는 탈북민 소식 큐레이터이다. 웬만하면 모든 소식을 긍정적으로 검토하여 포함시켜라.' }, { role: 'user', content: prompt }],
-        response_format: { type: 'json_object' }
+        messages: [
+          { role: 'system', content: '너는 탈북민 소식 정제 전문가이다. 사실로 확인되고 공식 발표된 신뢰성 높은 소식만 엄격하게 검토하여 포함시켜라. 불확실하거나 사설적인 소식은 철저히 제외하라.' },
+          { role: 'user', content: prompt }
+        ],
+        response_format: { type: 'json_object' },
+        temperature: 0
       });
+      
       const data = JSON.parse(res.choices[0].message.content);
       if (data.valid) {
         verified.push({
@@ -125,19 +157,46 @@ async function verify(rawItems) {
           url: item.url,
           tag: item.source === '네이버 뉴스' ? '언론보도' : '기관공고'
         });
+        console.log(`  [OK - STRICT] ${data.title}`);
+      } else {
+        console.log(`  [SKIP - STRICT] ${item.title} (사실 확인/신뢰성 기준 미달)`);
       }
     } catch (e) { console.error('  ! AI error:', e.message); }
   }
   return verified;
 }
 
+async function syncAirtableToLocalJSON() {
+  if (!base) return;
+  console.log('[Sync] Fetching all records from Airtable to update local JSON...');
+  try {
+    const records = await base(TABLE_NAME).select({
+      sort: [{ field: 'date', direction: 'desc' }]
+    }).all();
+    
+    const formatted = records.map(r => ({
+      id: Buffer.from(r.fields.url || '').toString('base64'),
+      valid: true,
+      title: r.fields.title,
+      excerpt: r.fields.excerpt,
+      category: r.fields.category,
+      badge: r.fields.badge,
+      date: r.fields.date,
+      url: r.fields.url,
+      tag: r.fields.tag
+    }));
+    
+    if (!fs.existsSync(path.dirname(BACKUP_PATH))) fs.mkdirSync(path.dirname(BACKUP_PATH), { recursive: true });
+    fs.writeFileSync(BACKUP_PATH, JSON.stringify(formatted, null, 2));
+    console.log(`[Sync] Successfully updated ${BACKUP_PATH} with ${formatted.length} accumulated items from Airtable.`);
+  } catch (e) {
+    console.error('[Sync] Failed to sync Airtable to Local JSON:', e.message);
+  }
+}
+
 async function run() {
   const raw = [...await scrapeHana(), ...await fetchLH(), ...await fetchNaverNews()];
   const verified = await verify(raw);
-  
-  if (!fs.existsSync(path.dirname(BACKUP_PATH))) fs.mkdirSync(path.dirname(BACKUP_PATH), { recursive: true });
-  fs.writeFileSync(BACKUP_PATH, JSON.stringify(verified, null, 2));
-  console.log(`[Local] Saved ${verified.length} items to ${BACKUP_PATH}`);
 
   if (base) {
     console.log('[Airtable] Syncing...');
@@ -151,6 +210,9 @@ async function run() {
       } catch (e) { console.error(`  ! Airtable Error:`, e.message); }
     }
   }
+
+  // Update local JSON with all accumulated items from Airtable
+  await syncAirtableToLocalJSON();
 }
 
 run();

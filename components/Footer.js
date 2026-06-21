@@ -40,8 +40,8 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div className="org-details">
-            <p>비영리 민간단체 더라운드 | 대표자: 김은철 | 고유번호: 123-45-67890</p>
-            <p>주소: 서울 금천구 가산동 459-7 | TEL: 02-866-6296 | Email: theround2030@naver.com</p>
+            <p>비영리 민간단체 더라운드 | 대표자: 김은철 | 고유번호: 144-82-72377</p>
+            <p>주소: 서울 금천구 가산디지털로 459-7 | TEL: 02-866-6296 | Email: theround2030@naver.com</p>
             <p style={{ marginTop: "0.5rem", fontWeight: 700, color: "var(--color-primary)" }}>Official Website: www.theroundyouth.org</p>
             <p className="copyright">&copy; 2026 The Round. All Rights Reserved.</p>
           </div>

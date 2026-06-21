@@ -48,7 +48,10 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       (item.category && item.category.toLowerCase().includes(q));
     
     const matchesTab = activeTab === "전체" || 
-      (item.category && item.category === getCategoryKey(activeTab));
+      (item.category && (
+        item.category === getCategoryKey(activeTab) ||
+        (activeTab === "교육" && item.category === "education")
+      ));
 
     return matchesSearch && matchesTab;
   });
@@ -72,7 +75,8 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       case 'scholarship': return "#3b82f6";
       case 'housing': return "#8b5cf6";
       case 'job': return "#f59e0b";
-      case 'university': return "#10b981";
+      case 'university':
+      case 'education': return "#10b981";
       case 'welfare': return "#ec4899";
       case 'culture': return "#06b6d4";
       default: return "var(--color-primary)";
@@ -84,7 +88,8 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       case 'scholarship': return "장학정보";
       case 'housing': return "주택정보";
       case 'job': return "일자리";
-      case 'university': return "교육/역량";
+      case 'university':
+      case 'education': return "교육/역량";
       case 'welfare': return "생활/복지";
       case 'culture': return "문화/새소식";
       default: return cat;

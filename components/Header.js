@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+export default function Header({ forceSolid = false }) {
+  const [scrolled, setScrolled] = useState(forceSolid);
   const [menuOpen, setMenuOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState("login"); // "login" or "signup"
@@ -14,6 +14,10 @@ export default function Header() {
   const [logoClicks, setLogoClicks] = useState(0);
 
   useEffect(() => {
+    if (forceSolid) {
+      setScrolled(true);
+      return;
+    }
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setScrolled(true);
@@ -29,12 +33,12 @@ export default function Header() {
     }
     
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [forceSolid]);
 
   const handleLogoClick = (e) => {
-    e.preventDefault();
     const newClicks = logoClicks + 1;
     if (newClicks >= 5) {
+      e.preventDefault();
       localStorage.setItem("mock_session", "admin");
       setIsLoggedIn(true);
       alert("관리자 모드가 활성화되었습니다.");
@@ -103,7 +107,7 @@ export default function Header() {
       <header className={`header ${scrolled ? "scrolled" : ""}`} id="main-header">
         <div className="header-container">
           <div className="logo">
-            <a href="#" className="logo-link" onClick={handleLogoClick}>
+            <a href="/" className="logo-link" onClick={handleLogoClick}>
               <span className="logo-text">
                 THE <span className="accent-text">ROUND</span>
               </span>
@@ -128,43 +132,28 @@ export default function Header() {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/#solutions" className="nav-link-sub" onClick={closeMenu}>
-                      핵심 실천 활동
+                    <a href="/academy" className="nav-link-sub" onClick={closeMenu}>
+                      리더십 아카데미
                     </a>
                   </li>
                   <li>
-                    <a href="/#stories" className="nav-link-sub" onClick={closeMenu}>
-                      활동 소식/스토리
+                    <a href="/mentoring" className="nav-link-sub" onClick={closeMenu}>
+                      법률 1:1 멘토링
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/community" className="nav-link-sub" onClick={closeMenu}>
+                      커뮤니티 조성 & 연대
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/designers" className="nav-link-sub" onClick={closeMenu}>
+                      한반도 디자이너 섭외
                     </a>
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
-                <a href="/#designers" className="nav-link dropdown-toggle" onClick={closeMenu}>
-                  한반도 디자이너
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="/#designers" className="nav-link-sub" onClick={closeMenu}>
-                      디자이너 소개
-                    </a>
-                  </li>
-                  <li>
-                    <a 
-                      href="/#designers" 
-                      className="nav-link-sub" 
-                      onClick={(e) => {
-                        closeMenu();
-                        setTimeout(() => {
-                          window.dispatchEvent(new CustomEvent('openDesignerBooking'));
-                        }, 100);
-                      }}
-                    >
-                      강연 섭외 신청
-                    </a>
-                  </li>
-                </ul>
-              </li>
+
               <li className="nav-item">
                 <a href="/#contact" className="nav-link" onClick={closeMenu}>
                   문의
@@ -207,6 +196,56 @@ export default function Header() {
           </nav>
 
           <div className="header-actions">
+            <div className="lang-switcher-container" style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              marginRight: "20px",
+              padding: "5px 10px",
+              background: "rgba(99, 102, 241, 0.12)",
+              borderRadius: "30px",
+              border: "1.5px solid rgba(99, 102, 241, 0.35)",
+              boxShadow: "0 4px 12px rgba(99, 102, 241, 0.08)",
+              backdropFilter: "blur(6px)",
+            }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-primary)", opacity: 0.9 }}>
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <div style={{ display: "flex", gap: "6px", fontSize: "0.85rem", fontWeight: 800 }}>
+                <span style={{
+                  color: "white",
+                  backgroundColor: "var(--color-primary)",
+                  padding: "4px 10px",
+                  borderRadius: "15px",
+                  boxShadow: "0 3px 6px rgba(99, 102, 241, 0.3)",
+                  cursor: "default"
+                }}>
+                  KO
+                </span>
+                <a 
+                  href={typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://theround-web-en.vercel.app'} 
+                  style={{
+                    color: scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.75)",
+                    textDecoration: "none",
+                    padding: "4px 10px",
+                    borderRadius: "15px",
+                    transition: "all 0.2s ease-in-out"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = "var(--color-primary)";
+                    e.target.style.background = "rgba(255, 255, 255, 0.85)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.75)";
+                    e.target.style.background = "transparent";
+                  }}
+                >
+                  EN
+                </a>
+              </div>
+            </div>
             <a href="#donation" className="btn btn-primary btn-header-donate" onClick={closeMenu}>
               후원하기
             </a>

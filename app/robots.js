@@ -5,6 +5,6 @@ export default function robots() {
       allow: "/",
       disallow: ["/admin", "/mypage", "/api"],
     },
-    sitemap: "https://theroundyouth.org/sitemap.xml",
+    sitemap: "https://www.theroundyouth.org/sitemap.xml",
   };
 }

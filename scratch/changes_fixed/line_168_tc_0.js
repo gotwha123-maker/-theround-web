@@ -1,0 +1,4 @@
+### 1. 참가자 및 관계자 얼굴 개별 초강력 블러(흐림 효과) 가공
+- **스크립트 구현**: [censor_activity_images.js](file:///c:/Users/thero/Desktop/theround-web-next/scratch/censor_activity_images.js)를 최종 보완하여, 멘토 대표님들의 얼굴과 주요 비즈니스 배경은 깨끗하게 유지하면서 **멘토 대표님을 제외한 강연장의 청년, 일반 참가자, 주변 스태프 등 모든 인원의 개별 얼굴 좌표를 100% 전수 추적하여 매핑**했습니다.
+- **알고리즘 상세**: 원형 마스크 내부의 블러 강도를 **초강력 수준(Radius 32)**으로 2배 끌어올려 신원을 완전히 식별할 수 없도록 원천 차단하였으며, 얼굴 부위를 균일한 흐림 농도로 꽉 채우고 외곽 경계선만 깔끔하게 원형 투명 처리하여 딱딱한 테두리를 방지했습니다.
+- **이미지 생성**: `node scratch/censor_activity_images.js` 명령을 실행해 15장의 가공본 스냅사진(`activity_censored_1.jpg` ~ `activity_censored_15.jpg`)을 `public/assets/`에 성공적으로 갱신 완료했습니다.
