@@ -135,7 +135,6 @@ const activityGallery = [
   { src: "/assets/activity_censored_10.jpg", title: "아카데미 최종 수료식 현장", desc: "수료장과 위촉패를 전달하며 서로를 격려하고 박수 갈채를 보내는 훈훈한 시간" },
   { src: "/assets/activity_censored_11.jpg", title: "아모레퍼시픽 사옥 견학 투어 (1)", desc: "세계적인 뷰티/소비재 기업의 본사 공간을 직접 탐방하는 현장 학습" },
   { src: "/assets/activity_censored_12.jpg", title: "소비재 비즈니스 현장 특강 (1)", desc: "김승환 아모레퍼시픽 대표 사장이 주관한 기업가 정신 및 뷰티 마케팅 특강" },
-  { src: "/assets/activity_censored_13.jpg", title: "아모레퍼시픽 사옥 견학 투어 (2)", desc: "사옥 투어를 진행하며 현대적인 비즈니스 인프라와 공간 설계를 몸소 체험하는 시간" },
   { src: "/assets/activity_censored_14.jpg", title: "소비재 비즈니스 현장 특강 (2)", desc: "김승환 사장의 강연을 주의 깊게 필기하고 의견을 주고받는 청년들" },
   { src: "/assets/activity_censored_15.jpg", title: "소비재 비즈니스 현장 특강 (3)", desc: "소비자 니즈 발견과 비즈니스 성공 방정식에 대해 경청하는 강연 현장" }
 ];
