@@ -127,7 +127,7 @@ const activityGallery = [
   { src: "/assets/activity_censored_2.jpg", title: "기업가치 특강", desc: "이상하 멘토가 들려주는 기업가치 평가와 재무 전략 강연" },
   { src: "/assets/activity_censored_3.jpg", title: "사회적 역할과 CSR 특강", desc: "최규복 멘토가 제시하는 현대 기업의 사회적 책임에 관한 세션" },
   { src: "/assets/activity_censored_4.jpg", title: "제1기 단체 응원 사진", desc: "리더십 아카데미를 무사히 마칠 것을 다짐하며 남북 청년들과 함께한 단체 사진" },
-  { src: "/assets/activity_censored_5.jpg", title: "백오피스 멘토링 세션", desc: "최성우 CHRO 멘토가 제시하는 인사/조직 관리 핵심 실무 지식 강연" },
+  { src: "/assets/activity_censored_5.jpg", title: "백오피스 멘토링 세션", desc: "이상하 회장이 제시하는 인사/조직 관리 핵심 실무 지식 강연" },
   { src: "/assets/activity_censored_6.jpg", title: "강연 및 질의응답 피드백", desc: "강연을 경청하며 개인 비즈니스 모델의 개선 방향을 토론하는 소그룹 시간" },
   { src: "/assets/activity_censored_7.jpg", title: "비즈니스 모델 심층 토론", desc: "참여 청년들이 설계해 온 비전을 멘토들과 함께 분석하고 정교화하는 과정" },
   { src: "/assets/activity_censored_8.jpg", title: "아카데미 수료 기념 단체사진 (1)", desc: "총 5회차의 대장정을 성공적으로 완주한 후 다 함께 모여 촬영한 수료 사진" },
@@ -135,7 +135,7 @@ const activityGallery = [
   { src: "/assets/activity_censored_10.jpg", title: "아카데미 최종 수료식 현장", desc: "수료장과 위촉패를 전달하며 서로를 격려하고 박수 갈채를 보내는 훈훈한 시간" },
   { src: "/assets/activity_censored_11.jpg", title: "아모레퍼시픽 사옥 견학 투어 (1)", desc: "세계적인 뷰티/소비재 기업의 본사 공간을 직접 탐방하는 현장 학습" },
   { src: "/assets/activity_censored_12.jpg", title: "소비재 비즈니스 현장 특강 (1)", desc: "김승환 아모레퍼시픽 대표 사장이 주관한 기업가 정신 및 뷰티 마케팅 특강" },
-  { src: "/assets/activity_censored_14.jpg", title: "소비재 비즈니스 현장 특강 (2)", desc: "김승환 사장의 강연을 주의 깊게 필기하고 의견을 주고받는 청년들" },
+  { src: "/assets/activity_censored_14.jpg", title: "소비재 비즈니스 현장 특강 (2)", desc: "김승환 대표의 강연을 주의 깊게 필기하고 의견을 주고받는 청년들" },
   { src: "/assets/activity_censored_15.jpg", title: "소비재 비즈니스 현장 특강 (3)", desc: "소비자 니즈 발견과 비즈니스 성공 방정식에 대해 경청하는 강연 현장" }
 ];
 
