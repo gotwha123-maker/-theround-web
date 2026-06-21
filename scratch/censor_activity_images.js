@@ -36,9 +36,28 @@ const imageTargets = [
   {
     fileName: 'media__1782039657681.jpg', // 세미나실 이상하 강연 (새 이미지)
     mentors: [
-      { rx: 0.07, ry: 0.32, radius: 0.04 }  // 이상하 회장님 (좌측 서 계신 분)
+      { rx: 0.063, ry: 0.33, radius: 0.04 }  // 이상하 회장님 (좌측 서 계신 분)
     ],
-    manualFaces: []
+    manualFaces: [
+      { rx: 0.363, ry: 0.469, radius: 0.03 }, // Face 0
+      { rx: 0.846, ry: 0.481, radius: 0.035 }, // Face 1
+      { rx: 0.735, ry: 0.432, radius: 0.03 }, // Face 2
+      { rx: 0.875, ry: 0.530, radius: 0.04 }, // Face 3
+      { rx: 0.706, ry: 0.478, radius: 0.03 }, // Face 4
+      { rx: 0.907, ry: 0.454, radius: 0.03 }, // Face 5
+      { rx: 0.929, ry: 0.479, radius: 0.035 }, // Face 6
+      { rx: 0.824, ry: 0.439, radius: 0.03 }, // Face 8
+      { rx: 0.440, ry: 0.443, radius: 0.045 }, // Face 9
+      { rx: 0.857, ry: 0.443, radius: 0.045 }, // Face 10
+      { rx: 0.686, ry: 0.828, radius: 0.065 }, // Face 11 (앞쪽 앉아있는 사람)
+      { rx: 0.304, ry: 0.736, radius: 0.04 }, // Face 12 (앞쪽 앉아있는 사람 2)
+      { rx: 0.370, ry: 0.585, radius: 0.035 }, // Face 13
+      { rx: 0.812, ry: 0.551, radius: 0.045 }, // Face 15
+      { rx: 0.903, ry: 0.601, radius: 0.04 }, // Face 16
+      { rx: 0.324, ry: 0.451, radius: 0.08 }, // Face 17 (좌측에 앉아있는 사람)
+      { rx: 0.524, ry: 0.449, radius: 0.065 }, // Face 18 (중앙 뒤쪽 사람)
+      { rx: 0.536, ry: 0.359, radius: 0.035 } // Face 19 (중앙 앉아있는 사람)
+    ]
   },
   {
     fileName: 'media__1782039657482.jpg', // 세미나실 최규복 강연
