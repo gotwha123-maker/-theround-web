@@ -38,7 +38,7 @@ const imageTargets = [
     mentors: [
       { rx: 0.063, ry: 0.33, radius: 0.04 }  // 이상하 회장님 (좌측 서 계신 분)
     ],
-    ignoreDetectionIds: [7, 11, 12, 17, 20], // 7, 20은 이상하 회장님 / 11, 12, 17은 얼굴이 아니거나 블러 해제 요청된 번호
+    ignoreDetectionIds: [7, 20], // 7, 20은 이상하 회장님 보존 (11, 12, 17번 앞에 앉은 청년들은 다시 블러 처리 복원)
     manualFaces: []
   },
   {
