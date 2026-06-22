@@ -30,128 +30,8 @@ const yearendGallery = [
 ];
 
 export default function CommunityPage() {
-  const [stories, setStories] = useState([]);
-  const [selectedStory, setSelectedStory] = useState(null);
-  
-  // 앨범 라이트박스 상태 관리
-  const [activeAlbum, setActiveAlbum] = useState(null);
-  const [albumCurrentIdx, setAlbumCurrentIdx] = useState(0);
-
-  const getActiveAlbumGallery = () => {
-    if (activeAlbum === "unione") return unioneFCGallery;
-    if (activeAlbum === "yearend") return yearendGallery;
-    return [];
-  };
-
-  const openAlbum = (albumName) => {
-    setActiveAlbum(albumName);
-    setAlbumCurrentIdx(0);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeAlbum = () => {
-    setActiveAlbum(null);
-    document.body.style.overflow = "";
-  };
-
-  const nextAlbumImage = (e) => {
-    if (e) e.stopPropagation();
-    const gallery = getActiveAlbumGallery();
-    setAlbumCurrentIdx((prev) => (prev + 1) % gallery.length);
-  };
-
-  const prevAlbumImage = (e) => {
-    if (e) e.stopPropagation();
-    const gallery = getActiveAlbumGallery();
-    setAlbumCurrentIdx((prev) => (prev - 1 + gallery.length) % gallery.length);
-  };
-
-  // 앨범 방향키 및 ESC 제어
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!activeAlbum) return;
-      if (e.key === "ArrowLeft") prevAlbumImage();
-      if (e.key === "ArrowRight") nextAlbumImage();
-      if (e.key === "Escape") closeAlbum();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeAlbum, albumCurrentIdx]);
-
-  useEffect(() => {
-    async function fetchStories() {
-      try {
-        const res = await fetch("/api/stories", { cache: "no-store" });
-        if (res.ok) {
-          const data = await res.json();
-          const communityStories = data.filter((s) => s.category === "community");
-          setStories(communityStories);
-        }
-      } catch (err) {
-        console.error("Failed to fetch community stories:", err);
-      }
-    }
-    fetchStories();
-  }, []);
-
-  const openDetail = (s) => {
-    setSelectedStory(s);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeDetail = () => {
-    setSelectedStory(null);
-    document.body.style.overflow = "";
-  };
-
   return (
     <>
-      <style dangerouslySetInnerHTML={{__html: `
-        /* 갤러리 카드 줌인 효과 및 오버레이 */
-        .community-gallery-card {
-          position: relative;
-          width: 100%;
-          padding-top: 56.25%;
-          overflow: hidden;
-          cursor: pointer;
-        }
-        .community-gallery-card img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-        .community-gallery-card:hover img {
-          transform: scale(1.06);
-        }
-        .community-gallery-overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(15, 23, 42, 0.45);
-          display: flex;
-          align-items: center;
-          justifyContent: center;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          z-index: 2;
-        }
-        .community-gallery-card:hover .community-gallery-overlay {
-          opacity: 1;
-        }
-        @media (max-width: 768px) {
-          .community-gallery-overlay {
-            opacity: 1 !important;
-            background: rgba(15, 23, 42, 0.2) !important;
-          }
-          .community-gallery-overlay span {
-            font-size: 0.8rem !important;
-            padding: 0.6rem 1.2rem !important;
-          }
-        }
-      `}} />
       <Header forceSolid={true} />
       <main style={{ minHeight: "100vh", backgroundColor: "var(--color-bg-primary)", color: "var(--color-text-primary)" }}>
         
@@ -191,7 +71,7 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        {/* 주요 공동체 활동 섹션 (중복 소개 단계를 제거하고 메인 프로그램을 전면에 배치) */}
+        {/* 주요 공동체 활동 섹션 */}
         <section className="section" style={{ padding: "6rem 0" }}>
           <div className="container">
             <div className="section-header text-center">
@@ -221,46 +101,16 @@ export default function CommunityPage() {
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "var(--shadow-sm)";
               }}>
-                {/* 갤러리 트리거 이미지 */}
-                <div 
-                  onClick={() => openAlbum("unione")}
-                  className="community-gallery-card"
-                >
+                {/* 카드 이미지 */}
+                <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", overflow: "hidden" }}>
                   <img 
                     src={unioneFCGallery[0].src} 
                     alt="UniOne FC" 
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
                     onError={(e) => {
                       e.target.src = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070";
                     }} 
                   />
-                  <div className="community-gallery-overlay">
-                    <span style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.95)",
-                      color: "var(--color-text-primary)",
-                      padding: "0.8rem 1.5rem",
-                      borderRadius: "30px",
-                      fontWeight: 800,
-                      fontSize: "0.9rem",
-                      boxShadow: "var(--shadow-sm)"
-                    }}>
-                      📸 사진 갤러리 보기 (+{unioneFCGallery.length}장)
-                    </span>
-                  </div>
-                  <span style={{
-                    position: "absolute",
-                    bottom: "1rem",
-                    right: "1rem",
-                    backgroundColor: "rgba(15, 23, 42, 0.8)",
-                    backdropFilter: "blur(4px)",
-                    color: "white",
-                    padding: "0.4rem 0.9rem",
-                    borderRadius: "20px",
-                    fontSize: "0.8rem",
-                    fontWeight: 700,
-                    zIndex: 1
-                  }}>
-                    📸 사진첩 (+{unioneFCGallery.length}장)
-                  </span>
                 </div>
 
                 <div style={{ padding: "2.5rem", flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
@@ -278,31 +128,6 @@ export default function CommunityPage() {
                       <li>체력 증진 및 정서적 지지 시너지 효과</li>
                     </ul>
                   </div>
-
-                  <button 
-                    onClick={() => openAlbum("unione")}
-                    style={{
-                      width: "100%",
-                      padding: "1rem",
-                      backgroundColor: "transparent",
-                      border: "1px solid var(--color-primary)",
-                      color: "var(--color-primary)",
-                      borderRadius: "12px",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      transition: "all 0.2s"
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = "var(--color-primary)";
-                      e.target.style.color = "white";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = "transparent";
-                      e.target.style.color = "var(--color-primary)";
-                    }}
-                  >
-                    📸 훈련 및 교류전 갤러리 열기
-                  </button>
                 </div>
               </div>
 
@@ -325,46 +150,16 @@ export default function CommunityPage() {
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "var(--shadow-sm)";
               }}>
-                {/* 갤러리 트리거 이미지 */}
-                <div 
-                  onClick={() => openAlbum("yearend")}
-                  className="community-gallery-card"
-                >
+                {/* 카드 이미지 */}
+                <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", overflow: "hidden" }}>
                   <img 
                     src={yearendGallery[0].src} 
                     alt="Community Year-end Party" 
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
                     onError={(e) => {
                       e.target.src = "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2070";
                     }} 
                   />
-                  <div className="community-gallery-overlay">
-                    <span style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.95)",
-                      color: "var(--color-text-primary)",
-                      padding: "0.8rem 1.5rem",
-                      borderRadius: "30px",
-                      fontWeight: 800,
-                      fontSize: "0.9rem",
-                      boxShadow: "var(--shadow-sm)"
-                    }}>
-                      📸 사진 갤러리 보기 (+{yearendGallery.length}장)
-                    </span>
-                  </div>
-                  <span style={{
-                    position: "absolute",
-                    bottom: "1rem",
-                    right: "1rem",
-                    backgroundColor: "rgba(15, 23, 42, 0.8)",
-                    backdropFilter: "blur(4px)",
-                    color: "white",
-                    padding: "0.4rem 0.9rem",
-                    borderRadius: "20px",
-                    fontSize: "0.8rem",
-                    fontWeight: 700,
-                    zIndex: 1
-                  }}>
-                    📸 사진첩 (+{yearendGallery.length}장)
-                  </span>
                 </div>
 
                 <div style={{ padding: "2.5rem", flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
@@ -383,7 +178,7 @@ export default function CommunityPage() {
                     </ul>
                   </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
                     <a 
                       href="/community/yearend"
                       style={{
@@ -411,31 +206,6 @@ export default function CommunityPage() {
                     >
                       🎉 자립과 연대의 송년회 스토리 보기 →
                     </a>
-                    
-                    <button 
-                      onClick={() => openAlbum("yearend")}
-                      style={{
-                        width: "100%",
-                        padding: "1rem",
-                        backgroundColor: "transparent",
-                        border: "1px solid var(--color-primary)",
-                        color: "var(--color-primary)",
-                        borderRadius: "12px",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        transition: "all 0.2s"
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "var(--color-primary)";
-                        e.target.style.color = "white";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "transparent";
-                        e.target.style.color = "var(--color-primary)";
-                      }}
-                    >
-                      📸 송년회 현장 갤러리 열기
-                    </button>
                   </div>
                 </div>
               </div>
@@ -444,204 +214,9 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        {/* 커뮤니티 소식 & 스토리 */}
-        <section className="section" style={{ backgroundColor: "var(--color-bg-secondary)", padding: "6rem 0" }}>
-          <div className="container">
-            <div className="section-header text-center">
-              <span className="section-subtitle">COMMUNITY STORIES</span>
-              <h2 style={{ fontSize: "2.5rem", fontWeight: 800 }}>커뮤니티 소식 & 스토리</h2>
-              <p className="section-lead">그라운드와 식탁에서 피어나는 행복하고 진솔한 일상 이야기입니다.</p>
-            </div>
-
-            {stories.length === 0 ? (
-              <div style={{ textAlign: "center", color: "var(--color-text-muted)", padding: "3rem" }}>
-                커뮤니티 조성 및 연대 활동의 소식이 곧 업데이트됩니다.
-              </div>
-            ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem", marginTop: "3.5rem" }}>
-                {stories.map((s) => (
-                  <article 
-                    className="story-card" 
-                    key={s.id}
-                    onClick={() => openDetail(s)}
-                    style={{ 
-                      display: "flex", 
-                      flexDirection: "column", 
-                      height: "100%",
-                      background: "var(--color-bg-primary)",
-                      borderRadius: "24px",
-                      overflow: "hidden",
-                      boxShadow: "var(--shadow-sm)",
-                      border: "1px solid var(--color-border)",
-                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                      cursor: "pointer"
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateY(-6px)";
-                      e.currentTarget.style.boxShadow = "var(--shadow-md)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow = "var(--shadow-sm)";
-                    }}
-                  >
-                    <div style={{ position: "relative", paddingTop: "60%", overflow: "hidden" }}>
-                      <img 
-                        src={s.img} 
-                        alt={s.title} 
-                        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                        onError={(e) => {
-                          e.target.src = "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070";
-                        }}
-                      />
-                    </div>
-                    <div style={{ padding: "1.8rem", flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                      <span style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: 800, marginBottom: "0.8rem", display: "block" }}>{s.date}</span>
-                      <h3 style={{ fontSize: "1.25rem", lineHeight: 1.5, marginBottom: "1rem", fontWeight: 700, color: "var(--color-text-primary)" }}>{s.title}</h3>
-                      <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "var(--color-text-muted)", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginTop: "auto" }}>{s.excerpt}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-
       </main>
-
-      {/* Story Detail Modal */}
-      {selectedStory && (
-        <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div className="modal-overlay" onClick={closeDetail}></div>
-          <div className="modal-container" style={{ maxWidth: "800px", width: "95%" }}>
-            <button className="modal-close" onClick={closeDetail}>&times;</button>
-            <div className="modal-body" style={{ maxHeight: "80vh", overflowY: "auto", padding: "2rem" }}>
-              <header style={{ marginBottom: "2rem", borderBottom: "2px solid var(--color-primary)", paddingBottom: "1.5rem" }}>
-                <div style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", marginBottom: "0.5rem" }}>
-                  활동 기록 | {selectedStory.date}
-                </div>
-                <h2 style={{ fontSize: "2rem", fontWeight: 800, color: "var(--color-text-primary)", lineHeight: "1.35" }}>{selectedStory.title}</h2>
-              </header>
-              <div style={{ borderRadius: "16px", overflow: "hidden", marginBottom: "2.5rem", boxShadow: "0 10px 30px rgba(0,0,0,0.08)" }}>
-                <img 
-                  src={selectedStory.img} 
-                  alt={selectedStory.title} 
-                  style={{ width: "100%", height: "auto", maxHeight: "450px", objectFit: "cover" }}
-                  onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070";
-                  }}
-                />
-              </div>
-              <div 
-                style={{ fontSize: "1.1rem", lineHeight: "1.9", color: "var(--color-text-primary)" }}
-                dangerouslySetInnerHTML={{ __html: selectedStory.content }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 앨범 라이트박스 슬라이더 모달 */}
-      {activeAlbum && getActiveAlbumGallery().length > 0 && (
-        <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1100 }}>
-          <div className="modal-overlay" onClick={closeAlbum} style={{ background: "rgba(15, 23, 42, 0.95)", backdropFilter: "blur(8px)" }}></div>
-          <div className="modal-container" style={{ maxWidth: "960px", width: "95%", background: "transparent", boxShadow: "none", border: "none", padding: 0 }}>
-            <button className="modal-close" onClick={closeAlbum} style={{ color: "white", fontSize: "3rem", top: "-2.5rem", right: "0.5rem", background: "transparent", border: "none", cursor: "pointer" }}>&times;</button>
-            <div className="modal-body" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "visible" }}>
-              <div style={{ position: "relative", width: "100%", height: "65vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {/* 이전 버튼 */}
-                <button 
-                  onClick={prevAlbumImage}
-                  style={{
-                    position: "absolute",
-                    left: "-1.5rem",
-                    background: "rgba(255,255,255,0.1)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "56px",
-                    height: "56px",
-                    cursor: "pointer",
-                    fontSize: "1.8rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "all 0.3s ease",
-                    zIndex: 1200,
-                    backdropFilter: "blur(4px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.25)";
-                    e.target.style.transform = "scale(1.05)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.1)";
-                    e.target.style.transform = "scale(1)";
-                  }}
-                >
-                  &#10094;
-                </button>
-
-                {/* 메인 이미지 */}
-                <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "20px", overflow: "hidden", background: "rgba(0,0,0,0.2)" }}>
-                  <img 
-                    src={getActiveAlbumGallery()[albumCurrentIdx].src} 
-                    alt={getActiveAlbumGallery()[albumCurrentIdx].title} 
-                    style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain", userSelect: "none" }}
-                  />
-                </div>
-
-                {/* 다음 버튼 */}
-                <button 
-                  onClick={nextAlbumImage}
-                  style={{
-                    position: "absolute",
-                    right: "-1.5rem",
-                    background: "rgba(255,255,255,0.1)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "56px",
-                    height: "56px",
-                    cursor: "pointer",
-                    fontSize: "1.8rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "all 0.3s ease",
-                    zIndex: 1200,
-                    backdropFilter: "blur(4px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.25)";
-                    e.target.style.transform = "scale(1.05)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.1)";
-                    e.target.style.transform = "scale(1)";
-                  }}
-                >
-                  &#10095;
-                </button>
-              </div>
-
-              {/* 하단 정보 메타데이터 및 인디케이터 */}
-              <div style={{ width: "100%", textAlign: "center", color: "white", marginTop: "2rem", padding: "0 2rem" }}>
-                <h4 style={{ fontSize: "1.4rem", margin: "0 0 0.5rem 0", fontWeight: 800, color: "#f3f4f6" }}>{getActiveAlbumGallery()[albumCurrentIdx].title}</h4>
-                <p style={{ fontSize: "1rem", color: "#d1d5db", margin: "0 0 1.2rem 0", lineHeight: 1.6 }}>{getActiveAlbumGallery()[albumCurrentIdx].desc}</p>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ fontSize: "0.9rem", color: "#e5e7eb", background: "rgba(255,255,255,0.15)", padding: "0.4rem 1.2rem", borderRadius: "30px", fontWeight: 700 }}>
-                    {albumCurrentIdx + 1} / {getActiveAlbumGallery().length}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-
       <Footer />
     </>
   );
 }
+
