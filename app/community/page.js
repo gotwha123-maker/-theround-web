@@ -20,18 +20,13 @@ const unioneFCGallery = [
   { src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200", title: "다음 경기를 기약하며", desc: "훈련 일정을 마친 후 장비를 정리하며 도란도란 걷는 퇴근길" }
 ];
 
-// 송년회 앨범 갤러리 데이터셋 (대표 1장 + 추가 9장 = 총 10장)
+// 송년회 앨범 갤러리 데이터셋 (총 5장)
 const yearendGallery = [
-  { src: "/assets/story_gathering_censored.png", title: "송년회 환영 데스크", desc: "모두를 따뜻하게 맞이하는 더라운드 송년 파티의 시작" },
-  { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200", title: "따뜻한 테이블 셋팅", desc: "함께 나눌 따뜻한 음식들과 정갈하게 놓인 식기" },
-  { src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1200", title: "축하 건배 제의", desc: "한 해 동안 수고한 서로를 격려하는 감동적인 건배" },
-  { src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1200", title: "레크리에이션 퀴즈", desc: "남북 청년들이 함께 팀을 짜 즐거운 퀴즈 게임을 하는 순간" },
-  { src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1200", title: "소망 트리 카드 작성", desc: "새해에 이루고 싶은 각자의 비전과 소망을 적어 다는 카드" },
-  { src: "https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=1200", title: "정착 선배 이야기 콘서트", desc: "성공적으로 사회에 자리 잡은 선배의 진솔한 자립 노하우 강연" },
-  { src: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1200", title: "음악 및 문화 공연", desc: "남북 청년 음악가들이 준비한 따뜻하고 감미로운 바이올린 연주" },
-  { src: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1200", title: "럭키 드로우 이벤트", desc: "행사 하이라이트인 경품 추첨과 기분 좋은 웃음들" },
-  { src: "https://images.unsplash.com/photo-1482489603187-f4e9432d416f?q=80&w=1200", title: "소그룹 자유 네트워킹", desc: "학업과 커리어, 미래에 대한 유익한 정보를 교환하는 시간" },
-  { src: "https://images.unsplash.com/photo-1516626600254-ee038933c5b9?q=80&w=1200", title: "기념 선물 전달", desc: "돌아가는 발걸음에 정성을 가득 담아 전달한 감사 선물 세트" }
+  { src: "/assets/yearend_1.jpg", title: "따뜻한 만찬과 대화", desc: "남북 청년들과 멘토들이 함께 어우러져 맛있는 음식을 나누며 깊은 대화를 나누는 시간" },
+  { src: "/assets/yearend_2.jpg", title: "서로를 알아가는 식탁", desc: "한자리에 둘러앉아 따뜻한 미소와 격려를 주고받는 대화의 현장" },
+  { src: "/assets/yearend_3.jpg", title: "경청과 스피치", desc: "자립과 공동체를 향한 마음을 진솔하게 전하며 공감대를 넓혀가는 순서" },
+  { src: "/assets/yearend_4.jpg", title: "그대 함께 걷는다면", desc: "송년의 밤을 마치며 참가자 전원이 함께 모여 약속하는 연대와 동행의 단체 사진" },
+  { src: "/assets/yearend_5.jpg", title: "행사장을 가득 채운 온기", desc: "웃음꽃이 피어나는 테이블마다 서로가 서로에게 든든한 가족이자 친구가 되어주는 순간" }
 ];
 
 export default function CommunityPage() {
@@ -330,11 +325,39 @@ export default function CommunityPage() {
                   <p style={{ color: "var(--color-text-muted)", fontSize: "1rem", lineHeight: "1.7", marginBottom: "1.5rem" }}>
                     정착 과정의 외로움과 소외를 극복할 수 있도록 연말 정기 송년회, 명절 맞이 모임을 개설하여 따뜻한 밥 한 끼의 정을 공유합니다. 누구도 홀로 남지 않는 가족 같은 안전망을 조성합니다.
                   </p>
-                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.8", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
+                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.8", color: "var(--color-text-muted)", marginBottom: "1.8rem" }}>
                     <li>정착 선배들의 진솔한 자립 노하우 전수</li>
                     <li>네트워킹 파티 및 문화 나눔 공연 개최</li>
                     <li>자발적인 멘토링 자매결연 형성 지원</li>
                   </ul>
+                  <a 
+                    href="/community/yearend"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "var(--color-primary)",
+                      color: "white",
+                      padding: "0.8rem 1.6rem",
+                      borderRadius: "12px",
+                      fontWeight: 700,
+                      fontSize: "0.95rem",
+                      textDecoration: "none",
+                      transition: "all 0.2s",
+                      boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+                      marginBottom: "1.5rem"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "#4f46e5";
+                      e.target.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "var(--color-primary)";
+                      e.target.style.transform = "translateY(0)";
+                    }}
+                  >
+                    🎉 자립과 연대의 송년회 스토리 보기 →
+                  </a>
                 </div>
 
                 <div 
@@ -611,104 +634,6 @@ export default function CommunityPage() {
         </div>
       )}
 
-      {/* 앨범 라이트박스 슬라이더 모달 */}
-      {activeAlbum && getActiveAlbumGallery().length > 0 && (
-        <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1100 }}>
-          <div className="modal-overlay" onClick={closeAlbum} style={{ background: "rgba(15, 23, 42, 0.95)", backdropFilter: "blur(8px)" }}></div>
-          <div className="modal-container" style={{ maxWidth: "960px", width: "95%", background: "transparent", boxShadow: "none", border: "none", padding: 0 }}>
-            <button className="modal-close" onClick={closeAlbum} style={{ color: "white", fontSize: "3rem", top: "-2.5rem", right: "0.5rem", background: "transparent", border: "none", cursor: "pointer" }}>&times;</button>
-            <div className="modal-body" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "visible" }}>
-              <div style={{ position: "relative", width: "100%", height: "65vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {/* 이전 버튼 */}
-                <button 
-                  onClick={prevAlbumImage}
-                  style={{
-                    position: "absolute",
-                    left: "-1.5rem",
-                    background: "rgba(255,255,255,0.1)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "56px",
-                    height: "56px",
-                    cursor: "pointer",
-                    fontSize: "1.8rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "all 0.3s ease",
-                    zIndex: 1200,
-                    backdropFilter: "blur(4px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.25)";
-                    e.target.style.transform = "scale(1.05)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.1)";
-                    e.target.style.transform = "scale(1)";
-                  }}
-                >
-                  &#10094;
-                </button>
-
-                {/* 메인 이미지 */}
-                <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "20px", overflow: "hidden", background: "rgba(0,0,0,0.2)" }}>
-                  <img 
-                    src={getActiveAlbumGallery()[albumCurrentIdx].src} 
-                    alt={getActiveAlbumGallery()[albumCurrentIdx].title} 
-                    style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain", userSelect: "none" }}
-                  />
-                </div>
-
-                {/* 다음 버튼 */}
-                <button 
-                  onClick={nextAlbumImage}
-                  style={{
-                    position: "absolute",
-                    right: "-1.5rem",
-                    background: "rgba(255,255,255,0.1)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "56px",
-                    height: "56px",
-                    cursor: "pointer",
-                    fontSize: "1.8rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "all 0.3s ease",
-                    zIndex: 1200,
-                    backdropFilter: "blur(4px)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.25)";
-                    e.target.style.transform = "scale(1.05)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = "rgba(255,255,255,0.1)";
-                    e.target.style.transform = "scale(1)";
-                  }}
-                >
-                  &#10095;
-                </button>
-              </div>
-
-              {/* 하단 정보 메타데이터 및 인디케이터 */}
-              <div style={{ width: "100%", textAlign: "center", color: "white", marginTop: "2rem", padding: "0 2rem" }}>
-                <h4 style={{ fontSize: "1.4rem", margin: "0 0 0.5rem 0", fontWeight: 800, color: "#f3f4f6" }}>{getActiveAlbumGallery()[albumCurrentIdx].title}</h4>
-                <p style={{ fontSize: "1rem", color: "#d1d5db", margin: "0 0 1.2rem 0", lineHeight: 1.6 }}>{getActiveAlbumGallery()[albumCurrentIdx].desc}</p>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ fontSize: "0.9rem", color: "#e5e7eb", background: "rgba(255,255,255,0.15)", padding: "0.4rem 1.2rem", borderRadius: "30px", fontWeight: 700 }}>
-                    {albumCurrentIdx + 1} / {getActiveAlbumGallery().length}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Footer />
     </>

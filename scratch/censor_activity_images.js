@@ -52,11 +52,8 @@ const imageTargets = [
   },
   {
     fileName: 'media__1782039657658.jpg', // 실내 단체 파이팅
-    mentors: [
-      { rx: 0.06, ry: 0.47, radius: 0.038 }, // 최성우 CHRO님
-      { rx: 0.43, ry: 0.50, radius: 0.038 }, // 이광성 회장님
-      { rx: 0.72, ry: 0.52, radius: 0.038 }  // 박한울 본부장님
-    ],
+    disableCensor: true, // 단체사진이므로 블러 처리 해제 (원본 노출)
+    mentors: [],
     manualFaces: []
   },
   {
@@ -231,6 +228,13 @@ async function runCensor() {
       console.log(`\n======================================`);
       console.log(`Processing: ${target.fileName} -> ${destName}`);
       const image = await Jimp.read(srcPath);
+      
+      if (target.disableCensor) {
+        console.log(`  [CENSOR DISABLED] Copying original image without any blur.`);
+        await image.write(destPath);
+        continue;
+      }
+
       const w = image.width;
       const h = image.height;
 
