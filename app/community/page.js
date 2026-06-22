@@ -106,6 +106,52 @@ export default function CommunityPage() {
 
   return (
     <>
+      <style dangerouslySetInnerHTML={{__html: `
+        /* 갤러리 카드 줌인 효과 및 오버레이 */
+        .community-gallery-card {
+          position: relative;
+          width: 100%;
+          padding-top: 56.25%;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        .community-gallery-card img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+        .community-gallery-card:hover img {
+          transform: scale(1.06);
+        }
+        .community-gallery-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.45);
+          display: flex;
+          align-items: center;
+          justifyContent: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 2;
+        }
+        .community-gallery-card:hover .community-gallery-overlay {
+          opacity: 1;
+        }
+        @media (max-width: 768px) {
+          .community-gallery-overlay {
+            opacity: 1 !important;
+            background: rgba(15, 23, 42, 0.2) !important;
+          }
+          .community-gallery-overlay span {
+            font-size: 0.8rem !important;
+            padding: 0.6rem 1.2rem !important;
+          }
+        }
+      `}} />
       <Header forceSolid={true} />
       <main style={{ minHeight: "100vh", backgroundColor: "var(--color-bg-primary)", color: "var(--color-text-primary)" }}>
         
@@ -145,313 +191,265 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        <section className="section" style={{ padding: "5rem 0" }}>
-          <div className="container">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "3rem", alignItems: "center" }}>
-              <div>
-                <span className="section-subtitle">OUR COMMUNITY</span>
-                <h2 style={{ fontSize: "2.2rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)" }}>
-                  함께 땀 흘리고 식사하며<br />보이지 않는 벽을 허뭅니다.
-                </h2>
-                <p style={{ color: "var(--color-text-muted)", fontSize: "1.05rem", lineHeight: "1.8", marginBottom: "2rem" }}>
-                  더라운드의 연대 활동은 남북 청년들이 하나의 목적을 공유하며 대등하게 어우러지는 건강한 스킨십을 통해 시작됩니다. 매주 스포츠 활동과 정기 소통 캠페인을 통해 사회 구성원 간의 다리를 직접 잇고 있습니다.
-                </p>
-                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                  <span style={{ backgroundColor: "rgba(5, 75, 48, 0.08)", color: "var(--color-success)", padding: "0.5rem 1.2rem", borderRadius: "30px", fontWeight: 700, fontSize: "0.9rem" }}>⚽ 스포츠 소통</span>
-                  <span style={{ backgroundColor: "rgba(5, 75, 48, 0.08)", color: "var(--color-success)", padding: "0.5rem 1.2rem", borderRadius: "30px", fontWeight: 700, fontSize: "0.9rem" }}>🍲 연말 정기 모임</span>
-                  <span style={{ backgroundColor: "rgba(5, 75, 48, 0.08)", color: "var(--color-success)", padding: "0.5rem 1.2rem", borderRadius: "30px", fontWeight: 700, fontSize: "0.9rem" }}>💬 일상 네트워킹</span>
-                </div>
-              </div>
-              <div style={{ position: "relative", borderRadius: "24px", overflow: "hidden", boxShadow: "var(--shadow-lg)", aspectRatio: "4/3" }}>
-                <img src="/assets/story_soccer_censored.png" alt="UniOne FC 축구 사진" style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={(e) => {
-                  e.target.src = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070";
-                }} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section" style={{ backgroundColor: "var(--color-bg-secondary)", padding: "5rem 0" }}>
+        {/* 주요 공동체 활동 섹션 (중복 소개 단계를 제거하고 메인 프로그램을 전면에 배치) */}
+        <section className="section" style={{ padding: "6rem 0" }}>
           <div className="container">
             <div className="section-header text-center">
               <span className="section-subtitle">CORE PROGRAMS</span>
-              <h2 style={{ fontSize: "2.4rem", fontWeight: 800 }}>주요 공동체 활동</h2>
-              <p className="section-lead">일상 속에서 편견 없이 녹아드는 두 가지 핵심 통로입니다.</p>
+              <h2 style={{ fontSize: "2.5rem", fontWeight: 800 }}>주요 공동체 활동</h2>
+              <p className="section-lead">일상 속에서 편견 없이 녹아드는 두 가지 핵심 연대 활동입니다.</p>
             </div>
 
-            <style dangerouslySetInnerHTML={{__html: `
-              .photo-album-trigger {
-                perspective: 1000px;
-              }
-              .photo-album-trigger:hover .album-card-1 {
-                transform: translateX(-50%) translateY(-10px) rotate(0deg) !important;
-                box-shadow: 0 25px 50px rgba(0,0,0,0.3) !important;
-              }
-              .photo-album-trigger:hover .album-card-2 {
-                transform: translateX(-50%) translateY(-5px) rotate(-8deg) !important;
-                opacity: 0.9 !important;
-              }
-              .photo-album-trigger:hover .album-card-3 {
-                transform: translateX(-50%) translateY(-2px) rotate(8deg) !important;
-                opacity: 0.8 !important;
-              }
-            `}} />
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem", marginTop: "3rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "3rem", marginTop: "3.5rem" }}>
+              
+              {/* 유니원 FC 카드 */}
               <div style={{ 
-                backgroundColor: "white", 
-                padding: "3rem 3rem 2.5rem 3rem", 
+                backgroundColor: "var(--color-bg-secondary)", 
                 borderRadius: "24px", 
                 border: "1px solid var(--color-border)", 
                 boxShadow: "var(--shadow-sm)",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between"
+                overflow: "hidden",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow = "var(--shadow-md)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "var(--shadow-sm)";
               }}>
-                <div>
-                  <div style={{ display: "inline-block", backgroundColor: "rgba(99, 102, 241, 0.1)", color: "var(--color-primary)", padding: "0.5rem 1rem", borderRadius: "8px", fontWeight: 800, marginBottom: "1.5rem" }}>
-                    SPORTS SOLIDARITY
-                  </div>
-                  <h3 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>유니원 FC (UniOne FC)</h3>
-                  <p style={{ color: "var(--color-text-muted)", fontSize: "1rem", lineHeight: "1.7", marginBottom: "1.5rem" }}>
-                    축구라는 세계 보편의 언어로 남북 청년들이 매주 경기장에 모여 패스를 건네고 발을 맞춥니다. 잔디 위에서는 어떠한 정치적, 문화적 장벽도 없이 한 팀으로서 신뢰와 리더십을 체득합니다.
-                  </p>
-                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.8", color: "var(--color-text-muted)", marginBottom: "1.5rem" }}>
-                    <li>매주 토요일 정기 훈련 및 경기 조율</li>
-                    <li>아마추어 리그 참가 및 교류 경기</li>
-                    <li>체력 증진 및 정서적 지지 시너지 효과</li>
-                  </ul>
-                </div>
-
+                {/* 갤러리 트리거 이미지 */}
                 <div 
                   onClick={() => openAlbum("unione")}
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "230px",
-                    marginTop: "1.5rem",
-                    cursor: "pointer"
-                  }}
-                  className="photo-album-trigger"
+                  className="community-gallery-card"
                 >
-                  <div style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "50%",
-                    width: "92%",
-                    height: "100%",
-                    transform: "translateX(-50%) rotate(4deg)",
-                    borderRadius: "18px",
-                    backgroundImage: `url(${unioneFCGallery[2].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
-                    transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease",
-                    opacity: 0.6,
-                    zIndex: 1
-                  }} className="album-card-3" />
-                  
-                  <div style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "50%",
-                    width: "92%",
-                    height: "100%",
-                    transform: "translateX(-50%) rotate(-3deg)",
-                    borderRadius: "18px",
-                    backgroundImage: `url(${unioneFCGallery[1].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
-                    transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease",
-                    opacity: 0.8,
-                    zIndex: 2
-                  }} className="album-card-2" />
-                  
-                  <div style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "50%",
-                    width: "92%",
-                    height: "100%",
-                    transform: "translateX(-50%) rotate(0deg)",
-                    borderRadius: "18px",
-                    backgroundImage: `url(${unioneFCGallery[0].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
-                    transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease",
-                    zIndex: 3
-                  }} className="album-card-1" />
-
-                  <div style={{
+                  <img 
+                    src={unioneFCGallery[0].src} 
+                    alt="UniOne FC" 
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070";
+                    }} 
+                  />
+                  <div className="community-gallery-overlay">
+                    <span style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      color: "var(--color-text-primary)",
+                      padding: "0.8rem 1.5rem",
+                      borderRadius: "30px",
+                      fontWeight: 800,
+                      fontSize: "0.9rem",
+                      boxShadow: "var(--shadow-sm)"
+                    }}>
+                      📸 사진 갤러리 보기 (+{unioneFCGallery.length}장)
+                    </span>
+                  </div>
+                  <span style={{
                     position: "absolute",
                     bottom: "1rem",
-                    right: "8%",
-                    background: "rgba(15, 23, 42, 0.85)",
+                    right: "1rem",
+                    backgroundColor: "rgba(15, 23, 42, 0.8)",
                     backdropFilter: "blur(4px)",
                     color: "white",
                     padding: "0.4rem 0.9rem",
                     borderRadius: "20px",
-                    fontSize: "0.85rem",
+                    fontSize: "0.8rem",
                     fontWeight: 700,
-                    zIndex: 10,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    border: "1px solid rgba(255, 255, 255, 0.1)"
+                    zIndex: 1
                   }}>
-                    📸 +{unioneFCGallery.length}장
+                    📸 사진첩 (+{unioneFCGallery.length}장)
+                  </span>
+                </div>
+
+                <div style={{ padding: "2.5rem", flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <span style={{ display: "inline-block", backgroundColor: "rgba(99, 102, 241, 0.1)", color: "var(--color-primary)", padding: "0.4rem 0.8rem", borderRadius: "8px", fontWeight: 800, fontSize: "0.8rem", marginBottom: "1.2rem" }}>
+                      SPORTS SOLIDARITY
+                    </span>
+                    <h3 style={{ fontSize: "1.6rem", fontWeight: 800, marginBottom: "1rem" }}>유니원 FC (UniOne FC)</h3>
+                    <p style={{ color: "var(--color-text-muted)", fontSize: "1rem", lineHeight: "1.7", marginBottom: "1.5rem", wordBreak: "keep-all" }}>
+                      축구라는 세계 보편의 언어로 남북 청년들이 매주 경기장에 모여 패스를 건네고 발을 맞춥니다. 잔디 위에서는 어떠한 정치적, 문화적 장벽도 없이 한 팀으로서 신뢰와 리더십을 체득합니다.
+                    </p>
+                    <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.8", color: "var(--color-text-muted)", marginBottom: "2rem" }}>
+                      <li>매주 토요일 정기 훈련 및 경기 조율</li>
+                      <li>아마추어 리그 참가 및 교류 경기</li>
+                      <li>체력 증진 및 정서적 지지 시너지 효과</li>
+                    </ul>
                   </div>
+
+                  <button 
+                    onClick={() => openAlbum("unione")}
+                    style={{
+                      width: "100%",
+                      padding: "1rem",
+                      backgroundColor: "transparent",
+                      border: "1px solid var(--color-primary)",
+                      color: "var(--color-primary)",
+                      borderRadius: "12px",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "var(--color-primary)";
+                      e.target.style.color = "white";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "transparent";
+                      e.target.style.color = "var(--color-primary)";
+                    }}
+                  >
+                    📸 훈련 및 교류전 갤러리 열기
+                  </button>
                 </div>
               </div>
 
+              {/* 연말 송년회 카드 */}
               <div style={{ 
-                backgroundColor: "white", 
-                padding: "3rem 3rem 2.5rem 3rem", 
+                backgroundColor: "var(--color-bg-secondary)", 
                 borderRadius: "24px", 
                 border: "1px solid var(--color-border)", 
                 boxShadow: "var(--shadow-sm)",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between"
+                overflow: "hidden",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow = "var(--shadow-md)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "var(--shadow-sm)";
               }}>
-                <div>
-                  <div style={{ display: "inline-block", backgroundColor: "rgba(99, 102, 241, 0.1)", color: "var(--color-primary)", padding: "0.5rem 1rem", borderRadius: "8px", fontWeight: 800, marginBottom: "1.5rem" }}>
-                    SOCIAL SHARING
-                  </div>
-                  <h3 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>커뮤니티 연말 송년회</h3>
-                  <p style={{ color: "var(--color-text-muted)", fontSize: "1rem", lineHeight: "1.7", marginBottom: "1.5rem" }}>
-                    정착 과정의 외로움과 소외를 극복할 수 있도록 연말 정기 송년회, 명절 맞이 모임을 개설하여 따뜻한 밥 한 끼의 정을 공유합니다. 누구도 홀로 남지 않는 가족 같은 안전망을 조성합니다.
-                  </p>
-                  <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.8", color: "var(--color-text-muted)", marginBottom: "1.8rem" }}>
-                    <li>정착 선배들의 진솔한 자립 노하우 전수</li>
-                    <li>네트워킹 파티 및 문화 나눔 공연 개최</li>
-                    <li>자발적인 멘토링 자매결연 형성 지원</li>
-                  </ul>
-                  <a 
-                    href="/community/yearend"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "var(--color-primary)",
-                      color: "white",
-                      padding: "0.8rem 1.6rem",
-                      borderRadius: "12px",
-                      fontWeight: 700,
-                      fontSize: "0.95rem",
-                      textDecoration: "none",
-                      transition: "all 0.2s",
-                      boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
-                      marginBottom: "1.5rem"
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = "#4f46e5";
-                      e.target.style.transform = "translateY(-2px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = "var(--color-primary)";
-                      e.target.style.transform = "translateY(0)";
-                    }}
-                  >
-                    🎉 자립과 연대의 송년회 스토리 보기 →
-                  </a>
-                </div>
-
+                {/* 갤러리 트리거 이미지 */}
                 <div 
                   onClick={() => openAlbum("yearend")}
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "230px",
-                    marginTop: "1.5rem",
-                    cursor: "pointer"
-                  }}
-                  className="photo-album-trigger"
+                  className="community-gallery-card"
                 >
-                  <div style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "50%",
-                    width: "92%",
-                    height: "100%",
-                    transform: "translateX(-50%) rotate(4deg)",
-                    borderRadius: "18px",
-                    backgroundImage: `url(${yearendGallery[2].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
-                    transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease",
-                    opacity: 0.6,
-                    zIndex: 1
-                  }} className="album-card-3" />
-                  
-                  <div style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "50%",
-                    width: "92%",
-                    height: "100%",
-                    transform: "translateX(-50%) rotate(-3deg)",
-                    borderRadius: "18px",
-                    backgroundImage: `url(${yearendGallery[1].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
-                    transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease",
-                    opacity: 0.8,
-                    zIndex: 2
-                  }} className="album-card-2" />
-                  
-                  <div style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "50%",
-                    width: "92%",
-                    height: "100%",
-                    transform: "translateX(-50%) rotate(0deg)",
-                    borderRadius: "18px",
-                    backgroundImage: `url(${yearendGallery[0].src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
-                    transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease",
-                    zIndex: 3
-                  }} className="album-card-1" />
-
-                  <div style={{
+                  <img 
+                    src={yearendGallery[0].src} 
+                    alt="Community Year-end Party" 
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2070";
+                    }} 
+                  />
+                  <div className="community-gallery-overlay">
+                    <span style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      color: "var(--color-text-primary)",
+                      padding: "0.8rem 1.5rem",
+                      borderRadius: "30px",
+                      fontWeight: 800,
+                      fontSize: "0.9rem",
+                      boxShadow: "var(--shadow-sm)"
+                    }}>
+                      📸 사진 갤러리 보기 (+{yearendGallery.length}장)
+                    </span>
+                  </div>
+                  <span style={{
                     position: "absolute",
                     bottom: "1rem",
-                    right: "8%",
-                    background: "rgba(15, 23, 42, 0.85)",
+                    right: "1rem",
+                    backgroundColor: "rgba(15, 23, 42, 0.8)",
                     backdropFilter: "blur(4px)",
                     color: "white",
                     padding: "0.4rem 0.9rem",
                     borderRadius: "20px",
-                    fontSize: "0.85rem",
+                    fontSize: "0.8rem",
                     fontWeight: 700,
-                    zIndex: 10,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    border: "1px solid rgba(255, 255, 255, 0.1)"
+                    zIndex: 1
                   }}>
-                    📸 +{yearendGallery.length}장
+                    📸 사진첩 (+{yearendGallery.length}장)
+                  </span>
+                </div>
+
+                <div style={{ padding: "2.5rem", flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <span style={{ display: "inline-block", backgroundColor: "rgba(99, 102, 241, 0.1)", color: "var(--color-primary)", padding: "0.4rem 0.8rem", borderRadius: "8px", fontWeight: 800, fontSize: "0.8rem", marginBottom: "1.2rem" }}>
+                      SOCIAL SHARING
+                    </span>
+                    <h3 style={{ fontSize: "1.6rem", fontWeight: 800, marginBottom: "1rem" }}>커뮤니티 연말 송년회</h3>
+                    <p style={{ color: "var(--color-text-muted)", fontSize: "1rem", lineHeight: "1.7", marginBottom: "1.5rem", wordBreak: "keep-all" }}>
+                      정착 과정의 외로움과 소외를 극복할 수 있도록 연말 정기 송년회, 명절 맞이 모임을 개설하여 따뜻한 밥 한 끼의 정을 공유합니다. 누구도 홀로 남지 않는 가족 같은 안전망을 조성합니다.
+                    </p>
+                    <ul style={{ paddingLeft: "1.2rem", lineHeight: "1.8", color: "var(--color-text-muted)", marginBottom: "2rem" }}>
+                      <li>정착 선배들의 진솔한 자립 노하우 전수</li>
+                      <li>네트워킹 파티 및 문화 나눔 공연 개최</li>
+                      <li>자발적인 멘토링 자매결연 형성 지원</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                    <a 
+                      href="/community/yearend"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backgroundColor: "var(--color-primary)",
+                        color: "white",
+                        padding: "1rem",
+                        borderRadius: "12px",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                        transition: "all 0.2s",
+                        boxShadow: "0 4px 10px rgba(79, 70, 229, 0.15)",
+                        textAlign: "center"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#4f46e5";
+                        e.target.style.transform = "translateY(-2px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "var(--color-primary)";
+                        e.target.style.transform = "translateY(0)";
+                      }}
+                    >
+                      🎉 자립과 연대의 송년회 스토리 보기 →
+                    </a>
+                    
+                    <button 
+                      onClick={() => openAlbum("yearend")}
+                      style={{
+                        width: "100%",
+                        padding: "1rem",
+                        backgroundColor: "transparent",
+                        border: "1px solid var(--color-primary)",
+                        color: "var(--color-primary)",
+                        borderRadius: "12px",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "var(--color-primary)";
+                        e.target.style.color = "white";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "transparent";
+                        e.target.style.color = "var(--color-primary)";
+                      }}
+                    >
+                      📸 송년회 현장 갤러리 열기
+                    </button>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
-        <section className="section" style={{ padding: "5rem 0" }}>
+        {/* 커뮤니티 소식 & 스토리 */}
+        <section className="section" style={{ backgroundColor: "var(--color-bg-secondary)", padding: "6rem 0" }}>
           <div className="container">
             <div className="section-header text-center">
               <span className="section-subtitle">COMMUNITY STORIES</span>
-              <h2 style={{ fontSize: "2.4rem", fontWeight: 800 }}>커뮤니티 소식 & 스토리</h2>
+              <h2 style={{ fontSize: "2.5rem", fontWeight: 800 }}>커뮤니티 소식 & 스토리</h2>
               <p className="section-lead">그라운드와 식탁에서 피어나는 행복하고 진솔한 일상 이야기입니다.</p>
             </div>
 
@@ -460,7 +458,7 @@ export default function CommunityPage() {
                 커뮤니티 조성 및 연대 활동의 소식이 곧 업데이트됩니다.
               </div>
             ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem", marginTop: "3rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem", marginTop: "3.5rem" }}>
                 {stories.map((s) => (
                   <article 
                     className="story-card" 
@@ -470,13 +468,21 @@ export default function CommunityPage() {
                       display: "flex", 
                       flexDirection: "column", 
                       height: "100%",
-                      background: "var(--color-bg-secondary)",
+                      background: "var(--color-bg-primary)",
                       borderRadius: "24px",
                       overflow: "hidden",
                       boxShadow: "var(--shadow-sm)",
                       border: "1px solid var(--color-border)",
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
                       cursor: "pointer"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-6px)";
+                      e.currentTarget.style.boxShadow = "var(--shadow-md)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "var(--shadow-sm)";
                     }}
                   >
                     <div style={{ position: "relative", paddingTop: "60%", overflow: "hidden" }}>
