@@ -40,11 +40,87 @@ export default function YearendPage() {
 
   return (
     <>
+      <style dangerouslySetInnerHTML={{__html: `
+        /* 모바일 반응형 최적화 스타일 */
+        @media (max-width: 768px) {
+          .yearend-hero {
+            padding: 7rem 0 4rem 0 !important;
+          }
+          .yearend-hero-title {
+            font-size: 2.2rem !important;
+            line-height: 1.3 !important;
+          }
+          .yearend-hero-desc {
+            font-size: 1.05rem !important;
+            line-height: 1.7 !important;
+          }
+          .yearend-purpose-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+          .yearend-purpose-title {
+            font-size: 1.8rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .yearend-story-box {
+            padding: 2.2rem 1.8rem !important;
+          }
+          .yearend-story-box h3 {
+            font-size: 1.4rem !important;
+          }
+          .yearend-section-title {
+            font-size: 1.8rem !important;
+          }
+          .yearend-section-desc {
+            font-size: 0.95rem !important;
+          }
+          .yearend-contributors-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+            gap: 1.5rem !important;
+          }
+          .yearend-photo-grid {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+            gap: 1.2rem !important;
+          }
+          .yearend-back-section h2 {
+            font-size: 1.5rem !important;
+          }
+          .yearend-back-section p {
+            font-size: 0.95rem !important;
+          }
+          
+          /* 라이트박스 모달 모바일 스타일 */
+          .yearend-modal-prev {
+            left: 0.5rem !important;
+            width: 44px !important;
+            height: 44px !important;
+            font-size: 1.2rem !important;
+          }
+          .yearend-modal-next {
+            right: 0.5rem !important;
+            width: 44px !important;
+            height: 44px !important;
+            font-size: 1.2rem !important;
+          }
+          .yearend-modal-img-wrapper {
+            height: 45vh !important;
+          }
+          .yearend-modal-info {
+            margin-top: 1rem !important;
+          }
+          .yearend-modal-info h4 {
+            font-size: 1.1rem !important;
+          }
+          .yearend-modal-info p {
+            font-size: 0.88rem !important;
+          }
+        }
+      `}} />
       <Header forceSolid={true} />
       <main style={{ minHeight: "100vh", backgroundColor: "#0f172a", color: "#f8fafc", fontFamily: "'Inter', sans-serif" }}>
         
         {/* Hero Section */}
-        <section style={{
+        <section className="yearend-hero" style={{
           position: "relative",
           padding: "10rem 0 7rem 0",
           background: "radial-gradient(circle at top, #1e293b 0%, #0f172a 100%)",
@@ -74,7 +150,7 @@ export default function YearendPage() {
             }}>
               SPECIAL STORY | 2025 YEAR-END PARTY
             </span>
-            <h1 style={{
+            <h1 className="yearend-hero-title" style={{
               fontSize: "3.5rem",
               fontWeight: 900,
               lineHeight: 1.2,
@@ -86,7 +162,7 @@ export default function YearendPage() {
             }}>
               한 해를 닫으며 나누는<br />따뜻한 위로와 기쁨
             </h1>
-            <p style={{
+            <p className="yearend-hero-desc" style={{
               fontSize: "1.25rem",
               color: "#94a3b8",
               maxWidth: "750px",
@@ -103,10 +179,10 @@ export default function YearendPage() {
         {/* Core Purpose & Background Section */}
         <section className="section" style={{ padding: "6rem 0", backgroundColor: "#0f172a" }}>
           <div className="container">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "4rem", alignItems: "center" }}>
+            <div className="yearend-purpose-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "4rem", alignItems: "center" }}>
               
               {/* Left Highlight Box */}
-              <div style={{
+              <div className="yearend-story-box" style={{
                 background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
                 border: "1px solid rgba(255, 255, 255, 0.08)",
                 borderRadius: "28px",
@@ -130,7 +206,7 @@ export default function YearendPage() {
               {/* Right Story Paragraphs */}
               <div>
                 <span style={{ color: "#fbbf24", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>THE PURPOSE</span>
-                <h2 style={{ fontSize: "2.5rem", fontWeight: 800, margin: "1rem 0 2rem 0", color: "#ffffff", wordBreak: "keep-all" }}>
+                <h2 className="yearend-purpose-title" style={{ fontSize: "2.5rem", fontWeight: 800, margin: "1rem 0 2rem 0", color: "#ffffff", wordBreak: "keep-all" }}>
                   우리가 함께 모인 목적과 취지
                 </h2>
                 
@@ -218,11 +294,11 @@ export default function YearendPage() {
             
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <span style={{ color: "#fbbf24", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>CONTRIBUTORS</span>
-              <h2 style={{ fontSize: "2.6rem", fontWeight: 800, color: "#ffffff", marginTop: "0.5rem" }}>발표와 공연을 맡은 사람들</h2>
-              <p style={{ color: "#94a3b8", fontSize: "1.1rem", marginTop: "0.8rem" }}>격려사, 성공 스토리, 회복탄력성 명강연부터 가슴을 울리는 선율까지 축제의 순서를 채워준 주역들입니다.</p>
+              <h2 className="yearend-section-title" style={{ fontSize: "2.6rem", fontWeight: 800, color: "#ffffff", marginTop: "0.5rem" }}>발표와 공연을 맡은 사람들</h2>
+              <p className="yearend-section-desc" style={{ color: "#94a3b8", fontSize: "1.1rem", marginTop: "0.8rem" }}>격려사, 성공 스토리, 회복탄력성 명강연부터 가슴을 울리는 선율까지 축제의 순서를 채워준 주역들입니다.</p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "2rem" }}>
+            <div className="yearend-contributors-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "2rem" }}>
               {members.map((m, idx) => (
                 <div key={idx} style={{
                   backgroundColor: "#0f172a",
@@ -279,12 +355,12 @@ export default function YearendPage() {
             
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <span style={{ color: "#fbbf24", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>PHOTO SKETCH</span>
-              <h2 style={{ fontSize: "2.6rem", fontWeight: 800, color: "#ffffff", marginTop: "0.5rem" }}>송년회 현장 스케치</h2>
-              <p style={{ color: "#94a3b8", fontSize: "1.1rem", marginTop: "0.8rem" }}>남북 청년이 경계 없이 마주하며 나눈 따뜻한 밥상과 미소의 흔적들입니다.</p>
+              <h2 className="yearend-section-title" style={{ fontSize: "2.6rem", fontWeight: 800, color: "#ffffff", marginTop: "0.5rem" }}>송년회 현장 스케치</h2>
+              <p className="yearend-section-desc" style={{ color: "#94a3b8", fontSize: "1.1rem", marginTop: "0.8rem" }}>남북 청년이 경계 없이 마주하며 나눈 따뜻한 밥상과 미소의 흔적들입니다.</p>
             </div>
 
             {/* Masonry or Grid Photo Gallery */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+            <div className="yearend-photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
               {yearendPhotos.map((p, idx) => (
                 <div 
                   key={idx} 
@@ -333,7 +409,7 @@ export default function YearendPage() {
         </section>
 
         {/* Back Link Section */}
-        <section className="section" style={{ padding: "5rem 0", background: "radial-gradient(circle, #1e293b 0%, #0f172a 100%)", textAlign: "center" }}>
+        <section className="yearend-back-section section" style={{ padding: "5rem 0", background: "radial-gradient(circle, #1e293b 0%, #0f172a 100%)", textAlign: "center" }}>
           <div className="container">
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", wordBreak: "keep-all" }}>
               내년에도 스스로 일구어낼 청년들의 도전을 응원해 주세요
@@ -388,6 +464,7 @@ export default function YearendPage() {
         >
           <button 
             onClick={() => setActivePhotoIdx(null)}
+            className="yearend-modal-close"
             style={{
               position: "absolute",
               top: "2rem",
@@ -406,6 +483,7 @@ export default function YearendPage() {
           {/* Slider Container */}
           <div 
             onClick={(e) => e.stopPropagation()}
+            className="yearend-modal-img-wrapper"
             style={{
               position: "relative",
               maxWidth: "960px",
@@ -419,6 +497,7 @@ export default function YearendPage() {
             {/* Prev Button */}
             <button 
               onClick={() => setActivePhotoIdx((prev) => (prev - 1 + yearendPhotos.length) % yearendPhotos.length)}
+              className="yearend-modal-prev"
               style={{
                 position: "absolute",
                 left: "-4rem",
@@ -459,6 +538,7 @@ export default function YearendPage() {
             {/* Next Button */}
             <button 
               onClick={() => setActivePhotoIdx((prev) => (prev + 1) % yearendPhotos.length)}
+              className="yearend-modal-next"
               style={{
                 position: "absolute",
                 right: "-4rem",
@@ -481,7 +561,7 @@ export default function YearendPage() {
           </div>
 
           {/* Info Metadata */}
-          <div style={{ color: "#ffffff", textAlign: "center", marginTop: "2rem", maxWidth: "600px", padding: "0 1rem" }}>
+          <div className="yearend-modal-info" style={{ color: "#ffffff", textAlign: "center", marginTop: "2rem", maxWidth: "600px", padding: "0 1rem" }}>
             <h4 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#fbbf24", margin: "0 0 0.5rem 0" }}>{yearendPhotos[activePhotoIdx].title}</h4>
             <p style={{ fontSize: "1rem", color: "#cbd5e1", margin: "0 0 1rem 0", lineHeight: "1.6" }}>{yearendPhotos[activePhotoIdx].desc}</p>
             <span style={{ fontSize: "0.85rem", color: "#94a3b8", backgroundColor: "rgba(255,255,255,0.1)", padding: "0.3rem 1rem", borderRadius: "20px" }}>
