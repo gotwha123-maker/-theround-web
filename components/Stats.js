@@ -267,7 +267,7 @@ export default function Stats() {
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>79.3%</div>
               </div>
               <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
-                스스로 미래를 설계하고 삶을 개척하는 <strong>자립(Grow)</strong>의 기반이 확립되면서, 남한 생활 만족도는 매년 새로운 최고치를 기록하고 있습니다.
+                안정적인 경제 활동 참여와 주거 정착, 일상 생활 지원 시스템의 안정화에 따라 남한 생활에 만족하는 북한이탈주민의 비율이 지속적으로 높은 수준을 나타내고 있습니다.
               </p>
               <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
                 *출처: 통일부 남북하나재단 정착실태조사
@@ -305,7 +305,7 @@ export default function Stats() {
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>92.5%</div>
               </div>
               <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
-                함께 운동장을 뛰는 축구와 통일포차 등 일상적 <strong>소통(Connect)</strong> 활동 참여를 통해, 남북 청년 상호 신뢰와 통합 의지가 극대화되었습니다.
+                남북 주민 간의 직접적인 만남과 일상적인 대면 교류 경험이 축적될수록, 북한이탈주민 및 남한 사회에 대한 상호 신뢰와 긍정적 태도 변화가 뚜렷하게 나타나고 있습니다.
               </p>
               <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
                 *출처: 서울대 통일평화연구원 상호인식조사
@@ -343,7 +343,7 @@ export default function Stats() {
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>82.4%</div>
               </div>
               <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
-                탈북 청년들은 단순 수혜 대상을 탈피해, 한반도 미래의 핵심 연사이자 리더로서 사회적 가치를 주도적으로 <strong>디자인(Design)</strong>합니다.
+                한반도의 평화적 통합과 남북 주민 간의 사회문화적 통합 과정에 수혜자가 아닌 주체적인 동반자로서 기여하고자 하는 사회 참여 의지를 지니고 있습니다.
               </p>
               <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
                 *출처: 통일연구원 KINU 통일의식조사
