@@ -56,13 +56,13 @@ export default function About({ onOpenModal = () => {} }) {
                 width: "64px",
                 height: "64px",
                 borderRadius: "20px",
-                background: "rgba(16, 185, 129, 0.1)",
-                color: "#10b981",
+                background: "rgba(220, 20, 20, 0.06)",
+                color: "var(--color-primary)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 marginBottom: "1.8rem",
-                boxShadow: "0 8px 20px rgba(16, 185, 129, 0.1)"
+                boxShadow: "0 8px 20px rgba(220, 20, 20, 0.04)"
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M2 22h20" />
@@ -74,7 +74,7 @@ export default function About({ onOpenModal = () => {} }) {
                 </svg>
               </div>
               <h4 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.4rem", color: "var(--color-text-primary)" }}>성장 (Grow)</h4>
-              <span style={{ fontSize: "0.8rem", color: "#10b981", fontWeight: 800, backgroundColor: "rgba(16, 185, 129, 0.08)", padding: "0.25rem 0.8rem", borderRadius: "30px", marginBottom: "1.5rem" }}>
+              <span style={{ fontSize: "0.8rem", color: "var(--color-primary)", fontWeight: 800, backgroundColor: "rgba(220, 20, 20, 0.05)", padding: "0.25rem 0.8rem", borderRadius: "30px", marginBottom: "1.5rem" }}>
                 리더십 스쿨 &middot; 법률 멘토링
               </span>
               <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
@@ -85,8 +85,8 @@ export default function About({ onOpenModal = () => {} }) {
                   onClick={() => onOpenModal("school")}
                   style={{
                     background: "none",
-                    border: "1.5px solid #10b981",
-                    color: "#10b981",
+                    border: "1.5px solid var(--color-primary)",
+                    color: "var(--color-primary)",
                     padding: "0.6rem 2rem",
                     borderRadius: "30px",
                     fontSize: "0.9rem",
@@ -94,7 +94,7 @@ export default function About({ onOpenModal = () => {} }) {
                     cursor: "pointer",
                     transition: "all 0.2s"
                   }}
-                  className="value-detail-btn grow-btn"
+                  className="value-detail-btn"
                 >
                   자세히 보기 &rarr;
                 </button>
@@ -119,13 +119,13 @@ export default function About({ onOpenModal = () => {} }) {
                 width: "64px",
                 height: "64px",
                 borderRadius: "20px",
-                background: "rgba(220, 20, 20, 0.08)",
+                background: "rgba(220, 20, 20, 0.06)",
                 color: "var(--color-primary)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 marginBottom: "1.8rem",
-                boxShadow: "0 8px 20px rgba(220, 20, 20, 0.08)"
+                boxShadow: "0 8px 20px rgba(220, 20, 20, 0.04)"
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -135,7 +135,7 @@ export default function About({ onOpenModal = () => {} }) {
                 </svg>
               </div>
               <h4 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.4rem", color: "var(--color-text-primary)" }}>소통 (Connect)</h4>
-              <span style={{ fontSize: "0.8rem", color: "var(--color-primary)", fontWeight: 800, backgroundColor: "rgba(220, 20, 20, 0.06)", padding: "0.25rem 0.8rem", borderRadius: "30px", marginBottom: "1.5rem" }}>
+              <span style={{ fontSize: "0.8rem", color: "var(--color-primary)", fontWeight: 800, backgroundColor: "rgba(220, 20, 20, 0.05)", padding: "0.25rem 0.8rem", borderRadius: "30px", marginBottom: "1.5rem" }}>
                 유니원 FC &middot; 통일포차
               </span>
               <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
@@ -155,7 +155,7 @@ export default function About({ onOpenModal = () => {} }) {
                     cursor: "pointer",
                     transition: "all 0.2s"
                   }}
-                  className="value-detail-btn connect-btn"
+                  className="value-detail-btn"
                 >
                   자세히 보기 &rarr;
                 </button>
@@ -180,13 +180,13 @@ export default function About({ onOpenModal = () => {} }) {
                 width: "64px",
                 height: "64px",
                 borderRadius: "20px",
-                background: "rgba(99, 102, 241, 0.12)",
-                color: "#6366f1",
+                background: "rgba(220, 20, 20, 0.06)",
+                color: "var(--color-primary)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 marginBottom: "1.8rem",
-                boxShadow: "0 8px 20px rgba(99, 102, 241, 0.12)"
+                boxShadow: "0 8px 20px rgba(220, 20, 20, 0.04)"
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 20h9" />
@@ -194,7 +194,7 @@ export default function About({ onOpenModal = () => {} }) {
                 </svg>
               </div>
               <h4 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.4rem", color: "var(--color-text-primary)" }}>디자인 (Design)</h4>
-              <span style={{ fontSize: "0.8rem", color: "#6366f1", fontWeight: 800, backgroundColor: "rgba(99, 102, 241, 0.08)", padding: "0.25rem 0.8rem", borderRadius: "30px", marginBottom: "1.5rem" }}>
+              <span style={{ fontSize: "0.8rem", color: "var(--color-primary)", fontWeight: 800, backgroundColor: "rgba(220, 20, 20, 0.05)", padding: "0.25rem 0.8rem", borderRadius: "30px", marginBottom: "1.5rem" }}>
                 한반도 디자이너 &middot; 아카이빙
               </span>
               <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
@@ -205,8 +205,8 @@ export default function About({ onOpenModal = () => {} }) {
                   onClick={() => onOpenModal("forum")}
                   style={{
                     background: "none",
-                    border: "1.5px solid #6366f1",
-                    color: "#6366f1",
+                    border: "1.5px solid var(--color-primary)",
+                    color: "var(--color-primary)",
                     padding: "0.6rem 2rem",
                     borderRadius: "30px",
                     fontSize: "0.9rem",
@@ -214,7 +214,7 @@ export default function About({ onOpenModal = () => {} }) {
                     cursor: "pointer",
                     transition: "all 0.2s"
                   }}
-                  className="value-detail-btn design-btn"
+                  className="value-detail-btn"
                 >
                   자세히 보기 &rarr;
                 </button>
@@ -239,14 +239,8 @@ export default function About({ onOpenModal = () => {} }) {
           opacity: 0;
           transition: opacity 0.3s ease;
         }
-        .grow-card::before {
-          background: #10b981;
-        }
-        .connect-card::before {
+        .value-card-premium::before {
           background: var(--color-primary);
-        }
-        .design-card::before {
-          background: #6366f1;
         }
         .value-card-premium:hover {
           transform: translateY(-8px);
@@ -255,28 +249,14 @@ export default function About({ onOpenModal = () => {} }) {
         .value-card-premium:hover::before {
           opacity: 1;
         }
-        .grow-card:hover {
-          border-color: rgba(16, 185, 129, 0.3) !important;
-        }
-        .connect-card:hover {
-          border-color: rgba(220, 20, 20, 0.3) !important;
-        }
-        .design-card:hover {
-          border-color: rgba(99, 102, 241, 0.3) !important;
+        .value-card-premium:hover {
+          border-color: rgba(220, 20, 20, 0.25) !important;
         }
         .value-detail-btn {
           transition: all 0.2s ease-in-out !important;
         }
-        .grow-btn:hover {
-          background-color: #10b981 !important;
-          color: white !important;
-        }
-        .connect-btn:hover {
+        .value-detail-btn:hover {
           background-color: var(--color-primary) !important;
-          color: white !important;
-        }
-        .design-btn:hover {
-          background-color: #6366f1 !important;
           color: white !important;
         }
       `}</style>
