@@ -134,17 +134,17 @@ export default function Header({ forceSolid = false }) {
                 </ul>
               </li>
               <li className="nav-item dropdown">
-                <a href="/#stats" className="nav-link dropdown-toggle" onClick={closeMenu}>
+                <a href="/stats" className="nav-link dropdown-toggle" onClick={closeMenu}>
                   현황과 데이터
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="/#stats" className="nav-link-sub" onClick={closeMenu}>
+                    <a href="/stats" className="nav-link-sub" onClick={closeMenu}>
                       종합 통계 현황
                     </a>
                   </li>
                   <li>
-                    <a href="/#news" className="nav-link-sub" onClick={closeMenu}>
+                    <a href="/news" className="nav-link-sub" onClick={closeMenu}>
                       정착지원 소식
                     </a>
                   </li>

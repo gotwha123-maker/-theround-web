@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import Stats from "../components/Stats";
-import SettlementNewsSection from "../components/SettlementNewsSection";
 import About from "../components/About";
 import TalkTalk from "../components/TalkTalk";
 import DesignersSection from "../components/DesignersSection";
@@ -18,7 +16,6 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
   const [modalType, setModalType] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -113,9 +110,6 @@ export default function Home() {
       <main>
         <Hero />
         
-        {/* 현황 및 데이터 (통계 유지) */}
-        <div id="stats"><Stats /></div>
-        
         {/* 비전 및 미션 (상단 배치) */}
         <div id="about"><About onOpenModal={openModal} /></div>
 
@@ -126,7 +120,6 @@ export default function Home() {
         <TalkTalk />
         
         {/* 뉴스 및 활동 */}
-        <SettlementNewsSection searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <div id="stories"><StoriesSection /></div>
 
         <DonationSection />
