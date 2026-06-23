@@ -221,7 +221,163 @@ export default function Stats() {
             </div>
           </div>
         </div>
+
+        {/* Positive Impact & Vision Section */}
+        <div className="stats-impact-block" style={{ marginTop: "6.5rem" }}>
+          <div className="values-header text-center reveal-on-scroll" style={{ marginBottom: "3.5rem" }}>
+            <span className="section-subtitle">POSITIVE IMPACT</span>
+            <h3 style={{ fontSize: "2.2rem", fontWeight: 800, marginBottom: "1.0rem", color: "var(--color-text-primary)" }}>
+              수치로 증명하는 긍정적 변화
+            </h3>
+            <p style={{ color: "var(--color-text-muted)", fontSize: "1.05rem", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6", wordBreak: "keep-all" }}>
+              더라운드는 한계가 아닌 가능성에 초점을 맞추며, 남북 주민이 함께 만들어가는 내일의 성과를 신뢰합니다.
+            </p>
+          </div>
+
+          <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+            
+            {/* Impact 1: 만족도 */}
+            <div className="value-card-premium impact-card-glow" style={{
+              background: "var(--color-bg-secondary)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "24px",
+              padding: "3.5rem 2rem 3rem",
+              boxShadow: "var(--shadow-sm)",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              position: "relative"
+            }}>
+              <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "1.5rem" }}>남한 생활 정착 만족도</span>
+              <div style={{ position: "relative", width: "120px", height: "120px", marginBottom: "1.8rem" }}>
+                <svg width="120" height="120" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="8" fill="none" />
+                  <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="8" fill="none"
+                    style={{ 
+                      transform: "rotate(-90deg)", 
+                      transformOrigin: "50% 50%", 
+                      strokeDasharray: "251.327", 
+                      strokeDashoffset: "52.02",
+                      transition: "stroke-dashoffset 1.5s ease"
+                    }} 
+                  />
+                </svg>
+                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>79.3%</div>
+              </div>
+              <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
+                스스로 미래를 설계하고 삶을 개척하는 <strong>자립(Grow)</strong>의 기반이 확립되면서, 남한 생활 만족도는 매년 새로운 최고치를 기록하고 있습니다.
+              </p>
+              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
+                *출처: 통일부 남북하나재단 정착실태조사
+              </span>
+            </div>
+
+            {/* Impact 2: 소통 */}
+            <div className="value-card-premium impact-card-glow" style={{
+              background: "var(--color-bg-secondary)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "24px",
+              padding: "3.5rem 2rem 3rem",
+              boxShadow: "var(--shadow-sm)",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              position: "relative"
+            }}>
+              <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "1.5rem" }}>만남 후 긍정 인식 변화</span>
+              <div style={{ position: "relative", width: "120px", height: "120px", marginBottom: "1.8rem" }}>
+                <svg width="120" height="120" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="8" fill="none" />
+                  <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="8" fill="none"
+                    style={{ 
+                      transform: "rotate(-90deg)", 
+                      transformOrigin: "50% 50%", 
+                      strokeDasharray: "251.327", 
+                      strokeDashoffset: "18.85",
+                      transition: "stroke-dashoffset 1.5s ease"
+                    }} 
+                  />
+                </svg>
+                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>92.5%</div>
+              </div>
+              <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
+                함께 운동장을 뛰는 축구와 통일포차 등 일상적 <strong>소통(Connect)</strong> 활동 참여를 통해, 남북 청년 상호 신뢰와 통합 의지가 극대화되었습니다.
+              </p>
+              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
+                *출처: 서울대 통일평화연구원 상호인식조사
+              </span>
+            </div>
+
+            {/* Impact 3: 디자인 */}
+            <div className="value-card-premium impact-card-glow" style={{
+              background: "var(--color-bg-secondary)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "24px",
+              padding: "3.5rem 2rem 3rem",
+              boxShadow: "var(--shadow-sm)",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              position: "relative"
+            }}>
+              <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "1.5rem" }}>한반도 평화/통합 기여 의지</span>
+              <div style={{ position: "relative", width: "120px", height: "120px", marginBottom: "1.8rem" }}>
+                <svg width="120" height="120" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="8" fill="none" />
+                  <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="8" fill="none"
+                    style={{ 
+                      transform: "rotate(-90deg)", 
+                      transformOrigin: "50% 50%", 
+                      strokeDasharray: "251.327", 
+                      strokeDashoffset: "44.23",
+                      transition: "stroke-dashoffset 1.5s ease"
+                    }} 
+                  />
+                </svg>
+                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>82.4%</div>
+              </div>
+              <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
+                탈북 청년들은 단순 수혜 대상을 탈피해, 한반도 미래의 핵심 연사이자 리더로서 사회적 가치를 주도적으로 <strong>디자인(Design)</strong>합니다.
+              </p>
+              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
+                *출처: 통일연구원 KINU 통일의식조사
+              </span>
+            </div>
+
+          </div>
+        </div>
       </div>
+      <style jsx>{`
+        .impact-card-glow {
+          position: relative;
+          overflow: hidden;
+        }
+        .impact-card-glow::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: var(--color-primary);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .impact-card-glow:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-lg) !important;
+          border-color: rgba(220, 20, 20, 0.25) !important;
+        }
+        .impact-card-glow:hover::before {
+          opacity: 1;
+        }
+      `}</style>
     </section>
   );
 }
