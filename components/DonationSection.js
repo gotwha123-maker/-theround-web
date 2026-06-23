@@ -104,6 +104,15 @@ export default function DonationSection() {
               <div className="benefit-item">
                 <span className="benefit-icon" style={{ color: "var(--color-primary)", fontWeight: "bold", marginRight: "0.5rem" }}>&#10003;</span>
                 <div>
+                  <h4 style={{ color: "var(--color-text-primary)" }}>직접 계좌 후원</h4>
+                  <p style={{ color: "var(--color-text-primary)", fontWeight: 800, fontSize: "1.1rem", marginTop: "0.2rem" }}>
+                    우리은행 1005-504-626666 <span style={{ fontWeight: 500, fontSize: "0.95rem", color: "var(--color-text-muted)" }}>(예금주: 더라운드)</span>
+                  </p>
+                </div>
+              </div>
+              <div className="benefit-item" style={{ marginTop: "1.5rem" }}>
+                <span className="benefit-icon" style={{ color: "var(--color-primary)", fontWeight: "bold", marginRight: "0.5rem" }}>&#10003;</span>
+                <div>
                   <h4 style={{ color: "var(--color-text-primary)" }}>기부금 영수증 발급 안내</h4>
                   <p style={{ color: "var(--color-text-muted)" }}>
                     현재 지정기부금 단체 신청을 준비 중이며, 발급이 가능해지는 시점에 맞춰 홈페이지를 통해 별도로 안내해 드릴 예정입니다. (약 1년 이상 소요 예상)
@@ -119,7 +128,7 @@ export default function DonationSection() {
               </div>
             </div>
           </div>
-
+ 
           <div className="donation-widget-card reveal-on-scroll delay-100">
             <div className="widget-header">
               <button 
@@ -157,7 +166,7 @@ export default function DonationSection() {
                   직접입력
                 </button>
               </div>
-
+ 
               {selectedAmount === "custom" && (
                 <div className="custom-amount-input-wrapper" id="custom-amount-wrapper">
                   <input
@@ -172,7 +181,7 @@ export default function DonationSection() {
                   <span className="currency">원</span>
                 </div>
               )}
-
+ 
               <div 
                 className="impact-message-box" 
                 id="impact-message" 
@@ -180,7 +189,7 @@ export default function DonationSection() {
               >
                 {getImpactMessage()}
               </div>
-
+ 
               <form className="donation-form" id="donation-submit-form" onSubmit={handleSubmit}>
                 <div className="form-group" style={{ marginBottom: "1rem" }}>
                   <input
@@ -211,6 +220,11 @@ export default function DonationSection() {
                   {submitting ? "후원 신청서 처리 중..." : "더라운드 후원 신청하기"}
                 </button>
               </form>
+              <div style={{ marginTop: "1.8rem", textAlign: "center", paddingTop: "1.2rem", borderTop: "1px dashed var(--color-border)", fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: "1.5" }}>
+                직접 계좌 이체 후원:<br />
+                <strong style={{ color: "var(--color-text-primary)", fontSize: "1.0rem" }}>우리은행 1005-504-626666</strong><br />
+                <span style={{ fontSize: "0.8rem" }}>(예금주: 더라운드)</span>
+              </div>
             </div>
           </div>
         </div>
