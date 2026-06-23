@@ -164,7 +164,7 @@ export default function DesignersSection() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("active"); });
       }, { threshold: 0.1 });
-      document.querySelectorAll(".designer-card").forEach((el) => observer.observe(el));
+      document.querySelectorAll(".designer-card, .designer-intro-card").forEach((el) => observer.observe(el));
       return () => observer.disconnect();
     }
   }, [visibleList]);
