@@ -118,7 +118,7 @@ export default function DesignersSection() {
   }, []);
 
   const activeDesigners = designers.filter(d => !d.isHidden);
-  const visibleList = showAll ? activeDesigners : activeDesigners;
+  const visibleList = showAll ? activeDesigners : activeDesigners.slice(0, 4);
 
   const openDetail = (d) => { setSelectedDesigner(d); document.body.style.overflow = "hidden"; };
   const closeDetail = () => { setSelectedDesigner(null); document.body.style.overflow = ""; };
@@ -176,6 +176,26 @@ export default function DesignersSection() {
           <span className="section-subtitle">PEOPLE OF THE FUTURE</span>
           <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>한반도 디자이너</h2>
           <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>한반도 통합을 위한 디자이너를 소개합니다.</p>
+        </div>
+
+        {/* 한반도 디자이너 취지 및 의미 소개 코너 */}
+        <div className="designer-intro-card reveal-on-scroll" style={{
+          background: "linear-gradient(135deg, hsla(5, 75%, 48%, 0.04) 0%, hsla(5, 75%, 62%, 0.01) 100%)",
+          border: "1px solid var(--color-border)",
+          borderRadius: "28px",
+          padding: "3rem 2.5rem",
+          maxWidth: "900px",
+          margin: "3rem auto 0 auto",
+          boxShadow: "var(--shadow-sm)",
+          textAlign: "center"
+        }}>
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1.2rem" }}>
+            왜 "한반도 디자이너" 인가요?
+          </h3>
+          <p style={{ fontSize: "1.05rem", color: "var(--color-text-primary)", lineHeight: "1.8", wordBreak: "keep-all", margin: "0 auto", maxWidth: "800px" }}>
+            남과 북의 경계를 넘어, 각자의 분야에서 한반도의 새로운 미래를 그려나가는 전문 연사이자 리더들을 의미합니다.<br />
+            단순히 과거의 이야기를 증언하는 것을 넘어 <strong>법률, 문화예술, 인권, 미디어</strong> 등 다양한 전문 영역에서 남북한 주민들이 서로를 깊이 이해하고 화합할 수 있도록 주도적으로 사회적 인식과 가치를 '디자인'합니다.
+          </p>
         </div>
 
         <div className="designers-grid-container" style={{ marginTop: "4rem" }}>
@@ -364,6 +384,13 @@ export default function DesignersSection() {
       )}
       <style jsx>{`
         .designer-card:hover .img-overlay { opacity: 1 !important; }
+        @media (max-width: 768px) {
+          .designers-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+        }
         @media (max-width: 600px) {
           .modal-container { width: 100% !important; border-radius: 0 !important; max-height: 100vh !important; }
           .admin-form label { font-size: 0.8rem !important; }

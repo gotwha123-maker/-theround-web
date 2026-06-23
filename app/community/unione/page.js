@@ -4,47 +4,33 @@ import { useState, useEffect } from "react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 
-// 발표와 순서를 맡아 준 사람들 데이터셋 (6인)
-const members = [
-  { src: "/assets/yearend_member_1.png", role: "사회자", name: "이정혁", title: "유니원 FC 감독", desc: "재치 넘치는 입담과 매끄러운 진행으로 송년 축제의 밤을 하나로 따뜻하게 엮어 주었습니다." },
-  { src: "/assets/yearend_member_2.png", role: "대표 스피치", name: "김은철", title: "더라운드 대표", desc: "\"스스로 서는 청년들, 함께 걷는 공동체\" 비전을 제시하며, 서로 연대하고 의지하는 안전망의 가치를 전했습니다." },
-  { src: "/assets/yearend_member_shim.png", role: "스토리 콘서트", name: "심서환 대표", title: "YS F&B 대표이사", desc: "양각도 평양냉면 성공 스토리를 전하며, 주체적이고 도전적인 청년 창업의 비전과 노하우를 나눴습니다." },
-  { src: "/assets/yearend_member_5.png", role: "스토리 콘서트", name: "김옥심 박사", title: "통일간호의 징검다리 대표", desc: "연세대학교 간호대학 박사후 연구원으로서 \"역경을 이겨내는 힘, 회복탄력성\"을 주제로 가슴 깊은 위로와 용기를 선물했습니다." },
-  { src: "/assets/yearend_member_3.jpg", role: "축하 공연", name: "김소연", title: "가수 겸 배우", desc: "TV 조선 미스트롯3에 출연한 아름다운 목소리로 송년회의 분위기를 한층 돋우며 감동적인 무대를 선물했습니다." },
-  { src: "/assets/yearend_member_4.jpg", role: "소해금 연주", name: "최리나", title: "소해금 연주가", desc: "바티칸 오케스트라 협연 등 세계적 무대에서 다져진 선율로 남북 청년들의 심금을 따뜻하게 감싸 안았습니다." }
+// 유니원 FC 갤러리 데이터셋 (업로드 사진 10장)
+const unionePhotos = [
+  { src: "/assets/unione_1.jpg", title: "그라운드 위의 파이팅", desc: "나이와 배경을 넘어 축구공 하나로 함께 발을 맞추며 신뢰를 다지는 경기 현장" },
+  { src: "/assets/unione_2.jpg", title: "열정적인 훈련 세션", desc: "푸른 잔디 위에서 굵은 땀방울을 흘리며 건강한 신체와 에너지를 채워가는 모습" },
+  { src: "/assets/unione_3.jpg", title: "전술과 소통의 시간", desc: "경기 시작 전 서로의 생각을 조율하고 하나의 목표를 향해 함께 작전을 구상하는 순간" },
+  { src: "/assets/unione_4.jpg", title: "함께 나누는 시원한 휴식", desc: "훈련 중간 골대 옆 그늘에 모여 앉아 시원한 음료와 함께 소소한 일상을 공유하는 시간" },
+  { src: "/assets/unione_5.jpg", title: "둥글게 모여 몸 풀기", desc: "20대부터 40대까지 다양한 연령과 직업의 청년들이 하나로 어우러지기 위한 준비 단계" },
+  { src: "/assets/unione_6.jpg", title: "경기를 준비하는 시간", desc: "경기 시작 전 벤치에 모여 축구화를 고쳐 신고 준비 운동을 하며 호흡을 가다듬는 선수들" },
+  { src: "/assets/unione_7.jpg", title: "그라운드 위의 호흡", desc: "연두색 조끼를 맞춰 입고 푸른 인조잔디 위를 걸으며 서로 눈빛과 대화를 나누는 모습" },
+  { src: "/assets/unione_8.jpg", title: "치열하고 즐거운 경기", desc: "남북 청년들이 편견 없이 공 하나를 두고 경합하며 그라운드 위에서 열정을 쏟아내는 순간" },
+  { src: "/assets/unione_9.jpg", title: "경기 후 시원한 휴식", desc: "치열한 훈련 뒤 차양막 아래 옹기종기 모여 앉아 시원한 물을 마시며 담소를 나누는 시간" },
+  { src: "/assets/unione_10.jpg", title: "열정을 다하는 순간", desc: "상대 골문을 향해 힘차게 달리며 서로의 패스를 맞춰가는 역동적인 경기 장면" }
 ];
 
-// 현장 스케치 포토 갤러리 데이터셋 (기존 5장 + 바탕화면 추가 9장)
-const yearendPhotos = [
-  { src: "/assets/yearend_1.jpg", title: "따뜻한 만찬과 대화", desc: "남북 청년들과 멘토들이 함께 어우러져 맛있는 음식을 나누며 깊은 대화를 나누는 시간" },
-  { src: "/assets/yearend_2.jpg", title: "서로를 알아가는 식탁", desc: "한자리에 둘러앉아 따뜻한 미소와 격려를 주고받는 대화의 현장" },
-  { src: "/assets/yearend_3.jpg", title: "경청과 스피치", desc: "자립과 공동체를 향한 마음을 진솔하게 전하며 공감대를 넓혀가는 순서" },
-  { src: "/assets/yearend_4.jpg", title: "그대 함께 걷는다면", desc: "송년의 밤을 마치며 참가자 전원이 함께 모여 약속하는 연대와 동행의 단체 사진" },
-  { src: "/assets/yearend_5.jpg", title: "행사장을 가득 채운 온기", desc: "웃음꽃이 피어나는 테이블마다 서로가 서로에게 든든한 가족이자 친구가 되어주는 순간" },
-  { src: "/assets/yearend_6.png", title: "설레는 마음으로 입장", desc: "송년 축제에 참석하기 위해 행사장에 도착해 환한 미소로 방명록을 작성하고 인사하는 청년들" },
-  { src: "/assets/yearend_7.png", title: "재치 가득한 사회자의 오프닝", desc: "송년 축제의 시작을 알리며 유머러스한 멘트로 행사장의 긴장을 단숨에 녹여낸 오프닝 순간" },
-  { src: "/assets/yearend_8.png", title: "창업 스토리 콘서트", desc: "평양냉면 창업 성공담과 인생 노하우를 진솔하게 경청하며 꿈을 키우는 시간" },
-  { src: "/assets/yearend_9.png", title: "가슴을 울리는 강연", desc: "\"회복탄력성\" 강연을 통해 역경을 딛고 다시 설 수 있는 내면의 힘과 용기를 얻는 청년들" },
-  { src: "/assets/yearend_10.png", title: "아름다운 소해금 선율", desc: "세계적인 무대에서 빚어진 소해금의 선율이 행사장 전체에 가득 울려 퍼지며 감동을 더하는 순간" },
-  { src: "/assets/yearend_11.png", title: "즐거움 가득한 무대", desc: "아름다운 목소리로 송년의 밤 분위기를 뜨겁게 돋우며 다 함께 손뼉 치며 즐기는 무대 현장" },
-  { src: "/assets/yearend_12.png", title: "손에 땀을 쥐는 레크리에이션", desc: "서로 다른 테이블의 멤버들이 힘을 모아 퀴즈를 풀고 즐거운 게임을 즐기는 단합의 시간" },
-  { src: "/assets/yearend_13.png", title: "마음을 나누는 선물 교환", desc: "한 해 동안 수고한 서로를 위해 준비한 소박하지만 따뜻한 격려의 선물을 주고받는 시간" },
-  { src: "/assets/yearend_14.png", title: "우리들의 소중한 약속", desc: "다가오는 새해에도 서로의 안전망이자 따뜻한 울타리가 되어주기로 함께 다짐하는 밤" }
-];
-
-export default function YearendPage() {
+export default function UnionePage() {
   const [activePhotoIdx, setActivePhotoIdx] = useState(null);
 
-  // ESC 키 및 방향키로 갤러리 모달 제어
+  // ESC 및 방향키로 갤러리 모달 제어
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (activePhotoIdx === null) return;
       if (e.key === "Escape") setActivePhotoIdx(null);
       if (e.key === "ArrowLeft") {
-        setActivePhotoIdx((prev) => (prev - 1 + yearendPhotos.length) % yearendPhotos.length);
+        setActivePhotoIdx((prev) => (prev - 1 + unionePhotos.length) % unionePhotos.length);
       }
       if (e.key === "ArrowRight") {
-        setActivePhotoIdx((prev) => (prev + 1) % yearendPhotos.length);
+        setActivePhotoIdx((prev) => (prev + 1) % unionePhotos.length);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -53,27 +39,26 @@ export default function YearendPage() {
 
   return (
     <>
-      {/* 글로벌 가이드라인 반영 및 모바일 디바이스 최적화 스타일 주입 */}
+      {/* 글로벌 디자인 시스템 밸런스를 고려한 반응형 스타일 주입 */}
       <style dangerouslySetInnerHTML={{__html: `
-        /* 기여자 프로필 카드 - 더라운드 공통 스타일 */
-        .yearend-contributor-card {
+        /* 스탯 카드 시스템 - 더라운드 디자인 규격 적용 */
+        .unione-stat-card {
           background: var(--color-bg-secondary);
           border: 1px solid var(--color-border);
           border-radius: 24px;
-          overflow: hidden;
+          padding: 2.2rem 2rem;
+          text-align: center;
           box-shadow: var(--shadow-sm);
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-          display: flex;
-          flex-direction: column;
         }
-        .yearend-contributor-card:hover {
-          transform: translateY(-6px);
+        .unione-stat-card:hover {
+          transform: translateY(-5px);
           box-shadow: var(--shadow-md);
           border-color: hsla(5, 75%, 48%, 0.25);
         }
-
-        /* 갤러리 카드 - 더라운드 공통 스타일 */
-        .yearend-photo-card {
+        
+        /* 갤러리 카드 - 더라운드 카드 규격 적용 */
+        .unione-photo-card {
           position: relative;
           border-radius: 20px;
           overflow: hidden;
@@ -83,86 +68,79 @@ export default function YearendPage() {
           aspect-ratio: 4/3;
           transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
         }
-        .yearend-photo-card:hover {
+        .unione-photo-card:hover {
           transform: scale(1.02) translateY(-4px);
           box-shadow: var(--shadow-lg);
         }
 
         @media (max-width: 768px) {
-          .yearend-hero {
+          .unione-hero {
             padding: 7rem 0 3.5rem 0 !important;
           }
-          .yearend-hero-title {
+          .unione-hero-title {
             font-size: 2.2rem !important;
             line-height: 1.35 !important;
           }
-          .yearend-hero-desc {
+          .unione-hero-desc {
             font-size: 1rem !important;
             line-height: 1.7 !important;
             padding: 0 1rem;
           }
-          .yearend-purpose-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-            padding: 0 1rem;
-          }
-          .yearend-purpose-title {
-            font-size: 1.8rem !important;
-            margin-bottom: 1.5rem !important;
-          }
-          .yearend-story-box {
-            padding: 2rem 1.5rem !important;
-          }
-          .yearend-story-box h3 {
-            font-size: 1.35rem !important;
-          }
-          .yearend-section-title {
-            font-size: 1.8rem !important;
-          }
-          .yearend-section-desc {
-            font-size: 0.95rem !important;
-            padding: 0 1rem;
-          }
-          .yearend-contributors-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-            padding: 0 1rem;
-          }
-          .yearend-photo-grid {
+          .unione-stats-grid {
             grid-template-columns: 1fr !important;
             gap: 1.2rem !important;
             padding: 0 1rem;
           }
-          .yearend-back-btn {
+          .unione-content-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+            padding: 0 1rem;
+          }
+          .unione-title {
+            font-size: 1.8rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .unione-highlight-card {
+            padding: 2rem 1.5rem !important;
+          }
+          .unione-highlight-card h3 {
+            font-size: 1.35rem !important;
+          }
+          .unione-photo-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.2rem !important;
+            padding: 0 1rem;
+          }
+          .unione-back-btn {
             padding: 0.8rem 2rem !important;
             font-size: 0.95rem !important;
           }
           
           /* 라이트박스 모바일 대응 */
-          .yearend-modal-prev {
+          .unione-modal-prev {
             left: 0.5rem !important;
             width: 44px !important;
             height: 44px !important;
             font-size: 1.2rem !important;
           }
-          .yearend-modal-next {
+          .unione-modal-next {
             right: 0.5rem !important;
             width: 44px !important;
             height: 44px !important;
             font-size: 1.2rem !important;
           }
-          .yearend-modal-img-wrapper {
+          .unione-modal-img-wrapper {
             height: 42vh !important;
             width: 92% !important;
           }
-          .yearend-modal-info {
+          .unione-modal-info {
             margin-top: 1rem !important;
             padding: 0 1rem !important;
           }
-          .yearend-modal-info h4 {
+          .unione-modal-info h4 {
             font-size: 1.15rem !important;
           }
-          .yearend-modal-info p {
+          .unione-modal-info p {
             font-size: 0.88rem !important;
           }
         }
@@ -173,14 +151,14 @@ export default function YearendPage() {
       <main style={{ minHeight: "100vh", backgroundColor: "var(--color-bg-primary)", color: "var(--color-text-primary)", fontFamily: "var(--font-primary)" }}>
         
         {/* Hero Section */}
-        <section className="yearend-hero" style={{
+        <section className="unione-hero" style={{
           position: "relative",
           padding: "10rem 0 6rem 0",
           background: "linear-gradient(180deg, hsla(5, 75%, 48%, 0.05) 0%, var(--color-bg-primary) 100%)",
           textAlign: "center",
           overflow: "hidden"
         }}>
-          {/* Subtle background glow effect using brand colors */}
+          {/* Subtle background network pattern with brand colors */}
           <div style={{ position: "absolute", inset: 0, opacity: 0.1, pointerEvents: "none" }}>
             <div style={{ position: "absolute", top: "10%", left: "5%", width: "220px", height: "220px", borderRadius: "50%", background: "var(--color-primary)", filter: "blur(100px)" }}></div>
             <div style={{ position: "absolute", bottom: "10%", right: "8%", width: "250px", height: "250px", borderRadius: "50%", background: "var(--color-accent-secondary)", filter: "blur(120px)" }}></div>
@@ -200,10 +178,10 @@ export default function YearendPage() {
               marginBottom: "1.5rem",
               fontFamily: "var(--font-display)"
             }}>
-              SPECIAL STORY | 2025 YEAR-END PARTY
+              COMMUNITY SOLIDARITY | UNIONE FC
             </span>
             
-            <h1 className="yearend-hero-title" style={{
+            <h1 className="unione-hero-title" style={{
               fontSize: "3.5rem",
               fontWeight: 900,
               lineHeight: 1.25,
@@ -211,31 +189,61 @@ export default function YearendPage() {
               color: "var(--color-text-primary)",
               wordBreak: "keep-all"
             }}>
-              한 해를 닫으며 나누는<br />
-              <span className="accent-text" style={{ background: "var(--gradient-accent)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>따뜻한 위로와 기쁨</span>
+              그라운드 위에서 통하는 하나의 언어,<br />
+              <span className="accent-text" style={{ background: "var(--gradient-accent)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>유니원 FC</span>
             </h1>
             
-            <p className="yearend-hero-desc" style={{
+            <p className="unione-hero-desc" style={{
               fontSize: "1.25rem",
               color: "var(--color-text-muted)",
-              maxWidth: "780px",
+              maxWidth: "800px",
               margin: "0 auto",
               lineHeight: 1.8,
               wordBreak: "keep-all"
             }}>
-              도망치듯 찾아온 낯선 땅에서 겪는 외로움과 고립감을 지우고, 서로가 서로에게 따뜻한 가족이 되어주는 시간.<br />
-              남북 청년 및 멘토단 등 총 80여 명의 참가자가 한자리에 모여 서로의 발자취를 돌아보고 따뜻한 격려와 즐거움을 나눈 축제였습니다.
+              탈북청년과 남한청년이 함께 달리고 발을 맞추며 보이지 않는 장벽을 허뭅니다.<br />
+              패스를 전하고 골문을 향해 뛰는 매 순간 속에, 서로를 향한 단단한 신뢰와 자립을 위한 든든한 연대가 움틉니다.
             </p>
           </div>
         </section>
 
-        {/* Core Purpose & Background Section */}
+        {/* Info Metrics Section */}
+        <section className="section" style={{ padding: "3rem 0", backgroundColor: "var(--color-bg-primary)" }}>
+          <div className="container">
+            <div className="unione-stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
+              
+              {/* Stat Card 1 */}
+              <div className="unione-stat-card">
+                <div style={{ color: "var(--color-primary)", fontSize: "2.8rem", fontWeight: 900, marginBottom: "0.5rem", fontFamily: "var(--font-display)" }}>2023 ~</div>
+                <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.3rem" }}>활동 시작</div>
+                <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", margin: 0 }}>꾸준하게 이어온 연대의 역사</p>
+              </div>
+
+              {/* Stat Card 2 */}
+              <div className="unione-stat-card">
+                <div style={{ color: "var(--color-primary)", fontSize: "2.8rem", fontWeight: 900, marginBottom: "0.5rem", fontFamily: "var(--font-display)" }}>30명 +</div>
+                <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.3rem" }}>참여 회원</div>
+                <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", margin: 0 }}>20대부터 40대까지 다양한 멤버들</p>
+              </div>
+
+              {/* Stat Card 3 */}
+              <div className="unione-stat-card">
+                <div style={{ color: "var(--color-primary)", fontSize: "2.8rem", fontWeight: 900, marginBottom: "0.5rem", fontFamily: "var(--font-display)" }}>2주에 1회</div>
+                <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.3rem" }}>정기 활동</div>
+                <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", margin: 0 }}>토요일 아침마다 피어나는 에너지</p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* Content Story Section */}
         <section className="section" style={{ padding: "6rem 0", backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}>
           <div className="container">
-            <div className="yearend-purpose-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "4rem", alignItems: "center" }}>
+            <div className="unione-content-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "4rem", alignItems: "center" }}>
               
-              {/* Left Highlight Box */}
-              <div className="yearend-story-box" style={{
+              {/* Highlight Card Left */}
+              <div className="unione-highlight-card" style={{
                 background: "linear-gradient(135deg, hsla(5, 75%, 48%, 0.05) 0%, hsla(5, 75%, 62%, 0.02) 100%)",
                 border: "1px solid var(--color-border)",
                 borderRadius: "28px",
@@ -245,26 +253,27 @@ export default function YearendPage() {
               }}>
                 <div style={{ fontSize: "3rem", color: "var(--color-primary)", marginBottom: "1.5rem", lineHeight: 1 }}>“</div>
                 <h3 style={{ fontSize: "1.75rem", fontWeight: 800, lineHeight: "1.4", color: "var(--color-text-primary)", marginBottom: "1.5rem", wordBreak: "keep-all" }}>
-                  이곳에 모인 우리는 더 이상 혼자가 아닙니다.
+                  운동장은 편견이 없는 가장 완벽한 대화의 장입니다.
                 </h3>
                 <p style={{ fontSize: "1.05rem", color: "var(--color-text-muted)", lineHeight: "1.8", wordBreak: "keep-all" }}>
-                  서로가 서로의 가족이자 든든한 멘토가 되어, 함께 웃고 걸어갈 따뜻한 공동체를 만듭니다.
+                  이름도 나이도 다른 멤버들이 축구공 하나로 함께 부딪히고 뒹굴며 진정한 동료가 됩니다. 함께 땀 흘리고 식탁을 나눌 때 서로의 삶은 더욱 든든하게 이어집니다.
                 </p>
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginTop: "2.5rem" }}>
                   <div style={{ width: "40px", height: "2px", backgroundColor: "var(--color-primary)" }}></div>
-                  <span style={{ fontSize: "0.95rem", color: "var(--color-primary)", fontWeight: 700 }}>더라운드 커뮤니티</span>
+                  <span style={{ fontSize: "0.95rem", color: "var(--color-primary)", fontWeight: 700 }}>유니원 FC 공동체</span>
                 </div>
               </div>
 
-              {/* Right Story Paragraphs */}
+              {/* Story Right */}
               <div>
-                <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "var(--font-display)" }}>THE PURPOSE</span>
-                <h2 className="yearend-purpose-title" style={{ fontSize: "2.5rem", fontWeight: 800, margin: "1rem 0 2rem 0", color: "var(--color-text-primary)", wordBreak: "keep-all" }}>
-                  우리가 함께 모인 목적과 취지
+                <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "var(--font-display)" }}>OUR VALUES</span>
+                <h2 className="unione-title" style={{ fontSize: "2.5rem", fontWeight: 800, margin: "1rem 0 2rem 0", color: "var(--color-text-primary)", wordBreak: "keep-all" }}>
+                  유니원 FC가 만들어내는 긍정적인 변화
                 </h2>
                 
-                <div style={{ display: "flex", flexDirection: "column", gap: "2.2rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
                   
+                  {/* Point 1 */}
                   <div style={{ display: "flex", gap: "1.5rem" }}>
                     <div style={{
                       backgroundColor: "hsla(5, 75%, 48%, 0.08)",
@@ -282,13 +291,14 @@ export default function YearendPage() {
                       fontFamily: "var(--font-display)"
                     }}>1</div>
                     <div>
-                      <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.5rem" }}>외로움을 지우고 온기를 나누는 시간</h4>
+                      <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.5rem" }}>탈북청년들의 정서적 지지와 스포츠 연대</h4>
                       <p style={{ color: "var(--color-text-muted)", lineHeight: "1.7", fontSize: "0.95rem", wordBreak: "keep-all" }}>
-                        고향을 떠나 홀로 정착을 시작한 청년들에게 연말은 유독 쓸쓸한 시기입니다. 송년회는 이러한 고립과 소외를 해소하고, 서로 손을 맞잡으며 정서적인 안정을 찾는 따뜻한 울타리가 되어줍니다.
+                        한국 사회에서 새로운 터전을 다지는 과정의 낯설음과 외로움을 해소합니다. 축구라는 보편적인 언어를 통해 심리적 안정감을 찾고 서로에게 든든한 정서적 기둥이 되어줍니다.
                       </p>
                     </div>
                   </div>
 
+                  {/* Point 2 */}
                   <div style={{ display: "flex", gap: "1.5rem" }}>
                     <div style={{
                       backgroundColor: "hsla(5, 75%, 48%, 0.08)",
@@ -306,13 +316,14 @@ export default function YearendPage() {
                       fontFamily: "var(--font-display)"
                     }}>2</div>
                     <div>
-                      <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.5rem" }}>80여 명이 함께 웃고 즐기는 축제의 현장</h4>
+                      <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.5rem" }}>운동 후 든든한 식사까지가 진정한 활동의 코스</h4>
                       <p style={{ color: "var(--color-text-muted)", lineHeight: "1.7", fontSize: "0.95rem", wordBreak: "keep-all" }}>
-                        단순히 밥을 먹는 자리를 넘어 총 80여 명의 남북 청년들과 멘토들이 함께 어우러져 다채로운 레크리에이션, 축하 공연, 바이올린과 소해금의 아름다운 선율을 나누며 모두가 하나 되어 활기차게 웃고 즐긴 살아있는 축제였습니다.
+                        경기가 끝났다고 모임이 끝나는 것이 아닙니다. 운동장에서 다진 활력은 따뜻한 식탁으로 이어집니다. 둘러앉아 편안하게 한 끼 식사를 나누며 나누는 눈인사와 조언들은 청년들의 소외감을 극복하게 만드는 가장 큰 힘이자 일상의 원동력입니다.
                       </p>
                     </div>
                   </div>
 
+                  {/* Point 3 */}
                   <div style={{ display: "flex", gap: "1.5rem" }}>
                     <div style={{
                       backgroundColor: "hsla(5, 75%, 48%, 0.08)",
@@ -330,9 +341,9 @@ export default function YearendPage() {
                       fontFamily: "var(--font-display)"
                     }}>3</div>
                     <div>
-                      <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.5rem" }}>서로의 손을 잡는 연대와 격려</h4>
+                      <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "0.5rem" }}>다양한 연령과 직업이 만들어내는 자원 공유</h4>
                       <p style={{ color: "var(--color-text-muted)", lineHeight: "1.7", fontSize: "0.95rem", wordBreak: "keep-all" }}>
-                        자립의 길을 걷고 있는 청년들과 이들을 지지하는 멘토들이 평등하게 둘러앉아 서로의 고민을 경청하고 격려하며, 다가올 새해를 용기 있게 마주할 힘을 얻습니다.
+                        20대부터 40대까지 다양한 라이프 스테이지를 겪는 멤버들, 그리고 각양각색의 직업을 가진 이들이 만나 건강한 생태계를 이룹니다. 취업 정보, 사회생활 멘토링, 삶의 크고 작은 경험과 인적 자원들을 자연스럽게 나누며 상호 성장합니다.
                       </p>
                     </div>
                   </div>
@@ -344,71 +355,28 @@ export default function YearendPage() {
           </div>
         </section>
 
-        {/* Member Profile Cards Section */}
+        {/* Photo Gallery Section */}
         <section className="section" style={{ padding: "6rem 0", backgroundColor: "var(--color-bg-primary)" }}>
           <div className="container">
             
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-              <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "var(--font-display)" }}>CONTRIBUTORS</span>
-              <h2 className="yearend-section-title" style={{ fontSize: "2.6rem", fontWeight: 800, color: "var(--color-text-primary)", marginTop: "0.5rem" }}>발표와 공연을 맡은 사람들</h2>
-              <p className="yearend-section-desc" style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", marginTop: "0.8rem" }}>격려사, 성공 스토리, 회복탄력성 명강연부터 가슴을 울리는 선율까지 축제의 순서를 채워준 주역들입니다.</p>
-            </div>
-
-            <div className="yearend-contributors-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "2rem" }}>
-              {members.map((m, idx) => (
-                <div key={idx} className="yearend-contributor-card">
-                  {/* Image Container */}
-                  <div style={{ position: "relative", width: "100%", overflow: "hidden", backgroundColor: "var(--color-bg-primary)" }}>
-                    <img 
-                      src={m.src} 
-                      alt={m.name} 
-                      style={{ width: "100%", height: "auto", display: "block" }} 
-                      onError={(e) => {
-                        e.target.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200";
-                      }}
-                    />
-                  </div>
-
-                  {/* Text Details */}
-                  <div style={{ padding: "1.5rem", flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                    <h4 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "0.2rem" }}>
-                      {m.name}
-                    </h4>
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: 600, display: "block", marginBottom: "1rem" }}>
-                      {m.title}
-                    </span>
-                    <p style={{ fontSize: "0.88rem", color: "var(--color-text-muted)", lineHeight: "1.6", marginTop: "auto", wordBreak: "keep-all" }}>
-                      {m.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* Photo Sketch Section */}
-        <section className="section" style={{ padding: "6rem 0", backgroundColor: "var(--color-bg-secondary)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-              <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "var(--font-display)" }}>PHOTO SKETCH</span>
-              <h2 className="yearend-section-title" style={{ fontSize: "2.6rem", fontWeight: 800, color: "var(--color-text-primary)", marginTop: "0.5rem" }}>송년회 현장 스케치</h2>
-              <p className="yearend-section-desc" style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", marginTop: "0.8rem" }}>남북 청년이 경계 없이 마주하며 나눈 따뜻한 밥상과 미소의 흔적들입니다.</p>
+              <span style={{ color: "var(--color-primary)", fontWeight: 800, fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "var(--font-display)" }}>PHOTO GALLERY</span>
+              <h2 style={{ fontSize: "2.6rem", fontWeight: 800, color: "var(--color-text-primary)", marginTop: "0.5rem" }}>활동 현장 스케치</h2>
+              <p style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", marginTop: "0.8rem" }}>편견 없는 그라운드 위에서 남북 청년들이 함께 나눈 미소와 열정의 기록입니다.</p>
             </div>
 
             {/* Grid Photo Gallery */}
-            <div className="yearend-photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
-              {yearendPhotos.map((p, idx) => (
+            <div className="unione-photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+              {unionePhotos.map((p, idx) => (
                 <div 
                   key={idx} 
                   onClick={() => setActivePhotoIdx(idx)}
-                  className="yearend-photo-card"
+                  id={`unione-img-card-${idx}`}
+                  className="unione-photo-card"
                 >
                   <img src={p.src} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   
-                  {/* Hover Overlay */}
+                  {/* Hover Overlay with robust styling and white text */}
                   <div style={{
                     position: "absolute",
                     inset: 0,
@@ -417,11 +385,11 @@ export default function YearendPage() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "flex-end",
-                    transition: "opacity 0.3s",
-                    opacity: 0.95
+                    opacity: 0.95,
+                    transition: "opacity 0.3s"
                   }}>
-                    <strong style={{ fontSize: "1.1rem", color: "#ffffff", fontWeight: 700 }}>{p.title}</strong>
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-dim)", marginTop: "0.3rem", display: "block" }}>{p.desc}</span>
+                    <strong style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 700 }}>{p.title}</strong>
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-dim)", marginTop: "0.3rem", display: "block", lineHeight: "1.4" }}>{p.desc}</span>
                   </div>
                 </div>
               ))}
@@ -430,18 +398,18 @@ export default function YearendPage() {
           </div>
         </section>
 
-        {/* Back Link Section */}
-        <section className="section" style={{ padding: "5rem 0", background: "linear-gradient(180deg, var(--color-bg-primary) 0%, hsla(5, 75%, 48%, 0.05) 100%)", textAlign: "center" }}>
+        {/* Back Link CTA Section */}
+        <section style={{ padding: "5rem 0", background: "linear-gradient(180deg, var(--color-bg-primary) 0%, hsla(5, 75%, 48%, 0.05) 100%)", textAlign: "center", borderTop: "1px solid var(--color-border)" }}>
           <div className="container">
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", wordBreak: "keep-all", color: "var(--color-text-primary)" }}>
-              내년에도 스스로 일구어낼 청년들의 도전을 응원해 주세요
+            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)" }}>
+              그라운드 위에서 내일로 함께 나아갈 청년들을 응원합니다
             </h2>
-            <p style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto 2.5rem auto", lineHeight: "1.7" }}>
-              더라운드 커뮤니티는 계속해서 장벽을 허물고 자립과 연대의 정서적 울타리를 굳건히 지켜나가겠습니다.
+            <p style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto 2.5rem auto", lineHeight: "1.7", wordBreak: "keep-all" }}>
+              유니원 FC는 축구공을 넘어서 서로의 꿈과 성장을 지지해주는 단단한 기둥이 되겠습니다.
             </p>
             <a 
               href="/community" 
-              className="yearend-back-btn"
+              className="unione-back-btn"
               style={{
                 display: "inline-block",
                 border: "2px solid var(--color-primary)",
@@ -455,7 +423,7 @@ export default function YearendPage() {
               }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "var(--color-primary)";
-                e.target.style.color = "#ffffff";
+                e.target.style.color = "white";
               }}
               onMouseLeave={(e) => {
                 e.target.style.backgroundColor = "transparent";
@@ -485,8 +453,10 @@ export default function YearendPage() {
             zIndex: 9999
           }}
         >
+          {/* Close Button */}
           <button 
             onClick={() => setActivePhotoIdx(null)}
+            id="unione-modal-close-btn"
             style={{
               position: "absolute",
               top: "2rem",
@@ -505,10 +475,10 @@ export default function YearendPage() {
             &times;
           </button>
 
-          {/* Slider Container */}
+          {/* Slider Content Wrapper */}
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="yearend-modal-img-wrapper"
+            className="unione-modal-img-wrapper"
             style={{
               position: "relative",
               maxWidth: "960px",
@@ -521,8 +491,9 @@ export default function YearendPage() {
           >
             {/* Prev Button */}
             <button 
-              onClick={() => setActivePhotoIdx((prev) => (prev - 1 + yearendPhotos.length) % yearendPhotos.length)}
-              className="yearend-modal-prev"
+              onClick={() => setActivePhotoIdx((prev) => (prev - 1 + unionePhotos.length) % unionePhotos.length)}
+              className="unione-modal-prev"
+              id="unione-modal-prev-btn"
               style={{
                 position: "absolute",
                 left: "-4rem",
@@ -552,7 +523,7 @@ export default function YearendPage() {
               &#10094;
             </button>
 
-            {/* Active Image */}
+            {/* Current Image */}
             <div style={{
               width: "100%",
               height: "100%",
@@ -564,16 +535,17 @@ export default function YearendPage() {
               boxShadow: "var(--shadow-lg)"
             }}>
               <img 
-                src={yearendPhotos[activePhotoIdx].src} 
-                alt={yearendPhotos[activePhotoIdx].title} 
+                src={unionePhotos[activePhotoIdx].src} 
+                alt={unionePhotos[activePhotoIdx].title} 
                 style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }}
               />
             </div>
 
             {/* Next Button */}
             <button 
-              onClick={() => setActivePhotoIdx((prev) => (prev + 1) % yearendPhotos.length)}
-              className="yearend-modal-next"
+              onClick={() => setActivePhotoIdx((prev) => (prev + 1) % unionePhotos.length)}
+              className="unione-modal-next"
+              id="unione-modal-next-btn"
               style={{
                 position: "absolute",
                 right: "-4rem",
@@ -604,12 +576,12 @@ export default function YearendPage() {
             </button>
           </div>
 
-          {/* Info Metadata */}
-          <div className="yearend-modal-info" style={{ color: "var(--color-text-primary)", textAlign: "center", marginTop: "2rem", maxWidth: "600px", padding: "0 1rem" }}>
-            <h4 style={{ fontSize: "1.3rem", fontWeight: 800, color: "var(--color-primary)", margin: "0 0 0.5rem 0" }}>{yearendPhotos[activePhotoIdx].title}</h4>
-            <p style={{ fontSize: "1rem", color: "var(--color-text-muted)", margin: "0 0 1rem 0", lineHeight: "1.6" }}>{yearendPhotos[activePhotoIdx].desc}</p>
+          {/* Image Metadata Info */}
+          <div className="unione-modal-info" style={{ color: "var(--color-text-primary)", textAlign: "center", marginTop: "2rem", maxWidth: "600px", padding: "0 1rem" }}>
+            <h4 style={{ fontSize: "1.3rem", fontWeight: 800, color: "var(--color-primary)", margin: "0 0 0.5rem 0" }}>{unionePhotos[activePhotoIdx].title}</h4>
+            <p style={{ fontSize: "1rem", color: "var(--color-text-muted)", margin: "0 0 1rem 0", lineHeight: "1.6" }}>{unionePhotos[activePhotoIdx].desc}</p>
             <span style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", backgroundColor: "rgba(0,0,0,0.05)", padding: "0.3rem 1rem", borderRadius: "20px" }}>
-              {activePhotoIdx + 1} / {yearendPhotos.length}
+              {activePhotoIdx + 1} / {unionePhotos.length}
             </span>
           </div>
         </div>

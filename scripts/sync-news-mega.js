@@ -166,6 +166,7 @@ async function verifyWithAI(rawList) {
 4. 중복이나 노이즈가 없는 단정하고 깨끗한 제목으로 정제하십시오 (불필요한 한자나 대괄호, 시스템 기호 제거).
 5. 탈북 청년들이 혜택을 한눈에 파악할 수 있도록 사실에 근거한 친절한 2줄 요약을 생성하십시오.
 6. 'badge'는 해당 정보를 제공하는 기관의 공식 명칭을 정확히 입력하십시오 (예: '남북하나재단', '서울시', '경기도', '통일부' 등).
+7. 'tag'는 해당 공고의 상세 분류를 한국어로 입력하십시오 (예: '공공기관', '창업지원', '취업지원', '장학지원', '교육지원', '주거지원', '복지지원', '기타' 중 가장 알맞은 단어 선택).
 
 반드시 아래 JSON 형식으로만 답변하십시오:
 {
@@ -173,7 +174,8 @@ async function verifyWithAI(rawList) {
   "title": "정제된 제목",
   "excerpt": "사실에 입각한 친절한 2줄 요약",
   "category": "scholarship" | "housing" | "job" | "welfare" | "university",
-  "badge": "기관명"
+  "badge": "기관명",
+  "tag": "분류태그"
 }
 `;
 
@@ -197,7 +199,7 @@ async function verifyWithAI(rawList) {
             category: res.category,
             badge: res.badge,
             excerpt: res.excerpt,
-            tag: "AI검증완료"
+            tag: res.tag || "공공기관"
           }
         });
         console.log(`  [OK] ${res.title}`);

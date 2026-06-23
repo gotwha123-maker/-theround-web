@@ -116,15 +116,39 @@ export default function Header({ forceSolid = false }) {
 
           <nav className={`nav-menu ${menuOpen ? "open" : ""}`} id="nav-menu">
             <ul className="nav-list">
-              <li className="nav-item">
-                <a href="/#about" className="nav-link" onClick={closeMenu}>
+              <li className="nav-item dropdown">
+                <a href="/#about" className="nav-link dropdown-toggle" onClick={closeMenu}>
                   더라운드 소개
                 </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a href="/#about" className="nav-link-sub" onClick={closeMenu}>
+                      더라운드 소개
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/#solutions" className="nav-link-sub" onClick={closeMenu}>
+                      핵심사업
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li className="nav-item">
-                <a href="/#stats" className="nav-link" onClick={closeMenu}>
+              <li className="nav-item dropdown">
+                <a href="/#stats" className="nav-link dropdown-toggle" onClick={closeMenu}>
                   현황과 데이터
                 </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a href="/#stats" className="nav-link-sub" onClick={closeMenu}>
+                      종합 통계 현황
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/#news" className="nav-link-sub" onClick={closeMenu}>
+                      정착지원 소식
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li className="nav-item dropdown">
                 <a href="/#solutions" className="nav-link dropdown-toggle" onClick={closeMenu}>
@@ -154,10 +178,22 @@ export default function Header({ forceSolid = false }) {
                 </ul>
               </li>
 
-              <li className="nav-item">
-                <a href="/#contact" className="nav-link" onClick={closeMenu}>
+              <li className="nav-item dropdown">
+                <a href="/#contact" className="nav-link dropdown-toggle" onClick={closeMenu}>
                   문의
                 </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a href="/#talktalk" className="nav-link-sub" onClick={closeMenu}>
+                      톡톡 이어지는 공간
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/#contact" className="nav-link-sub" onClick={closeMenu}>
+                      1:1 문의하기
+                    </a>
+                  </li>
+                </ul>
               </li>
               {!isLoggedIn ? (
                 <li className="nav-item">

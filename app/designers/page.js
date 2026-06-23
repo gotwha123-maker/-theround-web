@@ -1,29 +1,9 @@
-"use client";
-
-import { useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import Header from "../../components/Header";
-import DesignersSection from "../../components/DesignersSection";
+import DesignersContent from "./DesignersContent";
 import Footer from "../../components/Footer";
 
-function DesignersContent() {
-  const searchParams = useSearchParams();
-  
-  useEffect(() => {
-    if (searchParams.get("book") === "true") {
-      // Trigger the booking modal by dispatching the custom event
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent('openDesignerBooking'));
-      }, 300);
-    }
-  }, [searchParams]);
-
-  return (
-    <main style={{ minHeight: "100vh", paddingTop: "80px" }}>
-      <DesignersSection />
-    </main>
-  );
-}
+export const dynamic = "force-dynamic";
 
 export default function DesignersPage() {
   return (

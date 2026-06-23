@@ -4005,7 +4005,6 @@ a {
     }
 
     /* 8. Mobile Swipe Carousel (Horizontal Scroll Slider) */
-    .designers-grid,
     .stories-grid,
     .programs-grid {
         display: flex !important;
@@ -4019,26 +4018,22 @@ a {
         scrollbar-width: thin !important;
     }
     
-    .designers-grid::-webkit-scrollbar,
     .stories-grid::-webkit-scrollbar,
     .programs-grid::-webkit-scrollbar {
         height: 4px !important;
     }
     
-    .designers-grid::-webkit-scrollbar-thumb,
     .stories-grid::-webkit-scrollbar-thumb,
     .programs-grid::-webkit-scrollbar-thumb {
         background: var(--color-primary) !important;
         border-radius: 10px !important;
     }
     
-    .designers-grid::-webkit-scrollbar-track,
     .stories-grid::-webkit-scrollbar-track,
     .programs-grid::-webkit-scrollbar-track {
         background: rgba(0, 0, 0, 0.05) !important;
     }
 
-    .designer-card,
     .story-card,
     .program-card {
         flex: 0 0 82% !important;
@@ -4049,20 +4044,17 @@ a {
         transition: transform 0.2s ease !important;
     }
     
-    .designer-card:hover,
     .story-card:hover,
     .program-card:hover {
         transform: none !important;
     }
 
     /* Swipe Hint Indicators */
-    .designers-grid,
     .stories-grid,
     .programs-grid {
         position: relative;
     }
     
-    .designers-grid::after,
     .stories-grid::after,
     .programs-grid::after {
         content: "Swipe ➔" !important;

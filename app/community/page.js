@@ -128,6 +128,37 @@ export default function CommunityPage() {
                       <li>체력 증진 및 정서적 지지 시너지 효과</li>
                     </ul>
                   </div>
+
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <a 
+                      href="/community/unione"
+                      id="unione-story-link"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backgroundColor: "var(--color-primary)",
+                        color: "white",
+                        padding: "1rem",
+                        borderRadius: "12px",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                        transition: "all 0.2s",
+                        boxShadow: "0 4px 10px rgba(79, 70, 229, 0.15)",
+                        textAlign: "center"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#4f46e5";
+                        e.target.style.transform = "translateY(-2px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "var(--color-primary)";
+                        e.target.style.transform = "translateY(0)";
+                      }}
+                    >
+                      ⚽ 유니원 FC 스토리 보기 →
+                    </a>
+                  </div>
                 </div>
               </div>
 
