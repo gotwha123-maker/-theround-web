@@ -127,8 +127,8 @@ export default function Header({ forceSolid = false }) {
                     </a>
                   </li>
                   <li>
-                    <a href="/#solutions" className="nav-link-sub" onClick={closeMenu}>
-                      핵심사업
+                    <a href="/#about-values" className="nav-link-sub" onClick={closeMenu}>
+                      3대 핵심가치
                     </a>
                   </li>
                 </ul>

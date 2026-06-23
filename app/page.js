@@ -9,7 +9,6 @@ import About from "../components/About";
 import TalkTalk from "../components/TalkTalk";
 import DesignersSection from "../components/DesignersSection";
 import BarriersSection from "../components/BarriersSection";
-import SolutionsSection from "../components/SolutionsSection";
 import StoriesSection from "../components/StoriesSection";
 import DonationSection from "../components/DonationSection";
 import ContactSection from "../components/ContactSection";
@@ -118,10 +117,7 @@ export default function Home() {
         <div id="stats"><Stats /></div>
         
         {/* 비전 및 미션 (상단 배치) */}
-        <div id="about"><About /></div>
-        
-        {/* 핵심 사업 (상단 배치) */}
-        <div id="solutions"><SolutionsSection onOpenModal={openModal} /></div>
+        <div id="about"><About onOpenModal={openModal} /></div>
 
         {/* 한반도 디자이너 (상단 노출) */}
         <div id="designers"><DesignersSection /></div>
