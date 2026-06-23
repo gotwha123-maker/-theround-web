@@ -228,6 +228,15 @@ export default function Header({ forceSolid = false }) {
                   </li>
                 </>
               )}
+              <li className="nav-item mobile-only-donate-item">
+                <a 
+                  href="/donation" 
+                  className="btn btn-primary btn-mobile-donate"
+                  onClick={closeMenu}
+                >
+                  후원하기
+                </a>
+              </li>
             </ul>
           </nav>
 
@@ -282,7 +291,7 @@ export default function Header({ forceSolid = false }) {
                 </a>
               </div>
             </div>
-            <a href="#donation" className="btn btn-primary btn-header-donate" onClick={closeMenu}>
+            <a href="/donation" className="btn btn-primary btn-header-donate" onClick={closeMenu}>
               후원하기
             </a>
 

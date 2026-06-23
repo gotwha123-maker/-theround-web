@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import DesignersSection from "../components/DesignersSection";
 import StoriesSection from "../components/StoriesSection";
-import DonationSection from "../components/DonationSection";
 import Footer from "../components/Footer";
 
 export const dynamic = "force-dynamic";
@@ -42,8 +41,6 @@ export default function Home() {
 
         {/* 뉴스 및 활동 */}
         <div id="stories"><StoriesSection /></div>
-
-        <DonationSection />
       </main>
       <Footer />
     </>

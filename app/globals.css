@@ -4137,6 +4137,41 @@ a {
     }
 }
 
+/* --- Standalone Mobile Donation Navigation --- */
+.mobile-only-donate-item {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-only-donate-item {
+        display: block !important;
+        width: 100%;
+        padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+        box-sizing: border-box;
+    }
+    
+    .btn-mobile-donate {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0.9rem !important;
+        font-weight: 800 !important;
+        border-radius: 14px !important;
+        font-size: 1.05rem !important;
+        background: var(--color-primary) !important;
+        color: white !important;
+        text-decoration: none !important;
+        box-shadow: 0 5px 15px rgba(220, 20, 20, 0.25) !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+    
+    .btn-mobile-donate:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+}
+
+
 
 
 
