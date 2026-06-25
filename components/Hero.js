@@ -5,26 +5,26 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <>
-      <section className="hero-split-section min-h-screen flex items-center justify-center bg-[var(--color-bg-dark)] relative py-28 px-8 overflow-hidden md:min-h-auto md:py-28 md:px-6 lg:py-32 lg:px-8">
+      <section className="hero-split-section min-h-[100svh] flex items-center justify-center bg-[var(--color-bg-dark)] relative py-24 px-4 overflow-hidden sm:px-5 md:min-h-screen md:py-28 md:px-6 lg:py-32 lg:px-8">
         {/* Subtle background glow for modern aesthetic */}
         <div className="before:content-[''] before:absolute before:top-[10%] before:right-[5%] before:w-[450px] before:h-[450px] before:bg-[radial-gradient(circle,hsla(354,85%,48%,0.12)_0%,transparent_70%)] before:z-10 before:pointer-events-none"></div>
 
-        <div className="hero-split-container max-w-6xl w-full grid grid-cols-1 gap-14 items-center relative z-20 text-center md:grid-cols-[1.10fr_1.15fr] md:gap-20 md:text-left">
+        <div className="hero-split-container w-full max-w-none grid grid-cols-1 gap-10 items-center relative z-20 text-center sm:gap-12 md:max-w-6xl md:grid-cols-[1.10fr_1.15fr] md:gap-16 md:text-left lg:gap-20">
           {/* Left Side: Content */}
           <div className="hero-split-left flex flex-col items-center text-center animate-fadeInUp md:items-start md:text-left">
             <span className="hero-badge inline-block text-sm font-extrabold text-[var(--color-primary)] bg-[hsla(354,85%,48%,0.1)] px-5 py-2 rounded-full tracking-wide mb-6 border border-[hsla(354,85%,48%,0.25)] shadow-md shadow-black/15">
               THE ROUND
             </span>
-            <h1 className="hero-split-title text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-[var(--color-text-light)] tracking-[-2px] mb-6 [word-break:keep-all]">
+            <h1 className="hero-split-title text-[2rem] sm:text-4xl md:text-[2.85rem] lg:text-5xl font-black leading-tight text-[var(--color-text-light)] tracking-tight mb-5 sm:mb-6 [word-break:keep-all]">
               한반도의 내일을<br />
               <span className="highlight bg-gradient-to-br from-[var(--color-primary)] to-[hsl(354,100%,65%)] bg-clip-text text-transparent">디자인하다</span>
             </h1>
-            <p className="hero-split-description text-base md:text-lg text-[var(--color-text-dim)] font-medium mb-8 md:mb-12 [word-break:keep-all]">
+            <p className="hero-split-description text-[0.95rem] sm:text-base md:text-lg text-[var(--color-text-dim)] font-medium mb-8 md:mb-12 [word-break:keep-all]">
               남북 주민이 일상에서 함께 대안을 만들고 증명하며,<br />
               상생과 도약의 미래를 열어가는 혁신적인 행동주의 플랫폼
             </p>
             <div className="hero-action-area">
-              <Link href="#about" className="btn-explore inline-flex items-center gap-3 bg-[var(--gradient-accent)] text-white px-9 py-4 rounded-full font-bold text-base shadow-[var(--shadow-accent)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-3px] hover:shadow-[0_12px_30px_rgba(220,20,20,0.35)] hover:brightness-110 no-underline">
+              <Link href="#about" className="btn-explore inline-flex items-center justify-center gap-3 bg-[var(--gradient-accent)] text-white w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 rounded-full font-bold text-sm sm:text-base shadow-[var(--shadow-accent)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-3px] hover:shadow-[0_12px_30px_rgba(220,20,20,0.35)] hover:brightness-110 no-underline">
                 자세히 알아보기
                 <span className="arrow-icon text-lg transition-transform duration-300 ease-in-out group-hover:translate-x-1">→</span>
               </Link>
@@ -33,7 +33,7 @@ export default function Hero() {
 
           {/* Right Side: Key Visual with Overlap effect */}
           <div className="hero-split-right relative animate-fadeInRight z-20">
-            <div className="hero-image-wrapper relative rounded-3xl overflow-hidden shadow-2xl shadow-black/35 border border-[var(--color-border-dark)] aspect-[4.2/3] flex items-center justify-center bg-[var(--color-card-dark)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-5px] hover:shadow-3xl hover:shadow-black/50 hover:border-white/15 max-w-[520px] mx-auto">
+            <div className="hero-image-wrapper relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-black/35 border border-[var(--color-border-dark)] aspect-[4/3] sm:aspect-[4.2/3] flex items-center justify-center bg-[var(--color-card-dark)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-5px] hover:shadow-3xl hover:shadow-black/50 hover:border-white/15 w-full max-w-[520px] mx-auto">
               <img 
                 src="/assets/selected_hero_visual.png" 
                 alt="백두산 천지 일출" 

@@ -4174,6 +4174,21 @@ a {
     }
 }
 
+/* Hero mobile width override */
+@media (max-width: 767px) {
+    .hero-split-section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .hero-split-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
 
 
 
