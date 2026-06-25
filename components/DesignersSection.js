@@ -170,87 +170,78 @@ export default function DesignersSection() {
   }, [visibleList]);
 
   return (
-    <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-secondary)", padding: "8rem 0", borderBottom: "1px solid var(--color-border)" }}>    
-      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem" }}>
-        <div className="section-header text-center" style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <span className="section-subtitle" style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--color-primary)", letterSpacing: "0.15em", display: "block", marginBottom: "0.8rem" }}>PEOPLE OF THE FUTURE</span>
-          <h2 style={{ fontSize: "2.8rem", fontWeight: 900, marginBottom: "1.2rem", color: "var(--color-text-primary)", letterSpacing: "-1.5px" }}>한반도 디자이너</h2>
-          <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto", lineHeight: "1.7", wordBreak: "keep-all" }}>한반도 통합을 위한 디자이너를 소개합니다.</p>
+    <section id="designers" className="section designers-section bg-[var(--color-bg-secondary)] py-20 px-4 md:py-32 md:px-8 border-b border-[var(--color-border)]">    
+      <div className="container max-w-6xl mx-auto px-4 md:px-8">
+        <div className="section-header text-center mb-16">
+          <span className="section-subtitle text-sm font-extrabold text-[var(--color-primary)] tracking-wide block mb-3">PEOPLE OF THE FUTURE</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 text-[var(--color-text-primary)] tracking-tight">한반도 디자이너</h2>
+          <p className="section-lead text-base md:text-lg text-[var(--color-text-muted)] max-w-3xl mx-auto leading-relaxed [word-break:keep-all]">한반도 통합을 위한 디자이너를 소개합니다.</p>
         </div>
 
         {/* 한반도 디자이너 취지 및 의미 소개 코너 */}
-        <div className="designer-intro-card reveal-on-scroll" style={{
-          background: "linear-gradient(135deg, hsla(354, 85%, 48%, 0.04) 0%, hsla(354, 85%, 48%, 0.01) 100%)",
-          border: "1px solid var(--color-border)",
-          borderRadius: "28px",
-          padding: "3rem 2.5rem",
-          maxWidth: "900px",
-          margin: "3rem auto 0 auto",
-          boxShadow: "var(--shadow-sm)",
-          textAlign: "center"
-        }}>
-          <h3 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1.2rem" }}>
+        <div className="designer-intro-card reveal-on-scroll bg-gradient-to-br from-[hsla(354,85%,48%,0.04)] to-[hsla(354,85%,48%,0.01)] border border-[var(--color-border)] rounded-3xl p-8 md:p-10 max-w-[900px] mx-auto mt-12 shadow-sm text-center">
+          <h3 className="text-xl font-extrabold text-[var(--color-primary)] mb-5">
             왜 "한반도 디자이너" 인가요?
           </h3>
-          <p style={{ fontSize: "1.05rem", color: "var(--color-text-primary)", lineHeight: "1.8", wordBreak: "keep-all", margin: "0 auto", maxWidth: "800px" }}>
+          <p className="text-base md:text-lg text-[var(--color-text-primary)] leading-relaxed [word-break:keep-all] mx-auto max-w-[800px]">
             남과 북의 경계를 넘어, 각자의 분야에서 한반도의 새로운 미래를 그려나가는 전문 연사이자 리더들을 의미합니다.<br />
-            단순히 과거의 이야기를 증언하는 것을 넘어 <strong>법률, 문화예술, 인권, 미디어</strong> 등 다양한 전문 영역에서 남북한 주민들이 서로를 깊이 이해하고 화합할 수 있도록 주도적으로 사회적 인식과 가치를 '디자인'합니다.
+            단순히 과거의 이야기를 증언하는 것을 넘어 <strong className="font-bold">법률, 문화예술, 인권, 미디어</strong> 등 다양한 전문 영역에서 남북한 주민들이 서로를 깊이 이해하고 화합할 수 있도록 주도적으로 사회적 인식과 가치를 '디자인'합니다.
           </p>
         </div>
 
-        <div className="designers-grid-container" style={{ marginTop: "4rem" }}>
-          <div className="designers-grid responsive-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "2rem" }}>
+        <div className="designers-grid-container mt-16">
+          <div className="designers-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {visibleList.map((d) => (
-              <div className="designer-card reveal-on-scroll" key={d.id} style={{ background: "var(--color-bg-primary)", borderRadius: "24px", overflow: "hidden", boxShadow: "var(--shadow-sm)", border: "1px solid var(--color-border)", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer" }} onClick={() => openDetail(d)}>
-                <div className="designer-img-wrapper" style={{ position: "relative", width: "100%", aspectRatio: "1/1.2", overflow: "hidden" }}>
-                  <img src={d.img} alt={d.ko?.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
+              <div className="designer-card reveal-on-scroll bg-[var(--color-bg-primary)] rounded-3xl overflow-hidden shadow-sm border border-[var(--color-border)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer hover:translate-y-[-8px] hover:shadow-[0_20px_45px_rgba(0,0,0,0.06)] hover:border-[hsla(354,85%,48%,0.2)]" key={d.id} onClick={() => openDetail(d)}>
+                <div className="designer-img-wrapper relative w-full aspect-[1/1.2] overflow-hidden">
+                  <img src={d.img} alt={d.ko?.name} className="w-full h-full object-cover transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105" />
                 </div>
-                <div className="designer-info" style={{ padding: "1.5rem", textAlign: "center" }}>
-                  <span className="designer-tag" style={{ display: "inline-block", backgroundColor: "var(--color-primary)", color: "white", fontWeight: 700, fontSize: "0.75rem", padding: "0.3rem 1rem", borderRadius: "30px", marginBottom: "0.8rem" }}>{d.ko?.tag}</span>
-                  <h3 className="designer-name" style={{ fontSize: "1.3rem", fontWeight: 800, margin: "0 0 0.6rem 0", color: "var(--color-text-primary)" }}>{d.ko?.name}</h3>
-                  <p className="designer-slogan" style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: "700", lineHeight: "1.4" }}>{d.ko?.slogan}</p>
+                <div className="designer-info p-6 text-center">
+                  <span className="designer-tag inline-block bg-[var(--color-primary)] text-white font-bold text-xs px-4 py-1.5 rounded-full mb-3 transition-colors duration-300 ease hover:bg-[var(--color-primary-hover)]">{d.ko?.tag}</span>
+                  <h3 className="designer-name text-xl font-extrabold mb-2 text-[var(--color-text-primary)]">{d.ko?.name}</h3>
+                  <p className="designer-slogan text-sm text-[var(--color-primary)] font-bold leading-tight">{d.ko?.slogan}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-center" style={{ marginTop: "3.5rem", textAlign: "center" }}>
-          <button className="btn" style={{ minWidth: "220px", borderRadius: "50px", fontWeight: 700, fontSize: "0.95rem", padding: "0.8rem 2.5rem", color: "var(--color-primary)", border: "1.5px solid var(--color-primary)", backgroundColor: "transparent", cursor: "pointer", transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)" }} onClick={() => setShowAll(!showAll)}>
+        <div className="text-center mt-14">
+          <button className="btn min-w-[220px] rounded-full font-bold text-base px-10 py-3.5 text-[var(--color-primary)] border-[1.5px] border-[var(--color-primary)] bg-transparent cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" onClick={() => setShowAll(!showAll)}>
             {showAll ? "간략히 보기" : "전체보기"}
           </button>
         </div>
       </div>
 
       {selectedDesigner && (
-        <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div className="modal-overlay" onClick={closeDetail}></div>
-          <div className="modal-container" style={{ maxWidth: "900px", width: "95%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "32px", position: "relative" }}>
-            <button className="modal-close" onClick={closeDetail} style={{ top: "25px", right: "25px" }}>&times;</button>
-            <div className="modal-body" style={{ padding: "0" }}>
-              <div className="designer-detail-layout">
-                <div className="designer-detail-left">
-                  <div style={{ width: "220px", height: "220px", borderRadius: "50%", overflow: "hidden", margin: "0 auto 2rem", border: "6px solid var(--color-bg-secondary)", boxShadow: "var(--shadow-md)" }}>
-                    <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <div className="modal open fixed inset-0 flex items-center justify-center z-[2000] p-4">
+          <div className="modal-overlay fixed inset-0 bg-black/60 opacity-100 pointer-events-auto" onClick={closeDetail}></div>
+          <div className="modal-container bg-[var(--color-bg-secondary)] rounded-[32px] relative max-w-4xl w-full z-[2001] shadow-xl md:p-0">
+            <button className="modal-close absolute top-5 right-5 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors z-10" onClick={closeDetail}>&times;</button>
+            <div className="modal-body p-0">
+              <div className="designer-detail-layout grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-8 p-6 md:p-12 md:max-h-[80vh] overflow-y-auto">
+                <div className="designer-detail-left text-center md:border-r md:border-[var(--color-border)] md:pr-12 pb-8 md:pb-0 md:border-b-0 border-b border-[var(--color-border)]">
+                  <div className="w-48 h-48 rounded-full overflow-hidden mx-auto mb-8 border-4 border-[var(--color-bg-secondary)] shadow-md md:w-56 md:h-56">
+                    <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} className="w-full h-full object-cover" />
                   </div>
-                  <span style={{ color: "var(--color-primary)", fontWeight: 800 }}>{selectedDesigner.ko.tag}</span>
-                  <h2 style={{ fontSize: "2.4rem", fontWeight: 800, margin: "0.5rem 0" }}>{selectedDesigner.ko.name}</h2>
-                  <p style={{ color: "var(--color-primary)", fontWeight: "700" }}>{selectedDesigner.ko.slogan}</p>
-                  <div style={{ backgroundColor: "var(--color-bg-primary)", padding: "1.2rem", borderRadius: "16px", textAlign: "left", marginTop: "1rem", border: "1px solid var(--color-border)" }}>
-                    <strong style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.4rem" }}>전문 분야</strong>
-                    <span style={{ fontSize: "0.95rem", color: "var(--color-text-primary)", fontWeight: "600" }}>{selectedDesigner.ko.specialty}</span>
+                  <span className="text-[var(--color-primary)] font-extrabold">{selectedDesigner.ko.tag}</span>
+                  <h2 className="text-3xl font-extrabold my-2">{selectedDesigner.ko.name}</h2>
+                  <p className="text-[var(--color-primary)] font-bold">{selectedDesigner.ko.slogan}</p>
+                  <div className="bg-[var(--color-bg-primary)] p-4 rounded-2xl text-left mt-4 border border-[var(--color-border)]">
+                    <strong className="block text-xs text-[var(--color-text-muted)] mb-1.5">전문 분야</strong>
+                    <span className="text-base text-[var(--color-text-primary)] font-semibold">{selectedDesigner.ko.specialty}</span>
                   </div>
                 </div>
-                <div className="designer-detail-right">
-                  <div style={{ marginBottom: "2.5rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem" }}>강사 소개</h3>
-                    <p style={{ fontSize: "1.05rem", lineHeight: "1.8", whiteSpace: "pre-line", color: "var(--color-text-muted)" }}>{selectedDesigner.ko.bio}</p>
+                <div className="designer-detail-right md:max-h-[70vh] overflow-y-auto md:pr-4 pt-4 md:pt-0">
+                  <div className="mb-8">
+                    <h3 className="text-xl font-extrabold text-[var(--color-primary)] mb-4">강사 소개</h3>
+                    <p className="text-base leading-relaxed whitespace-pre-line text-[var(--color-text-muted)]">{selectedDesigner.ko.bio}</p>
                   </div>
-                  <div style={{ marginBottom: "3rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem" }}>주요 경력 및 활동</h3>
-                    <div style={{ fontSize: "1rem", lineHeight: "2", whiteSpace: "pre-line", backgroundColor: "var(--color-bg-primary)", padding: "1.5rem", borderRadius: "16px", border: "1px solid var(--color-border)", color: "var(--color-text-primary)" }}>{selectedDesigner.ko.career}</div>
+                  <div className="mb-12">
+                    <h3 className="text-xl font-extrabold text-[var(--color-primary)] mb-4">주요 경력 및 활동</h3>
+                    <div className="text-base leading-loose whitespace-pre-line bg-[var(--color-bg-primary)] p-6 rounded-2xl border border-[var(--color-border)] text-[var(--color-text-primary)]">{selectedDesigner.ko.career}</div>
                   </div>
-                  <button className="btn btn-primary btn-block btn-lg" onClick={() => openBooking(selectedDesigner.ko.name)}>강연 및 교육 의뢰하기</button>
+                  <button className="btn btn-primary w-full h-14 text-lg font-bold rounded-2xl" onClick={() => openBooking(selectedDesigner.ko.name)}>강연 및 교육 의뢰하기</button>
                 </div>
               </div>
             </div>
@@ -259,97 +250,97 @@ export default function DesignersSection() {
       )}
 
       {bookingOpen && (
-        <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div className="modal-overlay" onClick={closeBooking}></div>
-          <div className="modal-container mobile-scroll-fix" style={{ maxWidth: "1000px", width: "98%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "24px", maxHeight: "98vh", overflowY: "auto", position: "relative", boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}>
-            <button className="modal-close" onClick={closeBooking} style={{ top: "15px", right: "15px", zIndex: 10 }}>&times;</button>
-            <div className="modal-body" style={{ padding: "2.5rem" }}>
-              <h3 style={{ fontSize: "1.8rem", fontWeight: 900, marginBottom: "2rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청</h3>
+        <div className="modal open fixed inset-0 flex items-center justify-center z-[2000] p-4">
+          <div className="modal-overlay fixed inset-0 bg-black/60 opacity-100 pointer-events-auto" onClick={closeBooking}></div>
+          <div className="modal-container mobile-scroll-fix bg-[var(--color-bg-secondary)] rounded-3xl max-h-[98vh] overflow-y-auto relative shadow-2xl max-w-5xl w-full sm:w-[98%] md:w-full lg:w-full">
+            <button className="modal-close absolute top-4 right-4 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors z-10" onClick={closeBooking}>&times;</button>
+            <div className="modal-body p-6 md:p-10">
+              <h3 className="text-2xl font-black mb-8 text-[var(--color-primary)] text-center">강연 및 교육 섭외 신청</h3>
               
               <form onSubmit={handleSubmit} className="admin-form">
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   
                   {/* Left Column: Who & What */}
                   <div>
-                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>1. 신청 기관 및 담당자</h4>
-                    <div className="form-group"><label>기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem", marginTop: "1rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>기관 유형 *</label>
-                        <select name="orgType" value={formData.orgType} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <h4 className="text-lg font-extrabold mb-5 text-[var(--color-text-primary)] border-l-4 border-[var(--color-primary)] pl-3">1. 신청 기관 및 담당자</h4>
+                    <div className="form-group mb-4 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]" /></div>
+                    <div className="form-row flex flex-col sm:flex-row gap-3 mt-4">
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">기관 유형 *</label>
+                        <select name="orgType" value={formData.orgType} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["공공기관·지자체", "초·중·고교", "대학교·대학원", "일반기업", "NGO·비영리", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>담당자 직함 *</label>
-                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">담당자 직함 *</label>
+                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["주무관·사무관", "교사·교수", "팀장·실무자", "대표·임원", "학생회·동아리장"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem", marginTop: "1rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
-                      <div className="form-group" style={{ flex: 1 }}><label>연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
+                    <div className="form-row flex flex-col sm:flex-row gap-3 mt-4">
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]" /></div>
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]" /></div>
                     </div>
-                    <div className="form-group" style={{ marginTop: "1rem" }}><label>이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
+                    <div className="form-group mt-4 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]" /></div>
 
-                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2.5rem" }}>2. 행사 개요</h4>
-                    <div className="form-group"><label>행사 성격 *</label>
-                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <h4 className="text-lg font-extrabold mb-5 text-[var(--color-text-primary)] border-l-4 border-[var(--color-primary)] pl-3 mt-10">2. 행사 개요</h4>
+                    <div className="form-group flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">행사 성격 *</label>
+                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                         {["정착지원 교육", "인식개선 캠페인", "리더십 역량강화", "문화·예술 행사", "정책자문·포럼"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-group" style={{ marginTop: "1rem" }}><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
+                    <div className="form-group mt-4 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]" /></div>
                   </div>
 
                   {/* Right Column: Details & Benefits */}
                   <div>
-                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>3. 청중 및 강연 상세</h4>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>주요 연령대 *</label>
-                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <h4 className="text-lg font-extrabold mb-5 text-[var(--color-text-primary)] border-l-4 border-[var(--color-primary)] pl-3">3. 청중 및 강연 상세</h4>
+                    <div className="form-row flex flex-col sm:flex-row gap-3">
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">주요 연령대 *</label>
+                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["청소년", "대학생·취준생", "일반 성인", "시니어", "전문가·공무원"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]" /></div>
                     </div>
-                    <div className="form-group" style={{ marginTop: "1rem" }}><label>청중 성향 *</label>
-                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <div className="form-group mt-4 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">청중 성향 *</label>
+                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                         {["입문(기초지식 없음)", "심화(전문지식 희망)", "인식개선 필요", "실무 적용 희망"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-group" style={{ marginTop: "1rem" }}><label>강연 형태 *</label>
-                      <select name="lectureType" value={formData.lectureType} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <div className="form-group mt-4 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">강연 형태 *</label>
+                      <select name="lectureType" value={formData.lectureType} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                         {["단독 강연", "토크 콘서트(Q&A 위주)", "패널 토론", "1:1 멘토링"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
 
-                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2.5rem" }}>4. 예산 및 조건</h4>
-                    <div className="form-group"><label>강연료 규모 *</label>
-                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <h4 className="text-lg font-extrabold mb-5 text-[var(--color-text-primary)] border-l-4 border-[var(--color-primary)] pl-3 mt-10">4. 예산 및 조건</h4>
+                    <div className="form-group flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">강연료 규모 *</label>
+                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                         {["기관 내부 규정에 따름", "30~50만원", "50~100만원", "100만원 이상", "협의 필요"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem", marginTop: "1rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>정산 방법 *</label>
-                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <div className="form-row flex flex-col sm:flex-row gap-3 mt-4">
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">정산 방법 *</label>
+                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["세금계산서 발행", "카드 결제", "원천세 신고(개인 이체)", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>추가 지원 여부</label>
-                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">추가 지원 여부</label>
+                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["교통비 별도 지급", "숙박 제공 가능", "식사 제공 가능", "해당 없음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
 
-                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2.5rem" }}>5. 마감 및 선정 이유</h4>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>회신 희망 기한 *</label>
-                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                    <h4 className="text-lg font-extrabold mb-5 text-[var(--color-text-primary)] border-l-4 border-[var(--color-primary)] pl-3 mt-10">5. 마감 및 선정 이유</h4>
+                    <div className="form-row flex flex-col sm:flex-row gap-3">
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">회신 희망 기한 *</label>
+                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["3일 이내(긴급)", "1주일 이내", "2주일 이내", "여유 있음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>선정 이유 *</label>
-                        <select name="loveCall" value={formData.loveCall} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
+                      <div className="form-group flex-1 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">선정 이유 *</label>
+                        <select name="loveCall" value={formData.loveCall} onChange={handleChange} className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]">
                           {["방송 출연 모습이 좋아서", "저서 내용을 직접 듣고 싶어서", "주제와 경력이 일치해서", "더라운드의 전문성 신뢰", "지인 강력 추천"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
@@ -357,10 +348,10 @@ export default function DesignersSection() {
                   </div>
                 </div>
 
-                <div className="form-group" style={{ marginTop: "1.5rem" }}><label>기타 요청사항</label><textarea name="details" rows="2" value={formData.details} onChange={handleChange} placeholder="추가 전달 내용" style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}></textarea></div>
+                <div className="form-group mt-6 flex flex-col items-start"><label className="text-sm font-bold text-[var(--color-text-muted)] mb-1.5">기타 요청사항</label><textarea name="details" rows="2" value={formData.details} onChange={handleChange} placeholder="추가 전달 내용" className="p-3 border border-[var(--color-border)] rounded-lg w-full text-base outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[hsla(354,85%,48%,0.1)]"></textarea></div>
 
-                <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-                  <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ height: "3.5rem", fontSize: "1.1rem", borderRadius: "15px", boxShadow: "var(--shadow-accent)", border: "none", cursor: "pointer" }} disabled={submitting}>
+                <div className="text-center mt-10">
+                  <button type="submit" className="btn btn-primary w-full h-14 text-xl rounded-xl shadow-[var(--shadow-accent)] border-none cursor-pointer" disabled={submitting}>
                     {submitting ? "전송 중..." : "신청 완료하기"}
                   </button>
                 </div>
@@ -369,89 +360,6 @@ export default function DesignersSection() {
           </div>
         </div>
       )}
-      <style jsx>{`
-        .designer-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 45px rgba(0,0,0,0.06) !important;
-          border-color: hsla(354, 85%, 48%, 0.2) !important;
-        }
-        .designer-card:hover img {
-          transform: scale(1.05);
-        }
-        .designer-tag {
-          transition: background-color 0.3s ease;
-        }
-        .designer-card:hover .designer-tag {
-          background-color: var(--color-primary-hover) !important;
-        }
-        .designer-detail-layout {
-          display: grid;
-          grid-template-columns: 1fr 1.6fr;
-          gap: 3rem;
-          padding: 3rem;
-        }
-        .designer-detail-left {
-          text-align: center;
-          border-right: 1px solid var(--color-border);
-          padding-right: 3rem;
-        }
-        .designer-detail-right {
-          overflow-y: auto;
-          max-height: 70vh;
-          padding-right: 1rem;
-        }
-        .form-group {
-          margin-bottom: 0.5rem;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .form-group label {
-          font-size: 0.85rem;
-          font-weight: 700;
-          color: var(--color-text-muted);
-          margin-bottom: 0.4rem;
-        }
-        .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus {
-          outline: none;
-          border-color: var(--color-primary) !important;
-          box-shadow: 0 0 0 3px hsla(354, 85%, 48%, 0.1);
-        }
-        @media (max-width: 900px) {
-          .designer-detail-layout {
-            grid-template-columns: 1fr;
-            padding: 2rem;
-            max-height: 80vh;
-            overflow-y: auto;
-          }
-          .designer-detail-left {
-            border-right: none;
-            padding-right: 0;
-            border-bottom: 1px solid var(--color-border);
-            padding-bottom: 2rem;
-          }
-          .designer-detail-right {
-            max-height: none;
-            padding-right: 0;
-          }
-        }
-        @media (max-width: 768px) {
-          .designers-section {
-            padding: 5rem 1rem !important;
-          }
-          .designers-grid {
-            display: grid !important;
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-          }
-        }
-        @media (max-width: 600px) {
-          .modal-container { width: 100% !important; border-radius: 0 !important; max-height: 100vh !important; }
-          .admin-form label { font-size: 0.8rem !important; }
-          .admin-form input, .admin-form select, .admin-form textarea { font-size: 0.9rem !important; }
-          .modal-body { padding: 1rem !important; }
-        }
-      `}</style>
     </section>
   );
 }

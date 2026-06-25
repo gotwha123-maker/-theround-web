@@ -38,244 +38,53 @@ const programs = [
 export default function CorePrograms() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{__html: `
-        .programs-list {
-          display: flex;
-          flex-direction: column;
-          gap: 7rem;
-          margin-top: 5rem;
-        }
-
-        .program-row {
-          display: flex;
-          align-items: center;
-          gap: 5rem;
-          background: transparent;
-          position: relative;
-        }
-
-        .program-row:nth-child(even) {
-          flex-direction: row-reverse;
-        }
-
-        .program-img-box {
-          flex: 1.25;
-          position: relative;
-          border-radius: 32px;
-          overflow: hidden;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-          border: 1px solid var(--color-border-dark);
-          aspect-ratio: 16/10;
-          background-color: var(--color-card-dark);
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .program-img-box::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 32px;
-          padding: 1px;
-          background: linear-gradient(135deg, transparent 60%, var(--color-primary) 100%);
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-          z-index: 5;
-        }
-
-        .program-row:hover .program-img-box {
-          transform: translateY(-4px);
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), var(--shadow-accent);
-          border-color: hsla(354, 85%, 48%, 0.3);
-        }
-
-        .program-row:hover .program-img-box::before {
-          opacity: 1;
-        }
-
-        .program-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .program-row:hover .program-img {
-          transform: scale(1.05);
-        }
-
-        .program-img-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
-          z-index: 2;
-        }
-
-        .program-badge {
-          position: absolute;
-          top: 1.8rem;
-          left: 1.8rem;
-          background: rgba(20, 20, 20, 0.85);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          color: var(--color-primary);
-          padding: 0.5rem 1.2rem;
-          border-radius: 30px;
-          font-size: 0.75rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-          z-index: 3;
-        }
-
-        .program-text-box {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          text-align: left;
-        }
-
-        .program-title-h3 {
-          font-size: 2.1rem;
-          font-weight: 900;
-          color: var(--color-text-light);
-          margin-bottom: 0.5rem;
-          letter-spacing: -0.03em;
-        }
-
-        .program-subtitle {
-          font-size: 1.1rem;
-          color: var(--color-primary);
-          font-weight: 800;
-          margin-bottom: 1.5rem;
-        }
-
-        .program-desc {
-          font-size: 1rem;
-          color: var(--color-text-dim);
-          line-height: 1.85;
-          margin-bottom: 2.5rem;
-          word-break: keep-all;
-        }
-
-        .program-btn-wrapper {
-          display: flex;
-        }
-
-        .program-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.6rem;
-          color: var(--color-text-light);
-          font-weight: 800;
-          font-size: 1.05rem;
-          transition: color 0.3s ease;
-        }
-
-        .program-link span {
-          display: inline-block;
-          transition: transform 0.3s ease;
-        }
-
-        .program-row:hover .program-link {
-          color: var(--color-primary);
-        }
-
-        .program-row:hover .program-link span {
-          transform: translateX(6px);
-        }
-
-        @media (max-width: 1024px) {
-          .program-row {
-            gap: 3rem;
-          }
-          .program-title-h3 {
-            font-size: 1.8rem;
-          }
-        }
-
-        @media (max-width: 768px) {
-          #programs {
-            padding: 5rem 1rem !important;
-          }
-          .programs-list {
-            gap: 5rem;
-            margin-top: 3.5rem;
-          }
-          .program-row,
-          .program-row:nth-child(even) {
-            flex-direction: column;
-            gap: 2rem;
-            padding: 0 1rem;
-          }
-          .program-img-box {
-            width: 100%;
-          }
-          .program-text-box {
-            width: 100%;
-            text-align: center;
-          }
-          .program-btn-wrapper {
-            justify-content: center;
-          }
-          .program-title-h3 {
-            font-size: 1.6rem;
-          }
-          .program-subtitle {
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-          }
-          .program-desc {
-            font-size: 0.95rem;
-            line-height: 1.75;
-            margin-bottom: 2rem;
-          }
-        }
-      `}} />
-      
-      <section className="section" id="programs" style={{ padding: "8rem 0", backgroundColor: "var(--color-bg-dark)", position: "relative", borderBottom: "1px solid var(--color-border-dark)" }}>
+      <section id="programs" className="section py-20 px-4 md:py-32 md:px-8 bg-[var(--color-bg-dark)] relative border-b border-[var(--color-border-dark)]">
         {/* Subtle background mesh element */}
-        <div style={{ position: "absolute", inset: 0, opacity: 0.1, pointerEvents: "none", backgroundImage: "var(--gradient-mesh)" }}></div>
+        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[var(--gradient-mesh)]"></div>
         
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem", position: "relative", zIndex: 2 }}>
-          <div className="section-header text-center" style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <span className="section-subtitle" style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--color-primary)", letterSpacing: "0.15em", display: "block", marginBottom: "0.8rem" }}>The Round Identity</span>
-            <h2 style={{ fontSize: "2.8rem", fontWeight: 900, marginBottom: "1.2rem", color: "var(--color-text-light)", letterSpacing: "-1.5px" }}>더라운드만의 고유한 발걸음</h2>
-            <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-dim)", maxWidth: "700px", margin: "0 auto", lineHeight: "1.7", wordBreak: "keep-all" }}>
+        <div className="container max-w-6xl mx-auto relative z-10 px-4 md:px-8">
+          <div className="section-header text-center mb-16 md:mb-20">
+            <span className="section-subtitle text-sm font-extrabold text-[var(--color-primary)] tracking-wide block mb-3">The Round Identity</span>
+            <h2 className="text-2xl font-black mb-4 md:text-4xl lg:text-5xl text-[var(--color-text-light)] tracking-[-1.5px]">더라운드만의 고유한 발걸음</h2>
+            <p className="section-lead text-base md:text-lg text-[var(--color-text-dim)] max-w-2xl mx-auto leading-relaxed [word-break:keep-all]">
               남북 주민들이 삶의 주체가 되어 서로를 지지하고 연대하며 만들어가는 더라운드만의 시그니처 활동을 만나보세요.
             </p>
           </div>
 
-          <div className="programs-list">
+          <div className="programs-list flex flex-col gap-20 mt-14 lg:gap-28 lg:mt-20">
             {programs.map((p) => (
-              <article className="program-row" key={p.id} aria-label={p.title}>
-                <div className="program-img-box">
-                  <span className="program-badge">{p.badge}</span>
+              <article className="program-row group flex flex-col items-center gap-8 bg-transparent relative px-4 md:flex-row md:gap-20 md:p-0" key={p.id} aria-label={p.title}>
+                <div className="program-img-box flex-1 w-full relative rounded-[32px] overflow-hidden shadow-2xl shadow-black/30 border border-[var(--color-border-dark)] aspect-[16/10] bg-[var(--color-card-dark)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-[-4px] group-hover:shadow-[var(--shadow-accent),_0_25px_50px_rgba(0,0,0,0.5)] group-hover:border-[hsla(354,85%,48%,0.3)] md:flex-[1.25]">
+                  <span className="program-badge absolute top-[1.8rem] left-[1.8rem] bg-neutral-900/85 backdrop-blur-sm border border-white/10 text-[var(--color-primary)] px-3 py-2 rounded-full text-xs font-extrabold tracking-wider shadow-md shadow-black/30 z-20">
+                    {p.badge}
+                  </span>
                   <img
-                    className="program-img"
+                    className="program-img w-full h-full object-cover transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                     src={p.img}
                     alt={`${p.title} 대표 이미지`}
                     onError={(e) => {
                       e.currentTarget.src = p.fallbackImg;
                     }}
                   />
-                  <div className="program-img-overlay"></div>
+                  <div className="program-img-overlay absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                  {/* Pseudo-element for border gradient on hover */}
+                  <div className="before:content-[''] before:absolute before:inset-0 before:rounded-[32px] before:p-[1px] before:bg-gradient-to-br before:from-transparent before:via-transparent before:to-[var(--color-primary)] before:[-webkit-mask:linear-gradient(#fff_0_0)_content-box,_linear-gradient(#fff_0_0)] before:[-webkit-mask-composite:xor] before:[mask-composite:exclude] before:pointer-events-none before:opacity-0 before:transition-opacity before:duration-400 before:ease-in-out before:z-10 group-hover:before:opacity-100"></div>
                 </div>
 
-                <div className="program-text-box">
-                  <h3 className="program-title-h3">{p.title}</h3>
-                  <p className="program-subtitle">{p.subtitle}</p>
-                  <p className="program-desc">{p.description}</p>
+                <div className="program-text-box flex-1 flex flex-col text-center w-full md:text-left">
+                  <h3 className="program-title-h3 text-2xl font-black mb-2 md:text-3xl lg:text-[2.1rem] text-[var(--color-text-light)] tracking-tight">
+                    {p.title}
+                  </h3>
+                  <p className="program-subtitle text-base md:text-lg text-[var(--color-primary)] font-extrabold mb-6 md:mb-[1.5rem]">
+                    {p.subtitle}
+                  </p>
+                  <p className="program-desc text-sm md:text-base text-[var(--color-text-dim)] leading-loose mb-8 md:mb-10 [word-break:keep-all]">
+                    {p.description}
+                  </p>
                   
-                  <div className="program-btn-wrapper">
-                    <Link href={p.link} className="program-link" aria-label={`${p.title} 상세 보기`}>
-                      자세히 보기 <span>→</span>
+                  <div className="program-btn-wrapper flex justify-center md:justify-start">
+                    <Link href={p.link} className="program-link inline-flex items-center gap-2 text-[var(--color-text-light)] font-extrabold text-lg transition-colors duration-300 ease-in-out group-hover:text-[var(--color-primary)]" aria-label={`${p.title} 상세 보기`}>
+                      자세히 보기 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:translate-x-1.5">→</span>
                     </Link>
                   </div>
                 </div>
