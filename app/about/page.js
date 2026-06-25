@@ -85,8 +85,8 @@ export default function AboutPage() {
               boxShadow: "var(--shadow-sm)",
               textAlign: "center"
             }}>
-              <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)" }}>
-                The Round: <span className="highlight-text" style={{ color: "var(--color-primary)" }}>함께 뜻을 잇다</span>
+              <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-text-primary)", lineHeight: 1.35 }}>
+                The Round: <span className="highlight-text" style={{ color: "var(--color-primary)" }}>막연한 담론을 넘어,<br />실질적인 통합의 모델을 실행하다</span>
               </h2>
               <div style={{
                 width: "50px",
@@ -96,14 +96,12 @@ export default function AboutPage() {
                 borderRadius: "2px"
               }}></div>
               
-              <p style={{ fontSize: "1.2rem", lineHeight: "1.8", color: "var(--color-text-primary)", marginBottom: "2rem", wordBreak: "keep-all" }}>
-                <strong>더라운드(The Round)</strong>는 자유민주주의 가치를 중심으로<br />
-                한반도 미래를 준비하는 '원형테이블'을 상징합니다.
+              <p style={{ fontSize: "1.2rem", lineHeight: "1.9", color: "var(--color-text-primary)", marginBottom: "2rem", wordBreak: "keep-all", fontWeight: "750" }}>
+                더라운드는 책상 위의 논의에 머무르지 않고, 일상과 전문 영역의 모든 현장에서 남북 주민이 직접 대안을 만들고 증명하는 행동주의 플랫폼입니다.
               </p>
               
               <p style={{ fontSize: "1.05rem", lineHeight: "1.8", color: "var(--color-text-muted)", wordBreak: "keep-all" }}>
-                우리는 한반도 통합에 기여할 활동가 그룹을 형성하고,<br />
-                지속 가능한 커뮤니티 기반을 강화하는 것을 미션으로 삼고 있습니다.
+                우리는 일방적이고 일회성인 정착 지원의 한계를 넘어, 남북 주민들의 다양한 경험과 지혜를 미래 한반도의 소중한 무형 자산으로 승화하고 이들이 다가올 통합 시대를 주도적으로 이끌어갈 리더로 성장하도록 전폭적으로 지원합니다.
               </p>
             </div>
           </div>

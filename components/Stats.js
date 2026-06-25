@@ -234,148 +234,180 @@ export default function Stats() {
             </p>
           </div>
 
-          <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+          <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem" }}>
             
             {/* Impact 1: 만족도 */}
-            <div className="value-card-premium impact-card-glow" style={{
-              background: "var(--color-bg-secondary)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "24px",
-              padding: "3.5rem 2rem 3rem",
-              boxShadow: "var(--shadow-sm)",
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative"
-            }}>
-              <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "1.5rem" }}>남한 생활 정착 만족도</span>
-              <div style={{ position: "relative", width: "120px", height: "120px", marginBottom: "1.8rem" }}>
-                <svg width="120" height="120" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="8" fill="none" />
-                  <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="8" fill="none"
-                    style={{ 
-                      transform: "rotate(-90deg)", 
-                      transformOrigin: "50% 50%", 
-                      strokeDasharray: "251.327", 
-                      strokeDashoffset: "52.02",
-                      transition: "stroke-dashoffset 1.5s ease"
-                    }} 
-                  />
-                </svg>
-                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>79.3%</div>
+            <div className="impact-card-premium reveal-on-scroll">
+              <div className="impact-fact-zone">
+                <div className="fact-header">
+                  <span className="fact-title">남한 생활 정착 만족도</span>
+                  <div className="fact-circle-wrap">
+                    <svg width="80" height="80" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="9" fill="none" />
+                      <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="9" fill="none"
+                        style={{ 
+                          transform: "rotate(-90deg)", 
+                          transformOrigin: "50% 50%", 
+                          strokeDasharray: "251.327", 
+                          strokeDashoffset: "52.02",
+                          transition: "stroke-dashoffset 1.5s ease"
+                        }} 
+                      />
+                    </svg>
+                    <div className="fact-number">79.3%</div>
+                  </div>
+                </div>
+                <p className="fact-desc">
+                  안정적인 경제 활동 참여와 주거 정착 만족도는 점차 높아지고 있지만, 역설적으로 <strong>남은 20.7%의 북한이탈주민들은 낯선 정착 환경 속에서 깊은 외로움과 사회적 고립감</strong>을 호소하고 있습니다.
+                </p>
+                <span className="fact-source">*출처: 남북하나재단 북한이탈주민 정착실태조사</span>
               </div>
-              <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
-                안정적인 경제 활동 참여와 주거 정착, 일상 생활 지원 시스템의 안정화에 따라 남한 생활에 만족하는 북한이탈주민의 비율이 지속적으로 높은 수준을 나타내고 있습니다.
-              </p>
-              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
-                *출처: 통일부 남북하나재단 정착실태조사
-              </span>
             </div>
 
             {/* Impact 2: 소통 */}
-            <div className="value-card-premium impact-card-glow" style={{
-              background: "var(--color-bg-secondary)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "24px",
-              padding: "3.5rem 2rem 3rem",
-              boxShadow: "var(--shadow-sm)",
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative"
-            }}>
-              <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "1.5rem" }}>만남 후 긍정 인식 변화</span>
-              <div style={{ position: "relative", width: "120px", height: "120px", marginBottom: "1.8rem" }}>
-                <svg width="120" height="120" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="8" fill="none" />
-                  <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="8" fill="none"
-                    style={{ 
-                      transform: "rotate(-90deg)", 
-                      transformOrigin: "50% 50%", 
-                      strokeDasharray: "251.327", 
-                      strokeDashoffset: "18.85",
-                      transition: "stroke-dashoffset 1.5s ease"
-                    }} 
-                  />
-                </svg>
-                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>92.5%</div>
+            <div className="impact-card-premium reveal-on-scroll">
+              <div className="impact-fact-zone">
+                <div className="fact-header">
+                  <span className="fact-title">만남 후 긍정 인식 변화</span>
+                  <div className="fact-circle-wrap">
+                    <svg width="80" height="80" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="9" fill="none" />
+                      <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="9" fill="none"
+                        style={{ 
+                          transform: "rotate(-90deg)", 
+                          transformOrigin: "50% 50%", 
+                          strokeDasharray: "251.327", 
+                          strokeDashoffset: "18.85",
+                          transition: "stroke-dashoffset 1.5s ease"
+                        }} 
+                      />
+                    </svg>
+                    <div className="fact-number">92.5%</div>
+                  </div>
+                </div>
+                <p className="fact-desc">
+                  서로 다른 문화적 배경을 지닌 남북 주민이 <strong>일방적 매체를 통하지 않고 일상에서 마주하여 대면 교류를 가질 때, 상대방에 대한 긍정적 인식과 상호 신뢰도는 압도적으로 상승</strong>합니다.
+                </p>
+                <span className="fact-source">*출처: 서울대 통일평화연구원 통일의식조사</span>
               </div>
-              <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
-                남북 주민 간의 직접적인 만남과 일상적인 대면 교류 경험이 축적될수록, 북한이탈주민 및 남한 사회에 대한 상호 신뢰와 긍정적 태도 변화가 뚜렷하게 나타나고 있습니다.
-              </p>
-              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
-                *출처: 서울대 통일평화연구원 상호인식조사
-              </span>
             </div>
 
             {/* Impact 3: 디자인 */}
-            <div className="value-card-premium impact-card-glow" style={{
-              background: "var(--color-bg-secondary)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "24px",
-              padding: "3.5rem 2rem 3rem",
-              boxShadow: "var(--shadow-sm)",
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative"
-            }}>
-              <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--color-text-primary)", marginBottom: "1.5rem" }}>한반도 평화/통합 기여 의지</span>
-              <div style={{ position: "relative", width: "120px", height: "120px", marginBottom: "1.8rem" }}>
-                <svg width="120" height="120" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="8" fill="none" />
-                  <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="8" fill="none"
-                    style={{ 
-                      transform: "rotate(-90deg)", 
-                      transformOrigin: "50% 50%", 
-                      strokeDasharray: "251.327", 
-                      strokeDashoffset: "44.23",
-                      transition: "stroke-dashoffset 1.5s ease"
-                    }} 
-                  />
-                </svg>
-                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: 900, fontSize: "1.45rem", color: "var(--color-primary)" }}>82.4%</div>
+            <div className="impact-card-premium reveal-on-scroll">
+              <div className="impact-fact-zone">
+                <div className="fact-header">
+                  <span className="fact-title">한반도 평화/통합 기여 의지</span>
+                  <div className="fact-circle-wrap">
+                    <svg width="80" height="80" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="rgba(220, 20, 20, 0.04)" strokeWidth="9" fill="none" />
+                      <circle cx="50" cy="50" r="40" stroke="var(--color-primary)" strokeWidth="9" fill="none"
+                        style={{ 
+                          transform: "rotate(-90deg)", 
+                          transformOrigin: "50% 50%", 
+                          strokeDasharray: "251.327", 
+                          strokeDashoffset: "44.23",
+                          transition: "stroke-dashoffset 1.5s ease"
+                        }} 
+                      />
+                    </svg>
+                    <div className="fact-number">82.4%</div>
+                  </div>
+                </div>
+                <p className="fact-desc">
+                  남한 사회에 진입한 북한이탈주민들은 단순히 주어지는 복지 혜택에 안주하기보다, <strong>자신이 가진 잠재력을 살려 통일 한반도 미래의 주도적 기여자로 서고자 하는 의지</strong>가 매우 뚜렷합니다.
+                </p>
+                <span className="fact-source">*출처: 통일연구원(KINU) 신통일의식조사</span>
               </div>
-              <p style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", lineHeight: "1.75", flexGrow: 1, marginBottom: "2.2rem", wordBreak: "keep-all" }}>
-                한반도의 평화적 통합과 남북 주민 간의 사회문화적 통합 과정에 수혜자가 아닌 주체적인 동반자로서 기여하고자 하는 사회 참여 의지를 지니고 있습니다.
-              </p>
-              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", fontWeight: 500, marginTop: "auto", borderTop: "1px solid var(--color-border)", width: "100%", paddingTop: "1rem" }}>
-                *출처: 통일연구원 KINU 통일의식조사
-              </span>
             </div>
 
           </div>
         </div>
       </div>
       <style jsx>{`
-        .impact-card-glow {
-          position: relative;
+        .impact-card-premium {
+          background: var(--color-bg-secondary);
+          border: 1px solid var(--color-border);
+          border-radius: 28px;
+          box-shadow: var(--shadow-sm);
+          display: flex;
+          flex-direction: column;
           overflow: hidden;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          position: relative;
         }
-        .impact-card-glow::before {
+        .impact-card-premium::before {
           content: '';
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           height: 4px;
-          background: var(--color-primary);
+          background: var(--gradient-accent);
           opacity: 0;
           transition: opacity 0.3s ease;
         }
-        .impact-card-glow:hover {
+        .impact-card-premium:hover {
           transform: translateY(-8px);
-          box-shadow: var(--shadow-lg) !important;
-          border-color: rgba(220, 20, 20, 0.25) !important;
+          box-shadow: var(--shadow-lg), var(--shadow-accent);
+          border-color: hsla(5, 75%, 48%, 0.15);
         }
-        .impact-card-glow:hover::before {
+        .impact-card-premium:hover::before {
           opacity: 1;
+        }
+        .impact-fact-zone {
+          padding: 3rem 2.5rem;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+        .fact-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          gap: 1rem;
+        }
+        .fact-title {
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: var(--color-text-primary);
+          line-height: 1.3;
+          text-align: left;
+        }
+        .fact-circle-wrap {
+          position: relative;
+          width: 80px;
+          height: 80px;
+          flex-shrink: 0;
+        }
+        .fact-number {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-weight: 900;
+          font-size: 1.05rem;
+          color: var(--color-primary);
+        }
+        .fact-desc {
+          font-size: 0.95rem;
+          color: var(--color-text-muted);
+          line-height: 1.8;
+          margin-bottom: 2rem;
+          text-align: left;
+          word-break: keep-all;
+        }
+        .fact-desc strong {
+          color: var(--color-text-primary);
+        }
+        .fact-source {
+          font-size: 0.75rem;
+          color: var(--color-text-dim);
+          font-weight: 500;
+          text-align: left;
+          margin-top: auto;
         }
       `}</style>
     </section>

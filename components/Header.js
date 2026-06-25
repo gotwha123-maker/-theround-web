@@ -72,7 +72,6 @@ export default function Header({ forceSolid = false }) {
     } else if (loginEmail && loginPassword) {
       setIsLoggedIn(true);
       localStorage.setItem("mock_session", "user");
-      // 이메일에서 아이디 부분만 추출하여 임시 이름으로 저장 (실제 데이터 연동 전까지)
       const tempName = loginEmail.split('@')[0];
       localStorage.setItem("theround_user_name", tempName);
       setAuthOpen(false);
@@ -108,8 +107,8 @@ export default function Header({ forceSolid = false }) {
         <div className="header-container">
           <div className="logo">
             <a href="/" className="logo-link" onClick={handleLogoClick}>
-              <span className="logo-text">
-                THE <span className="accent-text">ROUND</span>
+              <span className="logo-text" style={{ fontStyle: "normal", letterSpacing: "-1px" }}>
+                THE <span className="accent-text" style={{ color: "var(--color-primary)", fontWeight: 900 }}>ROUND</span>
               </span>
             </a>
           </div>
@@ -199,7 +198,7 @@ export default function Header({ forceSolid = false }) {
                 <li className="nav-item">
                   <span 
                     className="nav-link" 
-                    style={{ color: "var(--color-accent-secondary)", fontWeight: 700, cursor: "pointer" }}
+                    style={{ color: "var(--color-primary)", fontWeight: 700, cursor: "pointer" }}
                     onClick={() => { setAuthOpen(true); closeMenu(); }}
                   >
                     로그인
@@ -246,25 +245,25 @@ export default function Header({ forceSolid = false }) {
               alignItems: "center",
               gap: "8px",
               marginRight: "20px",
-              padding: "5px 10px",
-              background: "rgba(99, 102, 241, 0.12)",
+              padding: "5px 12px",
+              background: scrolled ? "rgba(0, 0, 0, 0.03)" : "rgba(255, 255, 255, 0.12)",
               borderRadius: "30px",
-              border: "1.5px solid rgba(99, 102, 241, 0.35)",
-              boxShadow: "0 4px 12px rgba(99, 102, 241, 0.08)",
-              backdropFilter: "blur(6px)",
+              border: scrolled ? "1px solid var(--color-border)" : "1px solid rgba(255, 255, 255, 0.2)",
+              backdropFilter: "blur(8px)",
+              transition: "all 0.3s ease"
             }}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-primary)", opacity: 0.9 }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: scrolled ? "var(--color-primary)" : "white", opacity: 0.9 }}>
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="2" y1="12" x2="22" y2="12"></line>
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
               </svg>
-              <div style={{ display: "flex", gap: "6px", fontSize: "0.85rem", fontWeight: 800 }}>
+              <div style={{ display: "flex", gap: "4px", fontSize: "0.8rem", fontWeight: 800 }}>
                 <span style={{
                   color: "white",
                   backgroundColor: "var(--color-primary)",
-                  padding: "4px 10px",
+                  padding: "3px 8px",
                   borderRadius: "15px",
-                  boxShadow: "0 3px 6px rgba(99, 102, 241, 0.3)",
+                  boxShadow: scrolled ? "0 2px 5px rgba(220, 20, 20, 0.2)" : "none",
                   cursor: "default"
                 }}>
                   KO
@@ -272,18 +271,18 @@ export default function Header({ forceSolid = false }) {
                 <a 
                   href={typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://theround-web-en.vercel.app'} 
                   style={{
-                    color: scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.75)",
+                    color: scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.8)",
                     textDecoration: "none",
-                    padding: "4px 10px",
+                    padding: "3px 8px",
                     borderRadius: "15px",
                     transition: "all 0.2s ease-in-out"
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.color = "var(--color-primary)";
-                    e.target.style.background = "rgba(255, 255, 255, 0.85)";
+                    e.target.style.background = scrolled ? "rgba(0, 0, 0, 0.05)" : "rgba(255, 255, 255, 0.2)";
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.color = scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.75)";
+                    e.target.style.color = scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.8)";
                     e.target.style.background = "transparent";
                   }}
                 >
@@ -314,23 +313,23 @@ export default function Header({ forceSolid = false }) {
       {authOpen && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3000 }}>
           <div className="modal-overlay" onClick={() => setAuthOpen(false)} style={{ opacity: 1, pointerEvents: 'auto' }}></div>
-          <div className="modal-container" style={{ maxWidth: "450px", width: "90%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "24px", position: "relative", zIndex: 3001 }}>
+          <div className="modal-container" style={{ maxWidth: "440px", width: "90%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "28px", position: "relative", zIndex: 3001, boxShadow: "var(--shadow-lg), 0 20px 40px rgba(0,0,0,0.1)", border: "1px solid var(--color-border)", overflow: "hidden" }}>
             <button className="modal-close" onClick={() => setAuthOpen(false)} style={{ top: "20px", right: "20px" }}>&times;</button>
             <div className="modal-body" style={{ padding: "3rem 2.5rem" }}>
-              <h3 style={{ fontSize: "1.6rem", fontWeight: 800, textAlign: "center", marginBottom: "1.5rem", color: "var(--color-text-primary)" }}>
+              <h3 style={{ fontSize: "1.6rem", fontWeight: 900, textAlign: "center", marginBottom: "1.5rem", color: "var(--color-text-primary)", letterSpacing: "-1px" }}>
                 더라운드 <span style={{ color: "var(--color-primary)" }}>{authMode === "login" ? "로그인" : "회원가입"}</span>
               </h3>
               
               <div style={{ display: "flex", marginBottom: "2rem", borderBottom: "1px solid var(--color-border)" }}>
                 <button 
                   onClick={() => setAuthMode("login")}
-                  style={{ flex: 1, padding: "0.8rem", background: "none", border: "none", borderBottom: authMode === "login" ? "2px solid var(--color-primary)" : "2px solid transparent", color: authMode === "login" ? "var(--color-primary)" : "var(--color-text-muted)", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}
+                  style={{ flex: 1, padding: "0.8rem", background: "none", border: "none", borderBottom: authMode === "login" ? "2px solid var(--color-primary)" : "2px solid transparent", color: authMode === "login" ? "var(--color-primary)" : "var(--color-text-muted)", fontWeight: 800, cursor: "pointer", transition: "all 0.2s" }}
                 >
                   로그인
                 </button>
                 <button 
                   onClick={() => setAuthMode("signup")}
-                  style={{ flex: 1, padding: "0.8rem", background: "none", border: "none", borderBottom: authMode === "signup" ? "2px solid var(--color-primary)" : "2px solid transparent", color: authMode === "signup" ? "var(--color-primary)" : "var(--color-text-muted)", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}
+                  style={{ flex: 1, padding: "0.8rem", background: "none", border: "none", borderBottom: authMode === "signup" ? "2px solid var(--color-primary)" : "2px solid transparent", color: authMode === "signup" ? "var(--color-primary)" : "var(--color-text-muted)", fontWeight: 800, cursor: "pointer", transition: "all 0.2s" }}
                 >
                   회원가입
                 </button>
@@ -338,12 +337,11 @@ export default function Header({ forceSolid = false }) {
 
               {authMode === "login" ? (
                 <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }} autoComplete="new-password">
-                  {/* Fake inputs to fool browser autocomplete */}
                   <input style={{ display: "none" }} type="text" name="fake-user-name" />
                   <input style={{ display: "none" }} type="password" name="fake-password" />
                   
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>이메일 주소</label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text-muted)" }}>이메일 주소</label>
                     <input 
                       type="email" 
                       name="tr_secure_user_email"
@@ -354,12 +352,12 @@ export default function Header({ forceSolid = false }) {
                       placeholder="이메일을 입력하세요" 
                       required 
                       autoComplete="off"
-                      style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
+                      style={{ padding: "0.8rem 1rem", borderRadius: "10px", border: "1px solid var(--color-border)", fontSize: "0.95rem", width: "100%", outline: "none" }}
                     />
                   </div>
                   
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>비밀번호</label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text-muted)" }}>비밀번호</label>
                     <input 
                       type="password" 
                       name="tr_secure_user_password"
@@ -370,7 +368,7 @@ export default function Header({ forceSolid = false }) {
                       placeholder="비밀번호를 입력하세요" 
                       required 
                       autoComplete="new-password"
-                      style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
+                      style={{ padding: "0.8rem 1rem", borderRadius: "10px", border: "1px solid var(--color-border)", fontSize: "0.95rem", width: "100%", outline: "none" }}
                     />
                   </div>
 
@@ -383,39 +381,39 @@ export default function Header({ forceSolid = false }) {
                 </form>
               ) : (
                 <form onSubmit={handleSignup} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>이름 (실명)</label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text-muted)" }}>이름 (실명)</label>
                     <input 
                       type="text" 
                       value={signupName}
                       onChange={(e) => setSignupName(e.target.value)}
                       placeholder="홍길동" 
                       required 
-                      style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
+                      style={{ padding: "0.8rem 1rem", borderRadius: "10px", border: "1px solid var(--color-border)", fontSize: "0.95rem", width: "100%", outline: "none" }}
                     />
                   </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>이메일 주소</label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text-muted)" }}>이메일 주소</label>
                     <input 
                       type="email" 
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
                       placeholder="이메일을 입력하세요" 
                       required 
-                      style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
+                      style={{ padding: "0.8rem 1rem", borderRadius: "10px", border: "1px solid var(--color-border)", fontSize: "0.95rem", width: "100%", outline: "none" }}
                     />
                   </div>
                   
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--color-text-muted)" }}>비밀번호 설정</label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text-muted)" }}>비밀번호 설정</label>
                     <input 
                       type="password" 
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
                       placeholder="비밀번호를 입력하세요" 
                       required 
-                      style={{ padding: "0.8rem 1rem", borderRadius: "8px", border: "1px solid var(--color-border)", fontSize: "0.95rem" }}
+                      style={{ padding: "0.8rem 1rem", borderRadius: "10px", border: "1px solid var(--color-border)", fontSize: "0.95rem", width: "100%", outline: "none" }}
                     />
                   </div>
 
@@ -427,7 +425,6 @@ export default function Header({ forceSolid = false }) {
                   </div>
                 </form>
               )}
-              
             </div>
           </div>
         </div>

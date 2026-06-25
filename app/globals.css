@@ -1,39 +1,39 @@
 /* Modern CSS Reset & Variable Tokens */
 :root {
     /* Color Palette */
-    --color-bg-primary: hsl(30, 20%, 98%);       /* Soft Warm Off-White Cream */
+    --color-bg-primary: hsl(220, 12%, 96%);      /* Premium Soft Cool-Gray */
     --color-bg-secondary: hsl(0, 0%, 100%);      /* Pure White */
-    --color-bg-dark: hsl(24, 12%, 12%);          /* Warm Charcoal Espresso */
-    --color-card-dark: hsla(24, 12%, 16%, 0.75);
+    --color-bg-dark: hsl(0, 0%, 6%);             /* Deep Velvet Black */
+    --color-card-dark: hsla(0, 0%, 12%, 0.75);
     
-    --color-text-primary: hsl(24, 10%, 16%);     /* Dark Warm Espresso */
-    --color-text-muted: hsl(24, 10%, 42%);       /* Muted Warm Gray - AA Compliant */
-    --color-text-dim: hsl(24, 8%, 72%);          /* Warm Dim Gray */
+    --color-text-primary: hsl(0, 0%, 10%);       /* Near Black for high readability */
+    --color-text-muted: hsl(0, 0%, 38%);         /* Sleek Muted Gray */
+    --color-text-dim: hsl(0, 0%, 65%);           /* Light Dim Gray */
     --color-text-light: hsl(0, 0%, 100%);
     
-    --color-primary: hsl(5, 75%, 48%);           /* Premium Terracotta Red */
-    --color-primary-hover: hsl(5, 75%, 38%);
-    --color-accent: hsl(5, 75%, 48%);            /* Accent Red */
-    --color-accent-hover: hsl(5, 75%, 38%);
-    --color-accent-secondary: hsl(5, 75%, 62%);  /* Secondary Warm Accent */
+    --color-primary: hsl(354, 85%, 48%);         /* Vivid Carmine Red - Modern & Sleek */
+    --color-primary-hover: hsl(354, 85%, 38%);
+    --color-accent: hsl(354, 85%, 48%);          /* Vibrant Red Accent */
+    --color-accent-hover: hsl(354, 85%, 38%);
+    --color-accent-secondary: hsl(354, 90%, 60%);/* Bright Rose-Red Accent */
     
-    --color-border: hsl(24, 10%, 86%);
-    --color-border-dark: hsla(24, 10%, 100%, 0.08);
-    --color-error: hsl(5, 75%, 48%);
+    --color-border: hsl(0, 0%, 90%);
+    --color-border-dark: hsla(0, 0%, 100%, 0.08);
+    --color-error: hsl(354, 85%, 48%);
     --color-success: hsl(145, 63%, 42%);
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(24, 12%, 12%) 0%, hsl(24, 12%, 20%) 100%);
-    --gradient-accent: linear-gradient(135deg, var(--color-primary) 0%, hsl(5, 75%, 62%) 100%);
-    --gradient-mesh: radial-gradient(at 10% 10%, hsla(5, 75%, 48%, 0.12) 0px, transparent 50%),
+    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 6%) 0%, hsl(0, 0%, 14%) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color-primary) 0%, hsl(354, 90%, 60%) 100%);
+    --gradient-mesh: radial-gradient(at 10% 10%, hsla(354, 85%, 48%, 0.08) 0px, transparent 50%),
                     radial-gradient(at 90% 10%, hsla(0, 0%, 100%, 0.05) 0px, transparent 50%),
-                    radial-gradient(at 50% 90%, hsla(5, 75%, 48%, 0.08) 0px, transparent 50%);
+                    radial-gradient(at 50% 90%, hsla(354, 85%, 48%, 0.05) 0px, transparent 50%);
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
-    --shadow-md: 0 8px 24px rgba(24, 10, 10, 0.05);
-    --shadow-lg: 0 16px 48px rgba(24, 10, 10, 0.08);
-    --shadow-accent: 0 8px 24px rgba(220, 20, 20, 0.15);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.06);
+    --shadow-accent: 0 8px 24px rgba(220, 20, 20, 0.12);
     
     /* Typography */
     --font-primary: var(--font-noto-sans-kr), sans-serif;
@@ -2341,19 +2341,19 @@ a {
     }
     .talktalk-grid {
         display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto;
-        gap: 1rem !important;
-        padding: 0.5rem 1rem 2rem 1rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        overflow-x: visible !important;
+        gap: 1.5rem !important;
+        padding: 0.5rem 1rem;
     }
     .talktalk-grid::-webkit-scrollbar {
         display: none;
     }
     .talk-card {
-        flex: 0 0 280px; /* Smaller width for horizontal layout */
-        padding: 2rem 1.5rem !important;
+        width: 100% !important;
+        flex: 1 1 auto !important;
+        padding: 2.2rem 2rem !important;
         min-height: auto !important;
     }
     .talk-icon-wrapper {
@@ -2379,25 +2379,27 @@ a {
         font-size: 0.85rem !important;
     }
 
-    /* TalkTalk sub-bar mobile horizontal layout */
+    /* TalkTalk sub-bar mobile vertical stack layout */
     .talktalk-sub-bar {
-        flex-wrap: nowrap !important;
-        overflow-x: auto;
-        justify-content: flex-start !important;
-        padding: 0.5rem 1rem 1.5rem 1rem;
-        gap: 0.8rem;
-        margin-top: 2rem !important;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        overflow-x: visible !important;
+        justify-content: center !important;
+        padding: 0.5rem 1rem;
+        gap: 1rem;
+        margin-top: 3rem !important;
     }
     .talktalk-sub-bar::-webkit-scrollbar {
         display: none;
     }
     .btn-sub-action {
-        flex: 0 0 auto;
-        padding: 0.7rem 1.2rem !important;
-        font-size: 0.85rem !important;
+        width: 100% !important;
+        flex: 1 1 auto !important;
+        padding: 1rem 1.5rem !important;
+        font-size: 0.95rem !important;
         white-space: nowrap;
+        justify-content: center !important;
     }
 }
 

@@ -56,7 +56,7 @@ const mockDesigners = [
     id: "des-8",
     isHidden: true,
     img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000",
-    ko: { name: "이은평", tag: "방송인·분석가", slogan: '"핵시설 부대 출신의 눈으로 본 국제 정세 전문가"', specialty: "북한  국방 기술 / 러시아 파병 실상", bio: "북한 특수 공병 부대 근무 및 러시아 파병 경험을 토대로, 현재 급변하는 한반도 안보 상황과 국제 정세의 이면을 생생하게 해설합니다.", career: "• 북한군 131부대(핵시설 건설) 근무\n• 러시아 파병 근무 중 탈북 및 한국 입 국\n• 파병 북한군 지원 캠페인 및 스피치 활동\n• 채널A \"이제 만나러 갑니다\" 출연" }
+    ko: { name: "이은평", tag: "방송인·분석가", slogan: '"핵시설 부대 출신의 눈으로 본 국제 정세 전문가"', specialty: "북한  국방 기술 / Russia 파병 실상", bio: "북한 특수 공병 부대 근무 및 러시아 파병 경험을 토대로, 현재 급변하는 한반도 안보 상황과 국제 정세의 이면을 생생하게 해설합니다.", career: "• BK군 131부대(핵시설 건설) 근무\n• 러시아 파병 근무 중 탈북 및 한국 입 국\n• 파병 북한군 지원 캠페인 및 스피치 활동\n• 채널A \"이제 만나러 갑니다\" 출연" }
   }
 ];
 
@@ -170,17 +170,17 @@ export default function DesignersSection() {
   }, [visibleList]);
 
   return (
-    <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-primary)" }}>    
-      <div className="container">
-        <div className="section-header text-center">
-          <span className="section-subtitle">PEOPLE OF THE FUTURE</span>
-          <h2 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "1.2rem" }}>한반도 디자이너</h2>
-          <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto" }}>한반도 통합을 위한 디자이너를 소개합니다.</p>
+    <section id="designers" className="section designers-section" style={{ backgroundColor: "var(--color-bg-secondary)", padding: "8rem 0", borderBottom: "1px solid var(--color-border)" }}>    
+      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem" }}>
+        <div className="section-header text-center" style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <span className="section-subtitle" style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--color-primary)", letterSpacing: "0.15em", display: "block", marginBottom: "0.8rem" }}>PEOPLE OF THE FUTURE</span>
+          <h2 style={{ fontSize: "2.8rem", fontWeight: 900, marginBottom: "1.2rem", color: "var(--color-text-primary)", letterSpacing: "-1.5px" }}>한반도 디자이너</h2>
+          <p className="section-lead" style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", maxWidth: "800px", margin: "0 auto", lineHeight: "1.7", wordBreak: "keep-all" }}>한반도 통합을 위한 디자이너를 소개합니다.</p>
         </div>
 
         {/* 한반도 디자이너 취지 및 의미 소개 코너 */}
         <div className="designer-intro-card reveal-on-scroll" style={{
-          background: "linear-gradient(135deg, hsla(5, 75%, 48%, 0.04) 0%, hsla(5, 75%, 62%, 0.01) 100%)",
+          background: "linear-gradient(135deg, hsla(354, 85%, 48%, 0.04) 0%, hsla(354, 85%, 48%, 0.01) 100%)",
           border: "1px solid var(--color-border)",
           borderRadius: "28px",
           padding: "3rem 2.5rem",
@@ -199,14 +199,14 @@ export default function DesignersSection() {
         </div>
 
         <div className="designers-grid-container" style={{ marginTop: "4rem" }}>
-          <div className="designers-grid responsive-grid-4">
+          <div className="designers-grid responsive-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "2rem" }}>
             {visibleList.map((d) => (
-              <div className="designer-card reveal-on-scroll" key={d.id} style={{ background: "var(--color-bg-secondary)", borderRadius: "24px", overflow: "hidden", boxShadow: "var(--shadow-md)", border: "1px solid var(--color-border)", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", cursor: "pointer" }} onClick={() => openDetail(d)}>
+              <div className="designer-card reveal-on-scroll" key={d.id} style={{ background: "var(--color-bg-primary)", borderRadius: "24px", overflow: "hidden", boxShadow: "var(--shadow-sm)", border: "1px solid var(--color-border)", transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "pointer" }} onClick={() => openDetail(d)}>
                 <div className="designer-img-wrapper" style={{ position: "relative", width: "100%", aspectRatio: "1/1.2", overflow: "hidden" }}>
-                  <img src={d.img} alt={d.ko?.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={d.img} alt={d.ko?.name} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} />
                 </div>
                 <div className="designer-info" style={{ padding: "1.5rem", textAlign: "center" }}>
-                  <span className="designer-tag" style={{ display: "inline-block", backgroundColor: "var(--color-primary)", color: "white", fontWeight: 700, fontSize: "0.75rem", padding: "0.3rem 1rem", borderRadius: "4px", marginBottom: "0.8rem" }}>{d.ko?.tag}</span>
+                  <span className="designer-tag" style={{ display: "inline-block", backgroundColor: "var(--color-primary)", color: "white", fontWeight: 700, fontSize: "0.75rem", padding: "0.3rem 1rem", borderRadius: "30px", marginBottom: "0.8rem" }}>{d.ko?.tag}</span>
                   <h3 className="designer-name" style={{ fontSize: "1.3rem", fontWeight: 800, margin: "0 0 0.6rem 0", color: "var(--color-text-primary)" }}>{d.ko?.name}</h3>
                   <p className="designer-slogan" style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: "700", lineHeight: "1.4" }}>{d.ko?.slogan}</p>
                 </div>
@@ -215,8 +215,8 @@ export default function DesignersSection() {
           </div>
         </div>
 
-        <div className="text-center" style={{ marginTop: "3.5rem" }}>
-          <button className="btn" style={{ minWidth: "220px", borderRadius: "50px", fontWeight: 600, fontSize: "0.95rem", padding: "0.8rem 2.5rem", color: "var(--color-primary)", border: "1.5px solid var(--color-primary)", backgroundColor: "transparent" }} onClick={() => setShowAll(!showAll)}>
+        <div className="text-center" style={{ marginTop: "3.5rem", textAlign: "center" }}>
+          <button className="btn" style={{ minWidth: "220px", borderRadius: "50px", fontWeight: 700, fontSize: "0.95rem", padding: "0.8rem 2.5rem", color: "var(--color-primary)", border: "1.5px solid var(--color-primary)", backgroundColor: "transparent", cursor: "pointer", transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)" }} onClick={() => setShowAll(!showAll)}>
             {showAll ? "간략히 보기" : "전체보기"}
           </button>
         </div>
@@ -230,25 +230,25 @@ export default function DesignersSection() {
             <div className="modal-body" style={{ padding: "0" }}>
               <div className="designer-detail-layout">
                 <div className="designer-detail-left">
-                  <div style={{ width: "220px", height: "220px", borderRadius: "50%", overflow: "hidden", margin: "0 auto 2rem", border: "6px solid white", boxShadow: "var(--shadow-md)" }}>
+                  <div style={{ width: "220px", height: "220px", borderRadius: "50%", overflow: "hidden", margin: "0 auto 2rem", border: "6px solid var(--color-bg-secondary)", boxShadow: "var(--shadow-md)" }}>
                     <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <span style={{ color: "var(--color-primary)", fontWeight: 800 }}>{selectedDesigner.ko.tag}</span>
                   <h2 style={{ fontSize: "2.4rem", fontWeight: 800, margin: "0.5rem 0" }}>{selectedDesigner.ko.name}</h2>
                   <p style={{ color: "var(--color-primary)", fontWeight: "700" }}>{selectedDesigner.ko.slogan}</p>
-                  <div style={{ backgroundColor: "white", padding: "1.2rem", borderRadius: "16px", textAlign: "left", marginTop: "1rem" }}>
-                    <strong style={{ display: "block", fontSize: "0.8rem" }}>전문 분야</strong>
-                    <span>{selectedDesigner.ko.specialty}</span>
+                  <div style={{ backgroundColor: "var(--color-bg-primary)", padding: "1.2rem", borderRadius: "16px", textAlign: "left", marginTop: "1rem", border: "1px solid var(--color-border)" }}>
+                    <strong style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.4rem" }}>전문 분야</strong>
+                    <span style={{ fontSize: "0.95rem", color: "var(--color-text-primary)", fontWeight: "600" }}>{selectedDesigner.ko.specialty}</span>
                   </div>
                 </div>
                 <div className="designer-detail-right">
                   <div style={{ marginBottom: "2.5rem" }}>
                     <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem" }}>강사 소개</h3>
-                    <p style={{ fontSize: "1.05rem", lineHeight: "1.8", whiteSpace: "pre-line" }}>{selectedDesigner.ko.bio}</p>
+                    <p style={{ fontSize: "1.05rem", lineHeight: "1.8", whiteSpace: "pre-line", color: "var(--color-text-muted)" }}>{selectedDesigner.ko.bio}</p>
                   </div>
                   <div style={{ marginBottom: "3rem" }}>
                     <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--color-primary)", marginBottom: "1rem" }}>주요 경력 및 활동</h3>
-                    <div style={{ fontSize: "1rem", lineHeight: "2", whiteSpace: "pre-line", backgroundColor: "var(--color-bg-primary)", padding: "1.5rem", borderRadius: "16px" }}>{selectedDesigner.ko.career}</div>
+                    <div style={{ fontSize: "1rem", lineHeight: "2", whiteSpace: "pre-line", backgroundColor: "var(--color-bg-primary)", padding: "1.5rem", borderRadius: "16px", border: "1px solid var(--color-border)", color: "var(--color-text-primary)" }}>{selectedDesigner.ko.career}</div>
                   </div>
                   <button className="btn btn-primary btn-block btn-lg" onClick={() => openBooking(selectedDesigner.ko.name)}>강연 및 교육 의뢰하기</button>
                 </div>
@@ -261,108 +261,95 @@ export default function DesignersSection() {
       {bookingOpen && (
         <div className="modal open" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="modal-overlay" onClick={closeBooking}></div>
-          <div className="modal-container mobile-scroll-fix" style={{ maxWidth: "1000px", width: "98%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "24px", maxHeight: "98vh", overflowY: "auto", position: "relative", boxShadow: "0 20px 50px rgba(0,0,0,0.3)" }}>
+          <div className="modal-container mobile-scroll-fix" style={{ maxWidth: "1000px", width: "98%", backgroundColor: "var(--color-bg-secondary)", borderRadius: "24px", maxHeight: "98vh", overflowY: "auto", position: "relative", boxShadow: "0 20px 50px rgba(0,0,0,0.15)" }}>
             <button className="modal-close" onClick={closeBooking} style={{ top: "15px", right: "15px", zIndex: 10 }}>&times;</button>
-            <div className="modal-body" style={{ padding: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.6rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청</h3>
+            <div className="modal-body" style={{ padding: "2.5rem" }}>
+              <h3 style={{ fontSize: "1.8rem", fontWeight: 900, marginBottom: "2rem", color: "var(--color-primary)", textAlign: "center" }}>강연 및 교육 섭외 신청</h3>
               
               <form onSubmit={handleSubmit} className="admin-form">
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
                   
                   {/* Left Column: Who & What */}
                   <div>
-                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>1. 신청 기관 및 담당자</h4>
-                    <div className="form-group"><label>기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
+                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>1. 신청 기관 및 담당자</h4>
+                    <div className="form-group"><label>기관/단체 정식 명칭 *</label><input type="text" name="clientOrg" value={formData.clientOrg} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem", marginTop: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>기관 유형 *</label>
-                        <select name="orgType" value={formData.orgType} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="orgType" value={formData.orgType} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["공공기관·지자체", "초·중·고교", "대학교·대학원", "일반기업", "NGO·비영리", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>담당자 직함 *</label>
-                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="clientPosition" value={formData.clientPosition} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["주무관·사무관", "교사·교수", "팀장·실무자", "대표·임원", "학생회·동아리장"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
-                      <div className="form-group" style={{ flex: 1 }}><label>연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem", marginTop: "1rem" }}>
+                      <div className="form-group" style={{ flex: 1 }}><label>성함 *</label><input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
+                      <div className="form-group" style={{ flex: 1 }}><label>연락처 *</label><input type="text" name="clientContact" value={formData.clientContact} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
                     </div>
-                    <div className="form-group"><label>이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
+                    <div className="form-group" style={{ marginTop: "1rem" }}><label>이메일 주소 *</label><input type="email" name="clientEmail" value={formData.clientEmail} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
 
-                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2rem" }}>2. 행사 개요</h4>
+                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2.5rem" }}>2. 행사 개요</h4>
                     <div className="form-group"><label>행사 성격 *</label>
-                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                      <select name="eventPurpose" value={formData.eventPurpose} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                         {["정착지원 교육", "인식개선 캠페인", "리더십 역량강화", "문화·예술 행사", "정책자문·포럼"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-group"><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
-                      <div className="form-group" style={{ flex: 1 }}><label>진행 방식 *</label>
-                        <select name="locationType" value={formData.locationType} onChange={handleChange} style={{ padding: "0.7rem" }}>
-                          {["오프라인 현장 강연", "실시간 온라인(Zoom 등)", "사전 녹화 송출"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                        </select>
-                      </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>강연 시간 *</label>
-                        <select name="time1" value={formData.time1} onChange={handleChange} style={{ padding: "0.7rem" }}>
-                          {["1시간 이내", "2시간(표준)", "3시간 이상", "전일 워크숍"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                        </select>
-                      </div>
-                    </div>
-                    <div className="form-group"><label>상세 주소 (오프라인 시)</label><input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="출장비 산정용" style={{ padding: "0.7rem" }} /></div>
+                    <div className="form-group" style={{ marginTop: "1rem" }}><label>강연 주제(또는 가제) *</label><input type="text" name="topic" value={formData.topic} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
                   </div>
 
                   {/* Right Column: Details & Benefits */}
                   <div>
-                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>3. 청중 및 강연 상세</h4>
+                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem" }}>3. 청중 및 강연 상세</h4>
                     <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>주요 연령대 *</label>
-                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="audienceAge" value={formData.audienceAge} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["청소년", "대학생·취준생", "일반 성인", "시니어", "전문가·공무원"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
-                      <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required style={{ padding: "0.7rem" }} /></div>
+                      <div className="form-group" style={{ flex: 1 }}><label>예상 인원 *</label><input type="number" name="audienceCount" value={formData.audienceCount} onChange={handleChange} required style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }} /></div>
                     </div>
-                    <div className="form-group"><label>청중 성향 *</label>
-                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                    <div className="form-group" style={{ marginTop: "1rem" }}><label>청중 성향 *</label>
+                      <select name="audienceTrait" value={formData.audienceTrait} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                         {["입문(기초지식 없음)", "심화(전문지식 희망)", "인식개선 필요", "실무 적용 희망"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-group"><label>강연 형태 *</label>
-                      <select name="lectureType" value={formData.lectureType} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                    <div className="form-group" style={{ marginTop: "1rem" }}><label>강연 형태 *</label>
+                      <select name="lectureType" value={formData.lectureType} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                         {["단독 강연", "토크 콘서트(Q&A 위주)", "패널 토론", "1:1 멘토링"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
 
-                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2rem" }}>4. 예산 및 조건</h4>
+                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2.5rem" }}>4. 예산 및 조건</h4>
                     <div className="form-group"><label>강연료 규모 *</label>
-                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                      <select name="budgetRange" value={formData.budgetRange} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                         {["기관 내부 규정에 따름", "30~50만원", "50~100만원", "100만원 이상", "협의 필요"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
-                    <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
+                    <div className="form-row" style={{ display: "flex", gap: "0.8rem", marginTop: "1rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>정산 방법 *</label>
-                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["세금계산서 발행", "카드 결제", "원천세 신고(개인 이체)", "기타"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>추가 지원 여부</label>
-                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="additionalSupport" value={formData.additionalSupport} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["교통비 별도 지급", "숙박 제공 가능", "식사 제공 가능", "해당 없음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                     </div>
 
-                    <h4 style={{ fontSize: "1rem", fontWeight: 800, marginBottom: "1rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2rem" }}>5. 마감 및 선정 이유</h4>
+                    <h4 style={{ fontSize: "1.05rem", fontWeight: 800, marginBottom: "1.2rem", color: "var(--color-text-primary)", borderLeft: "4px solid var(--color-primary)", paddingLeft: "0.6rem", marginTop: "2.5rem" }}>5. 마감 및 선정 이유</h4>
                     <div className="form-row" style={{ display: "flex", gap: "0.8rem" }}>
                       <div className="form-group" style={{ flex: 1 }}><label>회신 희망 기한 *</label>
-                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="replyDeadline" value={formData.replyDeadline} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["3일 이내(긴급)", "1주일 이내", "2주일 이내", "여유 있음"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
                       <div className="form-group" style={{ flex: 1 }}><label>선정 이유 *</label>
-                        <select name="loveCall" value={formData.loveCall} onChange={handleChange} style={{ padding: "0.7rem" }}>
+                        <select name="loveCall" value={formData.loveCall} onChange={handleChange} style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}>
                           {["방송 출연 모습이 좋아서", "저서 내용을 직접 듣고 싶어서", "주제와 경력이 일치해서", "더라운드의 전문성 신뢰", "지인 강력 추천"].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                         </select>
                       </div>
@@ -370,10 +357,10 @@ export default function DesignersSection() {
                   </div>
                 </div>
 
-                <div className="form-group" style={{ marginTop: "1.5rem" }}><label>기타 요청사항</label><textarea name="details" rows="2" value={formData.details} onChange={handleChange} placeholder="추가 전달 내용" style={{ padding: "0.7rem" }}></textarea></div>
+                <div className="form-group" style={{ marginTop: "1.5rem" }}><label>기타 요청사항</label><textarea name="details" rows="2" value={formData.details} onChange={handleChange} placeholder="추가 전달 내용" style={{ padding: "0.8rem", border: "1px solid var(--color-border)", borderRadius: "10px", width: "100%" }}></textarea></div>
 
-                <div style={{ textAlign: "center", marginTop: "2rem" }}>
-                  <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ height: "3.5rem", fontSize: "1.1rem", borderRadius: "15px", boxShadow: "0 5px 15px rgba(220, 20, 20, 0.2)" }} disabled={submitting}>
+                <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+                  <button type="submit" className="btn btn-primary btn-block btn-lg" style={{ height: "3.5rem", fontSize: "1.1rem", borderRadius: "15px", boxShadow: "var(--shadow-accent)", border: "none", cursor: "pointer" }} disabled={submitting}>
                     {submitting ? "전송 중..." : "신청 완료하기"}
                   </button>
                 </div>
@@ -383,8 +370,75 @@ export default function DesignersSection() {
         </div>
       )}
       <style jsx>{`
-        .designer-card:hover .img-overlay { opacity: 1 !important; }
+        .designer-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 45px rgba(0,0,0,0.06) !important;
+          border-color: hsla(354, 85%, 48%, 0.2) !important;
+        }
+        .designer-card:hover img {
+          transform: scale(1.05);
+        }
+        .designer-tag {
+          transition: background-color 0.3s ease;
+        }
+        .designer-card:hover .designer-tag {
+          background-color: var(--color-primary-hover) !important;
+        }
+        .designer-detail-layout {
+          display: grid;
+          grid-template-columns: 1fr 1.6fr;
+          gap: 3rem;
+          padding: 3rem;
+        }
+        .designer-detail-left {
+          text-align: center;
+          border-right: 1px solid var(--color-border);
+          padding-right: 3rem;
+        }
+        .designer-detail-right {
+          overflow-y: auto;
+          max-height: 70vh;
+          padding-right: 1rem;
+        }
+        .form-group {
+          margin-bottom: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .form-group label {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--color-text-muted);
+          margin-bottom: 0.4rem;
+        }
+        .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus {
+          outline: none;
+          border-color: var(--color-primary) !important;
+          box-shadow: 0 0 0 3px hsla(354, 85%, 48%, 0.1);
+        }
+        @media (max-width: 900px) {
+          .designer-detail-layout {
+            grid-template-columns: 1fr;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+          }
+          .designer-detail-left {
+            border-right: none;
+            padding-right: 0;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 2rem;
+          }
+          .designer-detail-right {
+            max-height: none;
+            padding-right: 0;
+          }
+        }
         @media (max-width: 768px) {
+          .designers-section {
+            padding: 5rem 1rem !important;
+          }
           .designers-grid {
             display: grid !important;
             grid-template-columns: 1fr !important;
