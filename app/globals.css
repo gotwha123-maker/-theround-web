@@ -472,6 +472,338 @@ a {
     .slider-arrow.next { right: 10px !important; }
 }
 
+/* ==========================================================================
+   Mobile-first responsive hardening
+   Uses Tailwind's default breakpoint model:
+   base < 640px, sm >= 640px, md >= 768px, lg >= 1024px.
+   ========================================================================== */
+html {
+    overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+main {
+    width: 100%;
+    overflow-x: clip;
+}
+
+.container {
+    width: min(100% - 2rem, 1200px);
+    max-width: 1200px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.section,
+.talktalk-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.section-header h1,
+.section-header h2,
+.section-header h3,
+main h1,
+main h2,
+main h3 {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.section-header h1,
+main h1 {
+    font-size: clamp(2rem, 9vw, 3.2rem) !important;
+    line-height: 1.18 !important;
+}
+
+.section-header h2,
+main h2 {
+    font-size: clamp(1.7rem, 7vw, 2.8rem) !important;
+    line-height: 1.28 !important;
+}
+
+.section-header h3,
+main h3 {
+    font-size: clamp(1.25rem, 5.5vw, 2.1rem) !important;
+    line-height: 1.35 !important;
+}
+
+.hero-lead,
+.section-lead,
+main p,
+main li {
+    overflow-wrap: break-word;
+}
+
+.btn,
+button,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+/* Base: mobile first */
+@media (max-width: 639px) {
+    .header {
+        padding: 0.75rem 0 !important;
+    }
+
+    .header-container {
+        width: min(100% - 1.5rem, 1200px) !important;
+        gap: 0.75rem;
+    }
+
+    .logo-text {
+        font-size: 1.15rem !important;
+        white-space: nowrap;
+    }
+
+    .header-actions {
+        gap: 0.5rem !important;
+    }
+
+    .btn-header-donate {
+        display: none !important;
+    }
+
+    .lang-switcher-container {
+        margin-right: 0 !important;
+    }
+
+    .hamburger {
+        display: flex !important;
+        flex: 0 0 auto;
+    }
+
+    .nav-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        width: min(86vw, 360px) !important;
+        height: 100svh !important;
+        padding: 5.25rem 1.25rem 2rem !important;
+        transform: translateX(105%) !important;
+        transition: transform var(--transition-normal) !important;
+        overflow-y: auto !important;
+        z-index: 1005 !important;
+    }
+
+    .nav-menu.open {
+        transform: translateX(0) !important;
+    }
+
+    .nav-list,
+    .nav-menu ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.25rem !important;
+        width: 100% !important;
+    }
+
+    .nav-link {
+        padding: 0.9rem 0.25rem !important;
+        font-size: 1rem !important;
+    }
+
+    .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0.1rem 0 0.6rem !important;
+        padding: 0.35rem 0 !important;
+        box-shadow: none !important;
+    }
+
+    .nav-link-sub {
+        text-align: left !important;
+        white-space: normal !important;
+        padding: 0.55rem 0.85rem !important;
+    }
+
+    .section,
+    .talktalk-section {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    main > section:first-child,
+    main > div:first-child {
+        padding-top: 6.5rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem !important;
+    }
+
+    .about-brand-card,
+    .designer-intro-card,
+    .founder-message-box,
+    main section .container > div[style*="background"] {
+        border-radius: 18px !important;
+        padding: 2rem 1.25rem !important;
+    }
+
+    .brand-slogan {
+        font-size: 1.65rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .values-grid,
+    .about-grid,
+    .programs-grid,
+    .talktalk-grid,
+    .footer-top,
+    .footer-bottom,
+    main div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
+
+    .value-card-premium,
+    .about-card,
+    .program-card,
+    .talk-card,
+    main div[style*="border-radius"][style*="padding"] {
+        padding: 1.5rem !important;
+        border-radius: 18px !important;
+    }
+
+    .program-row {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .program-badge {
+        top: 1rem !important;
+        left: 1rem !important;
+        max-width: calc(100% - 2rem);
+        white-space: normal;
+        line-height: 1.25;
+    }
+
+    .designers-grid {
+        grid-template-columns: 1fr !important;
+        mask-image: none !important;
+        -webkit-mask-image: none !important;
+    }
+
+    .designer-card,
+    .story-card {
+        width: 100% !important;
+        flex-basis: 100% !important;
+    }
+
+    .modal {
+        align-items: flex-end !important;
+        padding: 0 !important;
+    }
+
+    .modal-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 92svh !important;
+        border-radius: 22px 22px 0 0 !important;
+        overflow-y: auto !important;
+    }
+
+    .modal-body {
+        padding: 1.75rem 1.25rem !important;
+    }
+
+    .designer-detail-layout {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 1.25rem !important;
+    }
+
+    .admin-form .grid,
+    .admin-form .form-row {
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    .talktalk-sub-bar,
+    .footer-legal {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .btn-sub-action,
+    .btn-mobile-donate,
+    main a.btn,
+    main button.btn {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+
+/* sm */
+@media (min-width: 640px) {
+    .container {
+        width: min(100% - 3rem, 1200px);
+    }
+
+    .designers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* md */
+@media (min-width: 768px) {
+    .container {
+        width: min(100% - 4rem, 1200px);
+    }
+
+    .section,
+    .talktalk-section {
+        padding-top: 5.5rem !important;
+        padding-bottom: 5.5rem !important;
+    }
+
+    .nav-menu {
+        position: static !important;
+        height: auto !important;
+        width: auto !important;
+        padding: 0 !important;
+        transform: none !important;
+        overflow: visible !important;
+    }
+
+    .hamburger {
+        display: none !important;
+    }
+
+    .designers-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+    .section,
+    .talktalk-section {
+        padding-top: 7rem !important;
+        padding-bottom: 7rem !important;
+    }
+
+    .designers-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
 
 /* Compact Section Styles */
 .section-compact {
@@ -4060,7 +4392,7 @@ a {
     
     .stories-grid::after,
     .programs-grid::after {
-        content: "Swipe ➔" !important;
+        content: "Swipe ->" !important;
         position: absolute !important;
         bottom: 0px !important;
         right: 16px !important;
@@ -4171,6 +4503,145 @@ a {
     .btn-mobile-donate:active {
         transform: scale(0.98);
         opacity: 0.9;
+    }
+}
+
+/* Final responsive priority layer. Keep this at the end of the file. */
+@media (max-width: 639px) {
+    .container {
+        width: min(100% - 2rem, 1200px) !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .section,
+    .talktalk-section {
+        padding: 4rem 0 !important;
+    }
+
+    .header-container {
+        width: min(100% - 1.5rem, 1200px) !important;
+    }
+
+    .btn-header-donate {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        width: min(86vw, 360px) !important;
+        height: 100svh !important;
+        padding: 5.25rem 1.25rem 2rem !important;
+        transform: translateX(105%) !important;
+        overflow-y: auto !important;
+    }
+
+    .nav-menu.open {
+        transform: translateX(0) !important;
+    }
+
+    .nav-list,
+    .nav-menu ul,
+    .footer-top,
+    .footer-bottom,
+    .values-grid,
+    .about-grid,
+    .talktalk-grid,
+    main div[style*="grid-template-columns"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.25rem !important;
+    }
+
+    .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .stories-grid,
+    .programs-grid,
+    .designers-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        overflow: visible !important;
+        mask-image: none !important;
+        -webkit-mask-image: none !important;
+    }
+
+    .stories-grid::after,
+    .programs-grid::after {
+        content: none !important;
+    }
+
+    .story-card,
+    .program-card,
+    .designer-card {
+        width: 100% !important;
+        flex: initial !important;
+    }
+
+    .about-brand-card,
+    .designer-intro-card,
+    .value-card-premium,
+    .about-card,
+    .talk-card,
+    main div[style*="border-radius"][style*="padding"] {
+        padding: 1.5rem !important;
+        border-radius: 18px !important;
+    }
+
+    .modal-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 92svh !important;
+        border-radius: 22px 22px 0 0 !important;
+        overflow-y: auto !important;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+    .container {
+        width: min(100% - 3rem, 1200px) !important;
+    }
+
+    .designers-grid,
+    main div[style*="grid-template-columns"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        width: min(100% - 4rem, 1200px) !important;
+    }
+
+    .section,
+    .talktalk-section {
+        padding-top: 5.5rem !important;
+        padding-bottom: 5.5rem !important;
+    }
+
+    .designers-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section,
+    .talktalk-section {
+        padding-top: 7rem !important;
+        padding-bottom: 7rem !important;
     }
 }
 
