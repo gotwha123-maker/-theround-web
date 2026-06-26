@@ -15,14 +15,15 @@ export default function About({ onOpenModal = () => {} }) {
         <div className="about-brand-card reveal-on-scroll" style={{ textAlign: "center", maxWidth: "850px", margin: "0 auto" }}>
           <span className="brand-badge" style={{ margin: "0 auto 2rem auto", display: "inline-block", fontSize: "0.75rem", fontWeight: 800, color: "var(--color-primary)", background: "hsla(354, 85%, 48%, 0.06)", padding: "0.4rem 1rem", borderRadius: "30px", border: "1px solid hsla(354, 85%, 48%, 0.1)" }}>MISSION STATEMENT</span>
           <h2 className="brand-slogan" style={{ fontSize: "2.4rem", fontWeight: 900, marginBottom: "2rem", lineHeight: 1.4, color: "var(--color-text-primary)", letterSpacing: "-1px" }}>
-            사람을 세우고, 연결을 만들고, 행동으로 이어갑니다.
+            The Round: 경계를 허무는 테이블 위에서,<br />
+            <span className="highlight-text">한반도의 내일을 디자인하다</span>
           </h2>
           <div className="mission-divider" style={{ width: "60px", height: "4px", background: "var(--gradient-accent)", margin: "2rem auto", borderRadius: "2px" }}></div>
           <p className="mission-lead" style={{ fontSize: "1.25rem", lineHeight: "1.9", fontWeight: "700", color: "var(--color-text-primary)", wordBreak: "keep-all", margin: "0 0 1.5rem 0" }}>
-            더라운드는 한반도 통일과 북한인권에 기여할 활동전문가를 양성하기 위해 설립된 비영리 시민단체입니다. 우리는 북한인권과 통일의 이야기가 한 번의 강연이나 행사로 끝나서는 안 된다고 생각합니다.
+            더라운드는 멀게만 느껴지는 거대한 담론 대신, 남과 북의 청년들이 일상과 현장에서 동등하게 어우러지며 직접 화합의 가치를 증명해 내는 행동주의 공동체입니다.
           </p>
           <p className="mission-desc" style={{ fontSize: "1.08rem", lineHeight: "1.8", color: "var(--color-text-muted)", wordBreak: "keep-all", margin: "0" }}>
-            더라운드는 사람들이 함께 배우고, 계속 연결되며, 실제 행동으로 이어질 수 있는 흐름을 만들어가고자 합니다. 특히 탈북민 출신 활동가들이 단순한 증언자로 머무르지 않고, 자신의 경험과 문제의식을 바탕으로 북한인권과 통일의 문제를 설명하고 연결하는 활동전문가로 성장할 수 있도록 돕습니다. 또한 남한과 해외의 시민들이 북한인권 문제를 함께 배우고, 토론하고, 행동할 수 있도록 국내외 네트워크와 글로벌 액션의 기반을 만들어갑니다.
+            일방적인 지원 대상이 되는 구조에서 벗어나, 서로의 다름을 미래 한반도의 가장 아름다운 무형 자산으로 승화합니다. 남북 청년이 스스로 삶의 주체가 되고, 서로에게 든든한 정서적 안전망이 되어 다가올 통합 시대를 함께 개척해 나가도록 지원합니다.
           </p>
         </div>
       </div>
