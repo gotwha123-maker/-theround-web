@@ -54,7 +54,7 @@ export default function CorePrograms() {
           <div className="programs-list flex flex-col gap-20 mt-14 lg:gap-28 lg:mt-20">
             {programs.map((p) => (
               <article className="program-row group flex flex-col items-center gap-8 bg-transparent relative px-4 md:flex-row md:gap-20 md:p-0" key={p.id} aria-label={p.title}>
-                <div className="program-img-box flex-1 w-full relative rounded-[32px] overflow-hidden shadow-2xl shadow-black/30 border border-[var(--color-border-dark)] aspect-[16/10] bg-[var(--color-card-dark)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-[-4px] group-hover:shadow-[var(--shadow-accent),_0_25px_50px_rgba(0,0,0,0.5)] group-hover:border-[hsla(354,85%,48%,0.3)] md:flex-[1.25]">
+                <div className="program-img-box flex-1 w-full relative rounded-[32px] overflow-hidden shadow-2xl shadow-black/30 border border-[var(--color-border-dark)] aspect-[16/10] bg-[var(--color-card-dark)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-[-4px] group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.5)] group-hover:border-[rgba(255,255,255,0.2)] md:flex-[1.25]">
                   <span className="program-badge absolute top-[1.8rem] left-[1.8rem] bg-neutral-900/85 backdrop-blur-sm border border-white/10 text-[var(--color-primary)] px-3 py-2 rounded-full text-xs font-extrabold tracking-wider shadow-md shadow-black/30 z-20">
                     {p.badge}
                   </span>
@@ -67,8 +67,7 @@ export default function CorePrograms() {
                     }}
                   />
                   <div className="program-img-overlay absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
-                  {/* Pseudo-element for border gradient on hover */}
-                  <div className="before:content-[''] before:absolute before:inset-0 before:rounded-[32px] before:p-[1px] before:bg-gradient-to-br before:from-transparent before:via-transparent before:to-[var(--color-primary)] before:[-webkit-mask:linear-gradient(#fff_0_0)_content-box,_linear-gradient(#fff_0_0)] before:[-webkit-mask-composite:xor] before:[mask-composite:exclude] before:pointer-events-none before:opacity-0 before:transition-opacity before:duration-400 before:ease-in-out before:z-10 group-hover:before:opacity-100"></div>
+
                 </div>
 
                 <div className="program-text-box flex-1 flex flex-col text-center w-full md:text-left">
@@ -83,8 +82,8 @@ export default function CorePrograms() {
                   </p>
                   
                   <div className="program-btn-wrapper flex justify-center md:justify-start">
-                    <Link href={p.link} className="program-link inline-flex items-center gap-2 text-[var(--color-text-light)] font-extrabold text-lg transition-colors duration-300 ease-in-out group-hover:text-[var(--color-primary)]" aria-label={`${p.title} 상세 보기`}>
-                      자세히 보기 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:translate-x-1.5">→</span>
+                    <Link href={p.link} className="btn-action-more dark-theme" aria-label={`${p.title} 상세 보기`}>
+                      자세히 보기 &rarr;
                     </Link>
                   </div>
                 </div>

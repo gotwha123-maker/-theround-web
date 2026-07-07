@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <>
-      <section className="hero-split-section min-h-[100svh] flex items-center justify-center bg-[var(--color-bg-dark)] relative py-24 px-4 overflow-hidden sm:px-5 md:min-h-screen md:py-28 md:px-6 lg:py-32 lg:px-8">
+      <section className="hero-split-section min-h-fit md:min-h-screen flex items-start md:items-center justify-center bg-[var(--color-bg-dark)] relative pt-28 pb-16 px-4 overflow-hidden sm:px-5 md:py-28 md:px-6 lg:py-32 lg:px-8">
         {/* Subtle background glow for modern aesthetic */}
         <div className="before:content-[''] before:absolute before:top-[10%] before:right-[5%] before:w-[450px] before:h-[450px] before:bg-[radial-gradient(circle,hsla(354,85%,48%,0.12)_0%,transparent_70%)] before:z-10 before:pointer-events-none"></div>
 

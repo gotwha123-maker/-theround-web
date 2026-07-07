@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -65,7 +66,7 @@ export default function CommunityPage() {
               커뮤니티 조성 <span className="accent-text">& 연대</span>
             </h1>
             <p className="hero-lead" style={{ fontSize: "1.2rem", opacity: 0.9, maxWidth: "800px", margin: "0 auto", lineHeight: "1.8", wordBreak: "keep-all", color: "rgba(255, 255, 255, 0.9)" }}>
-              "그라운드 위의 열정부터 따뜻한 식탁의 환대까지"<br />
+              &quot;그라운드 위의 열정부터 따뜻한 식탁의 환대까지&quot;<br />
               고립과 소외를 해소하고 신뢰를 쌓아 누구도 소외되지 않는 정서적 울타리를 만듭니다.
             </p>
           </div>
@@ -130,7 +131,7 @@ export default function CommunityPage() {
                   </div>
 
                   <div style={{ display: "flex", flexDirection: "column" }}>
-                    <a 
+                    <Link 
                       href="/community/unione"
                       id="unione-story-link"
                       style={{
@@ -148,16 +149,16 @@ export default function CommunityPage() {
                         textAlign: "center"
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#4f46e5";
-                        e.target.style.transform = "translateY(-2px)";
+                        e.currentTarget.style.backgroundColor = "#4f46e5";
+                        e.currentTarget.style.transform = "translateY(-2px)";
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "var(--color-primary)";
-                        e.target.style.transform = "translateY(0)";
+                        e.currentTarget.style.backgroundColor = "var(--color-primary)";
+                        e.currentTarget.style.transform = "translateY(0)";
                       }}
                     >
                       ⚽ 유니원 FC 스토리 보기 →
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -210,7 +211,7 @@ export default function CommunityPage() {
                   </div>
 
                   <div style={{ display: "flex", flexDirection: "column" }}>
-                    <a 
+                    <Link 
                       href="/community/yearend"
                       style={{
                         display: "flex",
@@ -227,16 +228,16 @@ export default function CommunityPage() {
                         textAlign: "center"
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#4f46e5";
-                        e.target.style.transform = "translateY(-2px)";
+                        e.currentTarget.style.backgroundColor = "#4f46e5";
+                        e.currentTarget.style.transform = "translateY(-2px)";
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "var(--color-primary)";
-                        e.target.style.transform = "translateY(0)";
+                        e.currentTarget.style.backgroundColor = "var(--color-primary)";
+                        e.currentTarget.style.transform = "translateY(0)";
                       }}
                     >
                       🎉 자립과 연대의 송년회 스토리 보기 →
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

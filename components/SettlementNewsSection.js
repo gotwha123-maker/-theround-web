@@ -48,23 +48,20 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
       (item.category && item.category.toLowerCase().includes(q));
     
     const matchesTab = activeTab === "전체" || 
-      (item.category && (
-        item.category === getCategoryKey(activeTab) ||
-        (activeTab === "교육" && item.category === "education")
-      ));
+      (item.category && getCategoryKeys(activeTab).includes(item.category.toLowerCase()));
 
     return matchesSearch && matchesTab;
   });
 
-  function getCategoryKey(tabId) {
+  function getCategoryKeys(tabId) {
     switch(tabId) {
-      case '장학': return 'scholarship';
-      case '주택': return 'housing';
-      case '일자리': return 'job';
-      case '교육': return 'university';
-      case '복지': return 'welfare';
-      case '문화': return 'culture';
-      default: return tabId;
+      case '장학': return ['scholarship', '장학'];
+      case '주택': return ['housing', '주택', '주거'];
+      case '일자리': return ['job', 'jobs', '일자리', '취업'];
+      case '교육': return ['education', 'university', '교육', '대학', '대입'];
+      case '복지': return ['welfare', '복지', '생활', '생활/복지'];
+      case '문화': return ['culture', '문화', '기타'];
+      default: return [tabId.toLowerCase()];
     }
   }
   
@@ -118,7 +115,7 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => { setActiveTab(tab.id); setShowAll(false); }}
+              onClick={() => { setActiveTab(tab.id); setShowAll(false); setSearchQuery(""); }}
               style={{
                 padding: "0.7rem 1.5rem",
                 borderRadius: "50px",
@@ -156,8 +153,8 @@ export default function SettlementNewsSection({ searchQuery = "", setSearchQuery
                <div className="spinner" style={{ margin: "0 auto 1.5rem auto", width: "40px", height: "40px", border: "4px solid rgba(0,0,0,0.1)", borderTopColor: "var(--color-primary)", borderRadius: "50%", animation: "spin 1s linear infinite" }}></div>
             </div>
           ) : visibleList.length > 0 ? (
-            visibleList.map((item) => (
-              <div key={item.id} className="news-card reveal-on-scroll active" style={{ background: "white", borderRadius: "24px", padding: "2.5rem", border: "1px solid var(--color-border)", display: "flex", flexDirection: "column", height: "100%", transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)", boxShadow: "var(--shadow-sm)" }}>
+            visibleList.map((item, idx) => (
+              <div key={`${item.id}-${idx}`} className="news-card reveal-on-scroll active" style={{ background: "white", borderRadius: "24px", padding: "2.5rem", border: "1px solid var(--color-border)", display: "flex", flexDirection: "column", height: "100%", transition: "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)", boxShadow: "var(--shadow-sm)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
                   <span style={{ 
                     backgroundColor: `${getCategoryColor(item.category)}15`, 

@@ -1,7 +1,7 @@
 [
   {
     "id": "des-5",
-    "img": "assets/김소연.webp",
+    "img": "assets/kim_soyeon.webp",
     "isHidden": false,
     "ko": {
       "name": "김소연",
@@ -14,7 +14,7 @@
   },
   {
     "id": "des-0",
-    "img": "assets/김은주.jpg",
+    "img": "assets/kim_eunju.jpg",
     "isHidden": false,
     "ko": {
       "name": "김은주",
@@ -27,7 +27,7 @@
   },
   {
     "id": "des-1",
-    "img": "assets/이영현.jpg",
+    "img": "assets/lee_younghyun.jpg",
     "isHidden": false,
     "ko": {
       "name": "이영현",
@@ -40,7 +40,7 @@
   },
   {
     "id": "des-4",
-    "img": "assets/박유성.jpg",
+    "img": "assets/park_yousung.jpg",
     "isHidden": false,
     "ko": {
       "name": "박유성",
@@ -53,7 +53,7 @@
   },
   {
     "id": "des-3",
-    "img": "assets/김아라.jpg",
+    "img": "assets/kim_ara.jpg",
     "isHidden": false,
     "ko": {
       "name": "김아라",
@@ -66,7 +66,7 @@
   },
   {
     "id": "des-7",
-    "img": "assets/김강우.jpg",
+    "img": "assets/kim_kangwoo.jpg",
     "isHidden": false,
     "ko": {
       "name": "김강우",

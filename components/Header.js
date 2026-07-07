@@ -12,6 +12,13 @@ export default function Header({ forceSolid = false }) {
   const [signupName, setSignupName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [logoClicks, setLogoClicks] = useState(0);
+  const [enHref, setEnHref] = useState("https://theround-web-en.vercel.app");
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+      setEnHref("http://localhost:3001");
+    }
+  }, []);
 
   useEffect(() => {
     if (forceSolid) {
@@ -269,7 +276,7 @@ export default function Header({ forceSolid = false }) {
                   KO
                 </span>
                 <a 
-                  href={typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://theround-web-en.vercel.app'} 
+                  href={enHref} 
                   style={{
                     color: scrolled ? "var(--color-text-muted)" : "rgba(255, 255, 255, 0.8)",
                     textDecoration: "none",

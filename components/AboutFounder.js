@@ -5,7 +5,7 @@ export default function AboutFounder() {
         <div className="founder-message-box reveal-on-scroll">
           <div className="founder-image-wrapper" style={{ position: "relative" }}>
             <img 
-              src="assets/김은철.jpg" 
+              src="assets/kim_eunchul.jpg" 
               alt="더라운드 김은철 대표" 
               className="founder-img" 
               id="founder-portrait-img"

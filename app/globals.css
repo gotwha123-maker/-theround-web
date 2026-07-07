@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Modern CSS Reset & Variable Tokens */
 :root {
     /* Color Palette */
@@ -99,39 +101,109 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem 1.6rem;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.98rem;
+    font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: var(--transition-normal);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease, 
+                filter 0.2s ease;
     text-align: center;
+    outline: none;
 }
 
 .btn-primary {
     background: var(--gradient-accent);
     color: white;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 15px rgba(220, 20, 20, 0.12);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-accent);
-    filter: brightness(1.1);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(220, 20, 20, 0.28);
+    filter: brightness(1.08);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(0.97);
+    box-shadow: 0 4px 12px rgba(220, 20, 20, 0.18);
+    filter: brightness(0.95);
 }
 
 .btn-outline {
     background: transparent;
     color: white;
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
 .btn-outline:hover {
     background: white;
     color: var(--color-bg-dark);
     border-color: white;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.18);
+}
+
+.btn-outline:active {
+    transform: translateY(-1px) scale(0.97);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+}
+
+/* Unified Action Button (자세히 보기 / 바로가기) */
+.btn-action-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 1.5px solid var(--color-border);
+    background-color: transparent;
+    color: var(--color-text-primary);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease;
+    text-decoration: none !important;
+}
+
+.btn-action-more:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-secondary);
+    border-color: var(--color-text-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.btn-action-more:active {
+    transform: translateY(-1px) scale(0.97);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark background variant for Action Button */
+.btn-action-more.dark-theme {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-action-more.dark-theme:hover {
+    background-color: white;
+    color: var(--color-bg-dark);
+    border-color: white;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.12);
+}
+
+.btn-action-more.dark-theme:active {
+    transform: translateY(-1px) scale(0.97);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
 
 .btn-icon-only {
@@ -1535,16 +1607,16 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(13, 21, 35, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(10, 5, 5, 0.65) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--transition-normal);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .modal-overlay.open {
@@ -1552,21 +1624,24 @@ a {
     pointer-events: auto;
 }
 
-.modal-card {
+.modal-container, .modal-card {
     background: var(--color-bg-secondary);
-    border-radius: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: 28px !important;
     width: 90%;
     max-width: 650px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg), 0 20px 40px rgba(0,0,0,0.15) !important;
     position: relative;
-    transform: translateY(30px);
-    transition: transform var(--transition-normal);
+    transform: scale(0.96) translateY(12px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     max-height: 90vh;
     overflow-y: auto;
+    opacity: 0;
 }
 
-.modal-overlay.open .modal-card {
-    transform: translateY(0);
+.modal.open .modal-container, .modal-overlay.open .modal-card {
+    transform: scale(1) translateY(0);
+    opacity: 1;
 }
 
 .modal-close {
@@ -4174,11 +4249,21 @@ a {
     }
 }
 
+/* Hero header overlap fix globally */
+.hero-split-section {
+    padding-top: 140px !important;
+}
+
 /* Hero mobile width override */
 @media (max-width: 767px) {
     .hero-split-section {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
+        padding-top: 110px !important;
+        padding-bottom: 60px !important;
+        min-height: fit-content !important;
+        display: flex !important;
+        align-items: flex-start !important;
     }
 
     .hero-split-container {
@@ -4189,8 +4274,15 @@ a {
     }
 }
 
+/* Designer Card Hover Style Correction */
+.designer-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
 
-
-
-
-
+.designer-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--color-text-primary) !important;
+}

@@ -192,7 +192,7 @@ export default function DesignersSection() {
         <div className="designers-grid-container mt-16">
           <div className="designers-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {visibleList.map((d) => (
-              <div className="designer-card reveal-on-scroll bg-[var(--color-bg-primary)] rounded-3xl overflow-hidden shadow-sm border border-[var(--color-border)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer hover:translate-y-[-8px] hover:shadow-[0_20px_45px_rgba(0,0,0,0.06)] hover:border-[hsla(354,85%,48%,0.2)]" key={d.id} onClick={() => openDetail(d)}>
+              <div className="designer-card reveal-on-scroll bg-[var(--color-bg-primary)] rounded-3xl overflow-hidden shadow-sm border border-[var(--color-border)] cursor-pointer" key={d.id} onClick={() => openDetail(d)}>
                 <div className="designer-img-wrapper relative w-full aspect-[1/1.2] overflow-hidden">
                   <img src={d.img} alt={d.ko?.name} className="w-full h-full object-cover transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105" />
                 </div>
@@ -207,7 +207,7 @@ export default function DesignersSection() {
         </div>
 
         <div className="text-center mt-14">
-          <button className="btn min-w-[220px] rounded-full font-bold text-base px-10 py-3.5 text-[var(--color-primary)] border-[1.5px] border-[var(--color-primary)] bg-transparent cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" onClick={() => setShowAll(!showAll)}>
+          <button className="btn-action-more min-w-[220px]" onClick={() => setShowAll(!showAll)}>
             {showAll ? "간략히 보기" : "전체보기"}
           </button>
         </div>
@@ -217,10 +217,10 @@ export default function DesignersSection() {
         <div className="modal open fixed inset-0 flex items-center justify-center z-[2000] p-4">
           <div className="modal-overlay fixed inset-0 bg-black/60 opacity-100 pointer-events-auto" onClick={closeDetail}></div>
           <div className="modal-container bg-[var(--color-bg-secondary)] rounded-[32px] relative max-w-4xl w-full z-[2001] shadow-xl md:p-0">
-            <button className="modal-close absolute top-5 right-5 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors z-10" onClick={closeDetail}>&times;</button>
+            <button className="modal-close absolute top-5 right-5 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors z-10" onClick={closeDetail}>&times;</button>
             <div className="modal-body p-0">
               <div className="designer-detail-layout grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-8 p-6 md:p-12 md:max-h-[80vh] overflow-y-auto">
-                <div className="designer-detail-left text-center md:border-r md:border-[var(--color-border)] md:pr-12 pb-8 md:pb-0 md:border-b-0 border-b border-[var(--color-border)]">
+                <div className="designer-detail-left w-full min-w-0 text-center md:border-r md:border-[var(--color-border)] md:pr-12 pb-8 md:pb-0 md:border-b-0 border-b border-[var(--color-border)]">
                   <div className="w-48 h-48 rounded-full overflow-hidden mx-auto mb-8 border-4 border-[var(--color-bg-secondary)] shadow-md md:w-56 md:h-56">
                     <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} className="w-full h-full object-cover" />
                   </div>
@@ -232,7 +232,7 @@ export default function DesignersSection() {
                     <span className="text-base text-[var(--color-text-primary)] font-semibold">{selectedDesigner.ko.specialty}</span>
                   </div>
                 </div>
-                <div className="designer-detail-right md:max-h-[70vh] overflow-y-auto md:pr-4 pt-4 md:pt-0">
+                <div className="designer-detail-right w-full min-w-0 md:max-h-[70vh] overflow-y-auto md:pr-4 pt-4 md:pt-0">
                   <div className="mb-8">
                     <h3 className="text-xl font-extrabold text-[var(--color-primary)] mb-4">강사 소개</h3>
                     <p className="text-base leading-relaxed whitespace-pre-line text-[var(--color-text-muted)]">{selectedDesigner.ko.bio}</p>
@@ -253,7 +253,7 @@ export default function DesignersSection() {
         <div className="modal open fixed inset-0 flex items-center justify-center z-[2000] p-4">
           <div className="modal-overlay fixed inset-0 bg-black/60 opacity-100 pointer-events-auto" onClick={closeBooking}></div>
           <div className="modal-container mobile-scroll-fix bg-[var(--color-bg-secondary)] rounded-3xl max-h-[98vh] overflow-y-auto relative shadow-2xl max-w-5xl w-full sm:w-[98%] md:w-full lg:w-full">
-            <button className="modal-close absolute top-4 right-4 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors z-10" onClick={closeBooking}>&times;</button>
+            <button className="modal-close absolute top-4 right-4 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors z-10" onClick={closeBooking}>&times;</button>
             <div className="modal-body p-6 md:p-10">
               <h3 className="text-2xl font-black mb-8 text-[var(--color-primary)] text-center">강연 및 교육 섭외 신청</h3>
               
