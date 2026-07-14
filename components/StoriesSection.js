@@ -212,7 +212,7 @@ export default function StoriesSection() {
                 </h3>
                 <p 
                   className="story-excerpt" 
-                  style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "#334155", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginTop: "auto" }}
+                  style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "#111827", fontWeight: 600, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginTop: "auto" }}
                 >
                   {s.excerpt}
                 </p>

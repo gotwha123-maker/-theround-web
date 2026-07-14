@@ -77,7 +77,7 @@ export default function CorePrograms() {
                   <p className="program-subtitle text-base md:text-lg text-[#ff4d5a] font-extrabold mb-6 md:mb-[1.5rem]">
                     {p.subtitle}
                   </p>
-                  <p className="program-desc text-sm md:text-base text-slate-200 leading-loose mb-8 md:mb-10 [word-break:keep-all]">
+                  <p className="program-desc text-sm md:text-base text-white font-semibold leading-loose mb-8 md:mb-10 [word-break:keep-all]">
                     {p.description}
                   </p>
                   

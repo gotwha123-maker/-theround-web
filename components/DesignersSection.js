@@ -216,33 +216,99 @@ export default function DesignersSection() {
       {selectedDesigner && (
         <div className="modal open fixed inset-0 flex items-center justify-center z-[2000] p-4">
           <div className="modal-overlay fixed inset-0 bg-black/60 opacity-100 pointer-events-auto" onClick={closeDetail}></div>
-          <div className="modal-container bg-[var(--color-bg-secondary)] rounded-[32px] relative max-w-4xl w-full z-[2001] shadow-xl md:p-0">
-            <button className="modal-close absolute top-5 right-5 text-2xl text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors z-10" onClick={closeDetail}>&times;</button>
+          <div className="modal-container bg-gradient-to-br from-[var(--color-bg-secondary)] to-[#f8fafc] rounded-[32px] max-h-[90vh] overflow-y-auto relative max-w-4xl w-full z-[2001] shadow-2xl mx-4 md:mx-auto border border-[var(--color-border)] animate-[modalFadeIn_0.35s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+            {/* 고정 헤더 - 배경 투명도 수정 */}
+            <div className="modal-header flex items-center justify-between px-8 py-5 border-b border-[var(--color-border)] sticky top-0 bg-[var(--color-bg-secondary)] z-10">
+              <span className="text-xs font-black text-[var(--color-primary)] tracking-widest uppercase">DESIGNER PROFILE</span>
+              <button className="modal-close text-3xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:rotate-90 transition-all duration-300 cursor-pointer w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100" onClick={closeDetail}>&times;</button>
+            </div>
+            {/* 내부 바디 */}
             <div className="modal-body p-0">
-              <div className="designer-detail-layout grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-8 p-6 md:p-12 md:max-h-[80vh] overflow-y-auto">
-                <div className="designer-detail-left w-full min-w-0 text-center md:border-r md:border-[var(--color-border)] md:pr-12 pb-8 md:pb-0 md:border-b-0 border-b border-[var(--color-border)]">
-                  <div className="w-48 h-48 rounded-full overflow-hidden mx-auto mb-8 border-4 border-[var(--color-bg-secondary)] shadow-md md:w-56 md:h-56">
-                    <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} className="w-full h-full object-cover" />
+              <div className="designer-detail-layout grid grid-cols-1 md:grid-cols-[280px_1fr] gap-0">
+                
+                {/* 좌측 카드 영역 */}
+                <div className="designer-detail-left w-full min-w-0 text-center bg-slate-50/50 p-8 md:p-10 md:border-r md:border-[var(--color-border)]">
+                  {/* 스쿼클 이미지 프레임 (모바일-데스크톱 황금비율 보완) */}
+                  <div className="w-36 h-36 max-w-[150px] md:max-w-none rounded-[2rem] md:rounded-[2.5rem] overflow-hidden mx-auto mb-6 p-1 bg-gradient-to-tr from-[var(--color-primary)] to-[#ff4d5a] shadow-lg md:w-48 md:h-48 transition-transform duration-500 hover:scale-[1.02]">
+                    <div className="w-full h-full rounded-[1.8rem] md:rounded-[2.3rem] overflow-hidden bg-white">
+                      <img src={selectedDesigner.img} alt={selectedDesigner.ko.name} className="w-full h-full object-cover" />
+                    </div>
                   </div>
-                  <span className="text-[var(--color-primary)] font-extrabold">{selectedDesigner.ko.tag}</span>
-                  <h2 className="text-3xl font-extrabold my-2">{selectedDesigner.ko.name}</h2>
-                  <p className="text-[var(--color-primary)] font-bold">{selectedDesigner.ko.slogan}</p>
-                  <div className="bg-[var(--color-bg-primary)] p-4 rounded-2xl text-left mt-4 border border-[var(--color-border)]">
-                    <strong className="block text-xs text-[var(--color-text-muted)] mb-1.5">전문 분야</strong>
-                    <span className="text-base text-[var(--color-text-primary)] font-semibold">{selectedDesigner.ko.specialty}</span>
+                  {/* 그라데이션 태그 배지 */}
+                  <span className="inline-block bg-gradient-to-r from-[var(--color-primary)] to-[#ff4d5a] text-white text-xs font-black px-4 py-1.5 rounded-full shadow-sm mb-4">
+                    {selectedDesigner.ko.tag}
+                  </span>
+                  <h2 className="text-3xl font-black mb-2 text-slate-800 tracking-tight">{selectedDesigner.ko.name}</h2>
+                  <p className="text-xs text-[var(--color-primary)] font-extrabold leading-relaxed px-2 [word-break:keep-all]">
+                    {selectedDesigner.ko.slogan.replace(/\s+/g, " ")}
+                  </p>
+                  
+                  {/* 전문분야 카드 - 파싱 칩 및 공백 수정 */}
+                  <div className="bg-white p-5 rounded-2xl text-left mt-8 border border-slate-100 shadow-sm border-l-4 border-l-[var(--color-primary)]">
+                    <strong className="block text-[11px] text-[var(--color-text-muted)] font-black uppercase tracking-wider mb-3">SPECIALTY / 전문 분야</strong>
+                    <div className="flex flex-wrap gap-1.5">
+                      {selectedDesigner.ko.specialty.replace(/\s+/g, " ").replace("법 률", "법률").replace("실 상", "실상").split(/[\/,]/).map((chip, idx) => {
+                        const cleanChip = chip.trim();
+                        if (!cleanChip) return null;
+                        return (
+                          <span className="inline-block bg-slate-50 border border-slate-100 text-slate-600 text-[11px] font-bold px-2.5 py-1 rounded-lg" key={idx}>
+                            {cleanChip}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-                <div className="designer-detail-right w-full min-w-0 md:max-h-[70vh] overflow-y-auto md:pr-4 pt-4 md:pt-0">
-                  <div className="mb-8">
-                    <h3 className="text-xl font-extrabold text-[var(--color-primary)] mb-4">강사 소개</h3>
-                    <p className="text-base leading-relaxed whitespace-pre-line text-[var(--color-text-muted)]">{selectedDesigner.ko.bio}</p>
+
+                {/* 우측 본문 영역 */}
+                <div className="designer-detail-right w-full min-w-0 p-8 md:p-12 flex flex-col justify-between">
+                  <div>
+                    {/* 강사 소개 */}
+                    <div className="mb-14">
+                      <div className="flex items-center gap-2 mb-5">
+                        <span className="w-[3px] h-5 bg-[var(--color-primary)] rounded-full"></span>
+                        <h3 className="text-lg font-black text-slate-800">강사 소개</h3>
+                      </div>
+                      
+                      <div className="relative pl-1">
+                        <p className="text-sm md:text-[0.975rem] leading-relaxed text-slate-600 font-medium whitespace-pre-line [word-break:keep-all]">
+                          {selectedDesigner.ko.bio.replace(/[ \t]{2,}/g, " ").replace("극 심한", "극심한").replace("갈등 을", "갈등을")}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 수평 구분선 배치로 시각적 호흡 개선 */}
+                    <hr className="border-t border-slate-100/80 my-10 md:my-12" />
+                    
+                    {/* 주요 경력 및 활동 */}
+                    <div className="mb-14">
+                      <div className="flex items-center gap-2 mb-5">
+                        <span className="w-[3px] h-5 bg-[var(--color-primary)] rounded-full"></span>
+                        <h3 className="text-lg font-black text-slate-800">주요 경력 및 활동</h3>
+                      </div>
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                        {selectedDesigner.ko.career.replace(/\\n/g, "\n").split("\n").map((line, idx) => {
+                          const cleanLine = line.replace(/^•\s*/, "").replace(/\s+/g, " ").replace("발 간", "발간").replace("파변", "파병").replace("입 국", "입국").replace("근 무", "근무").trim();
+                          if (!cleanLine) return null;
+                          return (
+                            <div className="flex items-start gap-3.5 p-4 border-b border-slate-50 last:border-b-0 hover:bg-slate-50/30 transition-colors" key={idx}>
+                              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0 mt-2"></span>
+                              <span className="text-sm font-semibold text-slate-700 leading-relaxed [word-break:keep-all]">
+                                {cleanLine}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
-                  <div className="mb-12">
-                    <h3 className="text-xl font-extrabold text-[var(--color-primary)] mb-4">주요 경력 및 활동</h3>
-                    <div className="text-base leading-loose whitespace-pre-line bg-[var(--color-bg-primary)] p-6 rounded-2xl border border-[var(--color-border)] text-[var(--color-text-primary)]">{selectedDesigner.ko.career}</div>
-                  </div>
-                  <button className="btn btn-primary w-full h-14 text-lg font-bold rounded-2xl" onClick={() => openBooking(selectedDesigner.ko.name)}>강연 및 교육 의뢰하기</button>
+                  
+                  {/* 의뢰 버튼 */}
+                  <button className="btn w-full h-14 bg-gradient-to-r from-[var(--color-primary)] to-[#ff4d5a] text-white text-base font-black rounded-2xl shadow-[var(--shadow-accent)] hover:translate-y-[-3px] hover:shadow-[0_12px_24px_rgba(220,20,20,0.25)] hover:brightness-105 transition-all duration-300 cursor-pointer" onClick={() => openBooking(selectedDesigner.ko.name)}>
+                    강연 및 교육 의뢰하기
+                  </button>
                 </div>
+
               </div>
             </div>
           </div>
