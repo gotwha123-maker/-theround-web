@@ -15,13 +15,14 @@ export default function Hero() {
             <span className="hero-badge inline-block text-sm font-extrabold text-[var(--color-primary)] bg-[hsla(354,85%,48%,0.1)] px-5 py-2 rounded-full tracking-wide mb-6 border border-[hsla(354,85%,48%,0.25)] shadow-md shadow-black/15">
               THE ROUND
             </span>
-            <h1 className="hero-split-title text-[2rem] sm:text-4xl md:text-[2.85rem] lg:text-5xl font-black leading-tight text-[var(--color-text-light)] tracking-tight mb-5 sm:mb-6 [word-break:keep-all]">
-              한반도의 내일을<br />
-              <span className="highlight bg-gradient-to-br from-[var(--color-primary)] to-[hsl(354,100%,65%)] bg-clip-text text-transparent">디자인하다</span>
+            <h1 className="hero-split-title text-[2rem] sm:text-4xl md:text-[2.6rem] lg:text-4.5xl font-black leading-tight text-[var(--color-text-light)] tracking-tight mb-5 sm:mb-6 [word-break:keep-all]">
+              함께 연결하고, 함께 준비하는<br />
+              <span className="highlight bg-gradient-to-br from-[var(--color-primary)] to-[hsl(354,100%,65%)] bg-clip-text text-transparent">한반도의 더 나은 미래</span>
             </h1>
-            <p className="hero-split-description text-[0.95rem] sm:text-base md:text-lg text-[var(--color-text-dim)] font-medium mb-8 md:mb-12 [word-break:keep-all]">
-              남북 주민이 일상에서 함께 대안을 만들고 증명하며,<br />
-              상생과 도약의 미래를 열어가는 혁신적인 행동주의 플랫폼
+            <p className="hero-split-description text-[0.95rem] sm:text-base md:text-lg text-[var(--color-text-dim)] font-medium mb-8 md:mb-12 [word-break:keep-all] leading-relaxed">
+              더라운드는 경험과 목소리를 통해<br />
+              자유와 인권, 통일의 가치를 시민사회와 국제사회에 연결하고,<br />
+              한반도의 더 나은 미래를 함께 준비합니다.
             </p>
             <div className="hero-action-area">
               <Link href="#about" className="btn-explore inline-flex items-center justify-center gap-3 bg-[var(--gradient-accent)] text-white w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 rounded-full font-bold text-sm sm:text-base shadow-[var(--shadow-accent)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-3px] hover:shadow-[0_12px_30px_rgba(220,20,20,0.35)] hover:brightness-110 no-underline">
