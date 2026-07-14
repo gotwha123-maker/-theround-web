@@ -44,10 +44,10 @@ export default function CorePrograms() {
         
         <div className="container max-w-6xl mx-auto relative z-10 px-4 md:px-8">
           <div className="section-header text-center mb-16 md:mb-20">
-            <span className="section-subtitle text-sm font-extrabold text-[var(--color-primary)] tracking-wide block mb-3">The Round Identity</span>
-            <h2 className="text-2xl font-black mb-4 md:text-4xl lg:text-5xl text-[var(--color-text-light)] tracking-[-1.5px]">더라운드만의 고유한 발걸음</h2>
-            <p className="section-lead text-base md:text-lg text-[var(--color-text-dim)] max-w-2xl mx-auto leading-relaxed [word-break:keep-all]">
-              남북 주민들이 삶의 주체가 되어 서로를 지지하고 연대하며 만들어가는 더라운드만의 시그니처 활동을 만나보세요.
+            <span className="section-subtitle text-xs font-black text-[#ff4d5a] tracking-widest uppercase block mb-4">ACTIVITY STORIES</span>
+            <h2 className="text-3xl font-black mb-5 md:text-4xl lg:text-5xl text-white tracking-tight">활동 스토리</h2>
+            <p className="section-lead text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed [word-break:keep-all]">
+              남북 주민들이 삶의 주체가 되어 서로를 지지하고 연대하며 만들어가는 더라운드만의 생생한 활동 이야기를 만나보세요.
             </p>
           </div>
 
