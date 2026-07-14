@@ -6,8 +6,8 @@ export default function Hero() {
   return (
     <>
       <section className="hero-split-section min-h-fit md:min-h-screen flex items-start md:items-center justify-center bg-[var(--color-bg-dark)] relative pt-28 pb-16 px-4 overflow-hidden sm:px-5 md:py-28 md:px-6 lg:py-32 lg:px-8">
-        {/* Subtle background glow for modern aesthetic */}
-        <div className="before:content-[''] before:absolute before:top-[10%] before:right-[5%] before:w-[450px] before:h-[450px] before:bg-[radial-gradient(circle,hsla(354,85%,48%,0.12)_0%,transparent_70%)] before:z-10 before:pointer-events-none"></div>
+        {/* Subtle background glow for modern aesthetic - Dual Mesh Glow */}
+        <div className="before:content-[''] before:absolute before:top-[10%] before:right-[5%] before:w-[450px] before:h-[450px] before:bg-[radial-gradient(circle,hsla(354,85%,48%,0.15)_0%,transparent_70%)] before:z-10 before:pointer-events-none after:content-[''] after:absolute after:bottom-[10%] after:left-[5%] after:w-[350px] after:h-[350px] after:bg-[radial-gradient(circle,rgba(20,184,166,0.06)_0%,transparent_70%)] after:z-10 after:pointer-events-none"></div>
 
         <div className="hero-split-container w-full max-w-none grid grid-cols-1 gap-10 items-center relative z-20 text-center sm:gap-12 md:max-w-6xl md:grid-cols-[1.10fr_1.15fr] md:gap-16 md:text-left lg:gap-20">
           {/* Left Side: Content */}
@@ -32,13 +32,13 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Side: Key Visual with Overlap effect */}
+          {/* Right Side: Key Visual with Overlap effect (3D parallax hover effect) */}
           <div className="hero-split-right relative animate-fadeInRight z-20">
-            <div className="hero-image-wrapper relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-black/35 border border-[var(--color-border-dark)] aspect-[4/3] sm:aspect-[4.2/3] flex items-center justify-center bg-[var(--color-card-dark)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-5px] hover:shadow-3xl hover:shadow-black/50 hover:border-white/15 w-full max-w-[520px] mx-auto">
+            <div className="hero-image-wrapper relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-black/35 border border-[var(--color-border-dark)] aspect-[4/3] sm:aspect-[4.2/3] flex items-center justify-center bg-[var(--color-card-dark)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-y-[-5px] hover:scale-[1.01] hover:rotate-1 hover:shadow-3xl hover:shadow-black/50 hover:border-white/15 w-full max-w-[520px] mx-auto group">
               <img 
                 src="/assets/selected_hero_visual.png" 
                 alt="백두산 천지 일출" 
-                className="hero-main-img w-full h-full object-cover transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105" 
+                className="hero-main-img w-full h-full object-cover transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]" 
               />
               <div className="hero-image-overlay absolute inset-0 bg-gradient-to-br from-white/5 to-black/25 pointer-events-none"></div>
             </div>

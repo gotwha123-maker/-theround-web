@@ -1724,8 +1724,9 @@ a {
 /* Reveal on Scroll Animations (JS handles intersection class) */
 .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity var(--transition-slow), transform var(--transition-slow);
+    transform: translateY(30px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
 .reveal-on-scroll.active {

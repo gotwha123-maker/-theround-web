@@ -204,6 +204,10 @@ export default function About({ onOpenModal = () => {} }) {
         .value-card-premium {
           position: relative;
           overflow: hidden;
+          background: var(--color-bg-secondary);
+          border: 1px solid var(--color-border);
+          border-radius: 24px;
+          transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .value-card-premium::before {
           content: '';
@@ -214,15 +218,23 @@ export default function About({ onOpenModal = () => {} }) {
           height: 4px;
           opacity: 0;
           transition: opacity 0.3s ease;
-          background: var(--color-text-primary);
+          background: linear-gradient(90deg, var(--color-primary) 0%, hsl(354, 100%, 65%) 100%);
         }
         .value-card-premium:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05) !important;
-          border-color: var(--color-text-primary) !important;
+          transform: translateY(-10px) !important;
+          box-shadow: 0 30px 60px rgba(220, 20, 20, 0.08) !important;
+          border-color: rgba(220, 20, 20, 0.25) !important;
         }
         .value-card-premium:hover::before {
           opacity: 1;
+        }
+        .value-card-premium:hover .icon-wrapper {
+          transform: scale(1.08) rotate(6deg);
+          background: hsla(354, 85%, 48%, 0.1) !important;
+          color: var(--color-primary) !important;
+        }
+        .icon-wrapper {
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .brand-badge {
           font-size: 0.75rem;

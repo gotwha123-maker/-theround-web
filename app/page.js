@@ -49,14 +49,24 @@ export default function Home() {
         title: "리더십 스쿨",
         content: (
           <div>
-            <p style={{ marginBottom: "1.5rem", lineHeight: "1.8" }}>
-              탈북민이 우리 사회의 전문가로 성장할 수 있도록 1:1 멘토링과 실무 비즈니스 교육을 제공합니다.
+            <p className="text-slate-600 font-bold text-sm mb-5 leading-relaxed [word-break:keep-all]">
+              탈북민이 우리 사회의 당당한 주권자이자 전문가로 성장할 수 있도록 1:1 멘토링과 실무 비즈니스 교육을 체계적으로 제공합니다.
             </p>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2" }}>
-              <li>전문가 1:1 진로 매칭</li>
-              <li>사회적 창업 및 실무 세미나</li>
-              <li>수료자 네트워크 지원</li>
-            </ul>
+            <div className="flex flex-col gap-3">
+              {[
+                { title: "전문가 1:1 진로 매칭", desc: "분야별 시니어 전문가와 매칭하여 실질적이고 구체적인 커리어 로드맵을 설계합니다." },
+                { title: "사회적 창업 및 실무 세미나", desc: "비즈니스 기획, 마케팅, 재무 관리 등 창업과 실무에 즉시 적용 가능한 지식을 함양합니다." },
+                { title: "수료자 네트워크 지원", desc: "아카데미 수료 후에도 활발히 소통하며 성장을 이끌어갈 수 있는 독자적인 동문 네트워크를 제공합니다." }
+              ].map((item, index) => (
+                <div key={index} className="flex gap-3 items-start p-3.5 bg-slate-50 rounded-xl border border-slate-100/50">
+                  <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mt-2 shrink-0"></span>
+                  <div>
+                    <h5 className="font-extrabold text-[var(--color-text-primary)] text-sm mb-0.5">{item.title}</h5>
+                    <p className="text-xs text-slate-500 leading-relaxed [word-break:keep-all]">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )
       };
@@ -65,15 +75,22 @@ export default function Home() {
       return {
         title: "통일인식 확산",
         content: (
-          <div>
-            <div style={{ marginBottom: "2rem" }}>
-              <h4 style={{ color: "var(--color-primary)", marginBottom: "0.5rem" }}>1) 유니원 FC (UniOne FC)</h4>
-              <p style={{ lineHeight: "1.8" }}>스포츠를 통해 남과 북의 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 현장입니다. 매주 정기 훈련과 경기를 통해 건강한 공동체를 형성합니다.</p>
-            </div>
-            <div style={{ marginBottom: "1.5rem" }}>
-               <h4 style={{ color: "var(--color-primary)", marginBottom: "0.5rem" }}>2) 통일포차 (Unification Pocha)</h4>
-               <p style={{ lineHeight: "1.8" }}>맛있는 음식과 문화적 요소를 융합하여 시민들과 함께 경직된 통일 이야기를 일상 속 축제처럼 가볍게 풀어내는 쌍방향 소통 무대입니다.</p>
-            </div>
+          <div className="flex flex-col gap-4">
+            {[
+              { 
+                title: "1) 유니원 FC (UniOne FC)", 
+                desc: "스포츠를 통해 남과 북의 사람들이 대등한 파트너로 어우러지는 역동적인 화합의 현장입니다. 매주 정기 훈련과 친선 경기를 거듭하며 장벽 없는 단단한 공동체를 함께 빚어냅니다." 
+              },
+              { 
+                title: "2) 통일포차 (Unification Pocha)", 
+                desc: "맛있는 북한 요리와 문화적 요소를 현대적으로 융합하여, 시민사회와 함께 다소 경직될 수 있는 통일 이야기를 일상 속 따뜻하고 즐거운 페스티벌처럼 캐주얼하게 풀어내는 소통의 식탁입니다." 
+              }
+            ].map((item, index) => (
+              <div key={index} className="p-4 bg-slate-50 rounded-xl border border-slate-100/50">
+                <h4 className="font-black text-[#ff4d5a] text-[15px] mb-2">{item.title}</h4>
+                <p className="text-[13px] text-slate-600 leading-relaxed [word-break:keep-all]">{item.desc}</p>
+              </div>
+            ))}
           </div>
         )
       };
@@ -83,14 +100,24 @@ export default function Home() {
         title: "평화 포럼 및 아카이빙",
         content: (
           <div>
-            <p style={{ marginBottom: "1.5rem", lineHeight: "1.8" }}>
-              선구자들의 삶의 기록을 보존하고, 학술 토론을 통해 사회 통합의 새로운 패러다임을 제시합니다.
+            <p className="text-slate-600 font-bold text-sm mb-5 leading-relaxed [word-break:keep-all]">
+              선구자들의 소중한 삶의 기록을 영구 보존하고, 소통형 토론을 통해 사회 통합의 새로운 패러다임을 넓힙니다.
             </p>
-            <ul style={{ paddingLeft: "1.2rem", lineHeight: "2" }}>
-              <li>시민 개방형 토크 콘서트</li>
-              <li>탈북 서사 도서 출판 및 기록</li>
-              <li>다국어 디지털 아카이빙</li>
-            </ul>
+            <div className="flex flex-col gap-3">
+              {[
+                { title: "시민 개방형 토크 콘서트", desc: "시민 누구나 참여해 삶의 여정을 나누고, 평화에 관한 새로운 담론을 가벼운 소통으로 풀어갑니다." },
+                { title: "탈북 서사 도서 출판 및 기록", desc: "치열하게 삶을 개척해 낸 목소리를 책과 콘텐츠로 발간하여 따뜻한 보편적 공감대를 확보합니다." },
+                { title: "다국어 디지털 아카이빙", desc: "축적된 활동과 상생의 역사를 글로벌 아카이브에 영구히 보존하여 전 세계 시민사회와 연대합니다." }
+              ].map((item, index) => (
+                <div key={index} className="flex gap-3 items-start p-3.5 bg-slate-50 rounded-xl border border-slate-100/50">
+                  <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full mt-2 shrink-0"></span>
+                  <div>
+                    <h5 className="font-extrabold text-[var(--color-text-primary)] text-sm mb-0.5">{item.title}</h5>
+                    <p className="text-xs text-slate-500 leading-relaxed [word-break:keep-all]">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )
       };

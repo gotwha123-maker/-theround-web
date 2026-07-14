@@ -52,8 +52,8 @@ export default function CorePrograms() {
           </div>
 
           <div className="programs-list flex flex-col gap-20 mt-14 lg:gap-28 lg:mt-20">
-            {programs.map((p) => (
-              <article className="program-row group flex flex-col items-center gap-8 bg-transparent relative px-4 md:flex-row md:gap-20 md:p-0" key={p.id} aria-label={p.title}>
+            {programs.map((p, idx) => (
+              <article className={`program-row group flex flex-col items-center gap-8 bg-transparent relative px-4 md:flex-row md:gap-20 md:p-0 ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`} key={p.id} aria-label={p.title}>
                 <div className="program-img-box flex-1 w-full relative rounded-[32px] overflow-hidden shadow-2xl shadow-black/30 border border-[var(--color-border-dark)] aspect-[16/10] bg-[var(--color-card-dark)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-[-4px] group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.5)] group-hover:border-[rgba(255,255,255,0.2)] md:flex-[1.25]">
                   <span className="program-badge absolute top-[1.8rem] left-[1.8rem] bg-neutral-900/85 backdrop-blur-sm border border-white/10 text-[var(--color-primary)] px-3 py-2 rounded-full text-xs font-extrabold tracking-wider shadow-md shadow-black/30 z-20">
                     {p.badge}
