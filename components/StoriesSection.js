@@ -199,20 +199,20 @@ export default function StoriesSection() {
               </div>
               <div className="story-content" style={{ padding: "1.8rem", flexGrow: 1, display: "flex", flexDirection: "column" }}>
                 <div className="story-meta" style={{ marginBottom: "1rem" }}>
-                  <span className="story-date" style={{ fontSize: "0.85rem", color: "var(--color-primary)", fontWeight: 800, letterSpacing: "0.02em" }}>
+                  <span className="story-date" style={{ fontSize: "0.85rem", color: "#ff4d5a", fontWeight: 800, letterSpacing: "0.02em" }}>
                     {s.date}
                   </span>
                 </div>
                 <h3 
                   className="story-title clickable-detail-area" 
-                  style={{ cursor: "pointer", fontSize: "1.25rem", lineHeight: 1.5, marginBottom: "1.2rem", color: "var(--color-text-primary)", fontWeight: 700, wordBreak: "keep-all", transition: "color 0.3s ease" }}
+                  style={{ cursor: "pointer", fontSize: "1.25rem", lineHeight: 1.5, marginBottom: "1.2rem", color: "#0f172a", fontWeight: 800, wordBreak: "keep-all", transition: "color 0.3s ease" }}
                   onClick={() => openDetail(s)}
                 >
                   {s.title}
                 </h3>
                 <p 
                   className="story-excerpt" 
-                  style={{ fontSize: "1rem", lineHeight: 1.8, color: "var(--color-text-muted)", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginTop: "auto" }}
+                  style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "#334155", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginTop: "auto" }}
                 >
                   {s.excerpt}
                 </p>

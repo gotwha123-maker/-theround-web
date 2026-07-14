@@ -71,13 +71,13 @@ export default function CorePrograms() {
                 </div>
 
                 <div className="program-text-box flex-1 flex flex-col text-center w-full md:text-left">
-                  <h3 className="program-title-h3 text-2xl font-black mb-2 md:text-3xl lg:text-[2.1rem] text-[var(--color-text-light)] tracking-tight">
+                  <h3 className="program-title-h3 text-2xl font-black mb-2 md:text-3xl lg:text-[2.1rem] text-white tracking-tight">
                     {p.title}
                   </h3>
-                  <p className="program-subtitle text-base md:text-lg text-[var(--color-primary)] font-extrabold mb-6 md:mb-[1.5rem]">
+                  <p className="program-subtitle text-base md:text-lg text-[#ff4d5a] font-extrabold mb-6 md:mb-[1.5rem]">
                     {p.subtitle}
                   </p>
-                  <p className="program-desc text-sm md:text-base text-[var(--color-text-dim)] leading-loose mb-8 md:mb-10 [word-break:keep-all]">
+                  <p className="program-desc text-sm md:text-base text-slate-200 leading-loose mb-8 md:mb-10 [word-break:keep-all]">
                     {p.description}
                   </p>
                   
