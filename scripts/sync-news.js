@@ -61,13 +61,22 @@ async function fetchLH() {
   const items = [];
   try {
     const { data } = await axiosGet('https://apply.lh.or.kr/rss/rss.do?boardId=62');
+    
+    // Check if the response is actually HTML error page instead of XML RSS
+    if (data.includes('<!DOCTYPE html>') || data.includes('<html') || data.includes('오류알림')) {
+      console.log('  ! LH RSS returned error page. Skipping.');
+      return items;
+    }
+
     const $ = cheerio.load(data, { xmlMode: true });
     $('item').each((i, el) => {
       if (i < 10) {
         const title = $(el).find('title').text().trim();
         const link = $(el).find('link').text().trim();
         const date = new Date().toLocaleDateString('ko-KR').replace(/\s/g, '').slice(0, -1);
-        if (title) items.push({ title, date, url: link, source: 'LH공사' });
+        if (title && title !== '오류알림') {
+          items.push({ title, date, url: link, source: 'LH공사' });
+        }
       }
     });
   } catch (e) { console.error('  ! LH failed:', e.message); }
@@ -76,30 +85,94 @@ async function fetchLH() {
 
 // 3. Fetch Naver News - Increase limit and keywords
 async function fetchNaverNews() {
-  console.log('[Source] Fetching Naver News (RSS)...');
+  console.log('[Source] Fetching Naver News (HTML)...');
   const items = [];
   const keywords = ['탈북민 지원', '북한이탈주민', '남북청년', '정착지원금', '하나원', '남북교류', '북한인권'];
   try {
     for (const keyword of keywords) {
       const { data } = await axiosGet(`https://search.naver.com/search.naver?where=news&query=${encodeURIComponent(keyword)}&sm=tab_srt&sort=1`);
       const $ = cheerio.load(data);
-      $('.news_area').each((i, el) => {
-        if (i < 5) {
-          const titleEl = $(el).find('.news_tit');
-          const title = titleEl.text().trim();
-          const link = titleEl.attr('href') || '';
-          const date = $(el).find('.info_group span').first().text().trim() || '최신';
+      
+      const wrappers = $('div.fds-news-item-list-tab').find('div.sds-comps-vertical-layout');
+      let count = 0;
+      
+      wrappers.each((wIdx, wrapper) => {
+        let currentPress = '언론보도';
+        
+        $(wrapper).find('> div').each((i, block) => {
+          if (count >= 5) return;
           
-          // 출처 불명확 도메인 배제 필터 (개인 블로그, 카페, 사설 사이트 등)
-          const excludeDomains = ['blog.naver.com', 'blog.me', 'tistory.com', 'cafe.naver.com', 'cafe.daum.net', 'modoo.at', 'namu.wiki', 'kin.naver.com'];
-          const isInvalidDomain = excludeDomains.some(domain => link.includes(domain));
+          const anchors = $(block).find('a');
+          let hasDetailLink = false;
           
-          if (title && link && !isInvalidDomain) {
-            // 실제 언론사 명칭을 파싱하여 소스로 지정
-            const pressName = $(el).find('.info.press').text().trim() || '언론보도';
-            items.push({ title, date, url: link, source: pressName });
+          anchors.each((j, aEl) => {
+            const text = $(aEl).text().trim();
+            const href = $(aEl).attr('href') || '';
+            
+            if (!href.startsWith('http') || href.includes('keep.naver.com') || text.includes('바로가기')) {
+              return;
+            }
+            
+            const cleanText = text.replace(/\s*새\s*창\s*열림$/, '').trim();
+            
+            try {
+              const parsedUrl = new URL(href);
+              const path = parsedUrl.pathname || '';
+              const isHomepage = path === '/' || path === '' || path.toLowerCase() === '/index.html';
+              
+              if (isHomepage) {
+                if (cleanText.length > 0 && cleanText.length < 30) {
+                  currentPress = cleanText;
+                }
+              } else {
+                if (cleanText.length >= 10 && cleanText.length < 90) {
+                  hasDetailLink = true;
+                  
+                  const excludeDomains = ['blog.naver.com', 'blog.me', 'tistory.com', 'cafe.naver.com', 'cafe.daum.net', 'modoo.at', 'namu.wiki', 'kin.naver.com'];
+                  const isInvalidDomain = excludeDomains.some(domain => href.includes(domain));
+                  
+                  if (!isInvalidDomain && !items.some(item => item.url === href)) {
+                    let date = '최신';
+                    
+                    $(block).find('span').each((k, sEl) => {
+                      const sText = $(sEl).text().trim();
+                      if (/\d+([분시간일주달년] 전|[\.\-:\s]\d+)/.test(sText) || sText.includes('전')) {
+                        date = sText;
+                      }
+                    });
+                    if (date === '최신') {
+                      $(block).prev().find('span').each((k, sEl) => {
+                        const sText = $(sEl).text().trim();
+                        if (/\d+([분시간일주달년] 전|[\.\-:\s]\d+)/.test(sText) || sText.includes('전')) {
+                          date = sText;
+                        }
+                      });
+                    }
+                    
+                    items.push({
+                      title: cleanText,
+                      date,
+                      url: href,
+                      source: currentPress
+                    });
+                    count++;
+                  }
+                }
+              }
+            } catch (err) {
+              // Ignore URL parse error
+            }
+          });
+          
+          if (!hasDetailLink) {
+            anchors.each((j, aEl) => {
+              const text = $(aEl).text().trim();
+              if (text && text.length > 0 && text.length < 15 && !text.includes('새 창 열림') && !text.includes('저장') && !text.includes('공유')) {
+                currentPress = text;
+              }
+            });
           }
-        }
+        });
       });
     }
   } catch (e) { console.error('  ! Naver News failed:', e.message); }
