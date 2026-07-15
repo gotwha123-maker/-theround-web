@@ -13,7 +13,7 @@ const TABLE_NAME = "SettlementNews";
 const BACKUP_PATH = path.join(__dirname, '../public/data/news.json');
 
 const base = AIRTABLE_API_KEY && AIRTABLE_BASE_ID ? new Airtable({ apiKey: AIRTABLE_API_KEY }).base(AIRTABLE_BASE_ID) : null;
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 
 async function axiosGet(url, options = {}) {
   try {
@@ -181,6 +181,10 @@ async function fetchNaverNews() {
 
 // 4. AI Verification - Relaxed Filtering
 async function verify(rawItems) {
+  if (!openai) {
+    console.log('[AI] OpenAI API Key is missing. Skipping AI verification.');
+    return [];
+  }
   console.log(`[AI] Verifying ${rawItems.length} items with strict verification rules...`);
   const verified = [];
   const uniqueItems = Array.from(new Map(rawItems.map(item => [item.url, item])).values());
