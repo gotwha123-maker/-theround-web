@@ -32,8 +32,7 @@ export const metadata = {
     "탈북민 취업 정보",
     "탈북 대학생 지원",
     "남북 청년 통합",
-    "통일 NGO",
-    "정착 지원 서비스"
+    "통일 NGO"
   ],
   alternates: {
     canonical: "/",
