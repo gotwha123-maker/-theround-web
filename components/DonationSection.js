@@ -13,6 +13,14 @@ export default function DonationSection() {
   });
   const [submitting, setSubmitting] = useState(false);
 
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyAccount = () => {
+    navigator.clipboard.writeText("1005504626666");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   const getImpactMessage = () => {
     const amount = selectedAmount === "custom" ? Number(customAmount) : Number(selectedAmount);
     if (!amount || amount <= 0) return "더라운드의 든든한 동반자가 되어 주세요.";
@@ -100,17 +108,52 @@ export default function DonationSection() {
               단순 수혜가 아닌, 대등한 구성원으로서 함께 한반도의 내일을 열어가도록 따뜻한 동반자가 되어주세요.
             </p>
 
+            {/* 계좌 안내 카드 (강조 및 복사 기능 포함) */}
+            <div 
+              style={{
+                marginTop: "2rem",
+                padding: "1.8rem",
+                borderRadius: "20px",
+                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(220, 20, 20, 0.05) 100%)",
+                border: "1.5px solid rgba(99, 102, 241, 0.25)",
+                boxShadow: "0 8px 24px rgba(0, 0, 0, 0.04)"
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.8rem" }}>
+                <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--color-primary)", letterSpacing: "0.05em" }}>
+                  직접 계좌 이체 후원
+                </span>
+                <button
+                  type="button"
+                  onClick={handleCopyAccount}
+                  style={{
+                    backgroundColor: copied ? "var(--color-primary)" : "white",
+                    color: copied ? "white" : "var(--color-primary)",
+                    border: "1px solid var(--color-primary)",
+                    borderRadius: "30px",
+                    padding: "0.35rem 0.9rem",
+                    fontSize: "0.8rem",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    boxShadow: "0 2px 6px rgba(0,0,0,0.05)"
+                  }}
+                >
+                  {copied ? "✓ 복사되었습니다" : "📋 계좌번호 복사"}
+                </button>
+              </div>
+
+              <div style={{ fontSize: "1.35rem", fontWeight: 900, color: "var(--color-text-primary)", letterSpacing: "-0.01em", margin: "0.4rem 0" }}>
+                우리은행 1005-504-626666
+              </div>
+
+              <div style={{ fontSize: "0.95rem", color: "var(--color-text-muted)", fontWeight: 600 }}>
+                예금주: <strong style={{ color: "var(--color-text-primary)" }}>더라운드</strong>
+              </div>
+            </div>
+
             <div className="donation-benefits" style={{ marginTop: "2rem" }}>
               <div className="benefit-item">
-                <span className="benefit-icon" style={{ color: "var(--color-primary)", fontWeight: "bold", marginRight: "0.5rem" }}>&#10003;</span>
-                <div>
-                  <h4 style={{ color: "var(--color-text-primary)" }}>직접 계좌 후원</h4>
-                  <p style={{ color: "var(--color-text-primary)", fontWeight: 800, fontSize: "1.1rem", marginTop: "0.2rem" }}>
-                    우리은행 1005-504-626666 <span style={{ fontWeight: 500, fontSize: "0.95rem", color: "var(--color-text-muted)" }}>(예금주: 더라운드)</span>
-                  </p>
-                </div>
-              </div>
-              <div className="benefit-item" style={{ marginTop: "1.5rem" }}>
                 <span className="benefit-icon" style={{ color: "var(--color-primary)", fontWeight: "bold", marginRight: "0.5rem" }}>&#10003;</span>
                 <div>
                   <h4 style={{ color: "var(--color-text-primary)" }}>기부금 영수증 발급 안내</h4>
@@ -128,7 +171,7 @@ export default function DonationSection() {
               </div>
             </div>
           </div>
- 
+
           <div className="donation-widget-card reveal-on-scroll delay-100">
             <div className="widget-header">
               <button 
@@ -166,7 +209,7 @@ export default function DonationSection() {
                   직접입력
                 </button>
               </div>
- 
+
               {selectedAmount === "custom" && (
                 <div className="custom-amount-input-wrapper" id="custom-amount-wrapper">
                   <input
@@ -181,7 +224,7 @@ export default function DonationSection() {
                   <span className="currency">원</span>
                 </div>
               )}
- 
+
               <div 
                 className="impact-message-box" 
                 id="impact-message" 
@@ -189,7 +232,7 @@ export default function DonationSection() {
               >
                 {getImpactMessage()}
               </div>
- 
+
               <form className="donation-form" id="donation-submit-form" onSubmit={handleSubmit}>
                 <div className="form-group" style={{ marginBottom: "1rem" }}>
                   <input
@@ -222,8 +265,8 @@ export default function DonationSection() {
               </form>
               <div style={{ marginTop: "1.8rem", textAlign: "center", paddingTop: "1.2rem", borderTop: "1px dashed var(--color-border)", fontSize: "0.85rem", color: "var(--color-text-muted)", lineHeight: "1.5" }}>
                 직접 계좌 이체 후원:<br />
-                <strong style={{ color: "var(--color-text-primary)", fontSize: "1.0rem" }}>우리은행 1005-504-626666</strong><br />
-                <span style={{ fontSize: "0.8rem" }}>(예금주: 더라운드)</span>
+                <strong style={{ color: "var(--color-text-primary)", fontSize: "1.05rem" }}>우리은행 1005-504-626666</strong><br />
+                <span style={{ fontSize: "0.85rem" }}>(예금주: 더라운드)</span>
               </div>
             </div>
           </div>
